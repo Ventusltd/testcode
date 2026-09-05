@@ -1,0 +1,12 @@
+HUMAN-STYLE CHROME EXTENSION REVIEW - 2026-09-05 12:21 UTC
+Published build tested: 202609051152. Started from Pipeline News, selected five random rows of the first 50 capacity-sorted rows (indices 23,32,17,8,13), clicked the actual MAP links, inspected screenshots and visible text. This is a five-row sample, not a representative estate-wide pass rate.
+
+1. 2484 Norfolk Vanguard East: stayed Deep-linked project; missing name/capacity. Search dropdown offered unrelated matches including Turners Hill Solar Farm, obscuring the card. Offshore view initially featureless sea; no useful framing of project and network.
+2. 17559 Caledonia South: name and 1100 MW resolved. Search overlay obscured the project card. Offshore pin/lines visible but endpoints outside the view; large controls panel consumes lower screen.
+3. 12453 Thorpe Marsh battery: stayed Deep-linked project, although local map and calculated substation distances appeared. Search overlay obstructed the card. Confirmed generic identity persisted after loading settled.
+4. 10772 West of Orkney: name and 2000 MW resolved; search overlay crossed card heading. Zoomed ocean view and lines off-screen gave little geographic context.
+5. 10919 Morgan Offshore: MAP led to exact REPD identity did not fly to a safe map point / Try again. Search knew Morgan Offshore Wind Farm and 1500 MW, but the map remained at UK/Europe overview. No supplied coordinates.
+
+Assessment: three failures of project identity/location handling, plus visible layout/context problems in the two resolved arrivals. Persistent-search overlay introduced by this Test Code change obstructs cards. Existing outcome checks did not test this usability. No clean bill of health.
+
+202609051214 is a limited identity correction, not a resolution of the layout, offshore framing, general Parquet search, or engineering/data completeness issues. Its published Botley MAP link was followed in connected Chrome and displayed name, 840 MW and Cowley 15.76 km. The prior build remains unchanged.

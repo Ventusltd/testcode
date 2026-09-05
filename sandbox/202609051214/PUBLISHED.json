@@ -1,0 +1,8 @@
+{
+  "generation": "202609051214",
+  "web_commit": "9bd0d11e453f27a2507f42718bbeba5439424910",
+  "verified_utc": "2026-09-05T12:23:41.843868+00:00",
+  "files_matched": 127,
+  "targeted_live_tests": 6,
+  "scope": "Identity correction only; five-row human review exposes unresolved usability issues."
+}
