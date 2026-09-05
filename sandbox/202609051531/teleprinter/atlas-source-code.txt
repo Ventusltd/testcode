@@ -1,13 +1,13 @@
 PRINT SOURCE CODE
 Format: codex-print-source-code-v1
 Repository: https://github.com/Ventusltd/testcode
-Commit: 1579fda7731b62a724124cc3ff798160ca431149
-Tree: 1605f6ed681371ce2f9f51decf80ad9da7008178
-Scopes: ["sandbox/202609051517/atlas/cartridges/202609051517-sld-sandbox.js","sandbox/202609051517/atlas/cartridges/202609051517-streaming-parquet-bridge.js","sandbox/202609051517/atlas/cartridges/202609051517-substation-intelligence.js","sandbox/202609051517/atlas/cartridges/202609051517-uk-gazetteer-flyto.js","sandbox/202609051517/atlas/current.json","sandbox/202609051517/atlas/index.html","sandbox/202609051517/atlas/source/menu-bar.js","sandbox/202609051517/atlas/teleprinter-bootstrap.js","sandbox/202609051517/teleprinter/SOURCE-SCOPE.md","sandbox/202609051517/teleprinter/controls.js","sandbox/202609051517/teleprinter/png-pixels.mjs","sandbox/202609051517/teleprinter/print-screen.js","sandbox/202609051517/teleprinter/print-source-code.js","sandbox/202609051517/teleprinter/runtime-source.js","sandbox/202609051517/teleprinter/screen-pdf.mjs"]
+Commit: 6c2cc1453129378e8e8bc6413af401e7d2c7e333
+Tree: 2302aa68b9abd9e7ad2ea5ddbab33864718d2c81
+Scopes: ["sandbox/202609051531/atlas/cartridges/202609051531-sld-sandbox.js","sandbox/202609051531/atlas/cartridges/202609051531-streaming-parquet-bridge.js","sandbox/202609051531/atlas/cartridges/202609051531-substation-intelligence.js","sandbox/202609051531/atlas/cartridges/202609051531-uk-gazetteer-flyto.js","sandbox/202609051531/atlas/current.json","sandbox/202609051531/atlas/index.html","sandbox/202609051531/atlas/source/menu-bar.js","sandbox/202609051531/atlas/teleprinter-bootstrap.js","sandbox/202609051531/teleprinter/SOURCE-SCOPE.md","sandbox/202609051531/teleprinter/controls.js","sandbox/202609051531/teleprinter/png-pixels.mjs","sandbox/202609051531/teleprinter/print-screen.js","sandbox/202609051531/teleprinter/print-source-code.js","sandbox/202609051531/teleprinter/runtime-source.js","sandbox/202609051531/teleprinter/screen-pdf.mjs"]
 Policy: {"source":"Committed Git blobs only; working-tree changes are never substituted.","inclusion":"All regular files and symlink target blobs under each literal scope, including dotfiles and generated files, if valid UTF-8 text.","omission":"NUL-containing or non-UTF-8 blobs and Git submodules are explicitly listed as omitted. No truncation.","boundaries":"File startByte and byteCount identify exact original UTF-8 bytes in the bundle; offsets are zero-based. No newline normalization."}
-Inventory: [{"mode":"100644","blobOid":"f1df0a9deec25e5e598f9c3e2be825d4c0358f41","path":"sandbox/202609051517/atlas/cartridges/202609051517-sld-sandbox.js","byteCount":384025,"sha256":"2a8cb3aa9c8bbe57b187c66ed05b34acef7d9c868e5f770321082c6c1921e9f2","status":"included"},{"mode":"100644","blobOid":"98b025e842d7a6856dcc7cc6aa2db6a1edcf3ada","path":"sandbox/202609051517/atlas/cartridges/202609051517-streaming-parquet-bridge.js","byteCount":13656,"sha256":"80ebac3061f634433554c6dc992b21a34405e5afd2a9b09f968086229b8d8b2c","status":"included"},{"mode":"100644","blobOid":"7509ebe3a0ae4fb6a655a3d5c4a276fd39232a41","path":"sandbox/202609051517/atlas/cartridges/202609051517-substation-intelligence.js","byteCount":370349,"sha256":"b4c60331ca78aa432536ff0b072e5cd93ce0d0a20cfa1a389be6d2bb9831128a","status":"included"},{"mode":"100644","blobOid":"f5ba42357785598131bb4f19d0c6027f6bc88dc7","path":"sandbox/202609051517/atlas/cartridges/202609051517-uk-gazetteer-flyto.js","byteCount":36378,"sha256":"ea193b7347ed222bca92c393256001047d198fae617483bacdb4d4a0540b7068","status":"included"},{"mode":"100644","blobOid":"c830a99dd4f9cb7bb87e02b63c31d380748fc60d","path":"sandbox/202609051517/atlas/current.json","byteCount":49217,"sha256":"c63ea665c272b8b0c2160369641a6655a066b231446d820e3360ed31d1c0c431","status":"included"},{"mode":"100644","blobOid":"452b67b8debb3bb859fe1d2c66670ed1cf94c6e2","path":"sandbox/202609051517/atlas/index.html","byteCount":5684,"sha256":"32fd1bbd96f6467fda05eb461c11030ecaf4b76b224cbb9014a3b2cbe0240743","status":"included"},{"mode":"100644","blobOid":"12014c021785bab2ebe228afe78aa0bce74c4cac","path":"sandbox/202609051517/atlas/source/menu-bar.js","byteCount":74704,"sha256":"1e48cef2cec2de5b3ede750e1bb9877540573e79fdafcf7041b79f8367962b5d","status":"included"},{"mode":"100644","blobOid":"9a0e626b2c5c8811e585ba3e9888012d6b74a27b","path":"sandbox/202609051517/atlas/teleprinter-bootstrap.js","byteCount":1058,"sha256":"30ee942409772e982af59d2e7157be79e5401b0c4254707ef3d797010875bcb8","status":"included"},{"mode":"100644","blobOid":"2bcd475e08f3fc62d7ef6ae9f95278906ee9f5ff","path":"sandbox/202609051517/teleprinter/SOURCE-SCOPE.md","byteCount":1702,"sha256":"94ed70ad03eb1682a7b0b0cf9e910269130fd8a69ff1781b7751045d9a5bd939","status":"included"},{"mode":"100644","blobOid":"3845e87ea10997541e25536f67b2129b3bcc05bb","path":"sandbox/202609051517/teleprinter/controls.js","byteCount":10405,"sha256":"3e25605a7f490eb265ede11e7c382f11f5f373f1ff0e83a7376e9731abf9f6a3","status":"included"},{"mode":"100644","blobOid":"98150c4635fd713ceb4baf0b09033db8851facb6","path":"sandbox/202609051517/teleprinter/png-pixels.mjs","byteCount":8455,"sha256":"01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481","status":"included"},{"mode":"100644","blobOid":"69872a51baa6903b01210e7f7dfd812c1032440b","path":"sandbox/202609051517/teleprinter/print-screen.js","byteCount":3753,"sha256":"df93873ca25052ed3fe5093caeb9eea09efd8f0d92cc93d73f4b8d3279558c9c","status":"included"},{"mode":"100644","blobOid":"1827a78fd6951776093ebb1c186f3e8155dbadbc","path":"sandbox/202609051517/teleprinter/print-source-code.js","byteCount":10680,"sha256":"78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f","status":"included"},{"mode":"100644","blobOid":"3df51867e4f0500076dd171f5a745bbacadb5f7d","path":"sandbox/202609051517/teleprinter/runtime-source.js","byteCount":26282,"sha256":"4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274","status":"included"},{"mode":"100644","blobOid":"fdb1ca4c25e0c3bea47122ac32c801165d95ffcc","path":"sandbox/202609051517/teleprinter/screen-pdf.mjs","byteCount":10220,"sha256":"ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039","status":"included"}]
+Inventory: [{"mode":"100644","blobOid":"f1df0a9deec25e5e598f9c3e2be825d4c0358f41","path":"sandbox/202609051531/atlas/cartridges/202609051531-sld-sandbox.js","byteCount":384025,"sha256":"2a8cb3aa9c8bbe57b187c66ed05b34acef7d9c868e5f770321082c6c1921e9f2","status":"included"},{"mode":"100644","blobOid":"98b025e842d7a6856dcc7cc6aa2db6a1edcf3ada","path":"sandbox/202609051531/atlas/cartridges/202609051531-streaming-parquet-bridge.js","byteCount":13656,"sha256":"80ebac3061f634433554c6dc992b21a34405e5afd2a9b09f968086229b8d8b2c","status":"included"},{"mode":"100644","blobOid":"cbc735c3bcd8c297e7af687d9da50a8fc86fd5a1","path":"sandbox/202609051531/atlas/cartridges/202609051531-substation-intelligence.js","byteCount":370349,"sha256":"c49eef9d9e834dcaec3d5153568509b4e5a8dd7a0eebcbb4c52826ca801a59c7","status":"included"},{"mode":"100644","blobOid":"f5ba42357785598131bb4f19d0c6027f6bc88dc7","path":"sandbox/202609051531/atlas/cartridges/202609051531-uk-gazetteer-flyto.js","byteCount":36378,"sha256":"ea193b7347ed222bca92c393256001047d198fae617483bacdb4d4a0540b7068","status":"included"},{"mode":"100644","blobOid":"41d4c7a0174a3aee83929a1e5b0da5a4c835cce8","path":"sandbox/202609051531/atlas/current.json","byteCount":49217,"sha256":"c0ed23c42125e02b6ec6c9e40d8195339b5759c515632da92c5fbb52e759ffae","status":"included"},{"mode":"100644","blobOid":"16c27e4608a44461d08facac151373f11983f515","path":"sandbox/202609051531/atlas/index.html","byteCount":5684,"sha256":"086a3ac086bf3940d11d3e9f193294ee0ddac465051b8d69f8008dd2821ed3da","status":"included"},{"mode":"100644","blobOid":"d9e6c9aba40235966604c2eaeb2a20a6866720d7","path":"sandbox/202609051531/atlas/source/menu-bar.js","byteCount":74704,"sha256":"8df2bd12683de98bca3545ff17a48631ab295cfe2ab7f028eb68e5815d364f42","status":"included"},{"mode":"100644","blobOid":"ab8613febc62072706f0b33f9d85bdb672555776","path":"sandbox/202609051531/atlas/teleprinter-bootstrap.js","byteCount":1058,"sha256":"94a4e786bd6c09b5f208d4d1f016bc2069dbc7e0d9d48915998633654d5742b1","status":"included"},{"mode":"100644","blobOid":"2bcd475e08f3fc62d7ef6ae9f95278906ee9f5ff","path":"sandbox/202609051531/teleprinter/SOURCE-SCOPE.md","byteCount":1702,"sha256":"94ed70ad03eb1682a7b0b0cf9e910269130fd8a69ff1781b7751045d9a5bd939","status":"included"},{"mode":"100644","blobOid":"3845e87ea10997541e25536f67b2129b3bcc05bb","path":"sandbox/202609051531/teleprinter/controls.js","byteCount":10405,"sha256":"3e25605a7f490eb265ede11e7c382f11f5f373f1ff0e83a7376e9731abf9f6a3","status":"included"},{"mode":"100644","blobOid":"98150c4635fd713ceb4baf0b09033db8851facb6","path":"sandbox/202609051531/teleprinter/png-pixels.mjs","byteCount":8455,"sha256":"01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481","status":"included"},{"mode":"100644","blobOid":"6a33883ec8380af1d361a593605463dd4063af39","path":"sandbox/202609051531/teleprinter/print-screen.js","byteCount":6953,"sha256":"5bd8dcaf97266ab87bfd2b7fe3ca39ba49c8b2f98e0018bbc7ea268336eec68b","status":"included"},{"mode":"100644","blobOid":"1827a78fd6951776093ebb1c186f3e8155dbadbc","path":"sandbox/202609051531/teleprinter/print-source-code.js","byteCount":10680,"sha256":"78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f","status":"included"},{"mode":"100644","blobOid":"3df51867e4f0500076dd171f5a745bbacadb5f7d","path":"sandbox/202609051531/teleprinter/runtime-source.js","byteCount":26282,"sha256":"4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274","status":"included"},{"mode":"100644","blobOid":"fdb1ca4c25e0c3bea47122ac32c801165d95ffcc","path":"sandbox/202609051531/teleprinter/screen-pdf.mjs","byteCount":10220,"sha256":"ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039","status":"included"}]
 
-===== BEGIN FILE "sandbox/202609051517/atlas/cartridges/202609051517-sld-sandbox.js" | bytes=384025 | sha256=2a8cb3aa9c8bbe57b187c66ed05b34acef7d9c868e5f770321082c6c1921e9f2 =====
+===== BEGIN FILE "sandbox/202609051531/atlas/cartridges/202609051531-sld-sandbox.js" | bytes=384025 | sha256=2a8cb3aa9c8bbe57b187c66ed05b34acef7d9c868e5f770321082c6c1921e9f2 =====
 ;(()=>{
 const {distanceKm}=(()=>{
 /**
@@ -7737,9 +7737,9 @@ observer.request({entity:expected,location:Number.isFinite(lon)&&Number.isFinite
   }
 })();
 
-===== END FILE "sandbox/202609051517/atlas/cartridges/202609051517-sld-sandbox.js" =====
+===== END FILE "sandbox/202609051531/atlas/cartridges/202609051531-sld-sandbox.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/cartridges/202609051517-streaming-parquet-bridge.js" | bytes=13656 | sha256=80ebac3061f634433554c6dc992b21a34405e5afd2a9b09f968086229b8d8b2c =====
+===== BEGIN FILE "sandbox/202609051531/atlas/cartridges/202609051531-streaming-parquet-bridge.js" | bytes=13656 | sha256=80ebac3061f634433554c6dc992b21a34405e5afd2a9b09f968086229b8d8b2c =====
 (() => {
   'use strict';
 
@@ -8074,10 +8074,10 @@ observer.request({entity:expected,location:Number.isFinite(lon)&&Number.isFinite
   };
 })();
 
-===== END FILE "sandbox/202609051517/atlas/cartridges/202609051517-streaming-parquet-bridge.js" =====
+===== END FILE "sandbox/202609051531/atlas/cartridges/202609051531-streaming-parquet-bridge.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/cartridges/202609051517-substation-intelligence.js" | bytes=370349 | sha256=b4c60331ca78aa432536ff0b072e5cd93ce0d0a20cfa1a389be6d2bb9831128a =====
-/* Test Code 202609051517; reassembled from individually hashed parts. */
+===== BEGIN FILE "sandbox/202609051531/atlas/cartridges/202609051531-substation-intelligence.js" | bytes=370349 | sha256=c49eef9d9e834dcaec3d5153568509b4e5a8dd7a0eebcbb4c52826ca801a59c7 =====
+/* Test Code 202609051531; reassembled from individually hashed parts. */
 'use strict';
 
 window.initVentusMap = function({ config, center, zoom }) {
@@ -13763,7 +13763,7 @@ window.initVentusMap = function({ config, center, zoom }) {
  .testcode-identity{position:fixed;right:12px;bottom:64px;z-index:2000;background:#08161fee;color:#aaf6ff;padding:8px;border:1px solid #36616a;font:12px monospace;text-decoration:none}
  @media print{.testcode-identity,.search-bar-wrapper{display:none!important}}
  `;document.head.append(style);
- const link=document.createElement('a');link.className='testcode-identity';link.href='/testcode/202609051517/';link.textContent='Test Code · 202609051517';document.body.append(link);
+ const link=document.createElement('a');link.className='testcode-identity';link.href='/testcode/202609051531/';link.textContent='Test Code · 202609051531';document.body.append(link);
 })();
 
 /* Arrival tidy - the search machinery gets out of the way once it has answered.
@@ -14993,9 +14993,9 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
  `;document.head.append(style);
 })();
 
-===== END FILE "sandbox/202609051517/atlas/cartridges/202609051517-substation-intelligence.js" =====
+===== END FILE "sandbox/202609051531/atlas/cartridges/202609051531-substation-intelligence.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/cartridges/202609051517-uk-gazetteer-flyto.js" | bytes=36378 | sha256=ea193b7347ed222bca92c393256001047d198fae617483bacdb4d4a0540b7068 =====
+===== BEGIN FILE "sandbox/202609051531/atlas/cartridges/202609051531-uk-gazetteer-flyto.js" | bytes=36378 | sha256=ea193b7347ed222bca92c393256001047d198fae617483bacdb4d4a0540b7068 =====
 /**
  * place-global-search-v9-5, generation 202609041945 (UTC).
  *
@@ -15814,15 +15814,15 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
   }, { once: true });
 })();
 
-===== END FILE "sandbox/202609051517/atlas/cartridges/202609051517-uk-gazetteer-flyto.js" =====
+===== END FILE "sandbox/202609051531/atlas/cartridges/202609051531-uk-gazetteer-flyto.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/current.json" | bytes=49217 | sha256=c63ea665c272b8b0c2160369641a6655a066b231446d820e3360ed31d1c0c431 =====
+===== BEGIN FILE "sandbox/202609051531/atlas/current.json" | bytes=49217 | sha256=c0ed23c42125e02b6ec6c9e40d8195339b5759c515632da92c5fbb52e759ffae =====
 {
   "schema": "gridatlas.current.v2",
-  "generation": "202609051517",
-  "previous_generation": "202609051419",
+  "generation": "202609051531",
+  "previous_generation": "202609051517",
   "architecture": "IMMUTABLE_SHELL_PLUS_HASHED_CARTRIDGES",
-  "live_route": "/testcode/202609051517/atlas/",
+  "live_route": "/testcode/202609051531/atlas/",
   "release_id": "202608300453-atlas-v9",
   "release_route": "/gridatlas/atlas/releases/202608300453-atlas-v9/",
   "shell": {
@@ -15839,12 +15839,12 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
   "cartridges": [
     {
       "id": "streaming-parquet-bridge",
-      "generation": "202609051517",
+      "generation": "202609051531",
       "version": "v9.112",
       "type": "script",
       "slot": "replace-script",
       "replace_script": "202608292311-maplibre-worker-bridge.js",
-      "path": "./cartridges/202609051517-streaming-parquet-bridge.js",
+      "path": "./cartridges/202609051531-streaming-parquet-bridge.js",
       "sha256": "80ebac3061f634433554c6dc992b21a34405e5afd2a9b09f968086229b8d8b2c",
       "contract": "../ui/cartridges/202608301825-streaming-parquet-bridge-v9-5.mjs",
       "capabilities": [
@@ -15858,12 +15858,12 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
     },
     {
       "id": "uk-gazetteer-flyto",
-      "generation": "202609051517",
+      "generation": "202609051531",
       "version": "testcode-202609051214",
       "type": "script",
       "slot": "replace-script",
       "replace_script": "202608291818-place-postcode-search.js",
-      "path": "./cartridges/202609051517-uk-gazetteer-flyto.js",
+      "path": "./cartridges/202609051531-uk-gazetteer-flyto.js",
       "sha256": "ea193b7347ed222bca92c393256001047d198fae617483bacdb4d4a0540b7068",
       "contract": "../ui/cartridges/202609040337-global-gazetteer-flyto-v9-106.mjs",
       "capabilities": [
@@ -15879,12 +15879,12 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
     },
     {
       "id": "sld-sandbox",
-      "generation": "202609051517",
+      "generation": "202609051531",
       "version": "testcode-202609051300",
       "type": "script",
       "slot": "replace-script",
       "replace_script": "202608292126-pre-snapped-config-adapter.js",
-      "path": "./cartridges/202609051517-sld-sandbox.js",
+      "path": "./cartridges/202609051531-sld-sandbox.js",
       "sha256": "2a8cb3aa9c8bbe57b187c66ed05b34acef7d9c868e5f770321082c6c1921e9f2",
       "capabilities": [
         "pre-snapped-config-adapter-carried-forward",
@@ -16340,13 +16340,13 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
     },
     {
       "id": "substation-intelligence",
-      "generation": "202609051517",
+      "generation": "202609051531",
       "version": "testcode-202609051300",
       "type": "script",
       "slot": "replace-script",
       "replace_script": "ventus-corev8engine.js",
-      "path": "./cartridges/202609051517-substation-intelligence.js",
-      "sha256": "b4c60331ca78aa432536ff0b072e5cd93ce0d0a20cfa1a389be6d2bb9831128a",
+      "path": "./cartridges/202609051531-substation-intelligence.js",
+      "sha256": "c49eef9d9e834dcaec3d5153568509b4e5a8dd7a0eebcbb4c52826ca801a59c7",
       "capabilities": [
         "immutable-v8-shell-preserved-with-reviewed-receiver-successor",
         "canonical-deep-link-technology-vocabulary",
@@ -16455,7 +16455,7 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
     "schedule_retired": true
   },
   "composition_version": "v9.121",
-  "composition_id": "202609051517-teleprinter",
+  "composition_id": "202609051531-teleprinter",
   "transport": {
     "response_contract": "HEADERS_BEFORE_PARQUET_BODY",
     "engine_timeout_seconds": 15,
@@ -16473,15 +16473,15 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
   "composition_note": "A WebGL canvas without preserveDrawingBuffer returns a fully transparent image when read outside a render frame, and it still encodes to a valid PNG that downloads happily. A blank file that looks like a successful save is worse than a refusal. And the print must fit the reader's paper rather than the one we assumed: size:auto with a flex column, not a forced A4 landscape with a fixed map height."
 }
 
-===== END FILE "sandbox/202609051517/atlas/current.json" =====
+===== END FILE "sandbox/202609051531/atlas/current.json" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/index.html" | bytes=5684 | sha256=32fd1bbd96f6467fda05eb461c11030ecaf4b76b224cbb9014a3b2cbe0240743 =====
+===== BEGIN FILE "sandbox/202609051531/atlas/index.html" | bytes=5684 | sha256=086a3ac086bf3940d11d3e9f193294ee0ddac465051b8d69f8008dd2821ed3da =====
 <!doctype html>
 <html lang="en">
 <head><link rel="icon" href="data:,">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Test Code Atlas 202609051517</title>
+  <title>Test Code Atlas 202609051531</title>
   <style>
     html,body{height:100%;margin:0;background:#000;color:#00ffff;font:13px monospace}
     #gridatlas-loader{display:grid;place-items:center;height:100%;padding:24px;text-align:center}
@@ -16585,9 +16585,9 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
 </body>
 </html>
 
-===== END FILE "sandbox/202609051517/atlas/index.html" =====
+===== END FILE "sandbox/202609051531/atlas/index.html" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/source/menu-bar.js" | bytes=74704 | sha256=1e48cef2cec2de5b3ede750e1bb9877540573e79fdafcf7041b79f8367962b5d =====
+===== BEGIN FILE "sandbox/202609051531/atlas/source/menu-bar.js" | bytes=74704 | sha256=8df2bd12683de98bca3545ff17a48631ab295cfe2ab7f028eb68e5815d364f42 =====
 /* GridAtlas menu bar.
 
    v9.94 proved that the conventional menu is the right shape and the wrong
@@ -18064,27 +18064,27 @@ html.gridatlas-sheet-open .podcast-shoutout{display:none !important}`;
  .testcode-identity{position:fixed;right:12px;bottom:64px;z-index:2000;background:#08161fee;color:#aaf6ff;padding:8px;border:1px solid #36616a;font:12px monospace;text-decoration:none}
  @media print{.testcode-identity,.search-bar-wrapper{display:none!important}}
  `;document.head.append(style);
- const link=document.createElement('a');link.className='testcode-identity';link.href='/testcode/202609051517/';link.textContent='Test Code · 202609051517';document.body.append(link);
+ const link=document.createElement('a');link.className='testcode-identity';link.href='/testcode/202609051531/';link.textContent='Test Code · 202609051531';document.body.append(link);
 })();
 
-===== END FILE "sandbox/202609051517/atlas/source/menu-bar.js" =====
+===== END FILE "sandbox/202609051531/atlas/source/menu-bar.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/atlas/teleprinter-bootstrap.js" | bytes=1058 | sha256=30ee942409772e982af59d2e7157be79e5401b0c4254707ef3d797010875bcb8 =====
+===== BEGIN FILE "sandbox/202609051531/atlas/teleprinter-bootstrap.js" | bytes=1058 | sha256=94a4e786bd6c09b5f208d4d1f016bc2069dbc7e0d9d48915998633654d5742b1 =====
 import { mountTeleprinter } from '../teleprinter/controls.js';
 const base = new URL('../teleprinter/', import.meta.url);
 try {
   const response = await fetch(new URL('atlas-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });
   if (!response.ok) throw new Error('Source code is still being prepared.');
   const pin = await response.json();
-  if (pin.generation !== '202609051517' || pin.app !== 'atlas' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');
+  if (pin.generation !== '202609051531' || pin.app !== 'atlas' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');
   mountTeleprinter({ printButtons: 'button[data-gm-export]', appName: "GridAtlas", manifestUrl: new URL('atlas-source-code.manifest.json', base), textUrl: new URL('atlas-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });
 } catch (error) {
   const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Print options: ' + error.message; document.body.append(note);
 }
 
-===== END FILE "sandbox/202609051517/atlas/teleprinter-bootstrap.js" =====
+===== END FILE "sandbox/202609051531/atlas/teleprinter-bootstrap.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/SOURCE-SCOPE.md" | bytes=1702 | sha256=94ed70ad03eb1682a7b0b0cf9e910269130fd8a69ff1781b7751045d9a5bd939 =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/SOURCE-SCOPE.md" | bytes=1702 | sha256=94ed70ad03eb1682a7b0b0cf9e910269130fd8a69ff1781b7751045d9a5bd939 =====
 # Print source code scope
 
 This generation adds the Codex-authored Teleprinter controls. Each app's text includes the committed HTML, JavaScript, ESM and CSS in its app directory, its bootstrap, the six Teleprinter browser modules, and this scope note. Atlas includes current.json, which identifies the immutable remote shell and hashed cartridges. Pipeline includes its small contracts JSON files and code loaders under scripts/data. The landing page includes index.html and capsule-launch.js.
@@ -18095,9 +18095,9 @@ Pinned-base exclusions: application data payload directories (atlas/data and pip
 
 The source pin is generated only after the application code commit exists. Its full commit SHA identifies the code version; the later pin/text publication does not pretend to include itself. Prior detector results belong to the predecessor generation and have not been rerun by this build.
 
-===== END FILE "sandbox/202609051517/teleprinter/SOURCE-SCOPE.md" =====
+===== END FILE "sandbox/202609051531/teleprinter/SOURCE-SCOPE.md" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/controls.js" | bytes=10405 | sha256=3e25605a7f490eb265ede11e7c382f11f5f373f1ff0e83a7376e9731abf9f6a3 =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/controls.js" | bytes=10405 | sha256=3e25605a7f490eb265ede11e7c382f11f5f373f1ff0e83a7376e9731abf9f6a3 =====
 import { printScreen } from './print-screen.js';
 import { attachPrintSourceCode } from './print-source-code.js';
 import { captureRuntimeSource } from './runtime-source.js';
@@ -18256,9 +18256,9 @@ export function mountTeleprinter({ manifestUrl, textUrl, expectedCommit, expecte
   return () => { clearTimeout(menuTimer); menuObserver?.disconnect(); for (const command of installedCommands) command.remove(); document.removeEventListener('click',appPrint,true); sourceControls?.(); host.remove(); };
 }
 
-===== END FILE "sandbox/202609051517/teleprinter/controls.js" =====
+===== END FILE "sandbox/202609051531/teleprinter/controls.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/png-pixels.mjs" | bytes=8455 | sha256=01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481 =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/png-pixels.mjs" | bytes=8455 | sha256=01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481 =====
 /** Decode PNG sample bytes without browser color conversion or alpha premultiplication.
  * PNG specification: https://www.w3.org/TR/png-3/ (chunks, filters, iCCP).
  */
@@ -18401,9 +18401,9 @@ export async function decodePngPixels(input) {
   return { width, height, rgba, ...(iccProfile ? { iccProfile } : {}) };
 }
 
-===== END FILE "sandbox/202609051517/teleprinter/png-pixels.mjs" =====
+===== END FILE "sandbox/202609051531/teleprinter/png-pixels.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/print-screen.js" | bytes=3753 | sha256=df93873ca25052ed3fe5093caeb9eea09efd8f0d92cc93d73f4b8d3279558c9c =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/print-screen.js" | bytes=6953 | sha256=5bd8dcaf97266ab87bfd2b7fe3ca39ba49c8b2f98e0018bbc7ea268336eec68b =====
 import { screenPdf } from './screen-pdf.mjs';
 import { decodePngPixels } from './png-pixels.mjs';
 
@@ -18441,10 +18441,59 @@ export async function imagePixels(blob) {
 
 async function displayPixels() {
   if (!navigator.mediaDevices?.getDisplayMedia) throw new Error('This browser cannot capture its own screen. Take a screenshot on your device, then choose Print a screenshot.');
-  const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false, preferCurrentTab: true });
-  const video = document.createElement('video');
+  const requestedWidth = Math.round(window.innerWidth * (window.devicePixelRatio || 1));
+  const requestedHeight = Math.round(window.innerHeight * (window.devicePixelRatio || 1));
+  const stream = await navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 1, width: { ideal: requestedWidth }, height: { ideal: requestedHeight } }, audio: false, preferCurrentTab: true, selfBrowserSurface: 'include' });
+  const track = stream.getVideoTracks()[0];
+  const initial = track?.getSettings?.() || {};
+  let video;
   let timeout;
+  const pixels = (source, width, height, instrument) => {
+    const current = track?.getSettings?.() || {};
+    const trackWidth = Math.max(Number(initial.width) || 0, Number(current.width) || 0);
+    const trackHeight = Math.max(Number(initial.height) || 0, Number(current.height) || 0);
+    const currentTab = initial.displaySurface === 'browser' || current.displaySurface === 'browser';
+    const requiredWidth = Math.max(trackWidth, currentTab ? requestedWidth : 0);
+    const requiredHeight = Math.max(trackHeight, currentTab ? requestedHeight : 0);
+    if (!width || !height || width > 14400 || height > 14400 || width * height > 40000000) throw new Error('The shared screen has no usable image.');
+    if (width < requiredWidth || height < requiredHeight) {
+      const error = new Error(`The browser supplied a reduced screen frame (${width} × ${height}; required ${requiredWidth} × ${requiredHeight}, track ${trackWidth} × ${trackHeight}). No reduced PDF was created. Use Print a screenshot instead.`);
+      error.code = 'REDUCED_SCREEN_FRAME';
+      throw error;
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = width; canvas.height = height;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) throw new Error('The browser could not read the screen pixels.');
+    ctx.drawImage(source, 0, 0);
+    return { width, height, rgba: ctx.getImageData(0, 0, width, height).data, captureInfo: { instrument, requestedWidth, requestedHeight, trackWidth: trackWidth || null, trackHeight: trackHeight || null, currentTab, requestedViewportPixelsRetained: width >= requestedWidth && height >= requestedHeight } };
+  };
   try {
+    if (!track) throw new Error('The browser did not provide a screen video track.');
+    try { track.contentHint = 'detail'; } catch { /* Optional browser hint, never evidence of pixel dimensions. */ }
+    if (typeof globalThis.ImageCapture === 'function') {
+      const directDeadline = Date.now() + 10000;
+      while (Date.now() < directDeadline) {
+      let bitmap, expired = false, directTimer;
+      try {
+        const pending = new ImageCapture(track).grabFrame().then(value => {
+          if (expired) { value.close(); throw new Error('The direct screen frame arrived after its timeout.'); }
+          return value;
+        });
+        bitmap = await Promise.race([pending, new Promise((_, reject) => { directTimer = setTimeout(() => { expired = true; reject(new Error('No direct screen frame arrived.')); }, Math.max(1, directDeadline - Date.now())); })]);
+        return pixels(bitmap, bitmap.width, bitmap.height, 'ImageCapture.grabFrame');
+      } catch (error) {
+        if (error.code === 'REDUCED_SCREEN_FRAME' && Date.now() < directDeadline) {
+          bitmap?.close(); bitmap = undefined;
+          await new Promise(resolve => setTimeout(resolve, Math.min(100, directDeadline - Date.now())));
+          continue;
+        }
+        // Engines without usable ImageCapture keep the guarded video path.
+        break;
+      } finally { expired = true; clearTimeout(directTimer); bitmap?.close(); }
+      }
+    }
+    video = document.createElement('video');
     video.muted = true; video.playsInline = true; video.srcObject = stream;
     await Promise.race([
       (async () => {
@@ -18456,17 +18505,11 @@ async function displayPixels() {
       })(),
       new Promise((_,reject) => { timeout = setTimeout(() => reject(new Error('No screen frame arrived. Try Print again.')), 10000); })
     ]);
-    const width = video.videoWidth, height = video.videoHeight;
-    if (!width || !height || width * height > 40000000) throw new Error('The shared screen has no usable image.');
-    const canvas = document.createElement('canvas');
-    canvas.width = width; canvas.height = height;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    ctx.drawImage(video, 0, 0);
-    return { width, height, rgba: ctx.getImageData(0, 0, width, height).data };
+    return pixels(video, video.videoWidth, video.videoHeight, 'HTMLVideoElement');
   } finally {
     clearTimeout(timeout);
     stream.getTracks().forEach(track => track.stop());
-    video.pause(); video.srcObject = null;
+    if (video) { video.pause(); video.srcObject = null; }
   }
 }
 
@@ -18479,12 +18522,12 @@ export async function printScreen({ capture, image, furniture, filename = 'telep
   const data = await screenPdf({ ...frame, furniture });
   const blob = new Blob([data], { type: 'application/pdf' });
   downloadFile(blob, filename);
-  return { method, width: frame.width, height: frame.height, bytes: data.length, filename, status: 'download-requested' };
+  return { method, width: frame.width, height: frame.height, bytes: data.length, filename, status: 'download-requested', ...(frame.captureInfo ? { capture: frame.captureInfo } : {}) };
 }
 
-===== END FILE "sandbox/202609051517/teleprinter/print-screen.js" =====
+===== END FILE "sandbox/202609051531/teleprinter/print-screen.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/print-source-code.js" | bytes=10680 | sha256=78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/print-source-code.js" | bytes=10680 | sha256=78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f =====
 /** Browser driver: attach to a button; fetch, verify, and download committed source as UTF-8 text. */
 async function sha256(bytes) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
@@ -18665,9 +18708,9 @@ export function attachPrintSourceCode({ button, copyButton, shareButton, status,
 
 export const attachSourceCodeControls = attachPrintSourceCode;
 
-===== END FILE "sandbox/202609051517/teleprinter/print-source-code.js" =====
+===== END FILE "sandbox/202609051531/teleprinter/print-source-code.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/runtime-source.js" | bytes=26282 | sha256=4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274 =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/runtime-source.js" | bytes=26282 | sha256=4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274 =====
 /** Capture diagnostic source data. Nothing collected here is executed. */
 const encoder = new TextEncoder();
 const decoder = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
@@ -19021,9 +19064,9 @@ export async function captureRuntimeSource({ baseBytes, baseManifest, fetchImpl 
   return { bytes, manifest };
 }
 
-===== END FILE "sandbox/202609051517/teleprinter/runtime-source.js" =====
+===== END FILE "sandbox/202609051531/teleprinter/runtime-source.js" =====
 
-===== BEGIN FILE "sandbox/202609051517/teleprinter/screen-pdf.mjs" | bytes=10220 | sha256=ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039 =====
+===== BEGIN FILE "sandbox/202609051531/teleprinter/screen-pdf.mjs" | bytes=10220 | sha256=ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039 =====
 /** Codex Teleprinter: lossless pixels with optional vector furniture outside the image. */
 const enc = new TextEncoder();
 const bytes = s => enc.encode(s);
@@ -19175,6 +19218,6 @@ export async function screenPdf({ width, height, rgba, iccProfile, furniture }) 
   return join(chunks);
 }
 
-===== END FILE "sandbox/202609051517/teleprinter/screen-pdf.mjs" =====
+===== END FILE "sandbox/202609051531/teleprinter/screen-pdf.mjs" =====
 
 ===== END PRINT SOURCE CODE =====
