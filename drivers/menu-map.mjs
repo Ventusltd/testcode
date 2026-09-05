@@ -16,54 +16,57 @@
  *
  * Run: node drivers/menu-map.mjs
  */
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
-import { spawnSync } from 'node:child_process';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolveCheckout } from '../lib/checkout.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const PARENT = path.resolve(ROOT, '..');
 const checks = [];
 const check = (name, ok, detail = '') => checks.push({ name, ok: Boolean(ok), detail });
 
 const surfaces = [];
 
 /* ---- GridAtlas: the composed cartridge named by the composition ----------
-   WHICH checkout matters, and the first version of this driver got it wrong in
-   a way worth keeping. It read ../gridatlas, which on this machine is parked on
-   a candidate branch at an older generation, and reported that the engine rows
-   were missing from the menu. They were not missing; they were absent from the
+   WHICH checkout matters, and this driver has now got it wrong twice.
+
+   First: it read ../gridatlas, which on this machine is parked on a candidate
+   branch at an older generation, and reported that the engine rows were
+   missing from the menu. They were not missing; they were absent from the
    composition that clone happened to be sitting on.
 
-   So: prefer a checkout on main, say which one was read, and report the branch
-   and generation alongside the result. A measurement that does not name the
-   bytes it read is not a measurement. */
-function gridatlasCheckout() {
-    const candidates = [];
-    const parent = path.resolve(ROOT, '..');
-    for (const name of readdirSafe(parent)) {
-        if (name === 'gridatlas' || name.startsWith('gridatlas-main')) {
-            const dir = path.join(parent, name);
-            if (existsSync(path.join(dir, 'atlas', 'current.json'))) {
-                candidates.push({ dir, branch: branchOf(dir) });
-            }
-        }
-    }
-    return candidates.find((c) => c.branch === 'main') || candidates[0] || null;
-}
+   Then the fix for that was written as
 
-function readdirSafe(dir) {
-    try { return readdirSync(dir); } catch { return []; }
-}
+       candidates.find((c) => c.branch === 'main') || candidates[0]
 
-function branchOf(dir) {
-    const result = spawnSync('git', ['branch', '--show-current'],
-        { cwd: dir, encoding: 'utf8', shell: process.platform === 'win32' });
-    return (result.stdout || '').trim();
-}
+   which is worse, because it is not a rule, it is a rule with a silent escape
+   hatch. Measured 2026-09-05: the identical command twenty minutes apart gave
+   `groups: 5, 5/5, exit 0` and then `groups: 1, 4/5, exit 1`, with nothing
+   changed on disk, and both runs labelled the surface `gridatlas` without ever
+   naming the directory they read. Reproduced on demand by making `git`
+   unanswerable: when no candidate answers 'main' the `||` takes candidates[0],
+   which is whatever readdirSync returned first, and readdir order is not a
+   contract.
 
-const checkout = gridatlasCheckout();
-const atlas = checkout ? checkout.dir : path.resolve(ROOT, '..', 'gridatlas');
-if (existsSync(path.join(atlas, 'atlas', 'current.json'))) {
+   So: exactly one checkout on the declared branch, or this gate fails and says
+   which candidates it saw and what branch each was on. There is no fallback,
+   because a measurement that cannot name the bytes it read is not a
+   measurement, and quietly reading the wrong bytes is the fault this driver
+   exists to catch. */
+const checkout = resolveCheckout({
+    parent: PARENT,
+    base: 'gridatlas',
+    branch: process.env.GRIDATLAS_BRANCH || 'main',
+    mustContain: ['atlas/current.json']
+});
+
+check('exactly one gridatlas checkout was selected, by an explicit rule rather than by readdir order',
+    checkout.ok,
+    `${checkout.ok ? path.basename(checkout.dir) : 'NONE'} — ${checkout.why}`);
+
+const atlas = checkout.ok ? checkout.dir : null;
+if (atlas) {
     const current = JSON.parse(readFileSync(path.join(atlas, 'atlas', 'current.json'), 'utf8'));
     const entry = (current.cartridges || []).find((c) => /substation-intelligence/.test(c.path || ''));
     const composedPath = entry && path.join(atlas, 'atlas', entry.path.replace(/^\.\//, ''));
@@ -73,6 +76,9 @@ if (existsSync(path.join(atlas, 'atlas', 'current.json'))) {
         const titles = menus ? menus.split(',').map((s) => s.trim().replace(/'/g, '')) : [];
         surfaces.push({
             id: 'gridatlas',
+            checkout: path.basename(atlas),
+            branch: checkout.branch,
+            checkout_why: checkout.why,
             generation: current.generation,
             source: entry.path,
             titles,
@@ -149,14 +155,29 @@ const gaps = (registry.surfaces || []).filter((s) => !s.has_menu).map((s) => s.i
 const map = {
     schema: 'globalgrid2050.testcode.menu-map.v1',
     generated_utc: new Date().toISOString(),
+    gridatlas_checkout: {
+        selected: checkout.ok ? path.basename(checkout.dir) : null,
+        branch: checkout.branch,
+        why: checkout.why,
+        candidates: checkout.candidates
+    },
     surfaces,
     surfaces_without_a_menu: gaps,
     note: 'Read from composed bytes in local clones. No network. A surface listed under surfaces_without_a_menu is an open gap, not a passing state.'
 };
 writeFileSync(path.join(process.cwd(), 'menu-map.json'), JSON.stringify(map, null, 2) + '\n');
 
+/* Print the bytes before the verdict. The version of this driver that could
+   give two answers never printed which directory it read. */
+console.log(`gridatlas checkout       ${checkout.ok ? path.basename(checkout.dir) : 'NOT SELECTED'} (${checkout.branch || 'branch unknown'})`);
+console.log(`                         ${checkout.why}`);
+if (checkout.candidates && checkout.candidates.length) {
+    console.log(`candidates seen          ${checkout.candidates.join(', ')}`);
+}
+console.log('');
 for (const s of surfaces) {
     console.log(`${s.id.padEnd(24)} titles: ${(s.titles || []).join(' ') || '(none)'}`);
+    if (s.generation) console.log(`${''.padEnd(24)} generation: ${s.generation}`);
     if (s.groups) console.log(`${''.padEnd(24)} groups: ${s.groups.length}`);
 }
 console.log(`\nsurfaces with no menu yet: ${gaps.join(', ') || 'none'}`);
