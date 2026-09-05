@@ -10,5 +10,7 @@ export function mergeToolOwnership(previous, owner, applications, names = {}) {
   for (const app of applications) combined.set(app.id, {
     id:app.id,title:names[app.id] || app.id,entry:'../layer-apps/'+app.entry,owner:pin(owner)
   });
-  return {owners:previous.owners.filter(item=>item.repository!==owner.repository).concat(owner),tools:[...combined.values()]};
+  const identity = item => JSON.stringify(pin(item));
+  const owners = new Map(previous.owners.concat(owner).map(item=>[identity(item),item]));
+  return {owners:[...owners.values()],tools:[...combined.values()]};
 }

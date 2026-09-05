@@ -19,3 +19,15 @@ test('explicit provenance survives subsequent releases',()=>{
 test('ambiguous unpinned historical ownership is rejected',()=>{
  assert.throws(()=>mergeToolOwnership({...previous,owners:[old,next]},next,next.applications),/Ambiguous/);
 });
+test('partial update of one producer retains the older manifest for untouched tools',()=>{
+ const historical={...old,applications:[...old.applications,{id:'dc',entry:'dc/index.html'}]};
+ const seed={owners:[historical],tools:historical.applications.map(app=>({...app,title:app.id}))};
+ const first=mergeToolOwnership(seed,next,next.applications);
+ const updated={...old,commit:'layout-new',release:'3',manifestSha256:'c',applications:[old.applications[1]]};
+ const result=mergeToolOwnership(first,updated,updated.applications);
+ assert.equal(result.tools.find(x=>x.id==='module').owner.commit,'layout-new');
+ assert.equal(result.tools.find(x=>x.id==='dc').owner.commit,'old');
+ assert.ok(result.owners.some(x=>x.repository==='layout' && x.commit==='old'));
+ assert.ok(result.owners.some(x=>x.repository==='layout' && x.commit==='layout-new'));
+ assert.equal(result.tools.find(x=>x.id==='cable').owner.commit,'new');
+});
