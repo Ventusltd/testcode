@@ -86,7 +86,7 @@ if (mode === 'prepare') {
       return git(path.join(path.dirname(engineDir),name),'show',`${owner.commit}:releases/${owner.release}/manifest.json`);
     },file=>readFile(path.join(generationRoot,file)));
     await write('layer-source-scopes.json',JSON.stringify(toolSources,null,2)+'\n');
-    for(const file of ['index.html','source-browser.css','source-browser.js'])await write('source-browser/'+file,(await readFile(new URL('../tool-layers/source-browser/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
+    for(const file of ['index.html','source-browser.css','source-browser.mjs'])await write('source-browser/'+file,(await readFile(new URL('../tool-layers/source-browser/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
     await write('atlas/tool-layers.json',JSON.stringify(config,null,2)+'\n');
     for (const file of ['navigation.js','host.js','dismissal.js','focus-boundary.js','readiness.js','viewport.js','session-restart.js','recovery.js']) await write('tool-layers/'+file, (await readFile(new URL('../tool-layers/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
     toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url, ${JSON.stringify(config.navigation)});\n`;
