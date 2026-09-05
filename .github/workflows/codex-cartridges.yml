@@ -38,7 +38,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p capsule-artifacts
-          node --test --test-reporter=tap sandbox/capsules/tool-layers/compose.test.mjs sandbox/capsules/tool-layers/ownership.test.mjs sandbox/capsules/tool-layers/dismissal.test.mjs > capsule-artifacts/tests.tap
+          node --test --test-reporter=tap sandbox/capsules/tool-layers/*.test.mjs > capsule-artifacts/tests.tap
       - name: Parse the host and build capsule
         run: |
           node --check sandbox/capsules/tool-layers/host.js
@@ -52,7 +52,7 @@ jobs:
           mkdir -p capsule-artifacts
           python3 - <<'PY'
           import hashlib, json, os, pathlib, subprocess
-          names = ['sandbox/capsules/tool-layers/compose.mjs', 'sandbox/capsules/tool-layers/ownership.mjs', 'sandbox/capsules/tool-layers/dismissal.js', 'sandbox/capsules/tool-layers/host.js', 'sandbox/capsules/teleprinter/build.mjs']
+          names = sorted(str(p) for p in pathlib.Path('sandbox/capsules/tool-layers').rglob('*') if p.is_file() and p.suffix in ('.js', '.mjs')) + ['sandbox/capsules/teleprinter/build.mjs']
           rows = [{'path': name, 'sha256': hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()} for name in names if pathlib.Path(name).is_file()]
           result = {'schema': 'testcode.codex-cartridge-ci.v1', 'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'runId': os.environ['GITHUB_RUN_ID'], 'runAttempt': os.environ['GITHUB_RUN_ATTEMPT'], 'statusBeforeReceipt': os.environ['CHECK_STATUS'], 'node': subprocess.check_output(['node', '--version'], text=True).strip(), 'platform': 'ubuntu-24.04', 'files': rows, 'scope': 'Maintained capsule semantic fixtures and syntax only. No served-byte, browser, PDF, physical-device, engineering or estate-fleet acceptance claim.'}
           pathlib.Path('capsule-artifacts/receipt.json').write_text(json.dumps(result, indent=2) + '\n')
