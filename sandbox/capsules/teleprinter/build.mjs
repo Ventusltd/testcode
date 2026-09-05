@@ -74,7 +74,7 @@ if (mode === 'prepare') {
     // A predecessor can already have Teleprinter. Replace its mount, never stack it.
     html = html.replace(/      const teleprinterUrl =[^\n]*\n      const teleprinterScript =[^\n]*\n      html =[^\n]*\n\s*\n/g, '');
     html = html.replace(/<script type="module" src="\.\/teleprinter-bootstrap\.js"><\/script>\s*/g, '');
-    if (!/<link\b[^>]*rel=["']icon["']/i.test(html)) html = html.replace(/<head>/i, '<head><link rel="icon" href="data:,">');
+    if (!/<link\b[^>]*rel=["']icon["']/i.test(html)) html = /<head>/i.test(html) ? html.replace(/<head>/i, '<head><link rel="icon" href="data:,">') : html.replace(/<!doctype html>/i, '<!doctype html><link rel="icon" href="data:,">');
     if (app === 'atlas') {
       const marker = '      document.open();';
       if (!html.includes(marker)) throw new Error('Atlas composer insertion point missing.');
