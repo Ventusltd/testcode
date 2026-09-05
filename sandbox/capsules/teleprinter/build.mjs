@@ -74,7 +74,7 @@ if (mode === 'prepare') {
     if (app === 'atlas') {
       const marker = '      document.open();';
       if (!html.includes(marker)) throw new Error('Atlas composer insertion point missing.');
-      html = html.replace(marker, `      const teleprinterUrl = new URL('./teleprinter-bootstrap.js', window.location.href).href;\n      const teleprinterScript = '<script type="module" src="' + escapeAttribute(teleprinterUrl) + '">' + SCRIPT_CLOSE;\n      html = /<\\/body>/i.test(html) ? html.replace(/<\\/body>/i, teleprinterScript + '$&') : html + teleprinterScript;\n\n${marker}`);
+      html = html.replace(marker, () => `      const teleprinterUrl = new URL('./teleprinter-bootstrap.js', window.location.href).href;\n      const teleprinterScript = '<script type="module" src="' + escapeAttribute(teleprinterUrl) + '">' + SCRIPT_CLOSE;\n      html = /<\\/body>/i.test(html) ? html.replace(/<\\/body>/i, teleprinterScript + '$&') : html + teleprinterScript;\n\n${marker}`);
     } else {
       const mount = '<script type="module" src="./teleprinter-bootstrap.js"></script>';
       html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, mount + '\n</body>') : html + '\n' + mount + '\n';

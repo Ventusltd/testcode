@@ -94,7 +94,7 @@
 
       const teleprinterUrl = new URL('./teleprinter-bootstrap.js', window.location.href).href;
       const teleprinterScript = '<script type="module" src="' + escapeAttribute(teleprinterUrl) + '">' + SCRIPT_CLOSE;
-      html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, teleprinterScript + '      document.open();') : html + teleprinterScript;
+      html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, () => teleprinterScript + '</body>') : html + teleprinterScript;
 
       document.open();
       document.write(html);
