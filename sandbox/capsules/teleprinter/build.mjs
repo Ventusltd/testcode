@@ -24,7 +24,7 @@ async function requireCandidateSyntax() {
   console.log(`Offline candidate gate: ${result.scripts} scripts, ${result.checks.length} checks passed.`);
 }
 const prefix = `sandbox/${generation}`;
-const modules = ['controls.js', 'print-screen.js', 'screen-pdf.mjs', 'png-pixels.mjs', 'print-source-code.js', 'runtime-source.js', 'app-frame.js', 'capture-geometry.mjs', 'vendor/html2canvas-1.4.1.mjs', 'vendor/html2canvas-LICENSE.txt'];
+const modules = ['controls.js', 'print-screen.js', 'screen-pdf.mjs', 'png-pixels.mjs', 'print-source-code.js', 'runtime-source.js', 'app-frame.js', 'capture-geometry.mjs', 'clone-visible-ui.js', 'vendor/html2canvas-1.4.1.mjs', 'vendor/html2canvas-LICENSE.txt'];
 async function write(relative, contents) {
   const target = path.join(generationRoot, relative);
   await mkdir(path.dirname(target), { recursive: true });
