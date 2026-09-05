@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mountSessionRestart} from './session-restart.js';
 
-function fixture() {
+function fixture(entry='pinned-tool-entry') {
   let focused;
   class Element extends EventTarget {
     constructor(tag, doc) {super();this.tagName=tag;this.ownerDocument=doc;this.children=[];this.style={};this.dataset={};this.hidden=false;}
@@ -18,7 +18,7 @@ function fixture() {
   let navigations=0,current='original-tool',starts=0;
   Object.defineProperty(frame,'src',{get:()=>current,set:value=>{current=value;navigations++;}});
   frame.addEventListener('tool-navigation-start',()=>starts++);
-  const api=mountSessionRestart(layer,bar,frame,'pinned-tool-entry');
+  const api=mountSessionRestart(layer,bar,frame,entry);
   const row=bar.children[0], [restart,cancel,note]=row.children;
   return {layer,bar,frame,otherFrame,api,restart,cancel,note,
     get navigations(){return navigations;},get starts(){return starts;},get focused(){return focused;}};
@@ -58,4 +58,19 @@ test('disposal removes session controls and detaches the layer listener',()=>{
   assert.equal(f.restart.textContent,label);assert.equal(f.navigations,0);
   f.restart.click();f.restart.click();f.cancel.click();
   assert.equal(f.navigations,0);assert.equal(f.starts,0);
+});
+
+test('restart resolves the current document only after confirmation and retains query/hash',()=>{
+  let current='https://example.test/original';const f=fixture(()=>current);
+  f.restart.click();current='https://example.test/linked?project=7#detail';f.restart.click();
+  assert.equal(f.frame.src,current);assert.equal(f.navigations,1);
+  f.api.requestConfirmation();f.layer.dispatchEvent(new Event('tool-document-changed'));
+  f.restart.click();assert.equal(f.navigations,1);assert.equal(f.restart.textContent,'Confirm restart');
+  f.api.dispose();
+});
+
+test('inaccessible linked page cannot fall back to restarting the original document',()=>{
+  const f=fixture(()=>null);f.restart.click();f.restart.click();
+  assert.equal(f.navigations,0);assert.equal(f.starts,0);assert.match(f.note.textContent,/cannot be restarted/);
+  f.api.dispose();
 });
