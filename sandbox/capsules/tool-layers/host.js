@@ -1,6 +1,7 @@
 import {bindLayerDismissal} from './dismissal.js';
 import {bindFocusBoundary} from './focus-boundary.js';
 import {observeToolReadiness} from './readiness.js';
+import {applyToolViewport} from './viewport.js';
 /** Isolated, persistent app layers. Each iframe owns its UI and calculation state. */
 export function mountToolLayers(tools, base = import.meta.url) {
   const old = document.getElementById('codex-layout-command');
@@ -34,6 +35,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
         frame.src = new URL(tool.entry, base).href;
         // Same-origin realm isolation preserves the original application's downloads and links.
         Object.assign(frame.style,{border:'0',width:'100%',flex:'1',minHeight:'0'});
+        applyToolViewport(layer,bar,frame);
         disposers.push(bindLayerDismissal(layer,frame,dismiss));
         disposers.push(bindFocusBoundary(layer,frame,close));
         disposers.push(observeToolReadiness(tool,frame,status));
