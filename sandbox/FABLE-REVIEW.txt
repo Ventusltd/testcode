@@ -1,0 +1,89 @@
+﻿FABLE PROPOSAL REVIEW - 2026-09-05
+Recommendation: NARROW. Use Fable for independent acceptance of a frozen candidate,
+not another eight-repository historical audit or the proposed capture-and-push script.
+
+What is valuable
+- Independent tests of user outcomes, with intentionally broken controls, can expose
+  assumptions shared by the implementation and its own tests.
+- Comparing exact served bytes with a named build is valuable. HTTP 200, identical
+  sizes, repeated unchanged probes, and a commit existing do not prove deployment.
+- Reconciling disputed log claims is worthwhile only where it changes acceptance.
+  The Astra review already separates runtime evidence, source findings and history.
+
+What is stale or duplicative
+- Fable's claim that globalgrid2050 has not moved is now stale. Local origin/main
+  resolves to 313f56238b91dbe4f8104f286c1fd54cab05ba12, committed 2026-09-05
+  11:50:36 UTC. This read-only check did not fetch or establish current live bytes.
+- sandbox/202609051152/release.json identifies that newer Pipeline parent and Atlas
+  parent 18cffd516db0bec7f8186aafe60962cb154fcc53. Its status is explicitly candidate.
+- Most MAP, print, search, discovery and missing-check findings have already been
+  independently reproduced in ASTRA-ISSUE-REVIEW-20260905.txt. Re-running the full
+  history would consume time without directly advancing the user's comparison.
+- Twenty-one unchanged responses are evidence of staleness during that interval;
+  they do not alone prove the path-filter mechanism or that deployment can never run.
+- Fable's network restrictions and tools are claims about its environment, not facts
+  independently checked here. They do not require changing this machine's setup.
+
+Do not execute its capture instructions verbatim
+- git add -A would include unrelated current work and untracked material, potentially
+  publishing sensitive logs or secrets. Its fixed commit message would falsely date
+  later edits as stopped-agent work. Use an explicit reviewed file manifest instead.
+- Branch switching in active worktrees changes the state under other agents. A branch
+  name already existing or worktree constraints can also break that sequence. Frozen
+  exports or dedicated detached worktrees avoid disturbing ongoing implementation.
+- Public WIP pushes are publication, not merely backup. Full process command lines
+  may contain tokens, private URLs or personal paths; full headers may contain cookies.
+  Preserve necessary raw receipts privately and publish reviewed/redacted evidence.
+- Inspecting on.push filters alone does not establish that a branch push cannot have
+  side effects. Workflows can dispatch other workflows, call external deployment
+  systems, or interact with repository integrations. Skipping all non-main triggers
+  also overblocks harmless CI. Review relevant publishing mechanisms if publishing a
+  branch is actually needed. No branch capture is needed for the bounded review below.
+- A generic ban on fixes while reviewing is unnecessary if the reviewer receives a
+  frozen snapshot: implementation can continue under a different timestamp.
+
+Device evidence
+- A desktop Chromium viewport test is layout emulation, not Android Chrome or Safari.
+- Screenshots support geometry and visible-state claims. They cannot establish actual
+  taps, navigation, search persistence through interaction, downloads or print output.
+- The user's real iPhone interaction tests remain the iOS acceptance source. Record
+  candidate URL, device/iOS/browser version, steps and observed result; screenshots or
+  video can accompany those results. No request to the user is needed during build.
+- Android Chrome, an Android WebView, and desktop Chrome are separate targets. Name
+  the actual browser/runtime used rather than calling all three mobile-tested.
+
+Precise alternative brief for Fable
+Review one published Test Code timestamp after its release manifest is frozen. Do
+not edit repositories, switch branches, commit, push, install software, or stop
+processes. Use a separate clone/export and independently written tests. Compare
+that timestamp with one explicitly identified Claude build and the known-broken
+baseline; record if a comparison build is unavailable rather than guessing it.
+
+Limit the first pass to five acceptance groups:
+1. Pipeline first usable rows while the receiver request remains stalled; reachable
+   MAP controls and real navigation to the intended candidate Atlas/project.
+2. Bounded rendered DOM with complete dataset search/export; record data count and
+   rendered row count separately. Report measured times without cold-radio claims.
+3. Persistent discoverable Atlas search, including after menus initialize and close.
+4. Actual Save download containing the intended map, and Print output with visible
+   map content and nonzero layout in portrait and landscape.
+5. Proof integrity: broken baseline must fail; absent required checks, zero consumer
+   coverage and retired HTML nav links must not be reported as successful coverage.
+
+Evidence package, supplied once by the publishing agent:
+- Candidate/baseline URLs, UTC build identity, source parent commits, explicit changed
+  paths, and hashes of the exact published HTML/JS/CSS/data manifests.
+- Exact commands, browser/OS versions, viewport and device/emulator identity, request
+  interception settings, cache conditions and supported-surface inventory.
+- Compact machine-readable outcomes plus screenshots, downloaded image and PDF,
+  relevant redacted console/network failures, and the failing-control receipts.
+- A short PASS / FAIL / NOT TESTED table with reproduction steps. Separate app faults,
+  test-driver faults, infrastructure limits and historical assertions.
+
+Deliver one concise independent findings file. Stop after this bounded comparison;
+raise a separate proposed scope for engineering calculations, licensing, estate-wide
+history or governance. Do not make those prerequisites for publishing the candidates.
+
+Evidence read for this assessment: the supplied Fable text; the current Astra issue
+review; local globalgrid2050 origin/main; sandbox/LATEST.txt and the release manifest.
+No product files changed, no branches switched, no pushes and no broad tests performed.
