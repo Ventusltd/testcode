@@ -71,6 +71,9 @@ if (mode === 'prepare') {
     const parent = app === 'landing' ? './' : '../';
     await write(`${appDir}teleprinter-bootstrap.js`, `import { mountTeleprinter } from '${parent}teleprinter/controls.js';\nconst base = new URL('${parent}teleprinter/', import.meta.url);\ntry {\n  const response = await fetch(new URL('${app}-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });\n  if (!response.ok) throw new Error('Source code is still being prepared.');\n  const pin = await response.json();\n  if (pin.generation !== '${generation}' || pin.app !== '${app}' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');\n  mountTeleprinter({ printButtons: 'button[data-gm-export]', appName: ${JSON.stringify(appName)}, manifestUrl: new URL('${app}-source-code.manifest.json', base), textUrl: new URL('${app}-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });\n} catch (error) {\n  const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Teleprinter: ' + error.message; document.body.append(note);\n}\n`);
     let html = await readFile(path.join(generationRoot, `${appDir}index.html`), 'utf8');
+    // A predecessor can already have Teleprinter. Replace its mount, never stack it.
+    html = html.replace(/      const teleprinterUrl =[^\n]*\n      const teleprinterScript =[^\n]*\n      html =[^\n]*\n\s*\n/g, '');
+    html = html.replace(/<script type="module" src="\.\/teleprinter-bootstrap\.js"><\/script>\s*/g, '');
     if (app === 'atlas') {
       const marker = '      document.open();';
       if (!html.includes(marker)) throw new Error('Atlas composer insertion point missing.');
