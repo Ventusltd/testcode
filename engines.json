@@ -1,0 +1,78 @@
+{
+  "schema": "globalgrid2050.testcode.engines.v1",
+  "note": "Every gate in the estate, in one registry, with the one fact that decides where it may run: whether it needs a network. The ordering rule is that offline gates run first, on the machine, and nothing that touches the network or publishes anything runs until they have all passed.",
+  "why": "Written 202609050325 after a live fault that no gate could have caught: the MAP button in Pipeline News pointed at a receiver carrying no engine. The page served, so nothing 404'd and no monitor complained. A gate that only asks whether a URL answers cannot see that. The estate needs one place that knows what is checked, what is not, and which checks can be trusted when the network is what has changed.",
+  "ordering": [
+    "1. offline — run on the machine, no socket. If any fails, stop.",
+    "2. network — only after 1 is green.",
+    "3. publish — only after 2. Nothing here publishes."
+  ],
+  "engines": [
+    {
+      "id": "grid-engine",
+      "repo": "ventus-grid-engine",
+      "path": "../ventus-grid-engine",
+      "command": ["node", "verify.mjs"],
+      "network": false,
+      "declares": "9 proofs, 133 checks. Zero dependencies: it runs from a clone with no install.",
+      "covers": [
+        "the geodesy, area, shapes and geojson engines",
+        "nearest search, proven free of the ring-search bug",
+        "network topology, electrical distance, rating envelope, corridor estimate",
+        "the deep-link contract, including which receiver a link may be built against"
+      ]
+    },
+    {
+      "id": "gridatlas-composition",
+      "repo": "gridatlas",
+      "path": "../gridatlas",
+      "command": ["node", "tools/proofs/run-current.mjs"],
+      "network": false,
+      "declares": "Every composed cartridge against its generation-matched proof, read from the composed bytes rather than the parts.",
+      "covers": [
+        "the composition manifest and its identity",
+        "the layer inventory and the menu bar",
+        "arrival identity and the technology buckets"
+      ]
+    },
+    {
+      "id": "gridatlas-arrival-393x852",
+      "repo": "gridatlas",
+      "path": "../gridatlas",
+      "command": ["node", "tools/proofs/202609040229-arrival-identity.browser.mjs"],
+      "network": true,
+      "declares": "Five arrival cases at 393x852 in a real browser. Earns PASS_393x852_FIVE_ARRIVAL_CASES.",
+      "known_constraint": "Will not run from a working copy inside OneDrive: it stalls or crashes the renderer. Copy atlas/, data/ and tools/ outside OneDrive and junction node_modules. Measured 2026-09-05."
+    },
+    {
+      "id": "cvaa",
+      "repo": "cvaa",
+      "path": "../cvaa",
+      "command": ["node", "tools/selftest.mjs"],
+      "network": false,
+      "declares": "The antibody fleet against the estate's committed bytes.",
+      "known_defects": [
+        "tools/selftest.mjs crashes on a Windows path fault, identical on main and on the Codex branch",
+        "replay.mjs crashes when e.stdout is null",
+        "the disk-is-not-what-ships antibody never sees .gitattributes, so it is false on all 9 repos"
+      ],
+      "status": "registered and NOT yet green. Recorded here rather than omitted: a registry that lists only the gates that pass is the same lie as a suite that cannot fail."
+    },
+    {
+      "id": "menus",
+      "repo": "testcode",
+      "path": ".",
+      "command": ["node", "drivers/menu-map.mjs"],
+      "network": false,
+      "declares": "Maps every menu on every surface from the composed bytes, and fails when a surface the estate publishes has no menu at all.",
+      "covers": ["gridatlas menu bar", "the shared estate menu", "the grid engine receiver"]
+    }
+  ],
+  "surfaces": [
+    { "id": "gridatlas", "url": "https://ventusltd.github.io/gridatlas/atlas/", "has_menu": true },
+    { "id": "grid-engine-receiver", "url": "https://ventusltd.github.io/ventus-grid-engine/", "has_menu": true },
+    { "id": "pipelinenews", "url": "https://globalgrid2050.com/uk_renewables_pipeline/v9.7/", "has_menu": false },
+    { "id": "homepage", "url": "https://globalgrid2050.com/", "has_menu": false },
+    { "id": "federation-map", "url": "https://ventusltd.github.io/data-federation-map-for-globalgrid2050-all-repos/dashboard/sandbox/spider_full_po_test.html", "has_menu": false }
+  ]
+}

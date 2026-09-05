@@ -1,0 +1,76 @@
+name: testcode
+
+# The line that runs through everything, in the order that makes it mean
+# something: offline gates on the machine first, and nothing else until they
+# are green.
+#
+#   "workflows that auto run on github BUT ONLY AFTER they have been proven to
+#    work offline on the machine first"
+#
+# Enforced by step order with no continue-on-error, the same way
+# ventus-grid-engine/.github/workflows/verify.yml enforces its own gate. The
+# ordering — not the assertions — is what makes the claim true.
+#
+# The estate's repositories are checked out beside this one so the runner finds
+# them where engines.json says they are: ../ventus-grid-engine, ../gridatlas.
+# A gate whose clone is absent is reported ABSENT, never counted as green.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Daily. Two of the estate's live faults decayed with the calendar rather
+    # than with any commit: an exact-commit gate whose fixture ages past a
+    # 14-day bucket, and a receiver that never changed and simply never carried
+    # the engine. Neither is visible to a push-triggered run.
+    - cron: '41 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out testcode
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+
+      - name: Check out the grid engine beside it
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/ventus-grid-engine
+          path: ventus-grid-engine
+
+      - name: Check out gridatlas beside it
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          path: gridatlas
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # The offline gates. No network is used by any of them, which is what
+      # makes this step meaningful when the network is the thing that broke.
+      - name: Run the offline gates, fail closed
+        working-directory: testcode
+        run: node run.mjs
+
+      - name: Map every menu
+        working-directory: testcode
+        run: node drivers/menu-map.mjs
+
+      - name: Publish the run and the menu map
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testcode-offline
+          path: |
+            testcode/testcode-run.json
+            testcode/menu-map.json
+          if-no-files-found: warn
