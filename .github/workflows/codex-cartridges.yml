@@ -1,0 +1,67 @@
+name: Codex cartridge capsule checks
+
+# This checks the maintained capsule code, not the estate fleet or a browser release.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/capsules/tool-layers/**'
+      - 'sandbox/capsules/teleprinter/build.mjs'
+      - '.github/workflows/codex-cartridges.yml'
+  pull_request:
+    paths:
+      - 'sandbox/capsules/tool-layers/**'
+      - 'sandbox/capsules/teleprinter/build.mjs'
+      - '.github/workflows/codex-cartridges.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-cartridge-capsules-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capsule:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Prove ownership, copying and dismissal boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p capsule-artifacts
+          node --test --test-reporter=tap sandbox/capsules/tool-layers/compose.test.mjs sandbox/capsules/tool-layers/ownership.test.mjs sandbox/capsules/tool-layers/dismissal.test.mjs > capsule-artifacts/tests.tap
+      - name: Parse the host and build capsule
+        run: |
+          node --check sandbox/capsules/tool-layers/host.js
+          node --check sandbox/capsules/teleprinter/build.mjs
+      - name: Record exact source identity and outcome
+        if: always()
+        env:
+          CHECK_STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          mkdir -p capsule-artifacts
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          names = ['sandbox/capsules/tool-layers/compose.mjs', 'sandbox/capsules/tool-layers/ownership.mjs', 'sandbox/capsules/tool-layers/dismissal.js', 'sandbox/capsules/tool-layers/host.js', 'sandbox/capsules/teleprinter/build.mjs']
+          rows = [{'path': name, 'sha256': hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()} for name in names if pathlib.Path(name).is_file()]
+          result = {'schema': 'testcode.codex-cartridge-ci.v1', 'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'runId': os.environ['GITHUB_RUN_ID'], 'runAttempt': os.environ['GITHUB_RUN_ATTEMPT'], 'statusBeforeReceipt': os.environ['CHECK_STATUS'], 'node': subprocess.check_output(['node', '--version'], text=True).strip(), 'platform': 'ubuntu-24.04', 'files': rows, 'scope': 'Maintained capsule semantic fixtures and syntax only. No served-byte, browser, PDF, physical-device, engineering or estate-fleet acceptance claim.'}
+          pathlib.Path('capsule-artifacts/receipt.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+      - name: Retain compact capsule receipt
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: codex-cartridges-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: capsule-artifacts/
+          if-no-files-found: error
+          retention-days: 30
