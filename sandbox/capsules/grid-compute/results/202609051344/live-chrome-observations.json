@@ -1,0 +1,22 @@
+[
+  {
+    "ref": "2484",
+    "url": "https://globalgrid2050.com/testcode/202609051344/atlas/?repd_ref=2484&technology=wind_offshore&latitude=52.6199968&longitude=2.5499934&zoom=12&project=The+East+Anglia+Array+-+Norfolk+Vanguard+East&capacity_mw=1380",
+    "checked_utc": "2026-09-05T13:54:52.958Z",
+    "engine_badge": "TEST CODE repd-2484 | ENGINE COMPLETED | 1 measured | visit-1788616479890-ede7fb",
+    "visible_result": "Nearest 400 kV substation: Sizewell B Substation · 77.77 km straight · ~96.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+    "no_magic_bytes_error": true,
+    "method": "Live homepage → Test Code → Pipeline search → MAP click in connected Chrome",
+    "screenshot_saved": false
+  },
+  {
+    "ref": "11613",
+    "url": "https://globalgrid2050.com/testcode/202609051344/atlas/?repd_ref=11613&technology=wind_offshore&project=Fraserburgh+-+Buchan+Floating+Wind+Project&capacity_mw=1000",
+    "checked_utc": "2026-09-05T13:54:53.009Z",
+    "engine_badge": "TEST CODE repd-11613 | ENGINE COMPLETED | 1 measured | visit-1788616480379-33eaf7",
+    "visible_result": "Nearest 400 kV substation: Peterhead Substation · 109.04 km straight · ~135.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+    "no_magic_bytes_error": true,
+    "method": "Live homepage → Test Code → Pipeline search → MAP click in connected Chrome",
+    "screenshot_saved": false
+  }
+]

@@ -1,0 +1,31 @@
+Test Code 202609051344: final coded observations
+
+100 distinct REPD cases: 94 passed; 6 lack usable coordinates.
+10 additional industrial CO2 cases: 10 passed.
+35 representative Edge, Firefox, WebKit and mobile-emulation checks: 35 passed.
+Real Android hardware and iPhone Safari are not certified by these emulations.
+
+East Anglia (REPD 2484): actual engine receipt, 77.77126761891306 km to Sizewell B; visible line reviewed in connected Chrome.
+Buchan (11613), Dogger Bank South East (11109), Spiorad na Mara (13735): attributed Crown Estate/Crown Estate Scotland approximate lease-area centres.
+Industrial layer: pinned GeoJSON preserves source identities and avoids Parquet startup before selection; clicks now invoke computation.
+Industrial site selection uses zoom 17. At zoom 13 the detector caught a neighbouring site selected near West Drayton.
+
+Known missing-location failures:
+repd-1616 | First Wessex Housing Properties (multiple) | ENGINE_NOT_FIRED
+repd-1613 | Sainsbury's Stores (169 individual Stores) | ENGINE_NOT_FIRED
+repd-17724 | Mynydd Maen Solar Farm (Cil-Lonydd) | ENGINE_NOT_FIRED
+repd-12780 | Alness Grid Sub Station, Mid Balnacraig - Battery Storage Facility | ENGINE_NOT_FIRED
+repd-15385 | Hare Hill Wind Farm Repowering | ENGINE_NOT_FIRED
+repd-17672 | Scout Moor 2 - Wind Farm | ENGINE_NOT_FIRED
+
+The two multi-site solar records must not be assigned a fictional single coordinate. The other four need independently sourced location evidence.
+
+Negative detector proof: 9 checks passed. Engine verifier: 10 proofs, 155 checks passed.
+20 connected-Chrome Pipeline MAP journeys are correlated with actual computation receipts; two final-candidate regression visits add text observations.
+Earlier failures are preserved in baseline-summary.json. Full intermediate reports remain local, outside the Git publication.
+
+Screenshot policy: all 537 inventoried image files deleted; future capture disabled. No test screenshots tracked in the current source or website commit. Previous Git history was not rewritten.
+Source commit: 2e7d9f4. Engine commit: f9531a7. Website commit: 7ddc71e7982039880bb17fc006f00c5cc3c44bff.
+Homepage restore point 042 preserves concurrent change 2b91603f; existing live-Atlas link retained.
+Deployment must be checked against live-byte-verification.json; a successful push alone is not evidence that the website updated.
+Live verified 2026-09-05 13:54 UTC: 130/130 served files match website commit; homepage Test Code link present; live connected-Chrome Pipeline MAP clicks for East Anglia and Buchan report ENGINE COMPLETED and measured distances without the magic-bytes error. No screenshot files saved.

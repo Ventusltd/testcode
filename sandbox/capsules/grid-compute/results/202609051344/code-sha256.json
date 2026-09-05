@@ -6,12 +6,14 @@
   "industrial-candidate.py": "9ead002dc2cac1c6d4b5540e0b94fa316705d9943447bf3a97796eeca90f6e42",
   "industrial-diagnostic.cjs": "f3b7dc815eeb16edf22d3f71a4038f0ec389bcf0f2a20fec3ce7a28166584cb4",
   "offshore-candidate.py": "6d2c63805d938d254c1832caf1647fb75ead96624f3505b4797c448f8a363720",
-  "package-results.py": "ccabeba6b8e735a4b213fb93df6a6858eb34494452b1f365a4813ebf3bcfecc6",
+  "package-results.py": "9c5539a6907521f04a8148fa8b230b00ef5e8bd322b1942611d6c0c63f234b26",
   "prepare.py": "42e55adf87b5ac3ff19b9981752df7d120335eb731b87720b79a631419fdd0e2",
   "publication-candidate.py": "fcc5979205d95edd97e766ae1ab2513a54fcab6739f24f1027a071afa749480a",
   "README.md": "5229905d30ff3c0fa49d80b297127b7ec82e681ac79d72adcf0bef87bacafe10",
+  "release-metadata.py": "a3f761c9614ef43aaf878557612b529bf02a472165f2ea501b3568698c2d2080",
   "remove-test-screenshots.ps1": "4c1e118ed0d10ddcad79a010ed16cd939054ef471bc0717a2721ebc640d2482f",
   "run.mjs": "0fe12a5afe64e1457ba6f193ae1b83e352c15606bf8b95f2f0418b090113aa23",
   "screenshot-policy.py": "56612d101e52af8b1965ed273b3647e7b0d1634eeec861e830665aad6f93cc82",
-  "server.py": "f0c4f75bf93598c6231c5994484f60481cbb102a54770458dd3cb702228cb313"
+  "server.py": "f0c4f75bf93598c6231c5994484f60481cbb102a54770458dd3cb702228cb313",
+  "verify-live.py": "b9ac0674251d1dcd6c313b212ac1b3fa4ccd8d0080aeeddbb9faa49d2b053d7c"
 }
