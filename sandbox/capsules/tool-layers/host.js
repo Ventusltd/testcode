@@ -4,7 +4,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
   old?.remove();
   const tray = document.createElement('nav');
   tray.id = 'codex-tool-layers'; tray.setAttribute('aria-label', 'Design tools');
-  Object.assign(tray.style, {position:'fixed',right:'12px',top:'68px',zIndex:'10000',display:'flex',gap:'6px',flexWrap:'wrap',maxWidth:'calc(100vw - 24px)'});
+  Object.assign(tray.style, {position:'fixed',right:'12px',top:'180px',zIndex:'10000',display:'flex',gap:'6px',flexWrap:'wrap',maxWidth:'calc(100vw - 24px)'});
   const layers = new Map();
   for (const tool of tools) {
     const button = document.createElement('button');
@@ -19,7 +19,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
         const bar = document.createElement('header');
         Object.assign(bar.style,{display:'flex',alignItems:'center',justifyContent:'space-between',color:'#ccffff',background:'#092326',padding:'4px 12px',minHeight:'44px'});
         const title = document.createElement('strong'); title.textContent = tool.title;
-        const close = document.createElement('button'); close.textContent = 'Close · return to GridAtlas';
+        const close = document.createElement('button'); close.textContent = 'Close Â· return to GridAtlas';
         Object.assign(close.style,{minHeight:'40px',cursor:'pointer'});
         close.addEventListener('click',()=>{layer.style.display='none'; button.focus();});
         bar.append(title,close);
