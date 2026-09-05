@@ -102,6 +102,25 @@
         "every published Pipeline News version"
       ],
       "known_constraint": "Fails while a live consumer still targets a retired receiver. That is the gate working, not decay: 10 live sites and 54 in immutable history at 202609050350."
+    },
+    {
+      "id": "repd-rows",
+      "repo": "testcode",
+      "path": ".",
+      "command": [
+        "node",
+        "drivers/repd-rows.mjs"
+      ],
+      "network": false,
+      "declares": "All 7,680 published REPD rows, audited offline against the engine contract and checked against the corpus own declared counts.",
+      "covers": [
+        "every row carries an REPD identity",
+        "7,652 linkable, 28 without geometry, matching the release contract",
+        "every link built against the canonical receiver",
+        "no link to a retired receiver",
+        "a row without geometry gets no link rather than a wrong one"
+      ],
+      "measured": "10/10 at 202609050400"
     }
   ],
   "surfaces": [
