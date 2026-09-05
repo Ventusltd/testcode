@@ -12,7 +12,10 @@
       "id": "grid-engine",
       "repo": "ventus-grid-engine",
       "path": "../ventus-grid-engine",
-      "command": ["node", "verify.mjs"],
+      "command": [
+        "node",
+        "verify.mjs"
+      ],
       "network": false,
       "declares": "9 proofs, 133 checks. Zero dependencies: it runs from a clone with no install.",
       "covers": [
@@ -26,7 +29,10 @@
       "id": "gridatlas-composition",
       "repo": "gridatlas",
       "path": "../gridatlas",
-      "command": ["node", "tools/proofs/run-current.mjs"],
+      "command": [
+        "node",
+        "tools/proofs/run-current.mjs"
+      ],
       "network": false,
       "declares": "Every composed cartridge against its generation-matched proof, read from the composed bytes rather than the parts.",
       "covers": [
@@ -39,7 +45,10 @@
       "id": "gridatlas-arrival-393x852",
       "repo": "gridatlas",
       "path": "../gridatlas",
-      "command": ["node", "tools/proofs/202609040229-arrival-identity.browser.mjs"],
+      "command": [
+        "node",
+        "tools/proofs/202609040229-arrival-identity.browser.mjs"
+      ],
       "network": true,
       "declares": "Five arrival cases at 393x852 in a real browser. Earns PASS_393x852_FIVE_ARRIVAL_CASES.",
       "known_constraint": "Will not run from a working copy inside OneDrive: it stalls or crashes the renderer. Copy atlas/, data/ and tools/ outside OneDrive and junction node_modules. Measured 2026-09-05."
@@ -48,7 +57,10 @@
       "id": "cvaa",
       "repo": "cvaa",
       "path": "../cvaa",
-      "command": ["node", "tools/selftest.mjs"],
+      "command": [
+        "node",
+        "tools/selftest.mjs"
+      ],
       "network": false,
       "declares": "The antibody fleet against the estate's committed bytes.",
       "known_defects": [
@@ -62,17 +74,61 @@
       "id": "menus",
       "repo": "testcode",
       "path": ".",
-      "command": ["node", "drivers/menu-map.mjs"],
+      "command": [
+        "node",
+        "drivers/menu-map.mjs"
+      ],
       "network": false,
       "declares": "Maps every menu on every surface from the composed bytes, and fails when a surface the estate publishes has no menu at all.",
-      "covers": ["gridatlas menu bar", "the shared estate menu", "the grid engine receiver"]
+      "covers": [
+        "gridatlas menu bar",
+        "the shared estate menu",
+        "the grid engine receiver"
+      ]
+    },
+    {
+      "id": "link-targets",
+      "repo": "testcode",
+      "path": ".",
+      "command": [
+        "node",
+        "drivers/link-targets.mjs"
+      ],
+      "network": false,
+      "declares": "Every place the estate builds a project deep link, and which receiver it targets. Reads the retired list from the engine contract rather than restating it.",
+      "covers": [
+        "the MAP button",
+        "the atlas pointer cartridges",
+        "every published Pipeline News version"
+      ],
+      "known_constraint": "Fails while a live consumer still targets a retired receiver. That is the gate working, not decay: 10 live sites and 54 in immutable history at 202609050350."
     }
   ],
   "surfaces": [
-    { "id": "gridatlas", "url": "https://ventusltd.github.io/gridatlas/atlas/", "has_menu": true },
-    { "id": "grid-engine-receiver", "url": "https://ventusltd.github.io/ventus-grid-engine/", "has_menu": true },
-    { "id": "pipelinenews", "url": "https://globalgrid2050.com/uk_renewables_pipeline/v9.7/", "has_menu": false },
-    { "id": "homepage", "url": "https://globalgrid2050.com/", "has_menu": false },
-    { "id": "federation-map", "url": "https://ventusltd.github.io/data-federation-map-for-globalgrid2050-all-repos/dashboard/sandbox/spider_full_po_test.html", "has_menu": false }
+    {
+      "id": "gridatlas",
+      "url": "https://ventusltd.github.io/gridatlas/atlas/",
+      "has_menu": true
+    },
+    {
+      "id": "grid-engine-receiver",
+      "url": "https://ventusltd.github.io/ventus-grid-engine/",
+      "has_menu": true
+    },
+    {
+      "id": "pipelinenews",
+      "url": "https://globalgrid2050.com/uk_renewables_pipeline/v9.7/",
+      "has_menu": false
+    },
+    {
+      "id": "homepage",
+      "url": "https://globalgrid2050.com/",
+      "has_menu": false
+    },
+    {
+      "id": "federation-map",
+      "url": "https://ventusltd.github.io/data-federation-map-for-globalgrid2050-all-repos/dashboard/sandbox/spider_full_po_test.html",
+      "has_menu": false
+    }
   ]
 }
