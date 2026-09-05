@@ -43,6 +43,10 @@ export function mountToolLayers(tools, base = import.meta.url, registry = tools)
         disposers.push(bindToolNavigation(layer,frame,title,status,registry,base,tool));
         const session=mountSessionRestart(layer,bar,frame,()=>{try{return frame.contentWindow.location.href;}catch{return null;}});
         disposers.push(session.dispose,mountToolRecovery(bar,status,session.requestConfirmation));
+        const sourceButton=document.createElement('button');sourceButton.textContent='Source code';sourceButton.disabled=true;sourceButton.style.minHeight='44px';
+        sourceButton.addEventListener('click',()=>{if(!layer.dataset.currentTool)return;const url=new URL('../source-browser/index.html',base);url.searchParams.set('tool',layer.dataset.currentTool);window.open(url.href,'_blank','noopener');});
+        const sourceReady=()=>{sourceButton.disabled=!layer.dataset.currentTool;};frame.addEventListener('load',sourceReady);disposers.push(()=>frame.removeEventListener('load',sourceReady));
+        bar.querySelector('[data-tool-session-actions]').append(sourceButton);
         layer.append(bar,frame); document.body.append(layer); layers.set(tool.id,layer);
       }
       layer.style.display='flex';
