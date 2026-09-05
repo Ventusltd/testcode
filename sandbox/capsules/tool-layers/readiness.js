@@ -36,8 +36,9 @@ export function observeToolReadiness(tool, frame, status, {timeout=30000,interva
       timer=setTimeout(check,interval);
     };check();
   };
-  status.textContent='Loading tool';status.setAttribute('role','status');
-  timer=setTimeout(timedOut,timeout);
+  const navigating=()=>{clearTimeout(timer);delete status.dataset.timedOut;status.dataset.interface='loading';status.dataset.drawing='pending';status.textContent='Loading tool';timer=setTimeout(timedOut,timeout);};
+  status.setAttribute('role','status');navigating();
   frame.addEventListener('load',started);
-  return () => {disposed=true;clearTimeout(timer);frame.removeEventListener('load',started);};
+  frame.addEventListener('tool-navigation-start',navigating);
+  return () => {disposed=true;clearTimeout(timer);frame.removeEventListener('load',started);frame.removeEventListener('tool-navigation-start',navigating);};
 }
