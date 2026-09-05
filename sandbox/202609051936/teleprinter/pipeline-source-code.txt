@@ -1,13 +1,13 @@
 PRINT SOURCE CODE
 Format: codex-print-source-code-v1
 Repository: https://github.com/Ventusltd/testcode
-Commit: 9bef6d20ff022c23cbe3b868925fb7455f1cac83
-Tree: 91cbffe5bbd068e49198dd18c7a6fe6dd6d57dff
-Scopes: ["sandbox/202609051932/pipeline/contracts/fallback.v8.0.json","sandbox/202609051932/pipeline/contracts/legacy-integrity.v9.json","sandbox/202609051932/pipeline/contracts/mvp.v8.1.json","sandbox/202609051932/pipeline/contracts/news-module-registry.v9.7.json","sandbox/202609051932/pipeline/contracts/north-star.v1.json","sandbox/202609051932/pipeline/contracts/plugin.v1.json","sandbox/202609051932/pipeline/contracts/project-spine.v7.2.json","sandbox/202609051932/pipeline/contracts/projects-plugin.v7.2.json","sandbox/202609051932/pipeline/contracts/regional-news-sources.v9.7.json","sandbox/202609051932/pipeline/contracts/release.v9.0.json","sandbox/202609051932/pipeline/contracts/release.v9.1.json","sandbox/202609051932/pipeline/contracts/release.v9.2.json","sandbox/202609051932/pipeline/contracts/release.v9.3.json","sandbox/202609051932/pipeline/contracts/release.v9.4.json","sandbox/202609051932/pipeline/contracts/release.v9.5.1.json","sandbox/202609051932/pipeline/contracts/release.v9.5.json","sandbox/202609051932/pipeline/contracts/release.v9.6.1.json","sandbox/202609051932/pipeline/contracts/release.v9.6.2.json","sandbox/202609051932/pipeline/contracts/release.v9.7.json","sandbox/202609051932/pipeline/index.html","sandbox/202609051932/pipeline/scripts/app-v9-3.js","sandbox/202609051932/pipeline/scripts/app-v9-4.js","sandbox/202609051932/pipeline/scripts/app-v9-5-1.js","sandbox/202609051932/pipeline/scripts/app-v9-5.js","sandbox/202609051932/pipeline/scripts/app-v9-6-2.js","sandbox/202609051932/pipeline/scripts/app-v9-7.js","sandbox/202609051932/pipeline/scripts/app.js","sandbox/202609051932/pipeline/scripts/build/regional-news-v9-7.mjs","sandbox/202609051932/pipeline/scripts/core/atlas-receiver-v9-7.js","sandbox/202609051932/pipeline/scripts/core/news-regions-v9-6-2.js","sandbox/202609051932/pipeline/scripts/core/news-relevance-v9-2.js","sandbox/202609051932/pipeline/scripts/core/plugin-host.js","sandbox/202609051932/pipeline/scripts/core/project-filter-v9-2.js","sandbox/202609051932/pipeline/scripts/core/project-state.js","sandbox/202609051932/pipeline/scripts/core/state.js","sandbox/202609051932/pipeline/scripts/core/utils.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-1.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-2.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-3.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-4.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5-1.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5.js","sandbox/202609051932/pipeline/scripts/data/canonical-projects.js","sandbox/202609051932/pipeline/scripts/news/adapters/committed-json-v9-7.mjs","sandbox/202609051932/pipeline/scripts/news/classifier-v9-7.mjs","sandbox/202609051932/pipeline/scripts/news/ledger-v9-7.mjs","sandbox/202609051932/pipeline/scripts/news/rules/geography-v9-7.mjs","sandbox/202609051932/pipeline/scripts/news/rules/technology-v9-7.mjs","sandbox/202609051932/pipeline/scripts/news/rules/uk-veto-v9-7.mjs","sandbox/202609051932/pipeline/scripts/plugins/canonical-project-controls.js","sandbox/202609051932/pipeline/scripts/plugins/canonical-project-export.js","sandbox/202609051932/pipeline/scripts/plugins/canonical-project-table.js","sandbox/202609051932/pipeline/scripts/plugins/capacity-presentation-v9-3.js","sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-1.js","sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-2.js","sandbox/202609051932/pipeline/scripts/plugins/gauges.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-2.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5-1.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-6-2.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-7.js","sandbox/202609051932/pipeline/scripts/plugins/newspaper.js","sandbox/202609051932/pipeline/scripts/plugins/project-export.js","sandbox/202609051932/pipeline/scripts/plugins/project-filters.js","sandbox/202609051932/pipeline/scripts/plugins/project-table.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-1.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-2.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-3.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-4.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5-1.js","sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5.js","sandbox/202609051932/pipeline/scripts/plugins/projects.js","sandbox/202609051932/pipeline/styles/mobile.css","sandbox/202609051932/pipeline/styles/testcode.css","sandbox/202609051932/pipeline/styles/v7.css","sandbox/202609051932/pipeline/styles/v8.css","sandbox/202609051932/pipeline/styles/v9-2.css","sandbox/202609051932/pipeline/styles/v9-3.css","sandbox/202609051932/pipeline/styles/v9-4.css","sandbox/202609051932/pipeline/styles/v9-5-1.css","sandbox/202609051932/pipeline/styles/v9-6-1.css","sandbox/202609051932/pipeline/teleprinter-bootstrap.js","sandbox/202609051932/teleprinter/SOURCE-SCOPE.md","sandbox/202609051932/teleprinter/app-frame.js","sandbox/202609051932/teleprinter/capture-geometry.mjs","sandbox/202609051932/teleprinter/cartridges.json","sandbox/202609051932/teleprinter/clone-visible-ui.js","sandbox/202609051932/teleprinter/controls.js","sandbox/202609051932/teleprinter/layer-quick-controls.js","sandbox/202609051932/teleprinter/layers-panel-policy.js","sandbox/202609051932/teleprinter/layout-command.js","sandbox/202609051932/teleprinter/png-pixels.mjs","sandbox/202609051932/teleprinter/print-screen.js","sandbox/202609051932/teleprinter/print-source-code.js","sandbox/202609051932/teleprinter/runtime-source.js","sandbox/202609051932/teleprinter/screen-pdf.mjs","sandbox/202609051932/teleprinter/vendor/html2canvas-1.4.1.mjs","sandbox/202609051932/teleprinter/vendor/html2canvas-LICENSE.txt"]
+Commit: cf4d34269ab100c8a5a22f61477155cf71727349
+Tree: 382cb9261e66d08834b1d6c7d3b40d6a75616b3c
+Scopes: ["sandbox/202609051936/pipeline/contracts/fallback.v8.0.json","sandbox/202609051936/pipeline/contracts/legacy-integrity.v9.json","sandbox/202609051936/pipeline/contracts/mvp.v8.1.json","sandbox/202609051936/pipeline/contracts/news-module-registry.v9.7.json","sandbox/202609051936/pipeline/contracts/north-star.v1.json","sandbox/202609051936/pipeline/contracts/plugin.v1.json","sandbox/202609051936/pipeline/contracts/project-spine.v7.2.json","sandbox/202609051936/pipeline/contracts/projects-plugin.v7.2.json","sandbox/202609051936/pipeline/contracts/regional-news-sources.v9.7.json","sandbox/202609051936/pipeline/contracts/release.v9.0.json","sandbox/202609051936/pipeline/contracts/release.v9.1.json","sandbox/202609051936/pipeline/contracts/release.v9.2.json","sandbox/202609051936/pipeline/contracts/release.v9.3.json","sandbox/202609051936/pipeline/contracts/release.v9.4.json","sandbox/202609051936/pipeline/contracts/release.v9.5.1.json","sandbox/202609051936/pipeline/contracts/release.v9.5.json","sandbox/202609051936/pipeline/contracts/release.v9.6.1.json","sandbox/202609051936/pipeline/contracts/release.v9.6.2.json","sandbox/202609051936/pipeline/contracts/release.v9.7.json","sandbox/202609051936/pipeline/index.html","sandbox/202609051936/pipeline/scripts/app-v9-3.js","sandbox/202609051936/pipeline/scripts/app-v9-4.js","sandbox/202609051936/pipeline/scripts/app-v9-5-1.js","sandbox/202609051936/pipeline/scripts/app-v9-5.js","sandbox/202609051936/pipeline/scripts/app-v9-6-2.js","sandbox/202609051936/pipeline/scripts/app-v9-7.js","sandbox/202609051936/pipeline/scripts/app.js","sandbox/202609051936/pipeline/scripts/build/regional-news-v9-7.mjs","sandbox/202609051936/pipeline/scripts/core/atlas-receiver-v9-7.js","sandbox/202609051936/pipeline/scripts/core/news-regions-v9-6-2.js","sandbox/202609051936/pipeline/scripts/core/news-relevance-v9-2.js","sandbox/202609051936/pipeline/scripts/core/plugin-host.js","sandbox/202609051936/pipeline/scripts/core/project-filter-v9-2.js","sandbox/202609051936/pipeline/scripts/core/project-state.js","sandbox/202609051936/pipeline/scripts/core/state.js","sandbox/202609051936/pipeline/scripts/core/utils.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-1.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-2.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-3.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-4.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5-1.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5.js","sandbox/202609051936/pipeline/scripts/data/canonical-projects.js","sandbox/202609051936/pipeline/scripts/news/adapters/committed-json-v9-7.mjs","sandbox/202609051936/pipeline/scripts/news/classifier-v9-7.mjs","sandbox/202609051936/pipeline/scripts/news/ledger-v9-7.mjs","sandbox/202609051936/pipeline/scripts/news/rules/geography-v9-7.mjs","sandbox/202609051936/pipeline/scripts/news/rules/technology-v9-7.mjs","sandbox/202609051936/pipeline/scripts/news/rules/uk-veto-v9-7.mjs","sandbox/202609051936/pipeline/scripts/plugins/canonical-project-controls.js","sandbox/202609051936/pipeline/scripts/plugins/canonical-project-export.js","sandbox/202609051936/pipeline/scripts/plugins/canonical-project-table.js","sandbox/202609051936/pipeline/scripts/plugins/capacity-presentation-v9-3.js","sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-1.js","sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-2.js","sandbox/202609051936/pipeline/scripts/plugins/gauges.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-2.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5-1.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-6-2.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-7.js","sandbox/202609051936/pipeline/scripts/plugins/newspaper.js","sandbox/202609051936/pipeline/scripts/plugins/project-export.js","sandbox/202609051936/pipeline/scripts/plugins/project-filters.js","sandbox/202609051936/pipeline/scripts/plugins/project-table.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-1.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-2.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-3.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-4.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5-1.js","sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5.js","sandbox/202609051936/pipeline/scripts/plugins/projects.js","sandbox/202609051936/pipeline/styles/mobile.css","sandbox/202609051936/pipeline/styles/testcode.css","sandbox/202609051936/pipeline/styles/v7.css","sandbox/202609051936/pipeline/styles/v8.css","sandbox/202609051936/pipeline/styles/v9-2.css","sandbox/202609051936/pipeline/styles/v9-3.css","sandbox/202609051936/pipeline/styles/v9-4.css","sandbox/202609051936/pipeline/styles/v9-5-1.css","sandbox/202609051936/pipeline/styles/v9-6-1.css","sandbox/202609051936/pipeline/teleprinter-bootstrap.js","sandbox/202609051936/teleprinter/SOURCE-SCOPE.md","sandbox/202609051936/teleprinter/app-frame.js","sandbox/202609051936/teleprinter/capture-geometry.mjs","sandbox/202609051936/teleprinter/cartridges.json","sandbox/202609051936/teleprinter/clone-visible-ui.js","sandbox/202609051936/teleprinter/controls.js","sandbox/202609051936/teleprinter/layer-quick-controls.js","sandbox/202609051936/teleprinter/layers-panel-policy.js","sandbox/202609051936/teleprinter/layout-command.js","sandbox/202609051936/teleprinter/png-pixels.mjs","sandbox/202609051936/teleprinter/print-screen.js","sandbox/202609051936/teleprinter/print-source-code.js","sandbox/202609051936/teleprinter/runtime-source.js","sandbox/202609051936/teleprinter/screen-pdf.mjs","sandbox/202609051936/teleprinter/vendor/html2canvas-1.4.1.mjs","sandbox/202609051936/teleprinter/vendor/html2canvas-LICENSE.txt"]
 Policy: {"source":"Committed Git blobs only; working-tree changes are never substituted.","inclusion":"All regular files and symlink target blobs under each literal scope, including dotfiles and generated files, if valid UTF-8 text.","omission":"NUL-containing or non-UTF-8 blobs and Git submodules are explicitly listed as omitted. No truncation.","boundaries":"File startByte and byteCount identify exact original UTF-8 bytes in the bundle; offsets are zero-based. No newline normalization."}
-Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40","path":"sandbox/202609051932/pipeline/contracts/fallback.v8.0.json","byteCount":1047,"sha256":"72fa01406efe13a582fcf4363534f5306848fdb2ab71ce58e87469fc7acc10ca","status":"included"},{"mode":"100644","blobOid":"f0b128f55b0e15694f8b2b491cc12da95be6b8dd","path":"sandbox/202609051932/pipeline/contracts/legacy-integrity.v9.json","byteCount":2108,"sha256":"a2696a311129774056a67096faee57a3b4491add1aad1e8d9187818e94330f2b","status":"included"},{"mode":"100644","blobOid":"43915a93ee6efc5238c3ca48c67c4f6ca4e1ca1b","path":"sandbox/202609051932/pipeline/contracts/mvp.v8.1.json","byteCount":2242,"sha256":"1bdd558c835249032bb7827d9c0ed55a04d8d20997af1ae8cf3b5ab306a6e92f","status":"included"},{"mode":"100644","blobOid":"10177887bac7563ae906e921e2d31cee22130259","path":"sandbox/202609051932/pipeline/contracts/news-module-registry.v9.7.json","byteCount":1343,"sha256":"a4f2b9a1bb91a517874c8cd84f81eeeb1fa3715cf220f6dee5c07bdbcbcc9109","status":"included"},{"mode":"100644","blobOid":"df8d1ffde924a6044c3bab584f8bb5b229c84ccf","path":"sandbox/202609051932/pipeline/contracts/north-star.v1.json","byteCount":11586,"sha256":"346f226dc172eabd95a1110cdfd918baee77a0cc213ea31097b70dd6e064326a","status":"included"},{"mode":"100644","blobOid":"ae170d210dab13872567ffc93a577bb2f6edebb7","path":"sandbox/202609051932/pipeline/contracts/plugin.v1.json","byteCount":1150,"sha256":"b4ed06d58891359e8df017bc3e9564ba49928e4f6696b1604cfa1e01ab354df5","status":"included"},{"mode":"100644","blobOid":"3f786bc76e8e9e42d067c1312615b767452b2f0f","path":"sandbox/202609051932/pipeline/contracts/project-spine.v7.2.json","byteCount":2144,"sha256":"6425d81381eda13d204d88a2cd95a409d27d73561b33d65420e2b08428353397","status":"included"},{"mode":"100644","blobOid":"4a2ca6779a24f3e4deacb8fa97cd2971ecb68a4f","path":"sandbox/202609051932/pipeline/contracts/projects-plugin.v7.2.json","byteCount":23201,"sha256":"fc2f849cac2c3b40a0caa7bc63fca7dd79effca636b9e43f24f7dd80b3911606","status":"included"},{"mode":"100644","blobOid":"44ffeae9c485cdf169f05526b5cd9f732fa3d8d7","path":"sandbox/202609051932/pipeline/contracts/regional-news-sources.v9.7.json","byteCount":1097,"sha256":"7ea974f61dcfe0b3d952e74864ed3c7ef78045077dee156e60927fd3e808f261","status":"included"},{"mode":"100644","blobOid":"e0f4a0fd88bd649843d667403ccd4a85f7ab36ad","path":"sandbox/202609051932/pipeline/contracts/release.v9.0.json","byteCount":1374,"sha256":"c26d27d1734dbfdcb380091fd2c2cf710b370b46b75c2ad6c451df3cce1fe4a1","status":"included"},{"mode":"100644","blobOid":"f3e707df6c699c0f375b207dc9bf706437b8d61a","path":"sandbox/202609051932/pipeline/contracts/release.v9.1.json","byteCount":1957,"sha256":"bc21070f44aae1d32da333e4954816acd907aa8c9fa9cb639c64d651f7fd4259","status":"included"},{"mode":"100644","blobOid":"3215ee78ab8e0affff8d728b8950ce0605504472","path":"sandbox/202609051932/pipeline/contracts/release.v9.2.json","byteCount":2282,"sha256":"8f0d9a68fecd6b5bef25e2cb00e27f4587d7998fb7fca42d9f5f05b135be458f","status":"included"},{"mode":"100644","blobOid":"fdd35dcf901aecda919fcb258a2a7b7b33f46e52","path":"sandbox/202609051932/pipeline/contracts/release.v9.3.json","byteCount":4837,"sha256":"48bd1fe7ab712737c1eeb8549b0e2e97bf592f262ecb404059adefc8202add01","status":"included"},{"mode":"100644","blobOid":"b3c7087ef3d0f9e6d5fcfb8028fe0c527912699e","path":"sandbox/202609051932/pipeline/contracts/release.v9.4.json","byteCount":2312,"sha256":"9d957b05160863b7384e4b755e74ca1ac6c90f2cf049d79c6c0dc67242d9ecb0","status":"included"},{"mode":"100644","blobOid":"86b1db362ca4bb58970839869a6a735c18b8d403","path":"sandbox/202609051932/pipeline/contracts/release.v9.5.1.json","byteCount":2505,"sha256":"4137a31477be33a04b6ad5406d7cd13cefec1be8d84a94e23997c129c82076f1","status":"included"},{"mode":"100644","blobOid":"4939534d5778138ef665b3181650cf9e4f20c23e","path":"sandbox/202609051932/pipeline/contracts/release.v9.5.json","byteCount":2137,"sha256":"ea3ceb47b6bf47ad2d2743b89b43d97e3f2a079cd1f7ea2bc968a3ad5c9a8e11","status":"included"},{"mode":"100644","blobOid":"771a5d312e858f31237d7b1fef66f7fb352fc8b3","path":"sandbox/202609051932/pipeline/contracts/release.v9.6.1.json","byteCount":1920,"sha256":"e556ca98e6ead7d397d6e06e8156fea09fe9f414266ac62dc155317bba338d25","status":"included"},{"mode":"100644","blobOid":"a3379eb2bb5f475f8d2216a7b5e62b15ba763559","path":"sandbox/202609051932/pipeline/contracts/release.v9.6.2.json","byteCount":1414,"sha256":"661bb4f226ac3c75811f9e1d36546602f401491a5c21e1ddebccda170da92ece","status":"included"},{"mode":"100644","blobOid":"7fe3953f05f5f802620263993aa0bfaf482db049","path":"sandbox/202609051932/pipeline/contracts/release.v9.7.json","byteCount":1797,"sha256":"0b18c145e4cf2126ce27f9b57e07646dc3f840024c00ceb6f53e61eb06fa83c1","status":"included"},{"mode":"100644","blobOid":"15bab7b3bceaf3bbff9cb5ed36940bc8dceb2332","path":"sandbox/202609051932/pipeline/index.html","byteCount":8125,"sha256":"bfff41ec0d7a57dafd7956a7b5219cdd91e3f5d1bc806abe81473895346970e9","status":"included"},{"mode":"100644","blobOid":"177338febb78efe86566fc5cd9b7e1847eef9ea7","path":"sandbox/202609051932/pipeline/scripts/app-v9-3.js","byteCount":689,"sha256":"364147302951332d745ee615d73051a6be962e2e2b568ddb4026689bcf4fe2e7","status":"included"},{"mode":"100644","blobOid":"0596783fc7967029c0cefa644c304a03e45b0311","path":"sandbox/202609051932/pipeline/scripts/app-v9-4.js","byteCount":689,"sha256":"3370012e59b154a209ffa9866e1515db9ff04b1a391b1247a4def2afb506095f","status":"included"},{"mode":"100644","blobOid":"36a5c48a017158e3e13b5566261f34b905b79007","path":"sandbox/202609051932/pipeline/scripts/app-v9-5-1.js","byteCount":713,"sha256":"1be160ffedffd634862172c98d4ac96145eff12be07518c88466ddea3c31e431","status":"included"},{"mode":"100644","blobOid":"9146bfb97803a6d5680f861d66b89f81027b0711","path":"sandbox/202609051932/pipeline/scripts/app-v9-5.js","byteCount":689,"sha256":"a48603223cf5e75915b3e8cd9285dcab9b826ebf3e1575ada330ca8d88582b00","status":"included"},{"mode":"100644","blobOid":"f37e16cf9f1f0160ecc4da8f4ce7bb509330cde2","path":"sandbox/202609051932/pipeline/scripts/app-v9-6-2.js","byteCount":702,"sha256":"4eed3a69f4755647dd223d45af438561bf80e6bd6b0a9bdacc5a789457b9e38d","status":"included"},{"mode":"100644","blobOid":"73dce8009c552b60ae80429929cde7aa6bfadd1c","path":"sandbox/202609051932/pipeline/scripts/app-v9-7.js","byteCount":692,"sha256":"58726ab9eeb8bbc7d348fc508ad681d8e356bb82a7debd911557ba723c899525","status":"included"},{"mode":"100644","blobOid":"9c7360de94dda315fc0ddfd7d2d9699c91da0e70","path":"sandbox/202609051932/pipeline/scripts/app.js","byteCount":689,"sha256":"f24df134c92cd2178b2d5b90e606985b787c258a2a01181fd7341838fab7ac05","status":"included"},{"mode":"100644","blobOid":"205920ae5f6653ad83c0ed3ff276ed49ada2b253","path":"sandbox/202609051932/pipeline/scripts/build/regional-news-v9-7.mjs","byteCount":4659,"sha256":"a79fa1734d1f6cca1813a9dbcbfddb1c6cadfc485b00f0700bf63c55962005cf","status":"included"},{"mode":"100644","blobOid":"57823989d87737a95a86e9a06f8b1c18e66564ec","path":"sandbox/202609051932/pipeline/scripts/core/atlas-receiver-v9-7.js","byteCount":16149,"sha256":"a39c099718f51e8ca4fa3f31e310f102acfca7e9e105fa1379697548180bcee1","status":"included"},{"mode":"100644","blobOid":"0127ebdd379d54b7f87b781f496a28e3c3e65325","path":"sandbox/202609051932/pipeline/scripts/core/news-regions-v9-6-2.js","byteCount":4781,"sha256":"dd8a50414632200f9022bb19b934df50dab3785f1f88cfeadb133a4a207ccaa5","status":"included"},{"mode":"100644","blobOid":"f8374bfd6f0c47e98ca1e7f2f3312c9281a34e8a","path":"sandbox/202609051932/pipeline/scripts/core/news-relevance-v9-2.js","byteCount":3205,"sha256":"e8b26fb6133b6be3286e55a3074744a54c5ca7ced13dd44367f31d3a665a29da","status":"included"},{"mode":"100644","blobOid":"159b7ae4029cc0686cd3770abf596919a928e5dd","path":"sandbox/202609051932/pipeline/scripts/core/plugin-host.js","byteCount":669,"sha256":"e5aaa19b5bee93683fae461f7ead55d019e8c2edc8ce377680c0da634606e378","status":"included"},{"mode":"100644","blobOid":"dceee01d0f51e85b071aef275250c1fb223eeba7","path":"sandbox/202609051932/pipeline/scripts/core/project-filter-v9-2.js","byteCount":2532,"sha256":"007126279582d5dbbe6bb5ebf30a79fd998b4839e8498c5a9a76ab2e4033c842","status":"included"},{"mode":"100644","blobOid":"8fe3faf1801b1e581dd7fb40adfad9ebe78d0c30","path":"sandbox/202609051932/pipeline/scripts/core/project-state.js","byteCount":3995,"sha256":"bf52f442cc1aaa7ba26a32ef9437a9dd0c4149120fc313a0ae6cf51d874557d8","status":"included"},{"mode":"100644","blobOid":"b880efadfe135843fb79c63c7e94acf1904d08fd","path":"sandbox/202609051932/pipeline/scripts/core/state.js","byteCount":569,"sha256":"1599d14a8895fe207b2b1354942e09e1d446332c338ade9b54b6e1d80a8522b4","status":"included"},{"mode":"100644","blobOid":"c2ec95aa95a5d57911728963e187b7d0e840c6ce","path":"sandbox/202609051932/pipeline/scripts/core/utils.js","byteCount":707,"sha256":"bec300e2720e0793bc08434e91c0ea0dd8c3d8e36e79b97172e4d5270f01eda0","status":"included"},{"mode":"100644","blobOid":"b92a4a31a74e8d1b45ee5d32e5678324bd364d66","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-1.js","byteCount":4017,"sha256":"d6135413ca0c0527142ba6557b9f7cb286618b6478d1804469e2239f808b00c3","status":"included"},{"mode":"100644","blobOid":"e3d9b7bb0f39b813cf3b1f125467efbd6a021dda","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-2.js","byteCount":1442,"sha256":"0b9820b9f48a5f72571091b7c921ca65d5fe1f2db0ee83cf8d914ddb4c029fc9","status":"included"},{"mode":"100644","blobOid":"189004ab3828f440dfd1f4fb18a794158af30d4d","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-3.js","byteCount":1787,"sha256":"7ef5e264fd97e9e77f65042e392f4e2b7f3fb7a48380dfe9719ae80acb171300","status":"included"},{"mode":"100644","blobOid":"ba0e881e246a2649f61f3364bfcb865d3d9b2ff7","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-4.js","byteCount":1783,"sha256":"96ab7aa96358d23ec977cd2754226601603895869adb4eebb1dd703100ec16fb","status":"included"},{"mode":"100644","blobOid":"b632ccdf34f2ae41a2ddf39c3ed415726bee265a","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5-1.js","byteCount":1791,"sha256":"7e4bd9108eeaeb1b557e1b4f6ef4d8053f4429a4df46d5e5c8f886c4da88029b","status":"included"},{"mode":"100644","blobOid":"b789fca9a3b9703af0431925506276ff5857a1d0","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5.js","byteCount":1781,"sha256":"372bf74f115d47947bc7e903c8330ce40e76f54e2201f15373261ef11aed66b2","status":"included"},{"mode":"100644","blobOid":"3468d88cce2c349b63e14d0f8dd02de850899f08","path":"sandbox/202609051932/pipeline/scripts/data/canonical-projects.js","byteCount":15322,"sha256":"40d21f77ae817575a8f17181154cfe7e2c95de2fc2f716ce29cccebe3eb6bdf8","status":"included"},{"mode":"100644","blobOid":"10e6699a8721585b32cefcbbe3abacc994d6a75f","path":"sandbox/202609051932/pipeline/scripts/news/adapters/committed-json-v9-7.mjs","byteCount":652,"sha256":"21063298123ca75593f3ec0daf883fba67c08b1e9321e0ecbbba4f01b309c80d","status":"included"},{"mode":"100644","blobOid":"7bb8b22e5a745bc2c8b6f0613377cf77ede3780c","path":"sandbox/202609051932/pipeline/scripts/news/classifier-v9-7.mjs","byteCount":1842,"sha256":"f15e8909e7e340a891f9253a743b1efc665641df1c1c63294f538c6dd413eaac","status":"included"},{"mode":"100644","blobOid":"fb2a84f95796be16a4b4dbc0e7f302d1dba60904","path":"sandbox/202609051932/pipeline/scripts/news/ledger-v9-7.mjs","byteCount":2905,"sha256":"ac8b88b5cbbdeee36db6561e6f369fa0f19b0276751688a563a4ba7719ddfd9c","status":"included"},{"mode":"100644","blobOid":"6a66671948c1629865afea292cd072fe30a8a663","path":"sandbox/202609051932/pipeline/scripts/news/rules/geography-v9-7.mjs","byteCount":3381,"sha256":"bba24b1c3c4e334494194ee8e371ba2925562a264dbf57bd7336a5b7dc25da94","status":"included"},{"mode":"100644","blobOid":"cc273037c84e835ec33a6a3c3e0a505685250b73","path":"sandbox/202609051932/pipeline/scripts/news/rules/technology-v9-7.mjs","byteCount":951,"sha256":"36a3f11f9badaa3b1a7372eca4e34f3f6509a4aa58c26038baa2645671a68222","status":"included"},{"mode":"100644","blobOid":"8690f6e9b22c6074f0d8fc20aab680c267f8e4e7","path":"sandbox/202609051932/pipeline/scripts/news/rules/uk-veto-v9-7.mjs","byteCount":1840,"sha256":"11e6a1b656e1c5ffad4d16048b05c4239f6b81863e795dfba5d69026125dc388","status":"included"},{"mode":"100644","blobOid":"8bc7ad18c98e1bd488a2f1b2a270aaba95d33271","path":"sandbox/202609051932/pipeline/scripts/plugins/canonical-project-controls.js","byteCount":5694,"sha256":"17651f44dd27506e99ee6abb97c6700b03bbcb3a6be44a14a6d5819b92cf233c","status":"included"},{"mode":"100644","blobOid":"e5a394526242363db7b5286203f5aa904ee04cd3","path":"sandbox/202609051932/pipeline/scripts/plugins/canonical-project-export.js","byteCount":6380,"sha256":"3ec75298c9029a7b959022f80c43c00ea864eb98dbadaafb9de1de43b3679b8f","status":"included"},{"mode":"100644","blobOid":"8c983a2777b1d5950891afe737d692c951879189","path":"sandbox/202609051932/pipeline/scripts/plugins/canonical-project-table.js","byteCount":11406,"sha256":"e086946da97557054db908315fd38f4b8b67148d2a2fcc88a5a4cb1d567c8b99","status":"included"},{"mode":"100644","blobOid":"9054ec9ba841807ad3887960f9e11e57a65065d8","path":"sandbox/202609051932/pipeline/scripts/plugins/capacity-presentation-v9-3.js","byteCount":1916,"sha256":"650e2d1ca9fea55d0cb96db58c752e03ac03645499f033d11d4f76d29c917cef","status":"included"},{"mode":"100644","blobOid":"72baa0883a5182b4f62a764b7619b280815336e1","path":"sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-1.js","byteCount":1979,"sha256":"eb9c3caf204dd177407f4ac4f3a4352afc28381aba70a745854e2a69a89f2cae","status":"included"},{"mode":"100644","blobOid":"1d081d2d9e1630912b912953cf18f431754f9e19","path":"sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-2.js","byteCount":2753,"sha256":"30803e3ecc787175bc31b6913541d52cc6065e9be2b50dc4d3ed900797348682","status":"included"},{"mode":"100644","blobOid":"cdf1e0d9254aee0af46627238082b1141b9b28a9","path":"sandbox/202609051932/pipeline/scripts/plugins/gauges.js","byteCount":2523,"sha256":"c77752b697b9104fd8257d25294e84a63a8d4cc6060ce60eef7ef065cf19058d","status":"included"},{"mode":"100644","blobOid":"6c72de9e9bd8f41bf525a32ca2436e53ddb466b0","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-2.js","byteCount":7846,"sha256":"c6d3655455fe54131ce2a7b6cea189d099aed214f5710da40edf0d73d853e9b4","status":"included"},{"mode":"100644","blobOid":"c990407d2fd47ccfd9b94ab7c34230dce6741007","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5-1.js","byteCount":7882,"sha256":"f0925133d5d29113b113d241ccee5869bf9484a7319050913d7cd6b9cec5cf86","status":"included"},{"mode":"100644","blobOid":"81b219ae7e6b4c338605005063f3358778e2d7ec","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5.js","byteCount":7000,"sha256":"abca4ff5fb4e8f28bf5a613d399d6bb8a7a4ee94234a0936694663f2c5c2f2dc","status":"included"},{"mode":"100644","blobOid":"b676b5b1eba30ce0fa5e5c6a38b54b635eb50a08","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-6-2.js","byteCount":3592,"sha256":"d5ea34b3ff4b006e454edd012e02b993c93dd9db8951323fd0fbb865006e0eb9","status":"included"},{"mode":"100644","blobOid":"dc0c1c3bc16c434fe96ec6a77a5dce1e5b0ad445","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-7.js","byteCount":4413,"sha256":"81b71eee9d720e4dc223a16677680e295db6d3aeaa226a76ec01680265ee1e34","status":"included"},{"mode":"100644","blobOid":"e17eb4e52a3736976ec5f69d345b11e3667b41a2","path":"sandbox/202609051932/pipeline/scripts/plugins/newspaper.js","byteCount":5883,"sha256":"938c662a4ca461107f3f0851c70dd09bc29d0103ed1517a49920cb7ccbd06417","status":"included"},{"mode":"100644","blobOid":"06d1727722f347f7a4da874c194e56e6b3ae70b6","path":"sandbox/202609051932/pipeline/scripts/plugins/project-export.js","byteCount":1169,"sha256":"a5dbf6eff9670d7c08289d53e187c838b958f68eab2039928bc2a154e4689524","status":"included"},{"mode":"100644","blobOid":"914fc4b7389fed8d454682ee2e52ab7719da7b95","path":"sandbox/202609051932/pipeline/scripts/plugins/project-filters.js","byteCount":1593,"sha256":"348065a5800f21cbfb05d7a4a0d051215fc4263d016643be37d14687481440c6","status":"included"},{"mode":"100644","blobOid":"bd5f7611ef533751211c3321723ce8cb4a3dffa8","path":"sandbox/202609051932/pipeline/scripts/plugins/project-table.js","byteCount":1538,"sha256":"cb9eab60637c87f940c2494590c301cf9c19e8b6c37eca6a38b9681a9e44c4f0","status":"included"},{"mode":"100644","blobOid":"4259f28f52b5113ae3b33f7bb6f0ff29da3b4699","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-1.js","byteCount":9202,"sha256":"bff4758989eb29538525df4ee900eaed4b56e18f7f2bfcf4ed7211a9f0fb4468","status":"included"},{"mode":"100644","blobOid":"e0697a60666700a9f73ccbe608005c905f052a48","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-2.js","byteCount":15000,"sha256":"f000545d11ba6aa620ce3179bdd2ac3eaeb5672ea46daecf0536048b83563467","status":"included"},{"mode":"100644","blobOid":"4d26d31f9acfae5360875e4ad27e54d1dbc328ae","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-3.js","byteCount":16772,"sha256":"a51eeda3bf0430f58083eb6179db56446724a98d1f4b11172fcc54561239d958","status":"included"},{"mode":"100644","blobOid":"a5437c9a584d156210a52a0097b52ce9db100108","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-4.js","byteCount":18086,"sha256":"f585277b0d78f791507207de6cae2780969ea6e3a6a85b886ad54ecd26800e3a","status":"included"},{"mode":"100644","blobOid":"c41a45a1de7869cb93960b8049edfaacad987428","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5-1.js","byteCount":23534,"sha256":"79baa921d8451f89bc06f90a4422a6534dc90f36b078b37fd13e8576a75bd907","status":"included"},{"mode":"100644","blobOid":"5ac0583723a12a3280cfc0ab33728c0d52135237","path":"sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5.js","byteCount":18089,"sha256":"5561994a3a05ccffed410e9b3fdaa9924e08307215e8a0b6167910c8c5591b4f","status":"included"},{"mode":"100644","blobOid":"6f9f71f954b21c38bd47929f73c1ef67fb9d37e8","path":"sandbox/202609051932/pipeline/scripts/plugins/projects.js","byteCount":5582,"sha256":"d942b7468317cdbe5a5cb7a2bdcd1d27a4cdda11f0d3efacc893298a79b14b2d","status":"included"},{"mode":"100644","blobOid":"ace94d28df6890d206ce22a581ef7f13ed719948","path":"sandbox/202609051932/pipeline/styles/mobile.css","byteCount":203,"sha256":"9855b9c11255a85f477873d07cca45b057aedcdc8a6cc4aab2d29a0ffaac9b85","status":"included"},{"mode":"100644","blobOid":"1bf294c357c41d1706f7f43411b6f6b01320da37","path":"sandbox/202609051932/pipeline/styles/testcode.css","byteCount":2190,"sha256":"f07b404ea8e0c0d0530bdacda4ba5ff7aca6ebc37879fa6c577cf68c9c4dfc14","status":"included"},{"mode":"100644","blobOid":"ad3284c0025f5b8c7f90255fcbadf3d811f36e37","path":"sandbox/202609051932/pipeline/styles/v7.css","byteCount":6245,"sha256":"036dbfe43ef1ffb2c55ba277d49dec57ab7c7be976289226a5d568e1f1be319d","status":"included"},{"mode":"100644","blobOid":"5079fddedc91fff9be5750ae9db796668f208e85","path":"sandbox/202609051932/pipeline/styles/v8.css","byteCount":608,"sha256":"14129b4d6a148c0a629d4f5bf01fb4946ec0b62255ff9b78a3a9d01b6dfd1cbc","status":"included"},{"mode":"100644","blobOid":"f4ac1a09145b0f4824e333ac2acbc767d84f2da6","path":"sandbox/202609051932/pipeline/styles/v9-2.css","byteCount":2718,"sha256":"b4f95937b05844659b039299026dda5664fbf337fbbba3305626012d125fee77","status":"included"},{"mode":"100644","blobOid":"7691393e0bb8fa6b329bf190047cdaee0ab4c232","path":"sandbox/202609051932/pipeline/styles/v9-3.css","byteCount":5131,"sha256":"5d1d40b9f1d8b483ac47c940a971eb78636e16877d5fa622985119a8a64794c9","status":"included"},{"mode":"100644","blobOid":"3838c79ed304d6f7f98e20af5b21b00918f141fa","path":"sandbox/202609051932/pipeline/styles/v9-4.css","byteCount":402,"sha256":"39f7d0fd3ff42e82407c1f5129444e6cc308ef5c0ec551d43c7396ac53310d17","status":"included"},{"mode":"100644","blobOid":"f60533018ff2531be2af9a55e632a5017e48e43a","path":"sandbox/202609051932/pipeline/styles/v9-5-1.css","byteCount":408,"sha256":"79ff5b1db85ae82a381fbad061c0122e7151bb9c9c7ba80c549051761f0bfae3","status":"included"},{"mode":"100644","blobOid":"ec636cc2a186932d61983a183948ae979f605c73","path":"sandbox/202609051932/pipeline/styles/v9-6-1.css","byteCount":3691,"sha256":"a0711d40125d81e1a2836f548206bb26dce5086dea6888d6cec867b08e3f4869","status":"included"},{"mode":"100644","blobOid":"ad33b9f094474d869dbc26175c83a472918308fd","path":"sandbox/202609051932/pipeline/teleprinter-bootstrap.js","byteCount":1059,"sha256":"e9718ce4ea2fe40cbf65b59581c0c5887b8298fe538cd506c8d4a18500473a98","status":"included"},{"mode":"100644","blobOid":"8ce75945409656c3bc13ff7fe6b2b57af29162d7","path":"sandbox/202609051932/teleprinter/SOURCE-SCOPE.md","byteCount":2109,"sha256":"3fb97949b0d19b5bc130ac981a16a666a0707a741892a0c8787be78a093c0c18","status":"included"},{"mode":"100644","blobOid":"875240dd4cc09d01224adfc3de303f6f96956322","path":"sandbox/202609051932/teleprinter/app-frame.js","byteCount":3421,"sha256":"fbb73e307f356df8ed19cd9c91081d46645ce8bd649095ef0b3eb926ec9a6a42","status":"included"},{"mode":"100644","blobOid":"e642a70ea67a5749aeff2c308d19ba5ed449fbb1","path":"sandbox/202609051932/teleprinter/capture-geometry.mjs","byteCount":973,"sha256":"1dfe34aaa5d559e2f6c894a8fac3bb11deea76916df853153eb24e6837a02613","status":"included"},{"mode":"100644","blobOid":"38448d15eacd47f41f45dba464c080c8abf0daac","path":"sandbox/202609051932/teleprinter/cartridges.json","byteCount":1336,"sha256":"d3891e840a71528dde83798b29984b4161a0341d8e61b300ca294eb918a77943","status":"included"},{"mode":"100644","blobOid":"2eb1ee6788436a00132ed5c4d330cb3168e3affb","path":"sandbox/202609051932/teleprinter/clone-visible-ui.js","byteCount":1424,"sha256":"cc710a39dcd0163cbccd639b2802dc96060b4a632d1ae8b6251efe63cb3be54d","status":"included"},{"mode":"100644","blobOid":"9cb0ea06a41c66fb398b4f62588dd903ad86dde0","path":"sandbox/202609051932/teleprinter/controls.js","byteCount":10376,"sha256":"26668d706b4d11ee2383f1c29372735443f9745499e079e2d014b266f6d44044","status":"included"},{"mode":"100644","blobOid":"37d5c16712b7cd342d6ef161bc4361172d1830ae","path":"sandbox/202609051932/teleprinter/layer-quick-controls.js","byteCount":2940,"sha256":"6eb140de5934ff221867942ee4d6828db911c592b3ca251555f3ba3f029d4c54","status":"included"},{"mode":"100644","blobOid":"9310754cbe6f433704a32c5c532cd1eeb9a424b2","path":"sandbox/202609051932/teleprinter/layers-panel-policy.js","byteCount":965,"sha256":"8b0bad5e4e07aa1fa616b6e60240f4461f367dbc1e28bfd8700d6a00287a9be2","status":"included"},{"mode":"100644","blobOid":"8297f6abefe55aa3e993ef0a74b495ff0d633861","path":"sandbox/202609051932/teleprinter/layout-command.js","byteCount":1762,"sha256":"5781844356f6fc914f03e5ee522036f9fb4783b195ca00a8de462b64d59faa31","status":"included"},{"mode":"100644","blobOid":"98150c4635fd713ceb4baf0b09033db8851facb6","path":"sandbox/202609051932/teleprinter/png-pixels.mjs","byteCount":8455,"sha256":"01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481","status":"included"},{"mode":"100644","blobOid":"a65d7bad3455ce9a4b6862edce4f83666903f266","path":"sandbox/202609051932/teleprinter/print-screen.js","byteCount":2328,"sha256":"c697937957010daf9d88830422100433f4d9c2a9edc39a973b96469de0536229","status":"included"},{"mode":"100644","blobOid":"1827a78fd6951776093ebb1c186f3e8155dbadbc","path":"sandbox/202609051932/teleprinter/print-source-code.js","byteCount":10680,"sha256":"78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f","status":"included"},{"mode":"100644","blobOid":"3df51867e4f0500076dd171f5a745bbacadb5f7d","path":"sandbox/202609051932/teleprinter/runtime-source.js","byteCount":26282,"sha256":"4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274","status":"included"},{"mode":"100644","blobOid":"fdb1ca4c25e0c3bea47122ac32c801165d95ffcc","path":"sandbox/202609051932/teleprinter/screen-pdf.mjs","byteCount":10220,"sha256":"ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039","status":"included"},{"mode":"100644","blobOid":"268e9bc26bcecad85dda44ef87ebe0709ab64608","path":"sandbox/202609051932/teleprinter/vendor/html2canvas-1.4.1.mjs","byteCount":410344,"sha256":"9e73165f2f55469d3a4c1a7a81f3858985ba9a230f8a8e8b2bab3c2dca6f253a","status":"included"},{"mode":"100644","blobOid":"a73ffc9143edf0da1c821e920b6ec8582aba61f3","path":"sandbox/202609051932/teleprinter/vendor/html2canvas-LICENSE.txt","byteCount":1061,"sha256":"86200ce4e92d9a22c41c8647a55f7a5fddff304ff89b4d36ecc699ed8c123d2c","status":"included"}]
+Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40","path":"sandbox/202609051936/pipeline/contracts/fallback.v8.0.json","byteCount":1047,"sha256":"72fa01406efe13a582fcf4363534f5306848fdb2ab71ce58e87469fc7acc10ca","status":"included"},{"mode":"100644","blobOid":"f0b128f55b0e15694f8b2b491cc12da95be6b8dd","path":"sandbox/202609051936/pipeline/contracts/legacy-integrity.v9.json","byteCount":2108,"sha256":"a2696a311129774056a67096faee57a3b4491add1aad1e8d9187818e94330f2b","status":"included"},{"mode":"100644","blobOid":"43915a93ee6efc5238c3ca48c67c4f6ca4e1ca1b","path":"sandbox/202609051936/pipeline/contracts/mvp.v8.1.json","byteCount":2242,"sha256":"1bdd558c835249032bb7827d9c0ed55a04d8d20997af1ae8cf3b5ab306a6e92f","status":"included"},{"mode":"100644","blobOid":"10177887bac7563ae906e921e2d31cee22130259","path":"sandbox/202609051936/pipeline/contracts/news-module-registry.v9.7.json","byteCount":1343,"sha256":"a4f2b9a1bb91a517874c8cd84f81eeeb1fa3715cf220f6dee5c07bdbcbcc9109","status":"included"},{"mode":"100644","blobOid":"df8d1ffde924a6044c3bab584f8bb5b229c84ccf","path":"sandbox/202609051936/pipeline/contracts/north-star.v1.json","byteCount":11586,"sha256":"346f226dc172eabd95a1110cdfd918baee77a0cc213ea31097b70dd6e064326a","status":"included"},{"mode":"100644","blobOid":"ae170d210dab13872567ffc93a577bb2f6edebb7","path":"sandbox/202609051936/pipeline/contracts/plugin.v1.json","byteCount":1150,"sha256":"b4ed06d58891359e8df017bc3e9564ba49928e4f6696b1604cfa1e01ab354df5","status":"included"},{"mode":"100644","blobOid":"3f786bc76e8e9e42d067c1312615b767452b2f0f","path":"sandbox/202609051936/pipeline/contracts/project-spine.v7.2.json","byteCount":2144,"sha256":"6425d81381eda13d204d88a2cd95a409d27d73561b33d65420e2b08428353397","status":"included"},{"mode":"100644","blobOid":"4a2ca6779a24f3e4deacb8fa97cd2971ecb68a4f","path":"sandbox/202609051936/pipeline/contracts/projects-plugin.v7.2.json","byteCount":23201,"sha256":"fc2f849cac2c3b40a0caa7bc63fca7dd79effca636b9e43f24f7dd80b3911606","status":"included"},{"mode":"100644","blobOid":"44ffeae9c485cdf169f05526b5cd9f732fa3d8d7","path":"sandbox/202609051936/pipeline/contracts/regional-news-sources.v9.7.json","byteCount":1097,"sha256":"7ea974f61dcfe0b3d952e74864ed3c7ef78045077dee156e60927fd3e808f261","status":"included"},{"mode":"100644","blobOid":"e0f4a0fd88bd649843d667403ccd4a85f7ab36ad","path":"sandbox/202609051936/pipeline/contracts/release.v9.0.json","byteCount":1374,"sha256":"c26d27d1734dbfdcb380091fd2c2cf710b370b46b75c2ad6c451df3cce1fe4a1","status":"included"},{"mode":"100644","blobOid":"f3e707df6c699c0f375b207dc9bf706437b8d61a","path":"sandbox/202609051936/pipeline/contracts/release.v9.1.json","byteCount":1957,"sha256":"bc21070f44aae1d32da333e4954816acd907aa8c9fa9cb639c64d651f7fd4259","status":"included"},{"mode":"100644","blobOid":"3215ee78ab8e0affff8d728b8950ce0605504472","path":"sandbox/202609051936/pipeline/contracts/release.v9.2.json","byteCount":2282,"sha256":"8f0d9a68fecd6b5bef25e2cb00e27f4587d7998fb7fca42d9f5f05b135be458f","status":"included"},{"mode":"100644","blobOid":"fdd35dcf901aecda919fcb258a2a7b7b33f46e52","path":"sandbox/202609051936/pipeline/contracts/release.v9.3.json","byteCount":4837,"sha256":"48bd1fe7ab712737c1eeb8549b0e2e97bf592f262ecb404059adefc8202add01","status":"included"},{"mode":"100644","blobOid":"b3c7087ef3d0f9e6d5fcfb8028fe0c527912699e","path":"sandbox/202609051936/pipeline/contracts/release.v9.4.json","byteCount":2312,"sha256":"9d957b05160863b7384e4b755e74ca1ac6c90f2cf049d79c6c0dc67242d9ecb0","status":"included"},{"mode":"100644","blobOid":"86b1db362ca4bb58970839869a6a735c18b8d403","path":"sandbox/202609051936/pipeline/contracts/release.v9.5.1.json","byteCount":2505,"sha256":"4137a31477be33a04b6ad5406d7cd13cefec1be8d84a94e23997c129c82076f1","status":"included"},{"mode":"100644","blobOid":"4939534d5778138ef665b3181650cf9e4f20c23e","path":"sandbox/202609051936/pipeline/contracts/release.v9.5.json","byteCount":2137,"sha256":"ea3ceb47b6bf47ad2d2743b89b43d97e3f2a079cd1f7ea2bc968a3ad5c9a8e11","status":"included"},{"mode":"100644","blobOid":"771a5d312e858f31237d7b1fef66f7fb352fc8b3","path":"sandbox/202609051936/pipeline/contracts/release.v9.6.1.json","byteCount":1920,"sha256":"e556ca98e6ead7d397d6e06e8156fea09fe9f414266ac62dc155317bba338d25","status":"included"},{"mode":"100644","blobOid":"a3379eb2bb5f475f8d2216a7b5e62b15ba763559","path":"sandbox/202609051936/pipeline/contracts/release.v9.6.2.json","byteCount":1414,"sha256":"661bb4f226ac3c75811f9e1d36546602f401491a5c21e1ddebccda170da92ece","status":"included"},{"mode":"100644","blobOid":"7fe3953f05f5f802620263993aa0bfaf482db049","path":"sandbox/202609051936/pipeline/contracts/release.v9.7.json","byteCount":1797,"sha256":"0b18c145e4cf2126ce27f9b57e07646dc3f840024c00ceb6f53e61eb06fa83c1","status":"included"},{"mode":"100644","blobOid":"e478f4a7714699173ea51636c2a9d38638cdf98f","path":"sandbox/202609051936/pipeline/index.html","byteCount":8125,"sha256":"314e5cea54515c742f563de32f3a54183602d2f57653dbd58cd1bab12e57a6e3","status":"included"},{"mode":"100644","blobOid":"177338febb78efe86566fc5cd9b7e1847eef9ea7","path":"sandbox/202609051936/pipeline/scripts/app-v9-3.js","byteCount":689,"sha256":"364147302951332d745ee615d73051a6be962e2e2b568ddb4026689bcf4fe2e7","status":"included"},{"mode":"100644","blobOid":"0596783fc7967029c0cefa644c304a03e45b0311","path":"sandbox/202609051936/pipeline/scripts/app-v9-4.js","byteCount":689,"sha256":"3370012e59b154a209ffa9866e1515db9ff04b1a391b1247a4def2afb506095f","status":"included"},{"mode":"100644","blobOid":"36a5c48a017158e3e13b5566261f34b905b79007","path":"sandbox/202609051936/pipeline/scripts/app-v9-5-1.js","byteCount":713,"sha256":"1be160ffedffd634862172c98d4ac96145eff12be07518c88466ddea3c31e431","status":"included"},{"mode":"100644","blobOid":"9146bfb97803a6d5680f861d66b89f81027b0711","path":"sandbox/202609051936/pipeline/scripts/app-v9-5.js","byteCount":689,"sha256":"a48603223cf5e75915b3e8cd9285dcab9b826ebf3e1575ada330ca8d88582b00","status":"included"},{"mode":"100644","blobOid":"f37e16cf9f1f0160ecc4da8f4ce7bb509330cde2","path":"sandbox/202609051936/pipeline/scripts/app-v9-6-2.js","byteCount":702,"sha256":"4eed3a69f4755647dd223d45af438561bf80e6bd6b0a9bdacc5a789457b9e38d","status":"included"},{"mode":"100644","blobOid":"73dce8009c552b60ae80429929cde7aa6bfadd1c","path":"sandbox/202609051936/pipeline/scripts/app-v9-7.js","byteCount":692,"sha256":"58726ab9eeb8bbc7d348fc508ad681d8e356bb82a7debd911557ba723c899525","status":"included"},{"mode":"100644","blobOid":"9c7360de94dda315fc0ddfd7d2d9699c91da0e70","path":"sandbox/202609051936/pipeline/scripts/app.js","byteCount":689,"sha256":"f24df134c92cd2178b2d5b90e606985b787c258a2a01181fd7341838fab7ac05","status":"included"},{"mode":"100644","blobOid":"205920ae5f6653ad83c0ed3ff276ed49ada2b253","path":"sandbox/202609051936/pipeline/scripts/build/regional-news-v9-7.mjs","byteCount":4659,"sha256":"a79fa1734d1f6cca1813a9dbcbfddb1c6cadfc485b00f0700bf63c55962005cf","status":"included"},{"mode":"100644","blobOid":"57823989d87737a95a86e9a06f8b1c18e66564ec","path":"sandbox/202609051936/pipeline/scripts/core/atlas-receiver-v9-7.js","byteCount":16149,"sha256":"a39c099718f51e8ca4fa3f31e310f102acfca7e9e105fa1379697548180bcee1","status":"included"},{"mode":"100644","blobOid":"0127ebdd379d54b7f87b781f496a28e3c3e65325","path":"sandbox/202609051936/pipeline/scripts/core/news-regions-v9-6-2.js","byteCount":4781,"sha256":"dd8a50414632200f9022bb19b934df50dab3785f1f88cfeadb133a4a207ccaa5","status":"included"},{"mode":"100644","blobOid":"f8374bfd6f0c47e98ca1e7f2f3312c9281a34e8a","path":"sandbox/202609051936/pipeline/scripts/core/news-relevance-v9-2.js","byteCount":3205,"sha256":"e8b26fb6133b6be3286e55a3074744a54c5ca7ced13dd44367f31d3a665a29da","status":"included"},{"mode":"100644","blobOid":"159b7ae4029cc0686cd3770abf596919a928e5dd","path":"sandbox/202609051936/pipeline/scripts/core/plugin-host.js","byteCount":669,"sha256":"e5aaa19b5bee93683fae461f7ead55d019e8c2edc8ce377680c0da634606e378","status":"included"},{"mode":"100644","blobOid":"dceee01d0f51e85b071aef275250c1fb223eeba7","path":"sandbox/202609051936/pipeline/scripts/core/project-filter-v9-2.js","byteCount":2532,"sha256":"007126279582d5dbbe6bb5ebf30a79fd998b4839e8498c5a9a76ab2e4033c842","status":"included"},{"mode":"100644","blobOid":"8fe3faf1801b1e581dd7fb40adfad9ebe78d0c30","path":"sandbox/202609051936/pipeline/scripts/core/project-state.js","byteCount":3995,"sha256":"bf52f442cc1aaa7ba26a32ef9437a9dd0c4149120fc313a0ae6cf51d874557d8","status":"included"},{"mode":"100644","blobOid":"b880efadfe135843fb79c63c7e94acf1904d08fd","path":"sandbox/202609051936/pipeline/scripts/core/state.js","byteCount":569,"sha256":"1599d14a8895fe207b2b1354942e09e1d446332c338ade9b54b6e1d80a8522b4","status":"included"},{"mode":"100644","blobOid":"c2ec95aa95a5d57911728963e187b7d0e840c6ce","path":"sandbox/202609051936/pipeline/scripts/core/utils.js","byteCount":707,"sha256":"bec300e2720e0793bc08434e91c0ea0dd8c3d8e36e79b97172e4d5270f01eda0","status":"included"},{"mode":"100644","blobOid":"b92a4a31a74e8d1b45ee5d32e5678324bd364d66","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-1.js","byteCount":4017,"sha256":"d6135413ca0c0527142ba6557b9f7cb286618b6478d1804469e2239f808b00c3","status":"included"},{"mode":"100644","blobOid":"e3d9b7bb0f39b813cf3b1f125467efbd6a021dda","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-2.js","byteCount":1442,"sha256":"0b9820b9f48a5f72571091b7c921ca65d5fe1f2db0ee83cf8d914ddb4c029fc9","status":"included"},{"mode":"100644","blobOid":"189004ab3828f440dfd1f4fb18a794158af30d4d","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-3.js","byteCount":1787,"sha256":"7ef5e264fd97e9e77f65042e392f4e2b7f3fb7a48380dfe9719ae80acb171300","status":"included"},{"mode":"100644","blobOid":"ba0e881e246a2649f61f3364bfcb865d3d9b2ff7","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-4.js","byteCount":1783,"sha256":"96ab7aa96358d23ec977cd2754226601603895869adb4eebb1dd703100ec16fb","status":"included"},{"mode":"100644","blobOid":"b632ccdf34f2ae41a2ddf39c3ed415726bee265a","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5-1.js","byteCount":1791,"sha256":"7e4bd9108eeaeb1b557e1b4f6ef4d8053f4429a4df46d5e5c8f886c4da88029b","status":"included"},{"mode":"100644","blobOid":"b789fca9a3b9703af0431925506276ff5857a1d0","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5.js","byteCount":1781,"sha256":"372bf74f115d47947bc7e903c8330ce40e76f54e2201f15373261ef11aed66b2","status":"included"},{"mode":"100644","blobOid":"3468d88cce2c349b63e14d0f8dd02de850899f08","path":"sandbox/202609051936/pipeline/scripts/data/canonical-projects.js","byteCount":15322,"sha256":"40d21f77ae817575a8f17181154cfe7e2c95de2fc2f716ce29cccebe3eb6bdf8","status":"included"},{"mode":"100644","blobOid":"10e6699a8721585b32cefcbbe3abacc994d6a75f","path":"sandbox/202609051936/pipeline/scripts/news/adapters/committed-json-v9-7.mjs","byteCount":652,"sha256":"21063298123ca75593f3ec0daf883fba67c08b1e9321e0ecbbba4f01b309c80d","status":"included"},{"mode":"100644","blobOid":"7bb8b22e5a745bc2c8b6f0613377cf77ede3780c","path":"sandbox/202609051936/pipeline/scripts/news/classifier-v9-7.mjs","byteCount":1842,"sha256":"f15e8909e7e340a891f9253a743b1efc665641df1c1c63294f538c6dd413eaac","status":"included"},{"mode":"100644","blobOid":"fb2a84f95796be16a4b4dbc0e7f302d1dba60904","path":"sandbox/202609051936/pipeline/scripts/news/ledger-v9-7.mjs","byteCount":2905,"sha256":"ac8b88b5cbbdeee36db6561e6f369fa0f19b0276751688a563a4ba7719ddfd9c","status":"included"},{"mode":"100644","blobOid":"6a66671948c1629865afea292cd072fe30a8a663","path":"sandbox/202609051936/pipeline/scripts/news/rules/geography-v9-7.mjs","byteCount":3381,"sha256":"bba24b1c3c4e334494194ee8e371ba2925562a264dbf57bd7336a5b7dc25da94","status":"included"},{"mode":"100644","blobOid":"cc273037c84e835ec33a6a3c3e0a505685250b73","path":"sandbox/202609051936/pipeline/scripts/news/rules/technology-v9-7.mjs","byteCount":951,"sha256":"36a3f11f9badaa3b1a7372eca4e34f3f6509a4aa58c26038baa2645671a68222","status":"included"},{"mode":"100644","blobOid":"8690f6e9b22c6074f0d8fc20aab680c267f8e4e7","path":"sandbox/202609051936/pipeline/scripts/news/rules/uk-veto-v9-7.mjs","byteCount":1840,"sha256":"11e6a1b656e1c5ffad4d16048b05c4239f6b81863e795dfba5d69026125dc388","status":"included"},{"mode":"100644","blobOid":"8bc7ad18c98e1bd488a2f1b2a270aaba95d33271","path":"sandbox/202609051936/pipeline/scripts/plugins/canonical-project-controls.js","byteCount":5694,"sha256":"17651f44dd27506e99ee6abb97c6700b03bbcb3a6be44a14a6d5819b92cf233c","status":"included"},{"mode":"100644","blobOid":"e5a394526242363db7b5286203f5aa904ee04cd3","path":"sandbox/202609051936/pipeline/scripts/plugins/canonical-project-export.js","byteCount":6380,"sha256":"3ec75298c9029a7b959022f80c43c00ea864eb98dbadaafb9de1de43b3679b8f","status":"included"},{"mode":"100644","blobOid":"8c983a2777b1d5950891afe737d692c951879189","path":"sandbox/202609051936/pipeline/scripts/plugins/canonical-project-table.js","byteCount":11406,"sha256":"e086946da97557054db908315fd38f4b8b67148d2a2fcc88a5a4cb1d567c8b99","status":"included"},{"mode":"100644","blobOid":"9054ec9ba841807ad3887960f9e11e57a65065d8","path":"sandbox/202609051936/pipeline/scripts/plugins/capacity-presentation-v9-3.js","byteCount":1916,"sha256":"650e2d1ca9fea55d0cb96db58c752e03ac03645499f033d11d4f76d29c917cef","status":"included"},{"mode":"100644","blobOid":"72baa0883a5182b4f62a764b7619b280815336e1","path":"sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-1.js","byteCount":1979,"sha256":"eb9c3caf204dd177407f4ac4f3a4352afc28381aba70a745854e2a69a89f2cae","status":"included"},{"mode":"100644","blobOid":"1d081d2d9e1630912b912953cf18f431754f9e19","path":"sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-2.js","byteCount":2753,"sha256":"30803e3ecc787175bc31b6913541d52cc6065e9be2b50dc4d3ed900797348682","status":"included"},{"mode":"100644","blobOid":"cdf1e0d9254aee0af46627238082b1141b9b28a9","path":"sandbox/202609051936/pipeline/scripts/plugins/gauges.js","byteCount":2523,"sha256":"c77752b697b9104fd8257d25294e84a63a8d4cc6060ce60eef7ef065cf19058d","status":"included"},{"mode":"100644","blobOid":"6c72de9e9bd8f41bf525a32ca2436e53ddb466b0","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-2.js","byteCount":7846,"sha256":"c6d3655455fe54131ce2a7b6cea189d099aed214f5710da40edf0d73d853e9b4","status":"included"},{"mode":"100644","blobOid":"c990407d2fd47ccfd9b94ab7c34230dce6741007","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5-1.js","byteCount":7882,"sha256":"f0925133d5d29113b113d241ccee5869bf9484a7319050913d7cd6b9cec5cf86","status":"included"},{"mode":"100644","blobOid":"81b219ae7e6b4c338605005063f3358778e2d7ec","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5.js","byteCount":7000,"sha256":"abca4ff5fb4e8f28bf5a613d399d6bb8a7a4ee94234a0936694663f2c5c2f2dc","status":"included"},{"mode":"100644","blobOid":"b676b5b1eba30ce0fa5e5c6a38b54b635eb50a08","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-6-2.js","byteCount":3592,"sha256":"d5ea34b3ff4b006e454edd012e02b993c93dd9db8951323fd0fbb865006e0eb9","status":"included"},{"mode":"100644","blobOid":"dc0c1c3bc16c434fe96ec6a77a5dce1e5b0ad445","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-7.js","byteCount":4413,"sha256":"81b71eee9d720e4dc223a16677680e295db6d3aeaa226a76ec01680265ee1e34","status":"included"},{"mode":"100644","blobOid":"e17eb4e52a3736976ec5f69d345b11e3667b41a2","path":"sandbox/202609051936/pipeline/scripts/plugins/newspaper.js","byteCount":5883,"sha256":"938c662a4ca461107f3f0851c70dd09bc29d0103ed1517a49920cb7ccbd06417","status":"included"},{"mode":"100644","blobOid":"06d1727722f347f7a4da874c194e56e6b3ae70b6","path":"sandbox/202609051936/pipeline/scripts/plugins/project-export.js","byteCount":1169,"sha256":"a5dbf6eff9670d7c08289d53e187c838b958f68eab2039928bc2a154e4689524","status":"included"},{"mode":"100644","blobOid":"914fc4b7389fed8d454682ee2e52ab7719da7b95","path":"sandbox/202609051936/pipeline/scripts/plugins/project-filters.js","byteCount":1593,"sha256":"348065a5800f21cbfb05d7a4a0d051215fc4263d016643be37d14687481440c6","status":"included"},{"mode":"100644","blobOid":"bd5f7611ef533751211c3321723ce8cb4a3dffa8","path":"sandbox/202609051936/pipeline/scripts/plugins/project-table.js","byteCount":1538,"sha256":"cb9eab60637c87f940c2494590c301cf9c19e8b6c37eca6a38b9681a9e44c4f0","status":"included"},{"mode":"100644","blobOid":"4259f28f52b5113ae3b33f7bb6f0ff29da3b4699","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-1.js","byteCount":9202,"sha256":"bff4758989eb29538525df4ee900eaed4b56e18f7f2bfcf4ed7211a9f0fb4468","status":"included"},{"mode":"100644","blobOid":"e0697a60666700a9f73ccbe608005c905f052a48","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-2.js","byteCount":15000,"sha256":"f000545d11ba6aa620ce3179bdd2ac3eaeb5672ea46daecf0536048b83563467","status":"included"},{"mode":"100644","blobOid":"4d26d31f9acfae5360875e4ad27e54d1dbc328ae","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-3.js","byteCount":16772,"sha256":"a51eeda3bf0430f58083eb6179db56446724a98d1f4b11172fcc54561239d958","status":"included"},{"mode":"100644","blobOid":"a5437c9a584d156210a52a0097b52ce9db100108","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-4.js","byteCount":18086,"sha256":"f585277b0d78f791507207de6cae2780969ea6e3a6a85b886ad54ecd26800e3a","status":"included"},{"mode":"100644","blobOid":"c41a45a1de7869cb93960b8049edfaacad987428","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5-1.js","byteCount":23534,"sha256":"79baa921d8451f89bc06f90a4422a6534dc90f36b078b37fd13e8576a75bd907","status":"included"},{"mode":"100644","blobOid":"5ac0583723a12a3280cfc0ab33728c0d52135237","path":"sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5.js","byteCount":18089,"sha256":"5561994a3a05ccffed410e9b3fdaa9924e08307215e8a0b6167910c8c5591b4f","status":"included"},{"mode":"100644","blobOid":"6f9f71f954b21c38bd47929f73c1ef67fb9d37e8","path":"sandbox/202609051936/pipeline/scripts/plugins/projects.js","byteCount":5582,"sha256":"d942b7468317cdbe5a5cb7a2bdcd1d27a4cdda11f0d3efacc893298a79b14b2d","status":"included"},{"mode":"100644","blobOid":"ace94d28df6890d206ce22a581ef7f13ed719948","path":"sandbox/202609051936/pipeline/styles/mobile.css","byteCount":203,"sha256":"9855b9c11255a85f477873d07cca45b057aedcdc8a6cc4aab2d29a0ffaac9b85","status":"included"},{"mode":"100644","blobOid":"1bf294c357c41d1706f7f43411b6f6b01320da37","path":"sandbox/202609051936/pipeline/styles/testcode.css","byteCount":2190,"sha256":"f07b404ea8e0c0d0530bdacda4ba5ff7aca6ebc37879fa6c577cf68c9c4dfc14","status":"included"},{"mode":"100644","blobOid":"ad3284c0025f5b8c7f90255fcbadf3d811f36e37","path":"sandbox/202609051936/pipeline/styles/v7.css","byteCount":6245,"sha256":"036dbfe43ef1ffb2c55ba277d49dec57ab7c7be976289226a5d568e1f1be319d","status":"included"},{"mode":"100644","blobOid":"5079fddedc91fff9be5750ae9db796668f208e85","path":"sandbox/202609051936/pipeline/styles/v8.css","byteCount":608,"sha256":"14129b4d6a148c0a629d4f5bf01fb4946ec0b62255ff9b78a3a9d01b6dfd1cbc","status":"included"},{"mode":"100644","blobOid":"f4ac1a09145b0f4824e333ac2acbc767d84f2da6","path":"sandbox/202609051936/pipeline/styles/v9-2.css","byteCount":2718,"sha256":"b4f95937b05844659b039299026dda5664fbf337fbbba3305626012d125fee77","status":"included"},{"mode":"100644","blobOid":"7691393e0bb8fa6b329bf190047cdaee0ab4c232","path":"sandbox/202609051936/pipeline/styles/v9-3.css","byteCount":5131,"sha256":"5d1d40b9f1d8b483ac47c940a971eb78636e16877d5fa622985119a8a64794c9","status":"included"},{"mode":"100644","blobOid":"3838c79ed304d6f7f98e20af5b21b00918f141fa","path":"sandbox/202609051936/pipeline/styles/v9-4.css","byteCount":402,"sha256":"39f7d0fd3ff42e82407c1f5129444e6cc308ef5c0ec551d43c7396ac53310d17","status":"included"},{"mode":"100644","blobOid":"f60533018ff2531be2af9a55e632a5017e48e43a","path":"sandbox/202609051936/pipeline/styles/v9-5-1.css","byteCount":408,"sha256":"79ff5b1db85ae82a381fbad061c0122e7151bb9c9c7ba80c549051761f0bfae3","status":"included"},{"mode":"100644","blobOid":"ec636cc2a186932d61983a183948ae979f605c73","path":"sandbox/202609051936/pipeline/styles/v9-6-1.css","byteCount":3691,"sha256":"a0711d40125d81e1a2836f548206bb26dce5086dea6888d6cec867b08e3f4869","status":"included"},{"mode":"100644","blobOid":"5dae1f31cc444ef867c84a4c1072e751469e6122","path":"sandbox/202609051936/pipeline/teleprinter-bootstrap.js","byteCount":1059,"sha256":"4f8f5032b2770622b8cd6e02e41f0024343eb213ff03be4a30bf04dba9b8a97b","status":"included"},{"mode":"100644","blobOid":"8ce75945409656c3bc13ff7fe6b2b57af29162d7","path":"sandbox/202609051936/teleprinter/SOURCE-SCOPE.md","byteCount":2109,"sha256":"3fb97949b0d19b5bc130ac981a16a666a0707a741892a0c8787be78a093c0c18","status":"included"},{"mode":"100644","blobOid":"875240dd4cc09d01224adfc3de303f6f96956322","path":"sandbox/202609051936/teleprinter/app-frame.js","byteCount":3421,"sha256":"fbb73e307f356df8ed19cd9c91081d46645ce8bd649095ef0b3eb926ec9a6a42","status":"included"},{"mode":"100644","blobOid":"e642a70ea67a5749aeff2c308d19ba5ed449fbb1","path":"sandbox/202609051936/teleprinter/capture-geometry.mjs","byteCount":973,"sha256":"1dfe34aaa5d559e2f6c894a8fac3bb11deea76916df853153eb24e6837a02613","status":"included"},{"mode":"100644","blobOid":"38448d15eacd47f41f45dba464c080c8abf0daac","path":"sandbox/202609051936/teleprinter/cartridges.json","byteCount":1336,"sha256":"d3891e840a71528dde83798b29984b4161a0341d8e61b300ca294eb918a77943","status":"included"},{"mode":"100644","blobOid":"2eb1ee6788436a00132ed5c4d330cb3168e3affb","path":"sandbox/202609051936/teleprinter/clone-visible-ui.js","byteCount":1424,"sha256":"cc710a39dcd0163cbccd639b2802dc96060b4a632d1ae8b6251efe63cb3be54d","status":"included"},{"mode":"100644","blobOid":"9cb0ea06a41c66fb398b4f62588dd903ad86dde0","path":"sandbox/202609051936/teleprinter/controls.js","byteCount":10376,"sha256":"26668d706b4d11ee2383f1c29372735443f9745499e079e2d014b266f6d44044","status":"included"},{"mode":"100644","blobOid":"37d5c16712b7cd342d6ef161bc4361172d1830ae","path":"sandbox/202609051936/teleprinter/layer-quick-controls.js","byteCount":2940,"sha256":"6eb140de5934ff221867942ee4d6828db911c592b3ca251555f3ba3f029d4c54","status":"included"},{"mode":"100644","blobOid":"9310754cbe6f433704a32c5c532cd1eeb9a424b2","path":"sandbox/202609051936/teleprinter/layers-panel-policy.js","byteCount":965,"sha256":"8b0bad5e4e07aa1fa616b6e60240f4461f367dbc1e28bfd8700d6a00287a9be2","status":"included"},{"mode":"100644","blobOid":"8297f6abefe55aa3e993ef0a74b495ff0d633861","path":"sandbox/202609051936/teleprinter/layout-command.js","byteCount":1762,"sha256":"5781844356f6fc914f03e5ee522036f9fb4783b195ca00a8de462b64d59faa31","status":"included"},{"mode":"100644","blobOid":"98150c4635fd713ceb4baf0b09033db8851facb6","path":"sandbox/202609051936/teleprinter/png-pixels.mjs","byteCount":8455,"sha256":"01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481","status":"included"},{"mode":"100644","blobOid":"a65d7bad3455ce9a4b6862edce4f83666903f266","path":"sandbox/202609051936/teleprinter/print-screen.js","byteCount":2328,"sha256":"c697937957010daf9d88830422100433f4d9c2a9edc39a973b96469de0536229","status":"included"},{"mode":"100644","blobOid":"1827a78fd6951776093ebb1c186f3e8155dbadbc","path":"sandbox/202609051936/teleprinter/print-source-code.js","byteCount":10680,"sha256":"78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f","status":"included"},{"mode":"100644","blobOid":"3df51867e4f0500076dd171f5a745bbacadb5f7d","path":"sandbox/202609051936/teleprinter/runtime-source.js","byteCount":26282,"sha256":"4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274","status":"included"},{"mode":"100644","blobOid":"fdb1ca4c25e0c3bea47122ac32c801165d95ffcc","path":"sandbox/202609051936/teleprinter/screen-pdf.mjs","byteCount":10220,"sha256":"ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039","status":"included"},{"mode":"100644","blobOid":"268e9bc26bcecad85dda44ef87ebe0709ab64608","path":"sandbox/202609051936/teleprinter/vendor/html2canvas-1.4.1.mjs","byteCount":410344,"sha256":"9e73165f2f55469d3a4c1a7a81f3858985ba9a230f8a8e8b2bab3c2dca6f253a","status":"included"},{"mode":"100644","blobOid":"a73ffc9143edf0da1c821e920b6ec8582aba61f3","path":"sandbox/202609051936/teleprinter/vendor/html2canvas-LICENSE.txt","byteCount":1061,"sha256":"86200ce4e92d9a22c41c8647a55f7a5fddff304ff89b4d36ecc699ed8c123d2c","status":"included"}]
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/fallback.v8.0.json" | bytes=1047 | sha256=72fa01406efe13a582fcf4363534f5306848fdb2ab71ce58e87469fc7acc10ca =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/fallback.v8.0.json" | bytes=1047 | sha256=72fa01406efe13a582fcf4363534f5306848fdb2ab71ce58e87469fc7acc10ca =====
 {
   "schema": "globalgrid2050.v8.fallback-contract.v1",
   "release": "8.0",
@@ -46,9 +46,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/fallback.v8.0.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/fallback.v8.0.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/legacy-integrity.v9.json" | bytes=2108 | sha256=a2696a311129774056a67096faee57a3b4491add1aad1e8d9187818e94330f2b =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/legacy-integrity.v9.json" | bytes=2108 | sha256=a2696a311129774056a67096faee57a3b4491add1aad1e8d9187818e94330f2b =====
 {
   "schema": "globalgrid2050.v9.legacy-integrity.v1",
   "recorded_at_utc": "2026-08-23",
@@ -101,9 +101,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/legacy-integrity.v9.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/legacy-integrity.v9.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/mvp.v8.1.json" | bytes=2242 | sha256=1bdd558c835249032bb7827d9c0ed55a04d8d20997af1ae8cf3b5ab306a6e92f =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/mvp.v8.1.json" | bytes=2242 | sha256=1bdd558c835249032bb7827d9c0ed55a04d8d20997af1ae8cf3b5ab306a6e92f =====
 {
   "schema": "globalgrid2050.v8.mvp-contract.v1",
   "release": "8.1",
@@ -169,9 +169,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/mvp.v8.1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/mvp.v8.1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/news-module-registry.v9.7.json" | bytes=1343 | sha256=a4f2b9a1bb91a517874c8cd84f81eeeb1fa3715cf220f6dee5c07bdbcbcc9109 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/news-module-registry.v9.7.json" | bytes=1343 | sha256=a4f2b9a1bb91a517874c8cd84f81eeeb1fa3715cf220f6dee5c07bdbcbcc9109 =====
 {
   "schema": "globalgrid2050.news-module-registry.v9.7",
   "release": "9.7",
@@ -221,9 +221,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   ]
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/news-module-registry.v9.7.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/news-module-registry.v9.7.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/north-star.v1.json" | bytes=11586 | sha256=346f226dc172eabd95a1110cdfd918baee77a0cc213ea31097b70dd6e064326a =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/north-star.v1.json" | bytes=11586 | sha256=346f226dc172eabd95a1110cdfd918baee77a0cc213ea31097b70dd6e064326a =====
 {
   "schema": "globalgrid2050.v7.north-star.v1",
   "target_release": "7.1",
@@ -433,9 +433,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   ]
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/north-star.v1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/north-star.v1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/plugin.v1.json" | bytes=1150 | sha256=b4ed06d58891359e8df017bc3e9564ba49928e4f6696b1604cfa1e01ab354df5 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/plugin.v1.json" | bytes=1150 | sha256=b4ed06d58891359e8df017bc3e9564ba49928e4f6696b1604cfa1e01ab354df5 =====
 {
   "schema": "globalgrid2050.v7.plugin-contract.v1",
   "purpose": "Keep V7 features independently understandable while preserving one compact static application.",
@@ -461,9 +461,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   ]
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/plugin.v1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/plugin.v1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/project-spine.v7.2.json" | bytes=2144 | sha256=6425d81381eda13d204d88a2cd95a409d27d73561b33d65420e2b08428353397 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/project-spine.v7.2.json" | bytes=2144 | sha256=6425d81381eda13d204d88a2cd95a409d27d73561b33d65420e2b08428353397 =====
 {
   "schema": "globalgrid2050.v7.project-spine-contract.v1",
   "version": "7.2",
@@ -511,9 +511,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/project-spine.v7.2.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/project-spine.v7.2.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/projects-plugin.v7.2.json" | bytes=23201 | sha256=fc2f849cac2c3b40a0caa7bc63fca7dd79effca636b9e43f24f7dd80b3911606 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/projects-plugin.v7.2.json" | bytes=23201 | sha256=fc2f849cac2c3b40a0caa7bc63fca7dd79effca636b9e43f24f7dd80b3911606 =====
 {
   "schema": "globalgrid2050.v7.projects-plugin-contract.v1",
   "target_release": "7.2",
@@ -1007,9 +1007,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/projects-plugin.v7.2.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/projects-plugin.v7.2.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/regional-news-sources.v9.7.json" | bytes=1097 | sha256=7ea974f61dcfe0b3d952e74864ed3c7ef78045077dee156e60927fd3e808f261 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/regional-news-sources.v9.7.json" | bytes=1097 | sha256=7ea974f61dcfe0b3d952e74864ed3c7ef78045077dee156e60927fd3e808f261 =====
 {
   "schema": "globalgrid2050.regional-news-sources.v9.7",
   "release": "9.7",
@@ -1036,9 +1036,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/regional-news-sources.v9.7.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/regional-news-sources.v9.7.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.0.json" | bytes=1374 | sha256=c26d27d1734dbfdcb380091fd2c2cf710b370b46b75c2ad6c451df3cce1fe4a1 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.0.json" | bytes=1374 | sha256=c26d27d1734dbfdcb380091fd2c2cf710b370b46b75c2ad6c451df3cce1fe4a1 =====
 {
   "schema": "globalgrid2050.v9.interim-release.v1",
   "release": "9.0",
@@ -1080,9 +1080,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   "legacy_integrity_contract": "contracts/legacy-integrity.v9.json"
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.0.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.0.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.1.json" | bytes=1957 | sha256=bc21070f44aae1d32da333e4954816acd907aa8c9fa9cb639c64d651f7fd4259 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.1.json" | bytes=1957 | sha256=bc21070f44aae1d32da333e4954816acd907aa8c9fa9cb639c64d651f7fd4259 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.1",
   "release": "9.1",
@@ -1129,9 +1129,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.2.json" | bytes=2282 | sha256=8f0d9a68fecd6b5bef25e2cb00e27f4587d7998fb7fca42d9f5f05b135be458f =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.2.json" | bytes=2282 | sha256=8f0d9a68fecd6b5bef25e2cb00e27f4587d7998fb7fca42d9f5f05b135be458f =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.2",
   "release": "9.2",
@@ -1194,9 +1194,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.2.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.2.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.3.json" | bytes=4837 | sha256=48bd1fe7ab712737c1eeb8549b0e2e97bf592f262ecb404059adefc8202add01 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.3.json" | bytes=4837 | sha256=48bd1fe7ab712737c1eeb8549b0e2e97bf592f262ecb404059adefc8202add01 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.3",
   "release": "9.3",
@@ -1348,9 +1348,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.3.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.3.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.4.json" | bytes=2312 | sha256=9d957b05160863b7384e4b755e74ca1ac6c90f2cf049d79c6c0dc67242d9ecb0 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.4.json" | bytes=2312 | sha256=9d957b05160863b7384e4b755e74ca1ac6c90f2cf049d79c6c0dc67242d9ecb0 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.4",
   "release": "9.4",
@@ -1414,9 +1414,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.4.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.4.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.5.1.json" | bytes=2505 | sha256=4137a31477be33a04b6ad5406d7cd13cefec1be8d84a94e23997c129c82076f1 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.5.1.json" | bytes=2505 | sha256=4137a31477be33a04b6ad5406d7cd13cefec1be8d84a94e23997c129c82076f1 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.5.1",
   "release": "9.5.1",
@@ -1488,9 +1488,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.5.1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.5.1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.5.json" | bytes=2137 | sha256=ea3ceb47b6bf47ad2d2743b89b43d97e3f2a079cd1f7ea2bc968a3ad5c9a8e11 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.5.json" | bytes=2137 | sha256=ea3ceb47b6bf47ad2d2743b89b43d97e3f2a079cd1f7ea2bc968a3ad5c9a8e11 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.5",
   "release": "9.5",
@@ -1550,9 +1550,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.5.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.5.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.6.1.json" | bytes=1920 | sha256=e556ca98e6ead7d397d6e06e8156fea09fe9f414266ac62dc155317bba338d25 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.6.1.json" | bytes=1920 | sha256=e556ca98e6ead7d397d6e06e8156fea09fe9f414266ac62dc155317bba338d25 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.6.1",
   "release": "9.6.1",
@@ -1612,9 +1612,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.6.1.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.6.1.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.6.2.json" | bytes=1414 | sha256=661bb4f226ac3c75811f9e1d36546602f401491a5c21e1ddebccda170da92ece =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.6.2.json" | bytes=1414 | sha256=661bb4f226ac3c75811f9e1d36546602f401491a5c21e1ddebccda170da92ece =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.6.2",
   "release": "9.6.2",
@@ -1661,9 +1661,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.6.2.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.6.2.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/contracts/release.v9.7.json" | bytes=1797 | sha256=0b18c145e4cf2126ce27f9b57e07646dc3f840024c00ceb6f53e61eb06fa83c1 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/contracts/release.v9.7.json" | bytes=1797 | sha256=0b18c145e4cf2126ce27f9b57e07646dc3f840024c00ceb6f53e61eb06fa83c1 =====
 {
   "schema": "globalgrid2050.uk-renewables.release.v9.7",
   "release": "9.7",
@@ -1717,15 +1717,15 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/contracts/release.v9.7.json" =====
+===== END FILE "sandbox/202609051936/pipeline/contracts/release.v9.7.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/index.html" | bytes=8125 | sha256=bfff41ec0d7a57dafd7956a7b5219cdd91e3f5d1bc806abe81473895346970e9 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/index.html" | bytes=8125 | sha256=314e5cea54515c742f563de32f3a54183602d2f57653dbd58cd1bab12e57a6e3 =====
 <!DOCTYPE html>
 <html lang="en">
 <head><link rel="icon" href="data:,">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Test Code 202609051932 · GlobalGrid2050 | UK Renewables Pipeline V9.7</title>
+  <title>Test Code 202609051936 · GlobalGrid2050 | UK Renewables Pipeline V9.7</title>
   <!-- The deep-link contract this page verifies its MAP receiver against lives
        on a second origin. Nothing waits on that request any more, but it still
        costs DNS + TCP + TLS on a cold mobile radio the first time it is made;
@@ -1747,7 +1747,7 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
       <b>GLOBALGRID2050</b>
       <small>UK RENEWABLES PIPELINE · V9.7</small>
     </div>
-    <nav aria-label="Version comparison" class="testcode-nav"><a href="../">Test Code 202609051932</a><a href="/uk_renewables_pipeline/v9.7/">Claude current Pipeline</a><a href="../atlas/" id="mapAtlasNav">Test Code Atlas</a><button type="button" id="export">Export CSV</button></nav>
+    <nav aria-label="Version comparison" class="testcode-nav"><a href="../">Test Code 202609051936</a><a href="/uk_renewables_pipeline/v9.7/">Claude current Pipeline</a><a href="../atlas/" id="mapAtlasNav">Test Code Atlas</a><button type="button" id="export">Export CSV</button></nav>
   </aside>
   <main class="main">
     <div class="header">
@@ -1871,9 +1871,9 @@ Inventory: [{"mode":"100644","blobOid":"0f5b7187e2194caefaf90bc1ffb5754cc75e4c40
 </body>
 </html>
 
-===== END FILE "sandbox/202609051932/pipeline/index.html" =====
+===== END FILE "sandbox/202609051936/pipeline/index.html" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-3.js" | bytes=689 | sha256=364147302951332d745ee615d73051a6be962e2e2b568ddb4026689bcf4fe2e7 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-3.js" | bytes=689 | sha256=364147302951332d745ee615d73051a6be962e2e2b568ddb4026689bcf4fe2e7 =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_2, loadNewsV9_2 } from "./plugins/newspaper-v9-2.js";
 import {
@@ -1906,9 +1906,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-3.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-3.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-4.js" | bytes=689 | sha256=3370012e59b154a209ffa9866e1515db9ff04b1a391b1247a4def2afb506095f =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-4.js" | bytes=689 | sha256=3370012e59b154a209ffa9866e1515db9ff04b1a391b1247a4def2afb506095f =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_2, loadNewsV9_2 } from "./plugins/newspaper-v9-2.js";
 import {
@@ -1941,9 +1941,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-4.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-4.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-5-1.js" | bytes=713 | sha256=1be160ffedffd634862172c98d4ac96145eff12be07518c88466ddea3c31e431 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-5-1.js" | bytes=713 | sha256=1be160ffedffd634862172c98d4ac96145eff12be07518c88466ddea3c31e431 =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_5_1, loadNewsV9_5_1 } from "./plugins/newspaper-v9-5-1.js";
 import {
@@ -1976,9 +1976,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-5-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-5-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-5.js" | bytes=689 | sha256=a48603223cf5e75915b3e8cd9285dcab9b826ebf3e1575ada330ca8d88582b00 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-5.js" | bytes=689 | sha256=a48603223cf5e75915b3e8cd9285dcab9b826ebf3e1575ada330ca8d88582b00 =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_5, loadNewsV9_5 } from "./plugins/newspaper-v9-5.js";
 import {
@@ -2011,9 +2011,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-5.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-5.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-6-2.js" | bytes=702 | sha256=4eed3a69f4755647dd223d45af438561bf80e6bd6b0a9bdacc5a789457b9e38d =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-6-2.js" | bytes=702 | sha256=4eed3a69f4755647dd223d45af438561bf80e6bd6b0a9bdacc5a789457b9e38d =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_6_2, loadNewsV9_6_2 } from "./plugins/newspaper-v9-6-2.js";
 import {
@@ -2043,9 +2043,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-6-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-6-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app-v9-7.js" | bytes=692 | sha256=58726ab9eeb8bbc7d348fc508ad681d8e356bb82a7debd911557ba723c899525 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app-v9-7.js" | bytes=692 | sha256=58726ab9eeb8bbc7d348fc508ad681d8e356bb82a7debd911557ba723c899525 =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_7, loadNewsV9_7 } from "./plugins/newspaper-v9-7.js";
 import {
@@ -2075,9 +2075,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app-v9-7.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app-v9-7.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/app.js" | bytes=689 | sha256=f24df134c92cd2178b2d5b90e606985b787c258a2a01181fd7341838fab7ac05 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/app.js" | bytes=689 | sha256=f24df134c92cd2178b2d5b90e606985b787c258a2a01181fd7341838fab7ac05 =====
 import { initialiseGaugesV9_2 } from "./plugins/gauges-v9-2.js";
 import { bindNewspaperV9_2, loadNewsV9_2 } from "./plugins/newspaper-v9-2.js";
 import {
@@ -2110,9 +2110,9 @@ startPlugins([
   },
 ]);
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/app.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/app.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/build/regional-news-v9-7.mjs" | bytes=4659 | sha256=a79fa1734d1f6cca1813a9dbcbfddb1c6cadfc485b00f0700bf63c55962005cf =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/build/regional-news-v9-7.mjs" | bytes=4659 | sha256=a79fa1734d1f6cca1813a9dbcbfddb1c6cadfc485b00f0700bf63c55962005cf =====
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -2218,9 +2218,9 @@ async function main() {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) await main();
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/build/regional-news-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/build/regional-news-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/atlas-receiver-v9-7.js" | bytes=16149 | sha256=a39c099718f51e8ca4fa3f31e310f102acfca7e9e105fa1379697548180bcee1 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/atlas-receiver-v9-7.js" | bytes=16149 | sha256=a39c099718f51e8ca4fa3f31e310f102acfca7e9e105fa1379697548180bcee1 =====
 /* ── WHICH RECEIVER A MAP LINK IS BUILT AGAINST ──────────────────────────────
  *
  * On 2026-09-05 the MAP button in this app was measured pointing at the V8
@@ -2535,9 +2535,9 @@ export function atlasUnavailableReasonV9_7(project) {
   return "";
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/atlas-receiver-v9-7.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/atlas-receiver-v9-7.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/news-regions-v9-6-2.js" | bytes=4781 | sha256=dd8a50414632200f9022bb19b934df50dab3785f1f88cfeadb133a4a207ccaa5 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/news-regions-v9-6-2.js" | bytes=4781 | sha256=dd8a50414632200f9022bb19b934df50dab3785f1f88cfeadb133a4a207ccaa5 =====
 import { normaliseProject } from "./utils.js";
 
 const SOLAR = /\b(?:solar|photovoltaic(?:s)?|pv|agrivoltaic(?:s)?)\b/i;
@@ -2626,9 +2626,9 @@ export function regionalCountsV9_6_2(items) {
   return Object.freeze(counts);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/news-regions-v9-6-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/news-regions-v9-6-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/news-relevance-v9-2.js" | bytes=3205 | sha256=e8b26fb6133b6be3286e55a3074744a54c5ca7ced13dd44367f31d3a665a29da =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/news-relevance-v9-2.js" | bytes=3205 | sha256=e8b26fb6133b6be3286e55a3074744a54c5ca7ced13dd44367f31d3a665a29da =====
 import { normaliseProject } from "./utils.js";
 
 const GENERIC = new Set([
@@ -2710,9 +2710,9 @@ export function newsMatchesProjectV9_2(project, item) {
   return assessNewsItemV9_2(item).strong;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/news-relevance-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/news-relevance-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/plugin-host.js" | bytes=669 | sha256=e5aaa19b5bee93683fae461f7ead55d019e8c2edc8ce377680c0da634606e378 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/plugin-host.js" | bytes=669 | sha256=e5aaa19b5bee93683fae461f7ead55d019e8c2edc8ce377680c0da634606e378 =====
 export function startPlugins(plugins) {
   const started = new Set();
   for (const plugin of plugins) {
@@ -2728,9 +2728,9 @@ export function startPlugins(plugins) {
   return Object.freeze([...started]);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/plugin-host.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/plugin-host.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/project-filter-v9-2.js" | bytes=2532 | sha256=007126279582d5dbbe6bb5ebf30a79fd998b4839e8498c5a9a76ab2e4033c842 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/project-filter-v9-2.js" | bytes=2532 | sha256=007126279582d5dbbe6bb5ebf30a79fd998b4839e8498c5a9a76ab2e4033c842 =====
 const TECHNOLOGIES = new Set(["all", "solar", "bess", "wind_onshore", "wind_offshore"]);
 
 export function normaliseSearchV9_2(value) {
@@ -2804,9 +2804,9 @@ export function summariseProjectsV9_2(projects) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/project-filter-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/project-filter-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/project-state.js" | bytes=3995 | sha256=bf52f442cc1aaa7ba26a32ef9437a9dd0c4149120fc313a0ae6cf51d874557d8 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/project-state.js" | bytes=3995 | sha256=bf52f442cc1aaa7ba26a32ef9437a9dd0c4149120fc313a0ae6cf51d874557d8 =====
 import {
   canonicalProjectMetrics,
   searchCanonicalProjects,
@@ -2929,9 +2929,9 @@ export function resetCanonicalProjectFilters(state) {
 
 export const canonicalProjectState = createCanonicalProjectState();
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/project-state.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/project-state.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/state.js" | bytes=569 | sha256=1599d14a8895fe207b2b1354942e09e1d446332c338ade9b54b6e1d80a8522b4 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/state.js" | bytes=569 | sha256=1599d14a8895fe207b2b1354942e09e1d446332c338ade9b54b6e1d80a8522b4 =====
 export const state = {
   all: [],
   filtered: [],
@@ -2956,9 +2956,9 @@ export const DATA_SOURCES = Object.freeze({
   newsGitHub: "https://raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v5.json",
 });
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/state.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/state.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/core/utils.js" | bytes=707 | sha256=bec300e2720e0793bc08434e91c0ea0dd8c3d8e36e79b97172e4d5270f01eda0 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/core/utils.js" | bytes=707 | sha256=bec300e2720e0793bc08434e91c0ea0dd8c3d8e36e79b97172e4d5270f01eda0 =====
 export function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (character) => ({
     "&": "&amp;",
@@ -2988,9 +2988,9 @@ export function isFinanceEvent(event) {
   return ["FINANCIAL CLOSE", "ACQUISITION"].includes(String(event || "").toUpperCase());
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/core/utils.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/core/utils.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-1.js" | bytes=4017 | sha256=d6135413ca0c0527142ba6557b9f7cb286618b6478d1804469e2239f808b00c3 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-1.js" | bytes=4017 | sha256=d6135413ca0c0527142ba6557b9f7cb286618b6478d1804469e2239f808b00c3 =====
 const CONTRACT_URL = "contracts/release.v9.1.json";
 const MANIFEST_URL = "data/v9.1/build_manifest.json";
 const ALLOWED_TECHNOLOGIES = new Set(["solar", "bess", "wind_onshore", "wind_offshore"]);
@@ -3067,9 +3067,9 @@ export async function loadCanonicalProjectsV9_1() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-2.js" | bytes=1442 | sha256=0b9820b9f48a5f72571091b7c921ca65d5fe1f2db0ee83cf8d914ddb4c029fc9 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-2.js" | bytes=1442 | sha256=0b9820b9f48a5f72571091b7c921ca65d5fe1f2db0ee83cf8d914ddb4c029fc9 =====
 import { loadCanonicalProjectsV9_1 } from "./canonical-projects-v9-1.js";
 
 const RELEASE_URL = "contracts/release.v9.2.json";
@@ -3101,9 +3101,9 @@ export async function loadCanonicalProjectsV9_2() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-3.js" | bytes=1787 | sha256=7ef5e264fd97e9e77f65042e392f4e2b7f3fb7a48380dfe9719ae80acb171300 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-3.js" | bytes=1787 | sha256=7ef5e264fd97e9e77f65042e392f4e2b7f3fb7a48380dfe9719ae80acb171300 =====
 import { loadCanonicalProjectsV9_1 } from "./canonical-projects-v9-1.js";
 
 const RELEASE_URL = "contracts/release.v9.3.json";
@@ -3138,9 +3138,9 @@ export async function loadCanonicalProjectsV9_3() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-3.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-3.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-4.js" | bytes=1783 | sha256=96ab7aa96358d23ec977cd2754226601603895869adb4eebb1dd703100ec16fb =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-4.js" | bytes=1783 | sha256=96ab7aa96358d23ec977cd2754226601603895869adb4eebb1dd703100ec16fb =====
 import { loadCanonicalProjectsV9_1 } from "./canonical-projects-v9-1.js";
 
 const RELEASE_URL = "contracts/release.v9.4.json";
@@ -3175,9 +3175,9 @@ export async function loadCanonicalProjectsV9_4() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-4.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-4.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5-1.js" | bytes=1791 | sha256=7e4bd9108eeaeb1b557e1b4f6ef4d8053f4429a4df46d5e5c8f886c4da88029b =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5-1.js" | bytes=1791 | sha256=7e4bd9108eeaeb1b557e1b4f6ef4d8053f4429a4df46d5e5c8f886c4da88029b =====
 import { loadCanonicalProjectsV9_1 } from "./canonical-projects-v9-1.js";
 
 const RELEASE_URL = "contracts/release.v9.5.1.json";
@@ -3212,9 +3212,9 @@ export async function loadCanonicalProjectsV9_5_1() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5.js" | bytes=1781 | sha256=372bf74f115d47947bc7e903c8330ce40e76f54e2201f15373261ef11aed66b2 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5.js" | bytes=1781 | sha256=372bf74f115d47947bc7e903c8330ce40e76f54e2201f15373261ef11aed66b2 =====
 import { loadCanonicalProjectsV9_1 } from "./canonical-projects-v9-1.js";
 
 const RELEASE_URL = "contracts/release.v9.5.json";
@@ -3249,9 +3249,9 @@ export async function loadCanonicalProjectsV9_5() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects-v9-5.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects-v9-5.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects.js" | bytes=15322 | sha256=40d21f77ae817575a8f17181154cfe7e2c95de2fc2f716ce29cccebe3eb6bdf8 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects.js" | bytes=15322 | sha256=40d21f77ae817575a8f17181154cfe7e2c95de2fc2f716ce29cccebe3eb6bdf8 =====
 export const PROJECTS_CONTRACT_URL = "contracts/projects-plugin.v7.2.json";
 
 const CONTRACT_SCHEMA = "globalgrid2050.v7.projects-plugin-contract.v1";
@@ -3588,9 +3588,9 @@ export async function loadCanonicalProjectModel({
   return buildCanonicalProjectModel(payload, contract);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/data/canonical-projects.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/data/canonical-projects.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/adapters/committed-json-v9-7.mjs" | bytes=652 | sha256=21063298123ca75593f3ec0daf883fba67c08b1e9321e0ecbbba4f01b309c80d =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/adapters/committed-json-v9-7.mjs" | bytes=652 | sha256=21063298123ca75593f3ec0daf883fba67c08b1e9321e0ecbbba4f01b309c80d =====
 export function committedJsonItemsV9_7(payload, adapter) {
   if (adapter?.kind !== "committed-json-snapshot" || !adapter.input_collection) {
     throw new Error("unsupported or incomplete V9.7 source adapter");
@@ -3606,9 +3606,9 @@ export function committedJsonItemsV9_7(payload, adapter) {
   return items;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/adapters/committed-json-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/adapters/committed-json-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/classifier-v9-7.mjs" | bytes=1842 | sha256=f15e8909e7e340a891f9253a743b1efc665641df1c1c63294f538c6dd413eaac =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/classifier-v9-7.mjs" | bytes=1842 | sha256=f15e8909e7e340a891f9253a743b1efc665641df1c1c63294f538c6dd413eaac =====
 import { geographyEvidenceV9_7 } from "./rules/geography-v9-7.mjs";
 import { technologyEvidenceV9_7, utilityContextEvidenceV9_7 } from "./rules/technology-v9-7.mjs";
 import { inheritedUkEvidenceV9_7 } from "./rules/uk-veto-v9-7.mjs";
@@ -3648,9 +3648,9 @@ export function classifyRegionalV9_7(item) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/classifier-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/classifier-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/ledger-v9-7.mjs" | bytes=2905 | sha256=ac8b88b5cbbdeee36db6561e6f369fa0f19b0276751688a563a4ba7719ddfd9c =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/ledger-v9-7.mjs" | bytes=2905 | sha256=ac8b88b5cbbdeee36db6561e6f369fa0f19b0276751688a563a4ba7719ddfd9c =====
 import { createHash } from "node:crypto";
 import { CLASSIFIER_VERSION, classifyRegionalV9_7 } from "./classifier-v9-7.mjs";
 
@@ -3728,9 +3728,9 @@ export function buildRegionalArtifactsV9_7(items, sourceMeta) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/ledger-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/ledger-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/rules/geography-v9-7.mjs" | bytes=3381 | sha256=bba24b1c3c4e334494194ee8e371ba2925562a264dbf57bd7336a5b7dc25da94 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/rules/geography-v9-7.mjs" | bytes=3381 | sha256=bba24b1c3c4e334494194ee8e371ba2925562a264dbf57bd7336a5b7dc25da94 =====
 const LOCATION_RULES = [
   { region: "US", country: "United States", label: "US acronym", regex: /\b(?:US|USA)\b(?!\$)|\bU\.S\.(?:A\.)?(?!\$)/ },
   { region: "US", country: "United States", label: "United States", regex: /\bUnited States\b/i },
@@ -3764,9 +3764,9 @@ export function geographyEvidenceV9_7(headline) {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/rules/geography-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/rules/geography-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/rules/technology-v9-7.mjs" | bytes=951 | sha256=36a3f11f9badaa3b1a7372eca4e34f3f6509a4aa58c26038baa2645671a68222 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/rules/technology-v9-7.mjs" | bytes=951 | sha256=36a3f11f9badaa3b1a7372eca4e34f3f6509a4aa58c26038baa2645671a68222 =====
 const SOLAR = /\b(?:solar|photovoltaic(?:s)?|pv|agrivoltaic(?:s)?)\b/i;
 const BESS = /\b(?:bess|battery|batteries|energy storage|grid storage)\b/i;
 const UTILITY_CONTEXT = /\b(?:project|projects|system|systems|portfolio|plant|farm|construction|commission(?:ed|ing)?|financ(?:e|ed|ing|ial)|acquir(?:e|es|ed|ing)|acquisition|stake|market|grid|utility|utilities|capacity|operations|services|deal|deals|proposal|online|developer|cluster|roundup|rfps?|facility|facilities|mw|mwh|gw|gwh|nem|tso)\b/i;
@@ -3785,9 +3785,9 @@ export function utilityContextEvidenceV9_7(headline) {
   return String(headline || "").match(UTILITY_CONTEXT)?.[0] || "";
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/rules/technology-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/rules/technology-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/news/rules/uk-veto-v9-7.mjs" | bytes=1840 | sha256=11e6a1b656e1c5ffad4d16048b05c4239f6b81863e795dfba5d69026125dc388 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/news/rules/uk-veto-v9-7.mjs" | bytes=1840 | sha256=11e6a1b656e1c5ffad4d16048b05c4239f6b81863e795dfba5d69026125dc388 =====
 const UK = /\b(?:UK|U\.K\.|United Kingdom|Britain|British|England|English|Scotland|Scottish|Wales|Welsh|Northern Ireland|North Yorkshire|Lincolnshire|Nottinghamshire|Devon|Cornish|Cumbria|Suffolk|Kent|Surrey|Gloucestershire|Oxfordshire|Warwickshire|Yorkshire|Essex|Norfolk|Somerset|Dorset|Lancashire|Derbyshire|Leicestershire|Cambridgeshire|Bedfordshire|Hertfordshire|Buckinghamshire|Worcestershire|Shropshire|Staffordshire|Cheshire|Northumberland|Tyne and Wear|Greater Manchester|Merseyside|West Midlands|East Sussex|West Sussex|County Durham|Ayrshire|Aberdeenshire)\b/i;
 const GENERIC_PROJECT = new Set([
   "and", "the", "farm", "solar", "battery", "bess", "storage", "energy", "park", "site",
@@ -3811,9 +3811,9 @@ export function inheritedUkEvidenceV9_7(item) {
   return "";
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/news/rules/uk-veto-v9-7.mjs" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/news/rules/uk-veto-v9-7.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-controls.js" | bytes=5694 | sha256=17651f44dd27506e99ee6abb97c6700b03bbcb3a6be44a14a6d5819b92cf233c =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-controls.js" | bytes=5694 | sha256=17651f44dd27506e99ee6abb97c6700b03bbcb3a6be44a14a6d5819b92cf233c =====
 import {
   resetCanonicalProjectFilters,
   setCanonicalProjectFilter,
@@ -3982,9 +3982,9 @@ export function createCanonicalProjectControls(state) {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-controls.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-controls.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-export.js" | bytes=6380 | sha256=3ec75298c9029a7b959022f80c43c00ea864eb98dbadaafb9de1de43b3679b8f =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-export.js" | bytes=6380 | sha256=3ec75298c9029a7b959022f80c43c00ea864eb98dbadaafb9de1de43b3679b8f =====
 import {
   buildAtlasV8Url,
   buildCanonicalProjectTableView,
@@ -4115,9 +4115,9 @@ export function buildCanonicalProjectCsv(state, { legacySignalResolver, date } =
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-export.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-export.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-table.js" | bytes=11406 | sha256=e086946da97557054db908315fd38f4b8b67148d2a2fcc88a5a4cb1d567c8b99 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-table.js" | bytes=11406 | sha256=e086946da97557054db908315fd38f4b8b67148d2a2fcc88a5a4cb1d567c8b99 =====
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 
 const CAPACITY_BASIS = "official_repd_record_capacity_not_development_deduplicated";
@@ -4430,9 +4430,9 @@ export function buildCanonicalProjectTableView(state, { legacySignalResolver } =
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/canonical-project-table.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/canonical-project-table.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/capacity-presentation-v9-3.js" | bytes=1916 | sha256=650e2d1ca9fea55d0cb96db58c752e03ac03645499f033d11d4f76d29c917cef =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/capacity-presentation-v9-3.js" | bytes=1916 | sha256=650e2d1ca9fea55d0cb96db58c752e03ac03645499f033d11d4f76d29c917cef =====
 const observers = [];
 
 function parseDisplayNumber(value) {
@@ -4491,9 +4491,9 @@ if (document.readyState === "loading") {
   initialiseWholeMwPresentationV9_3();
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/capacity-presentation-v9-3.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/capacity-presentation-v9-3.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-1.js" | bytes=1979 | sha256=eb9c3caf204dd177407f4ac4f3a4352afc28381aba70a745854e2a69a89f2cae =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-1.js" | bytes=1979 | sha256=eb9c3caf204dd177407f4ac4f3a4352afc28381aba70a745854e2a69a89f2cae =====
 const charts = { capacity: null, projects: null, largest: null };
 let universe = [];
 
@@ -4532,9 +4532,9 @@ export function updateGaugesV9_1(projects) {
   updateChart(charts.largest, largest, universeLargest);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-2.js" | bytes=2753 | sha256=30803e3ecc787175bc31b6913541d52cc6065e9be2b50dc4d3ed900797348682 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-2.js" | bytes=2753 | sha256=30803e3ecc787175bc31b6913541d52cc6065e9be2b50dc4d3ed900797348682 =====
 const charts = { capacity: null, projects: null, largest: null };
 let universe = [];
 
@@ -4604,9 +4604,9 @@ export function updateGaugesV9_2(projects) {
   updateChart(charts.largest, largest, universeLargest);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges.js" | bytes=2523 | sha256=c77752b697b9104fd8257d25294e84a63a8d4cc6060ce60eef7ef065cf19058d =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges.js" | bytes=2523 | sha256=c77752b697b9104fd8257d25294e84a63a8d4cc6060ce60eef7ef065cf19058d =====
 import { state } from "../core/state.js";
 
 function createGauge(canvasId, colour, options) {
@@ -4671,9 +4671,9 @@ export function updateGauges(projects) {
   updateChart(state.charts.largest, largestMw, allLargestMw);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/gauges.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/gauges.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-2.js" | bytes=7846 | sha256=c6d3655455fe54131ce2a7b6cea189d099aed214f5710da40edf0d73d853e9b4 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-2.js" | bytes=7846 | sha256=c6d3655455fe54131ce2a7b6cea189d099aed214f5710da40edf0d73d853e9b4 =====
 import { DATA_SOURCES, state } from "../core/state.js";
 import { escapeHtml, isFinanceEvent, normaliseProject } from "../core/utils.js";
 import { assessNewsItemV9_2 } from "../core/news-relevance-v9-2.js";
@@ -4843,9 +4843,9 @@ export function bindNewspaperV9_2(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5-1.js" | bytes=7882 | sha256=f0925133d5d29113b113d241ccee5869bf9484a7319050913d7cd6b9cec5cf86 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5-1.js" | bytes=7882 | sha256=f0925133d5d29113b113d241ccee5869bf9484a7319050913d7cd6b9cec5cf86 =====
 import { state } from "../core/state.js";
 import { escapeHtml, isFinanceEvent, normaliseProject } from "../core/utils.js";
 
@@ -5010,9 +5010,9 @@ export function bindNewspaperV9_5_1(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5.js" | bytes=7000 | sha256=abca4ff5fb4e8f28bf5a613d399d6bb8a7a4ee94234a0936694663f2c5c2f2dc =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5.js" | bytes=7000 | sha256=abca4ff5fb4e8f28bf5a613d399d6bb8a7a4ee94234a0936694663f2c5c2f2dc =====
 import { state } from "../core/state.js";
 import { escapeHtml, isFinanceEvent, normaliseProject } from "../core/utils.js";
 
@@ -5165,9 +5165,9 @@ export function bindNewspaperV9_5(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-5.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-5.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-6-2.js" | bytes=3592 | sha256=d5ea34b3ff4b006e454edd012e02b993c93dd9db8951323fd0fbb865006e0eb9 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-6-2.js" | bytes=3592 | sha256=d5ea34b3ff4b006e454edd012e02b993c93dd9db8951323fd0fbb865006e0eb9 =====
 import { state } from "../core/state.js";
 import { escapeHtml, normaliseProject } from "../core/utils.js";
 import { classifyInternationalV9_6_2, regionalCountsV9_6_2 } from "../core/news-regions-v9-6-2.js";
@@ -5246,9 +5246,9 @@ export function bindNewspaperV9_6_2(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-6-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-6-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-7.js" | bytes=4413 | sha256=81b71eee9d720e4dc223a16677680e295db6d3aeaa226a76ec01680265ee1e34 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-7.js" | bytes=4413 | sha256=81b71eee9d720e4dc223a16677680e295db6d3aeaa226a76ec01680265ee1e34 =====
 import { state } from "../core/state.js";
 import { escapeHtml, normaliseProject } from "../core/utils.js";
 import { bindNewspaperV9_5_1, drawNewsV9_5_1, loadNewsV9_5_1 } from "./newspaper-v9-5-1.js";
@@ -5352,9 +5352,9 @@ export function bindNewspaperV9_7(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper-v9-7.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper-v9-7.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper.js" | bytes=5883 | sha256=938c662a4ca461107f3f0851c70dd09bc29d0103ed1517a49920cb7ccbd06417 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper.js" | bytes=5883 | sha256=938c662a4ca461107f3f0851c70dd09bc29d0103ed1517a49920cb7ccbd06417 =====
 import { DATA_SOURCES, state } from "../core/state.js";
 import { escapeHtml, isFinanceEvent, normaliseProject } from "../core/utils.js";
 
@@ -5479,9 +5479,9 @@ export function bindNewspaper(onNewsLoaded) {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/newspaper.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/newspaper.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/project-export.js" | bytes=1169 | sha256=a5dbf6eff9670d7c08289d53e187c838b958f68eab2039928bc2a154e4689524 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/project-export.js" | bytes=1169 | sha256=a5dbf6eff9670d7c08289d53e187c838b958f68eab2039928bc2a154e4689524 =====
 import { state } from "../core/state.js";
 import { signalForProject } from "./newspaper.js";
 
@@ -5516,9 +5516,9 @@ export function bindProjectExport() {
   document.getElementById("export").onclick = exportCsv;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/project-export.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/project-export.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/project-filters.js" | bytes=1593 | sha256=348065a5800f21cbfb05d7a4a0d051215fc4263d016643be37d14687481440c6 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/project-filters.js" | bytes=1593 | sha256=348065a5800f21cbfb05d7a4a0d051215fc4263d016643be37d14687481440c6 =====
 import { state } from "../core/state.js";
 import { updateGauges } from "./gauges.js";
 import { drawProjectTable } from "./project-table.js";
@@ -5561,9 +5561,9 @@ export function bindProjectFilters() {
   };
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/project-filters.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/project-filters.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/project-table.js" | bytes=1538 | sha256=cb9eab60637c87f940c2494590c301cf9c19e8b6c37eca6a38b9681a9e44c4f0 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/project-table.js" | bytes=1538 | sha256=cb9eab60637c87f940c2494590c301cf9c19e8b6c37eca6a38b9681a9e44c4f0 =====
 import { COLORS, state } from "../core/state.js";
 import { escapeHtml } from "../core/utils.js";
 import { signalForProject } from "./newspaper.js";
@@ -5586,9 +5586,9 @@ export function refreshProjectTable() {
   drawProjectTable(state.filtered);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/project-table.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/project-table.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-1.js" | bytes=9202 | sha256=bff4758989eb29538525df4ee900eaed4b56e18f7f2bfcf4ed7211a9f0fb4468 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-1.js" | bytes=9202 | sha256=bff4758989eb29538525df4ee900eaed4b56e18f7f2bfcf4ed7211a9f0fb4468 =====
 import { escapeHtml } from "../core/utils.js";
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 import { loadCanonicalProjectsV9_1 } from "../data/canonical-projects-v9-1.js";
@@ -5724,9 +5724,9 @@ export function bindProjectControlsV9_1() {
   document.getElementById("exportInline").onclick = downloadCsv;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-2.js" | bytes=15000 | sha256=f000545d11ba6aa620ce3179bdd2ac3eaeb5672ea46daecf0536048b83563467 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-2.js" | bytes=15000 | sha256=f000545d11ba6aa620ce3179bdd2ac3eaeb5672ea46daecf0536048b83563467 =====
 import { escapeHtml } from "../core/utils.js";
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 import { state } from "../core/state.js";
@@ -5991,9 +5991,9 @@ export function bindProjectControlsV9_2() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-2.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-2.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-3.js" | bytes=16772 | sha256=a51eeda3bf0430f58083eb6179db56446724a98d1f4b11172fcc54561239d958 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-3.js" | bytes=16772 | sha256=a51eeda3bf0430f58083eb6179db56446724a98d1f4b11172fcc54561239d958 =====
 import { escapeHtml } from "../core/utils.js";
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 import { state } from "../core/state.js";
@@ -6285,9 +6285,9 @@ export function bindProjectControlsV9_3() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-3.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-3.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-4.js" | bytes=18086 | sha256=f585277b0d78f791507207de6cae2780969ea6e3a6a85b886ad54ecd26800e3a =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-4.js" | bytes=18086 | sha256=f585277b0d78f791507207de6cae2780969ea6e3a6a85b886ad54ecd26800e3a =====
 import { escapeHtml } from "../core/utils.js";
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 import { state } from "../core/state.js";
@@ -6610,9 +6610,9 @@ export function bindProjectControlsV9_4() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-4.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-4.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5-1.js" | bytes=23534 | sha256=79baa921d8451f89bc06f90a4422a6534dc90f36b078b37fd13e8576a75bd907 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5-1.js" | bytes=23534 | sha256=79baa921d8451f89bc06f90a4422a6534dc90f36b078b37fd13e8576a75bd907 =====
 import { escapeHtml } from "../core/utils.js";
 import {
   atlasCentresOnRepdPointV9_7,
@@ -7025,9 +7025,9 @@ function syncMapAtlasNavV9_7() {
   nav.href = new URL("../atlas/", window.location.href).href;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5-1.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5-1.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5.js" | bytes=18089 | sha256=5561994a3a05ccffed410e9b3fdaa9924e08307215e8a0b6167910c8c5591b4f =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5.js" | bytes=18089 | sha256=5561994a3a05ccffed410e9b3fdaa9924e08307215e8a0b6167910c8c5591b4f =====
 import { escapeHtml } from "../core/utils.js";
 import { buildAtlasDeepLinkV9_7 } from "../core/atlas-receiver-v9-7.js";
 import { state } from "../core/state.js";
@@ -7350,9 +7350,9 @@ export function bindProjectControlsV9_5() {
   });
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects-v9-5.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects-v9-5.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/scripts/plugins/projects.js" | bytes=5582 | sha256=d942b7468317cdbe5a5cb7a2bdcd1d27a4cdda11f0d3efacc893298a79b14b2d =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/scripts/plugins/projects.js" | bytes=5582 | sha256=d942b7468317cdbe5a5cb7a2bdcd1d27a4cdda11f0d3efacc893298a79b14b2d =====
 import { COLORS, state } from "../core/state.js";
 import {
   beginCanonicalProjectLoad,
@@ -7477,9 +7477,9 @@ export function bindProjectControls() {
   document.getElementById("exportInline").onclick = downloadCanonicalCsv;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/scripts/plugins/projects.js" =====
+===== END FILE "sandbox/202609051936/pipeline/scripts/plugins/projects.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/mobile.css" | bytes=203 | sha256=9855b9c11255a85f477873d07cca45b057aedcdc8a6cc4aab2d29a0ffaac9b85 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/mobile.css" | bytes=203 | sha256=9855b9c11255a85f477873d07cca45b057aedcdc8a6cc4aab2d29a0ffaac9b85 =====
 @media (max-width: 768px) {
   .header {
     align-items: flex-start;
@@ -7496,9 +7496,9 @@ export function bindProjectControls() {
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/mobile.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/mobile.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/testcode.css" | bytes=2190 | sha256=f07b404ea8e0c0d0530bdacda4ba5ff7aca6ebc37879fa6c577cf68c9c4dfc14 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/testcode.css" | bytes=2190 | sha256=f07b404ea8e0c0d0530bdacda4ba5ff7aca6ebc37879fa6c577cf68c9c4dfc14 =====
 
 .testcode-nav{display:flex;gap:12px;flex-wrap:wrap;padding:12px;border-block:1px solid #28525a}
 .testcode-nav a{min-height:44px;display:flex;align-items:center;font-size:13px}
@@ -7523,14 +7523,14 @@ export function bindProjectControls() {
  .badge{white-space:normal}.project-actions .map-note{font-size:11px;line-height:1.45;max-width:110px}
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/testcode.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/testcode.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v7.css" | bytes=6245 | sha256=036dbfe43ef1ffb2c55ba277d49dec57ab7c7be976289226a5d568e1f1be319d =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v7.css" | bytes=6245 | sha256=036dbfe43ef1ffb2c55ba277d49dec57ab7c7be976289226a5d568e1f1be319d =====
 :root{--bg:#000;--panel:#0b0e14;--line:#2f343d;--soft:#222;--text:#fff;--muted:#a6adbb;--accent:#00ffff;--ok:#00ff88;--solar:#ffff00;--bess:#ffae00;--off:#0066ff}*{box-sizing:border-box;font-family:'Courier New',monospace;margin:0;padding:0}html,body{background:var(--bg);color:var(--text)}body{display:flex;height:100vh;overflow:hidden;font-size:13px}::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#050505}::-webkit-scrollbar-thumb{background:#343b45;border:2px solid #050505}::-webkit-scrollbar-thumb:hover{background:var(--accent)}.sidebar{width:250px;background:#0a0a0a;border-right:1px solid var(--soft);padding:20px 0;display:flex;flex-direction:column;flex:none}.brand{text-align:center;padding:0 14px 20px;border-bottom:1px solid var(--soft);margin-bottom:20px}.brand b{font:800 17px -apple-system,sans-serif;letter-spacing:5px}.brand small{display:block;color:#888;letter-spacing:2px;font-size:7px;margin-top:4px}.nav{display:flex;flex-direction:column}.nav a{padding:12px 20px;color:var(--muted);text-decoration:none;border-left:3px solid transparent;font-weight:bold}.nav a:hover,.nav .active{color:var(--accent);background:#001414;border-left-color:var(--accent)}.main{flex:1;padding:20px 30px;overflow-y:auto;min-width:0}.header{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--soft);padding-bottom:15px;margin-bottom:14px}.header h1{font-size:19px;color:var(--accent);letter-spacing:2px}.status{border:1px solid #195b3b;color:#aef7d1;padding:7px 11px;white-space:nowrap}.meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding:9px 12px;border:1px solid #24323a;background:#071018;color:var(--muted);font-size:11px}.meta strong{color:var(--accent)}.meta a{color:#66ccff}.newspaper{border:1px solid #424b55;background:#06080b;margin-bottom:28px;box-shadow:0 0 22px rgba(0,255,255,.04)}.masthead{padding:16px 18px 12px;border-bottom:1px solid #424b55}.masthead h2{font-size:24px;line-height:1;color:#fff;letter-spacing:2px}.masthead h2 span{color:var(--solar)}.strap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:8px;color:#8e98a5;font-size:10px;text-transform:uppercase}.news-tools{position:sticky;top:0;z-index:20;display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 12px;background:#090c11;border-bottom:1px solid #303740}.news-tools button{background:#000;border:1px solid #343b45;color:#aab3bf;padding:7px 10px;font:700 10px 'Courier New';cursor:pointer}.news-tools button:hover,.news-tools button.active{border-color:var(--accent);color:var(--accent)}.news-tools input{margin-left:auto;min-width:240px;background:#000;border:1px solid #343b45;color:#fff;padding:7px 10px;font:700 10px 'Courier New';outline:none}.paper{height:min(68vh,760px);min-height:520px;overflow:auto;overscroll-behavior:contain}.stories{display:grid;grid-template-columns:repeat(3,minmax(280px,1fr));align-items:stretch}.story{display:block;padding:18px;border-right:1px solid #252a31;border-bottom:1px solid #252a31;text-decoration:none;min-height:180px;background:#07090c}.story:hover{background:#0b0f14}.story .kicker{font-size:10px;font-weight:bold;letter-spacing:.5px}.story.solar .kicker{color:var(--solar)}.story.bess .kicker{color:var(--bess)}.story h3{color:#fff;font-size:17px;line-height:1.28;margin:9px 0 12px}.story p{color:#aeb6c1;font-size:11px;line-height:1.55}.story .project{color:var(--ok);font-weight:bold}.story .source{display:block;color:#7f8996;margin-top:12px;font-size:10px}.news-empty{padding:24px;color:var(--muted);grid-column:1/-1}.section-title{font-size:14px;color:var(--accent);letter-spacing:1px;margin:0 0 12px}.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:25px}.card{background:var(--panel);border:1px solid var(--soft);padding:15px;text-align:center}.card h3{font-size:11px;color:#8d95a3;margin-bottom:5px}.chart{position:relative;height:120px}.value{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);font-size:24px;font-weight:bold}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.btn,select,.asset-search{background:#000;color:var(--muted);border:1px solid var(--line);padding:8px 14px;font:700 11px 'Courier New';text-transform:uppercase}.btn{cursor:pointer}.btn:hover{border-color:var(--accent);color:var(--accent)}.btn.active{color:#fff;border-color:#fff}.asset-search{min-width:280px}.tablewrap{background:var(--panel);border:1px solid var(--soft);overflow:auto;max-height:65vh}table{width:100%;border-collapse:collapse}th{background:#050505;color:var(--accent);padding:12px 15px;text-align:left;position:sticky;top:0;z-index:5}td{padding:10px 15px;border-bottom:1px solid var(--soft);color:var(--muted)}.site{color:#fff;font-weight:bold}.mw{color:var(--ok);font-weight:bold;font-size:14px}.badge{padding:3px 6px;border-radius:3px;font-size:10px;font-weight:bold;color:#000;white-space:nowrap}.signal{display:inline-block;padding:4px 6px;border:1px solid #3b444f;background:#090b0f;color:#9aa3af;font-size:9px;font-weight:bold;white-space:nowrap}.signal.approved{border-color:#c8b900;color:#fff95a}.signal.operational{border-color:#167d4d;color:#60ff9c}.signal.construction{border-color:#a46f00;color:#ffbe45}.signal.finance{border-color:#6c62a8;color:#bdb2ff}.signal.none{color:#626b77}.signal-note{color:#7e8792;font-size:9px;line-height:1.4;margin-top:4px;max-width:135px}.mobile-extra{display:none;font-size:9px;color:#888;margin-top:4px}.newslink{text-decoration:none;font-size:16px}@media(max-width:1200px){.stories{grid-template-columns:repeat(2,minmax(280px,1fr))}}@media(max-width:768px){body{display:block;overflow:auto}.sidebar{width:100%;padding:10px}.nav{display:none}.brand{border:0;margin:0;padding:5px}.main{padding:10px;overflow:visible}.header{align-items:flex-start}.masthead h2{font-size:20px}.news-tools{position:static}.news-tools input{margin-left:0;min-width:100%;width:100%}.paper{height:65vh;min-height:480px}.stories{grid-template-columns:1fr}.gauges{grid-template-columns:1fr}.hide-mobile{display:none}.mobile-extra{display:block}.asset-search,select{width:100%;min-width:100%}th,td{padding:8px 6px;font-size:10px}.tablewrap{max-height:none}.signal-note{max-width:100px}}
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v7.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v7.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v8.css" | bytes=608 | sha256=14129b4d6a148c0a629d4f5bf01fb4946ec0b62255ff9b78a3a9d01b6dfd1cbc =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v8.css" | bytes=608 | sha256=14129b4d6a148c0a629d4f5bf01fb4946ec0b62255ff9b78a3a9d01b6dfd1cbc =====
 .gauges {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -7579,9 +7579,9 @@ table {
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v8.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v8.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v9-2.css" | bytes=2718 | sha256=b4f95937b05844659b039299026dda5664fbf337fbbba3305626012d125fee77 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v9-2.css" | bytes=2718 | sha256=b4f95937b05844659b039299026dda5664fbf337fbbba3305626012d125fee77 =====
 .project-meta {
   margin-top: 5px;
   color: #66ccff;
@@ -7769,9 +7769,9 @@ table {
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v9-2.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v9-2.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v9-3.css" | bytes=5131 | sha256=5d1d40b9f1d8b483ac47c940a971eb78636e16877d5fa622985119a8a64794c9 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v9-3.css" | bytes=5131 | sha256=5d1d40b9f1d8b483ac47c940a971eb78636e16877d5fa622985119a8a64794c9 =====
 .project-meta {
   margin-top: 5px;
   color: #66ccff;
@@ -8032,9 +8032,9 @@ table {
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v9-3.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v9-3.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v9-4.css" | bytes=402 | sha256=39f7d0fd3ff42e82407c1f5129444e6cc308ef5c0ec551d43c7396ac53310d17 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v9-4.css" | bytes=402 | sha256=39f7d0fd3ff42e82407c1f5129444e6cc308ef5c0ec551d43c7396ac53310d17 =====
 .repd-updated-heading button {
   background: transparent;
   border: 0;
@@ -8058,9 +8058,9 @@ table {
   color: #ffcc00;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v9-4.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v9-4.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v9-5-1.css" | bytes=408 | sha256=79ff5b1db85ae82a381fbad061c0122e7151bb9c9c7ba80c549051761f0bfae3 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v9-5-1.css" | bytes=408 | sha256=79ff5b1db85ae82a381fbad061c0122e7151bb9c9c7ba80c549051761f0bfae3 =====
 /* V9.5.1 exposes exact newspaper/relevance counts in the release status.
    Stack the header through compact desktop widths so the longer release
    identity cannot cross the viewport beside the frozen 250 px sidebar. */
@@ -8076,9 +8076,9 @@ table {
   }
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v9-5-1.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v9-5-1.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/styles/v9-6-1.css" | bytes=3691 | sha256=a0711d40125d81e1a2836f548206bb26dce5086dea6888d6cec867b08e3f4869 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/styles/v9-6-1.css" | bytes=3691 | sha256=a0711d40125d81e1a2836f548206bb26dce5086dea6888d6cec867b08e3f4869 =====
 /* V9.6.1 changes the mobile projects viewport only. The inherited V9.5.1
    table width, rows, columns, typography and all non-mobile layout remain.
 
@@ -8164,24 +8164,24 @@ table {
   white-space: normal;
 }
 
-===== END FILE "sandbox/202609051932/pipeline/styles/v9-6-1.css" =====
+===== END FILE "sandbox/202609051936/pipeline/styles/v9-6-1.css" =====
 
-===== BEGIN FILE "sandbox/202609051932/pipeline/teleprinter-bootstrap.js" | bytes=1059 | sha256=e9718ce4ea2fe40cbf65b59581c0c5887b8298fe538cd506c8d4a18500473a98 =====
+===== BEGIN FILE "sandbox/202609051936/pipeline/teleprinter-bootstrap.js" | bytes=1059 | sha256=4f8f5032b2770622b8cd6e02e41f0024343eb213ff03be4a30bf04dba9b8a97b =====
 import { mountTeleprinter } from '../teleprinter/controls.js';
 const base = new URL('../teleprinter/', import.meta.url);
 try {
   const response = await fetch(new URL('pipeline-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });
   if (!response.ok) throw new Error('Source code is still being prepared.');
   const pin = await response.json();
-  if (pin.generation !== '202609051932' || pin.app !== 'pipeline' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');
+  if (pin.generation !== '202609051936' || pin.app !== 'pipeline' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');
   mountTeleprinter({ printButtons: undefined, appName: "Pipeline News", manifestUrl: new URL('pipeline-source-code.manifest.json', base), textUrl: new URL('pipeline-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });
 } catch (error) {
   const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Print options: ' + error.message; document.body.append(note);
 }
 
-===== END FILE "sandbox/202609051932/pipeline/teleprinter-bootstrap.js" =====
+===== END FILE "sandbox/202609051936/pipeline/teleprinter-bootstrap.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/SOURCE-SCOPE.md" | bytes=2109 | sha256=3fb97949b0d19b5bc130ac981a16a666a0707a741892a0c8787be78a093c0c18 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/SOURCE-SCOPE.md" | bytes=2109 | sha256=3fb97949b0d19b5bc130ac981a16a666a0707a741892a0c8787be78a093c0c18 =====
 # Print source code scope
 
 This generation adds the Codex-authored Teleprinter controls. Each app's text includes the committed HTML, JavaScript, ESM and CSS in its app directory, its bootstrap, the Teleprinter browser modules and vendored renderer license, and this scope note. Atlas includes current.json, which identifies the immutable remote shell and hashed cartridges. Pipeline includes its small contracts JSON files and code loaders under scripts/data. The landing page includes index.html and capsule-launch.js.
@@ -8194,9 +8194,9 @@ Pinned-base exclusions: application data payload directories (atlas/data and pip
 
 The source pin is generated only after the application code commit exists. Its full commit SHA identifies the code version; the later pin/text publication does not pretend to include itself. Prior detector results belong to the predecessor generation and have not been rerun by this build.
 
-===== END FILE "sandbox/202609051932/teleprinter/SOURCE-SCOPE.md" =====
+===== END FILE "sandbox/202609051936/teleprinter/SOURCE-SCOPE.md" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/app-frame.js" | bytes=3421 | sha256=fbb73e307f356df8ed19cd9c91081d46645ce8bd649095ef0b3eb926ec9a6a42 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/app-frame.js" | bytes=3421 | sha256=fbb73e307f356df8ed19cd9c91081d46645ce8bd649095ef0b3eb926ec9a6a42 =====
 import html2canvas from './vendor/html2canvas-1.4.1.mjs';
 import {captureGeometry, assertStableGeometry} from './capture-geometry.mjs';
 import {cloneVisiblePrinterUi} from './clone-visible-ui.js';
@@ -8257,9 +8257,9 @@ export async function captureAppFrame() {
     captureInfo: {instrument: 'app-dom-and-canvas', width, height, devicePixelRatio: ratio, canvasCount: images.size, canvasBytes: [...images.values()].map(s=>s.length), screenSharing: false}};
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/app-frame.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/app-frame.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/capture-geometry.mjs" | bytes=973 | sha256=1dfe34aaa5d559e2f6c894a8fac3bb11deea76916df853153eb24e6837a02613 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/capture-geometry.mjs" | bytes=973 | sha256=1dfe34aaa5d559e2f6c894a8fac3bb11deea76916df853153eb24e6837a02613 =====
 /** Match the renderer's integer backing-store contract without rescaling pixels. */
 export function captureGeometry(width, height, ratio) {
   if (![width, height, ratio].every(value => Number.isFinite(value) && value > 0)) throw new Error('Invalid app print dimensions.');
@@ -8273,9 +8273,9 @@ export function assertStableGeometry(before, after, frame) {
   if (frame.width !== before.pixelWidth || frame.height !== before.pixelHeight) throw new Error('The app renderer returned unexpected print dimensions.');
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/capture-geometry.mjs" =====
+===== END FILE "sandbox/202609051936/teleprinter/capture-geometry.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/cartridges.json" | bytes=1336 | sha256=d3891e840a71528dde83798b29984b4161a0341d8e61b300ca294eb918a77943 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/cartridges.json" | bytes=1336 | sha256=d3891e840a71528dde83798b29984b4161a0341d8e61b300ca294eb918a77943 =====
 {
   "schema": "codex.app-cartridges.v1",
   "rule": "Maintain these small source components; the Testcode release and source pins bind their actual bytes and engine commit.",
@@ -8288,9 +8288,9 @@ export function assertStableGeometry(before, after, frame) {
   ]
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/cartridges.json" =====
+===== END FILE "sandbox/202609051936/teleprinter/cartridges.json" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/clone-visible-ui.js" | bytes=1424 | sha256=cc710a39dcd0163cbccd639b2802dc96060b4a632d1ae8b6251efe63cb3be54d =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/clone-visible-ui.js" | bytes=1424 | sha256=cc710a39dcd0163cbccd639b2802dc96060b4a632d1ae8b6251efe63cb3be54d =====
 /** Transfer the printer's visible shadow UI without leaking its CSS into the app. */
 export function cloneVisiblePrinterUi(liveDocument, clonedDocument) {
   const source = liveDocument.querySelector('#codex-teleprinter');
@@ -8321,9 +8321,9 @@ export function cloneVisiblePrinterUi(liveDocument, clonedDocument) {
   target.replaceWith(wrapper);
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/clone-visible-ui.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/clone-visible-ui.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/controls.js" | bytes=10376 | sha256=26668d706b4d11ee2383f1c29372735443f9745499e079e2d014b266f6d44044 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/controls.js" | bytes=10376 | sha256=26668d706b4d11ee2383f1c29372735443f9745499e079e2d014b266f6d44044 =====
 import { printScreen } from './print-screen.js';
 import { attachPrintSourceCode } from './print-source-code.js';
 import { captureRuntimeSource } from './runtime-source.js';
@@ -8481,9 +8481,9 @@ export function mountTeleprinter({ manifestUrl, textUrl, expectedCommit, expecte
   return () => { clearTimeout(menuTimer); menuObserver?.disconnect(); for (const command of installedCommands) command.remove(); document.removeEventListener('click',appPrint,true); sourceControls?.(); host.remove(); };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/controls.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/controls.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/layer-quick-controls.js" | bytes=2940 | sha256=6eb140de5934ff221867942ee4d6828db911c592b3ca251555f3ba3f029d4c54 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/layer-quick-controls.js" | bytes=2940 | sha256=6eb140de5934ff221867942ee4d6828db911c592b3ca251555f3ba3f029d4c54 =====
 /** Extracted from GridAtlas installMobileTray/quickChip; existing engine controls remain authoritative. */
 export const GRID_LAYER_IDS = Object.freeze(['400', '275', '220', '132', '66']);
 export function toggleLayerGroup(boxes) {
@@ -8525,9 +8525,9 @@ export function mountLayerQuickControls(doc = document) {
   return () => { observer.disconnect(); doc.removeEventListener('change',refresh); tray.remove(); style.remove(); };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/layer-quick-controls.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/layer-quick-controls.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/layers-panel-policy.js" | bytes=965 | sha256=8b0bad5e4e07aa1fa616b6e60240f4461f367dbc1e28bfd8700d6a00287a9be2 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/layers-panel-policy.js" | bytes=965 | sha256=8b0bad5e4e07aa1fa616b6e60240f4461f367dbc1e28bfd8700d6a00287a9be2 =====
 /** Extracted arrival policy: panel visibility is independent of engine layer state. */
 export function collapseInitialLayers(doc = document) {
   const panel = doc.querySelector('.scada-wrapper');
@@ -8548,9 +8548,9 @@ export function mountLayersPanelPolicy(doc = document) {
   return () => { clearTimeout(timer); observer.disconnect(); };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/layers-panel-policy.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/layers-panel-policy.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/layout-command.js" | bytes=1762 | sha256=5781844356f6fc914f03e5ee522036f9fb4783b195ca00a8de462b64d59faa31 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/layout-command.js" | bytes=1762 | sha256=5781844356f6fc914f03e5ee522036f9fb4783b195ca00a8de462b64d59faa31 =====
 /** Separate Layout entry point. Reuses the selected project's existing layout command. */
 export function selectedLayoutControl(doc = document) {
   return [...doc.querySelectorAll('.neon-layout')].find(control => control.isConnected && !control.disabled) || null;
@@ -8576,9 +8576,9 @@ export function mountLayoutCommand(doc = document) {
   return () => { wrapper.remove(); style.remove(); };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/layout-command.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/layout-command.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/png-pixels.mjs" | bytes=8455 | sha256=01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/png-pixels.mjs" | bytes=8455 | sha256=01bf5485aa2deec7dd8a7d0efea94a02ba10df733f6e71b293c5396373772481 =====
 /** Decode PNG sample bytes without browser color conversion or alpha premultiplication.
  * PNG specification: https://www.w3.org/TR/png-3/ (chunks, filters, iCCP).
  */
@@ -8721,9 +8721,9 @@ export async function decodePngPixels(input) {
   return { width, height, rgba, ...(iccProfile ? { iccProfile } : {}) };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/png-pixels.mjs" =====
+===== END FILE "sandbox/202609051936/teleprinter/png-pixels.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/print-screen.js" | bytes=2328 | sha256=c697937957010daf9d88830422100433f4d9c2a9edc39a973b96469de0536229 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/print-screen.js" | bytes=2328 | sha256=c697937957010daf9d88830422100433f4d9c2a9edc39a973b96469de0536229 =====
 import { screenPdf } from './screen-pdf.mjs';
 import { decodePngPixels } from './png-pixels.mjs';
 import { captureAppFrame } from './app-frame.js';
@@ -8772,9 +8772,9 @@ export async function printScreen({ capture, image, furniture, filename = 'telep
   return { method, width: frame.width, height: frame.height, bytes: data.length, filename, status: 'download-requested', ...(frame.captureInfo ? { capture: frame.captureInfo } : {}) };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/print-screen.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/print-screen.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/print-source-code.js" | bytes=10680 | sha256=78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/print-source-code.js" | bytes=10680 | sha256=78f6dba08fe4b7b44f6b40c85b17b469aa10a50676b77e17e74e2fa62065778f =====
 /** Browser driver: attach to a button; fetch, verify, and download committed source as UTF-8 text. */
 async function sha256(bytes) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), byte => byte.toString(16).padStart(2, '0')).join('');
@@ -8955,9 +8955,9 @@ export function attachPrintSourceCode({ button, copyButton, shareButton, status,
 
 export const attachSourceCodeControls = attachPrintSourceCode;
 
-===== END FILE "sandbox/202609051932/teleprinter/print-source-code.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/print-source-code.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/runtime-source.js" | bytes=26282 | sha256=4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/runtime-source.js" | bytes=26282 | sha256=4e6a423ee68b715df5fd07a6d6d9b0380eddc0047006244681cb7e087680c274 =====
 /** Capture diagnostic source data. Nothing collected here is executed. */
 const encoder = new TextEncoder();
 const decoder = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
@@ -9311,9 +9311,9 @@ export async function captureRuntimeSource({ baseBytes, baseManifest, fetchImpl 
   return { bytes, manifest };
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/runtime-source.js" =====
+===== END FILE "sandbox/202609051936/teleprinter/runtime-source.js" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/screen-pdf.mjs" | bytes=10220 | sha256=ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039 =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/screen-pdf.mjs" | bytes=10220 | sha256=ef8b7d5c213754d93141c362b2bb981457bf16dada199ba6549ae1dda8828039 =====
 /** Codex Teleprinter: lossless pixels with optional vector furniture outside the image. */
 const enc = new TextEncoder();
 const bytes = s => enc.encode(s);
@@ -9465,9 +9465,9 @@ export async function screenPdf({ width, height, rgba, iccProfile, furniture }) 
   return join(chunks);
 }
 
-===== END FILE "sandbox/202609051932/teleprinter/screen-pdf.mjs" =====
+===== END FILE "sandbox/202609051936/teleprinter/screen-pdf.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/vendor/html2canvas-1.4.1.mjs" | bytes=410344 | sha256=9e73165f2f55469d3a4c1a7a81f3858985ba9a230f8a8e8b2bab3c2dca6f253a =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/vendor/html2canvas-1.4.1.mjs" | bytes=410344 | sha256=9e73165f2f55469d3a4c1a7a81f3858985ba9a230f8a8e8b2bab3c2dca6f253a =====
 /*!
  * html2canvas 1.4.1 <https://html2canvas.hertzen.com>
  * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
@@ -17291,9 +17291,9 @@ var parseBackgroundColor = function (context, element, backgroundColorOverride) 
 export default html2canvas;
 //# sourceMappingURL=html2canvas.esm.js.map
 
-===== END FILE "sandbox/202609051932/teleprinter/vendor/html2canvas-1.4.1.mjs" =====
+===== END FILE "sandbox/202609051936/teleprinter/vendor/html2canvas-1.4.1.mjs" =====
 
-===== BEGIN FILE "sandbox/202609051932/teleprinter/vendor/html2canvas-LICENSE.txt" | bytes=1061 | sha256=86200ce4e92d9a22c41c8647a55f7a5fddff304ff89b4d36ecc699ed8c123d2c =====
+===== BEGIN FILE "sandbox/202609051936/teleprinter/vendor/html2canvas-LICENSE.txt" | bytes=1061 | sha256=86200ce4e92d9a22c41c8647a55f7a5fddff304ff89b4d36ecc699ed8c123d2c =====
 Copyright (c) 2012 Niklas von Hertzen
 
 Permission is hereby granted, free of charge, to any person
@@ -17316,6 +17316,6 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
-===== END FILE "sandbox/202609051932/teleprinter/vendor/html2canvas-LICENSE.txt" =====
+===== END FILE "sandbox/202609051936/teleprinter/vendor/html2canvas-LICENSE.txt" =====
 
 ===== END PRINT SOURCE CODE =====
