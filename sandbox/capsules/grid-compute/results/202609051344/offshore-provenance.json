@@ -1,0 +1,43 @@
+[
+  {
+    "repd_ref": "11613",
+    "source": "Crown Estate Scotland",
+    "source_url": "https://www.arcgis.com/home/item.html?id=1f27fd9899e04cebbf40779ba75f69f5",
+    "source_sha256": "2e607d27c31fe8fc437c87e08d0fab590a0fb8111d4d8a56b1a457e4a729ff32",
+    "source_feature_id": 24,
+    "source_feature_name": "Buchan Offshore Wind Farm",
+    "retrieved_utc": "2026-09-05T13:22:50.536152+00:00",
+    "method": "Planar area-weighted polygon centroid in WGS84; approximate screening origin, not a surveyed turbine, landfall or agreed grid connection.",
+    "longitude": -1.2350088217120911,
+    "latitude": 58.408833524094916,
+    "notice": "Approximate location: Crown Estate Scotland lease-area centre. Grid distances are indicative; this is not a turbine, landfall or agreed connection point.",
+    "identity_evidence": "https://buchanoffshorewind.com/project/",
+    "capacity_note": "REPD retains 1000 MW; Crown Estate Scotland polygon lists 960 MW. Capacity was not overwritten."
+  },
+  {
+    "repd_ref": "11109",
+    "source": "The Crown Estate",
+    "source_url": "https://www.arcgis.com/home/item.html?id=22a1be6fb0c5416e9369f97743f387b1",
+    "source_sha256": "e49e03114e6fddf4c6fe865c4e648fa387df659feb0d3aa62758d5dda7ebf939",
+    "source_feature_id": 58,
+    "source_feature_name": "R4 Project 2 (Dogger Bank South East)",
+    "retrieved_utc": "2026-09-05T13:22:30.353390+00:00",
+    "method": "Planar area-weighted polygon centroid in WGS84; approximate screening origin, not a surveyed turbine, landfall or agreed grid connection.",
+    "longitude": 1.9037684647431936,
+    "latitude": 54.50070478825763,
+    "notice": "Approximate location: The Crown Estate lease-area centre. Grid distances are indicative; this is not a turbine, landfall or agreed connection point."
+  },
+  {
+    "repd_ref": "13735",
+    "source": "Crown Estate Scotland",
+    "source_url": "https://www.arcgis.com/home/item.html?id=1f27fd9899e04cebbf40779ba75f69f5",
+    "source_sha256": "2e607d27c31fe8fc437c87e08d0fab590a0fb8111d4d8a56b1a457e4a729ff32",
+    "source_feature_id": 31,
+    "source_feature_name": "Spiorad na Mara",
+    "retrieved_utc": "2026-09-05T13:22:50.536152+00:00",
+    "method": "Planar area-weighted polygon centroid in WGS84; approximate screening origin, not a surveyed turbine, landfall or agreed grid connection.",
+    "longitude": -6.787648375381207,
+    "latitude": 58.40804370175983,
+    "notice": "Approximate location: Crown Estate Scotland lease-area centre. Grid distances are indicative; this is not a turbine, landfall or agreed connection point."
+  }
+]

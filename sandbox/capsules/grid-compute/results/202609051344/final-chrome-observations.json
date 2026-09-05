@@ -1,0 +1,20 @@
+[
+  {
+    "ref": "2484",
+    "url": "http://127.0.0.1:8877/testcode/202609051344/atlas/?repd_ref=2484&technology=wind_offshore&latitude=52.6199968&longitude=2.5499934&zoom=12&project=The+East+Anglia+Array+-+Norfolk+Vanguard+East&capacity_mw=1380",
+    "observed_utc": "2026-09-05T13:46:50.939Z",
+    "engine_badge": "TEST CODE repd-2484 | ENGINE COMPLETED | 1 measured | visit-1788615985275-787c49",
+    "visible_grid_result": "Nearest 400 kV substation: Sizewell B Substation · 77.77 km straight · ~96.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+    "visual_observation": "Viewed directly: offshore project ring, connecting line to Sizewell, 77.77 km label, project identity and engine-completed badge visible. No image file saved.",
+    "screenshot_saved": false
+  },
+  {
+    "ref": "11613",
+    "url": "http://127.0.0.1:8877/testcode/202609051344/atlas/?repd_ref=11613&technology=wind_offshore&project=Fraserburgh+-+Buchan+Floating+Wind+Project&capacity_mw=1000",
+    "observed_utc": "2026-09-05T13:46:51.035Z",
+    "engine_badge": "TEST CODE repd-11613 | ENGINE COMPLETED | 1 measured | visit-1788615986466-09bfec",
+    "visible_grid_result": "Nearest 400 kV substation: Peterhead Substation · 109.04 km straight · ~135.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+    "visual_observation": "Project identity and measured nearest-substation paragraph present in UI.",
+    "screenshot_saved": false
+  }
+]

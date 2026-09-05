@@ -1,0 +1,11 @@
+"""Replace inherited release claims with this candidate's measured outcomes."""
+from pathlib import Path
+import json,html,datetime,shutil
+H=Path(__file__).resolve().parent;c=json.loads((H/'publish-candidate.json').read_text());G=c['generation'];D=Path(c['build']);r=json.loads((D/'results.json').read_text());meta=json.loads((D/'detector-build.json').read_text())
+release={'generation':G,'predecessor':'202609051300','built_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'engine_commit':'f9531a7','changes':meta['patches']+['Usable layer-panel layout also applies to industrial visits.'],'results':{'repd':r['repd'],'industrial':r['industrial'],'cross_browser':r['cross_browser']},'limitations':r['limits']+['General free-text Parquet search is outside the exact-identity arrival correction.'],'screenshots':'None retained or published.'}
+rows=''.join('<tr><td>'+html.escape(x['case_id'])+'</td><td>'+html.escape(x['name'])+'</td><td>'+html.escape(x['technology'])+'</td><td>'+html.escape(x['outcome'])+'</td></tr>' for x in r['checks'])
+page='<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grid compute observations '+G+'</title><style>body{background:#08151c;color:#e6f4f4;font:16px system-ui;margin:24px}a{color:#9eeaff}td,th{padding:9px;border-bottom:1px solid #456}table{width:100%}</style><a href="./">Test Code</a><h1>Grid compute observations '+G+'</h1><p>94/100 distinct REPD cases and 10/10 industrial cases passed. Six missing-location cases remain failed. 35/35 representative browser checks passed.</p><p><a href="results.json">Full coded observations</a>. Screenshots are disabled and deleted. WebKit and mobile emulation do not certify a real iPhone or Android device.</p><table><thead><tr><th>Case</th><th>Name</th><th>Technology</th><th>Outcome</th></tr></thead><tbody>'+rows+'</tbody></table>'
+for root in [D,Path(c['webroot'])/'testcode'/G,Path('C:/Users/vikra/testcode-source-publication/sandbox')/G]:
+ (root/'release.json').write_text(json.dumps(release,indent=2)+'\n',encoding='utf8',newline='\n');(root/'results.html').write_text(page,encoding='utf8',newline='\n')
+shutil.copyfile(__file__,Path('C:/Users/vikra/testcode-source-publication/sandbox/capsules/grid-compute/release-metadata.py'))
+print('Release metadata and readable results now describe '+G)

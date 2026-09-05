@@ -1,0 +1,1378 @@
+{
+  "generation": "202609051329",
+  "count": 20,
+  "visits": [
+    {
+      "ref": "12588",
+      "id": "1838140343",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=12588&technology=solar&latitude=51.8132088&longitude=-1.3489728&zoom=12&project=Botley+West%2C+Botley+-+Botley+West+Solar+Project&capacity_mw=840",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615018431-967ce5",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "12588"
+      },
+      "location": {
+        "lon": -1.3489728,
+        "lat": 51.8132088
+      },
+      "measurements": [
+        {
+          "node_id": "Yarnton Substation",
+          "lon": -1.3007661,
+          "lat": 51.8053154,
+          "km": 3.4322921154132864
+        },
+        {
+          "node_id": "Eynsham",
+          "lon": -1.3886141,
+          "lat": 51.7893648,
+          "km": 3.8068390016128975
+        },
+        {
+          "node_id": "Green Lane Electricity Substation",
+          "lon": -1.350759,
+          "lat": 51.8541225,
+          "km": 4.556149375689051
+        },
+        {
+          "node_id": "Lovelace Road",
+          "lon": -1.2704922,
+          "lat": 51.7897528,
+          "km": 6.000406482729953
+        },
+        {
+          "node_id": "West Oxford Substation",
+          "lon": -1.2762142,
+          "lat": 51.750349,
+          "km": 8.606585781445954
+        },
+        {
+          "node_id": "Cowley Substation",
+          "lon": -1.1904964,
+          "lat": 51.7111485,
+          "km": 15.757515586963423
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615018550
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615018551
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615018656
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Cowley Substation · 15.76 km straight · ~19.6 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "fef0c36569632d8ad9444ef27d5bcffcdb04dcaa7f848c75ec02c7389a2ed951"
+    },
+    {
+      "ref": "4792",
+      "id": "1838140344",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=4792&technology=solar&latitude=50.9549371&longitude=-3.3028267&zoom=12&project=Red+Hill+Farm&capacity_mw=4.8",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615019264-332c69",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "4792"
+      },
+      "location": {
+        "lon": -3.3028267,
+        "lat": 50.9549371
+      },
+      "measurements": [
+        {
+          "node_id": "Red Hill 33kv Solar Park",
+          "lon": -3.2989394,
+          "lat": 50.9550335,
+          "km": 0.27280250909562437
+        },
+        {
+          "node_id": "Burlescombe Substation",
+          "lon": -3.3272842,
+          "lat": 50.9467906,
+          "km": 1.940183374651653
+        },
+        {
+          "node_id": "Ayshford Court Farm Solar Park Substation",
+          "lon": -3.3506235,
+          "lat": 50.9282223,
+          "km": 4.481540412023969
+        },
+        {
+          "node_id": "Tonedale Farm Solar Park Substation",
+          "lon": -3.2522353,
+          "lat": 50.9807856,
+          "km": 4.567112237450296
+        },
+        {
+          "node_id": "Hemyock Substation",
+          "lon": -3.2516762,
+          "lat": 50.9186609,
+          "km": 5.402133792495104
+        },
+        {
+          "node_id": "Taunton Substation",
+          "lon": -3.154274,
+          "lat": 51.0170656,
+          "km": 12.498101326584203
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615019366
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615019367
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615019468
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Taunton Substation · 12.50 km straight · ~15.6 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "c7231a6d8625312a5d6749e6b7ba35da9dbc562007a33f008f644a016ad53a02"
+    },
+    {
+      "ref": "5415",
+      "id": "1838140345",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=5415&technology=solar&latitude=53.1187993&longitude=-1.3214049&zoom=12&project=Twin+Yards+Solar+Farm&capacity_mw=5",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615021432-5410e7",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "5415"
+      },
+      "location": {
+        "lon": -1.3214049,
+        "lat": 53.1187993
+      },
+      "measurements": [
+        {
+          "node_id": "Twin Yards Solar Farm Substation",
+          "lon": -1.3182355,
+          "lat": 53.1159242,
+          "km": 0.3837630129039127
+        },
+        {
+          "node_id": "Blackwell Substation",
+          "lon": -1.3442074,
+          "lat": 53.1153032,
+          "km": 1.5724045078295052
+        },
+        {
+          "node_id": "Pinxton Substation",
+          "lon": -1.3029475,
+          "lat": 53.1056282,
+          "km": 1.915934923936962
+        },
+        {
+          "node_id": "Huthwaite Substation",
+          "lon": -1.2912495,
+          "lat": 53.1269247,
+          "km": 2.2082200517894055
+        },
+        {
+          "node_id": "coordinate:-1.3221772,53.1391704",
+          "lon": -1.3221772,
+          "lat": 53.1391704,
+          "km": 2.268287113524379
+        },
+        {
+          "node_id": "Stoke Bardolph Substation",
+          "lon": -1.0505008,
+          "lat": 52.9599481,
+          "km": 25.32738153757641
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615021529
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615021529
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615021627
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Stoke Bardolph Substation · 25.33 km straight · ~31.5 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "50c6fd340781f5caec11bb4eb53ad50b7491b50d47190c8736716423984d95ba"
+    },
+    {
+      "ref": "14798",
+      "id": "1838140349",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=14798&technology=solar&latitude=51.2163013&longitude=-2.4774666&zoom=12&project=Burges+Lane%2C+Stoke+St+Michael+-+Solar+Array+Panels&capacity_mw=1.784",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615033478-16fee2",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "14798"
+      },
+      "location": {
+        "lon": -2.4774666,
+        "lat": 51.2163013
+      },
+      "measurements": [
+        {
+          "node_id": "New Row Farm Solar Park",
+          "lon": -2.5377506,
+          "lat": 51.1981922,
+          "km": 4.6626516985102535
+        },
+        {
+          "node_id": "Newbury Substation",
+          "lon": -2.4324021,
+          "lat": 51.2487524,
+          "km": 4.787138364893448
+        },
+        {
+          "node_id": "Shepton Mallet Substation",
+          "lon": -2.5455232,
+          "lat": 51.192335,
+          "km": 5.445102560914813
+        },
+        {
+          "node_id": "coordinate:-2.3995345,51.2000209",
+          "lon": -2.3995345,
+          "lat": 51.2000209,
+          "km": 5.729250134790886
+        },
+        {
+          "node_id": "Whatley Quarry Substation",
+          "lon": -2.3884144,
+          "lat": 51.228867,
+          "km": 6.364256763874247
+        },
+        {
+          "node_id": "Sandford Substation",
+          "lon": -2.8394804,
+          "lat": 51.3405772,
+          "km": 28.755170953252737
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615033538
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615033538
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615033660
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Sandford Substation · 28.76 km straight · ~35.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "87350ccced23a31f7da6862f1cd866fe5c7de968afda547c12c5e9d8942901ff"
+    },
+    {
+      "ref": "9806",
+      "id": "1838140350",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=9806&technology=solar&latitude=52.9766216&longitude=-0.2076447&zoom=12&project=Heckington+Fen+Solar+Park&capacity_mw=500",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615034109-37112c",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "9806"
+      },
+      "location": {
+        "lon": -0.2076447,
+        "lat": 52.9766216
+      },
+      "measurements": [
+        {
+          "node_id": "Triton Knoll Wind Farm Substation",
+          "lon": -0.2264736,
+          "lat": 52.9448503,
+          "km": 3.7553664442581316
+        },
+        {
+          "node_id": "Bicker Fen Wind Generation Substation",
+          "lon": -0.2231734,
+          "lat": 52.9370033,
+          "km": 4.531566160064219
+        },
+        {
+          "node_id": "Bicker Fen Substation",
+          "lon": -0.2209349,
+          "lat": 52.9314045,
+          "km": 5.111849068422588
+        },
+        {
+          "node_id": "Great Hale Substation",
+          "lon": -0.2946074,
+          "lat": 52.9684827,
+          "km": 5.899643811771462
+        },
+        {
+          "node_id": "Viking Link Converter Station",
+          "lon": -0.2364998,
+          "lat": 52.9209927,
+          "km": 6.4879764095748635
+        },
+        {
+          "node_id": "Triton Knoll Wind Farm Substation",
+          "lon": -0.2264736,
+          "lat": 52.9448503,
+          "km": 3.7553664442581316
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615034245
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615034246
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615034376
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Triton Knoll Wind Farm Substation · 3.76 km straight · ~4.7 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "bc96eee0a2dd4a64519f45dea3b6c672618a4bff952aab3438ef19a66f773a16"
+    },
+    {
+      "ref": "13707",
+      "id": "1838140351",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=13707&technology=bess&latitude=52.2536252&longitude=-1.9807356&zoom=12&project=Astwood+Lane%2C+Feckenham+-+Battery+Storage&capacity_mw=200",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615035183-27aab2",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "13707"
+      },
+      "location": {
+        "lon": -1.9807356,
+        "lat": 52.2536252
+      },
+      "measurements": [
+        {
+          "node_id": "Feckenham Substation",
+          "lon": -1.9728242,
+          "lat": 52.2509986,
+          "km": 0.6133293189235205
+        },
+        {
+          "node_id": "Redditch South Substation",
+          "lon": -1.9480379,
+          "lat": 52.2878789,
+          "km": 4.415982923219962
+        },
+        {
+          "node_id": "Howard Road STOR Substation",
+          "lon": -1.9107561,
+          "lat": 52.2902854,
+          "km": 6.275148515670671
+        },
+        {
+          "node_id": "Ipsley Substation",
+          "lon": -1.9146392,
+          "lat": 52.2958882,
+          "km": 6.51174157720591
+        },
+        {
+          "node_id": "Redditch North Substation",
+          "lon": -1.9509009,
+          "lat": 52.3130695,
+          "km": 6.922197366206448
+        },
+        {
+          "node_id": "Feckenham Substation",
+          "lon": -1.9728242,
+          "lat": 52.2509986,
+          "km": 0.6133293189235205
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615035282
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615035283
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615035384
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Feckenham Substation · 0.61 km straight No corridor estimate at this separation: under about a kilometre the site-centroid resolution dominates: median published length 0.59 km against a median error of 52.5%, so a straight line between centroids is not measuring route factor and no estimate is offered.\"",
+      "dom_observation_sha256": "18c8f05132569bb39af76f14600bcb7d75b40474e3c990e7186125777e3f0d4e"
+    },
+    {
+      "ref": "6946",
+      "id": "1838140355",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=6946&technology=bess&latitude=53.1439698&longitude=0.2411999&zoom=12&project=The+Hollies&capacity_mw=24",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615054798-34cc31",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "6946"
+      },
+      "location": {
+        "lon": 0.2411999,
+        "lat": 53.1439698
+      },
+      "measurements": [
+        {
+          "node_id": "Croft End Solar Farm Substation",
+          "lon": 0.2372062,
+          "lat": 53.1450792,
+          "km": 0.293866267552041
+        },
+        {
+          "node_id": "The Hollies Wind Farm Substation",
+          "lon": 0.2374268,
+          "lat": 53.1421314,
+          "km": 0.3245815278203786
+        },
+        {
+          "node_id": "Skegness Substation",
+          "lon": 0.260903,
+          "lat": 53.1405485,
+          "km": 1.369648689767962
+        },
+        {
+          "node_id": "Lincoln Farm Solar Park Substation",
+          "lon": 0.2094829,
+          "lat": 53.1400413,
+          "km": 2.1625254449653593
+        },
+        {
+          "node_id": "Middlemarsh Substation",
+          "lon": 0.2927175,
+          "lat": 53.1607484,
+          "km": 3.9136273185435555
+        },
+        {
+          "node_id": "Triton Knoll Wind Farm Substation",
+          "lon": -0.2264736,
+          "lat": 52.9448503,
+          "km": 38.35285630569664
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615054901
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615054902
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615055009
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Triton Knoll Wind Farm Substation · 38.35 km straight · ~47.7 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "b20f5c942ee4ba4f7e2b8d5fc794fe36a072956397f1923bf554065901688db6"
+    },
+    {
+      "ref": "19161",
+      "id": "1838140356",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=19161&technology=bess&latitude=52.4601434&longitude=-1.4891992&zoom=12&project=Mcdonnell+Drive%2C+Exhall+-+Battery+Energy+Storage+System&capacity_mw=30",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615056854-5d60e9",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "19161"
+      },
+      "location": {
+        "lon": -1.4891992,
+        "lat": 52.4601434
+      },
+      "measurements": [
+        {
+          "node_id": "Coventry Arena Substation",
+          "lon": -1.49332,
+          "lat": 52.4496947,
+          "km": 1.1962636852719055
+        },
+        {
+          "node_id": "Coventry North Substation",
+          "lon": -1.4678199,
+          "lat": 52.4531149,
+          "km": 1.6478350247885187
+        },
+        {
+          "node_id": "Coventry Substation",
+          "lon": -1.46349,
+          "lat": 52.4559917,
+          "km": 1.8040989450844627
+        },
+        {
+          "node_id": "Coventry Colliery Substation",
+          "lon": -1.5265045,
+          "lat": 52.455369,
+          "km": 2.585708934133879
+        },
+        {
+          "node_id": "Newdigate Substation",
+          "lon": -1.4993524,
+          "lat": 52.4858965,
+          "km": 2.9483325664807465
+        },
+        {
+          "node_id": "Hams Hall Substation",
+          "lon": -1.7142476,
+          "lat": 52.5310603,
+          "km": 17.174309392742416
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615056958
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615056958
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615057101
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Hams Hall Substation · 17.17 km straight · ~21.4 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "fff0acb1df4be2f9a866aaf1f4ff9a4586ff803e838b289a9cf760b0b3e94fce"
+    },
+    {
+      "ref": "9684",
+      "id": "1838140357",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=9684&technology=bess&latitude=55.59267&longitude=-3.8894706&zoom=12&project=Carlisle+Road+-+Battery+Energy+Storage+System&capacity_mw=200",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615058087-08ca6b",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "9684"
+      },
+      "location": {
+        "lon": -3.8894706,
+        "lat": 55.59267
+      },
+      "measurements": [
+        {
+          "node_id": "Cumberhead Collector Substation",
+          "lon": -3.9255162,
+          "lat": 55.5818401,
+          "km": 2.5682545113811037
+        },
+        {
+          "node_id": "Coalburn Substation",
+          "lon": -3.8673287,
+          "lat": 55.6153625,
+          "km": 2.884450323831996
+        },
+        {
+          "node_id": "Douglas North",
+          "lon": -3.8327908,
+          "lat": 55.5912095,
+          "km": 3.5691340275738725
+        },
+        {
+          "node_id": "Douglas West Substation",
+          "lon": -3.8724779,
+          "lat": 55.5578634,
+          "km": 4.019514915153484
+        },
+        {
+          "node_id": "Galawhistle Wind Farm Substation",
+          "lon": -3.9459327,
+          "lat": 55.5628171,
+          "km": 4.864942707632732
+        },
+        {
+          "node_id": "Coalburn Substation",
+          "lon": -3.8673287,
+          "lat": 55.6153625,
+          "km": 2.884450323831996
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615058152
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615058153
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615058257
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Coalburn Substation · 2.88 km straight · ~3.6 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "fcdbb4690c0595c0dd0f1034def8c595f276d038efe01135aceb82fd29b7b92a"
+    },
+    {
+      "ref": "15253",
+      "id": "1838140361",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=15253&technology=bess&latitude=53.3653505&longitude=-0.8194028&zoom=12&project=Steeple+Renewables+Project&capacity_mw=150",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615069491-79c815",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "15253"
+      },
+      "location": {
+        "lon": -0.8194028,
+        "lat": 53.3653505
+      },
+      "measurements": [
+        {
+          "node_id": "West Burton Substation",
+          "lon": -0.8091136,
+          "lat": 53.3592192,
+          "km": 0.9659416646282107
+        },
+        {
+          "node_id": "West Burton Substation",
+          "lon": -0.8071776,
+          "lat": 53.360401,
+          "km": 0.9813766996093686
+        },
+        {
+          "node_id": "coordinate:-0.8097348,53.3573223",
+          "lon": -0.8097348,
+          "lat": 53.3573223,
+          "km": 1.1005414870314179
+        },
+        {
+          "node_id": "coordinate:-0.7989222,53.3625605",
+          "lon": -0.7989222,
+          "lat": 53.3625605,
+          "km": 1.3954791176362027
+        },
+        {
+          "node_id": "Lea Road",
+          "lon": -0.7741901,
+          "lat": 53.3907085,
+          "km": 4.1210093214329575
+        },
+        {
+          "node_id": "West Burton Substation",
+          "lon": -0.8091136,
+          "lat": 53.3592192,
+          "km": 0.9659416646282107
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615069563
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615069563
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615069670
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: West Burton Substation · 0.97 km straight No corridor estimate at this separation: under about a kilometre the site-centroid resolution dominates: median published length 0.59 km against a median error of 52.5%, so a straight line between centroids is not measuring route factor and no estimate is offered.\"",
+      "dom_observation_sha256": "da81f2afb01a5cdcc3c7547b357c1188f325c3fd0879bf3e69b7ccc481950cd4"
+    },
+    {
+      "ref": "4534",
+      "id": "1838140362",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=4534&technology=wind_onshore&latitude=54.6896013&longitude=-7.7774693&zoom=12&project=Meenablagh+Wind+Farm&capacity_mw=25",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615070131-a28e67",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "4534"
+      },
+      "location": {
+        "lon": -7.7774693,
+        "lat": 54.6896013
+      },
+      "measurements": [
+        {
+          "node_id": "Crighshane 33kV Substation",
+          "lon": -7.7947161,
+          "lat": 54.6475882,
+          "km": 4.806861967961224
+        },
+        {
+          "node_id": "Magherakeel 110kV Substation",
+          "lon": -7.7313502,
+          "lat": 54.6538743,
+          "km": 4.962958487882667
+        },
+        {
+          "node_id": "Tievenamenta 33 kV Substation",
+          "lon": -7.7475316,
+          "lat": 54.6439736,
+          "km": 5.432639363717568
+        },
+        {
+          "node_id": "Church Hill 33kV Substation",
+          "lon": -7.7112069,
+          "lat": 54.6506136,
+          "km": 6.085362476518459
+        },
+        {
+          "node_id": "Seegronan 33 kV Substation",
+          "lon": -7.6968216,
+          "lat": 54.6518424,
+          "km": 6.679817271167032
+        },
+        {
+          "node_id": "Western HVDC Converter Station",
+          "lon": -4.8947189,
+          "lat": 55.7180597,
+          "km": 215.94436049872806
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615070219
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615070220
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615070332
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Western HVDC Converter Station · 215.94 km straight · ~268.9 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "602d90d4f9c9444d09284e58146dcd7f9413f39e78d02ba8d6f164ef029ca681"
+    },
+    {
+      "ref": "3947",
+      "id": "1838140363",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=3947&technology=wind_onshore&latitude=55.2152247&longitude=-1.5571581&zoom=12&project=Bewick+Drift&capacity_mw=2.3",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615072252-07fd4c",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "3947"
+      },
+      "location": {
+        "lon": -1.5571581,
+        "lat": 55.2152247
+      },
+      "measurements": [
+        {
+          "node_id": "coordinate:-1.5346769,55.2056544",
+          "lon": -1.5346769,
+          "lat": 55.2056544,
+          "km": 1.781534795418115
+        },
+        {
+          "node_id": "coordinate:-1.5327239,55.1996172",
+          "lon": -1.5327239,
+          "lat": 55.1996172,
+          "km": 2.3296981466056566
+        },
+        {
+          "node_id": "Linton Substation",
+          "lon": -1.6051588,
+          "lat": 55.2282505,
+          "km": 3.3752376112212317
+        },
+        {
+          "node_id": "coordinate:-1.5695383,55.1718116",
+          "lon": -1.5695383,
+          "lat": 55.1718116,
+          "km": 4.896331151468828
+        },
+        {
+          "node_id": "Cambois Converter Station",
+          "lon": -1.5403653,
+          "lat": 55.1465111,
+          "km": 7.723276754363589
+        },
+        {
+          "node_id": "Cambois Converter Station",
+          "lon": -1.5403653,
+          "lat": 55.1465111,
+          "km": 7.723276754363589
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615072357
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615072358
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615072451
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Cambois Converter Station · 7.72 km straight · ~9.6 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "80b83ae4fdd42772c1eebc897438fb21cb4d1e845dd5673ecb10f88387a655e2"
+    },
+    {
+      "ref": "3307",
+      "id": "1838140367",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=3307&technology=wind_onshore&latitude=59.1175528&longitude=-3.1492163&zoom=12&project=Burgar+Hill&capacity_mw=5",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615088749-f1eb6a",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "3307"
+      },
+      "location": {
+        "lon": -3.1492163,
+        "lat": 59.1175528
+      },
+      "measurements": [
+        {
+          "node_id": "coordinate:-3.146718,59.1164383",
+          "lon": -3.146718,
+          "lat": 59.1164383,
+          "km": 0.18912905710058495
+        },
+        {
+          "node_id": "coordinate:-2.9831279,59.1581326",
+          "lon": -2.9831279,
+          "lat": 59.1581326,
+          "km": 10.50516314470884
+        },
+        {
+          "node_id": "coordinate:-2.9023236,59.0382077",
+          "lon": -2.9023236,
+          "lat": 59.0382077,
+          "km": 16.657780134285392
+        },
+        {
+          "node_id": "Electricity Distribution Centre",
+          "lon": -3.2892581,
+          "lat": 58.9744075,
+          "km": 17.83855965566785
+        },
+        {
+          "node_id": "coordinate:-2.9637654,58.9829318",
+          "lon": -2.9637654,
+          "lat": 58.9829318,
+          "km": 18.365735635595982
+        },
+        {
+          "node_id": "Beatrice Wind Farm Substation",
+          "lon": -2.9551774,
+          "lat": 57.5240444,
+          "km": 177.75067020057347
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615088816
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615088817
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615088945
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Beatrice Wind Farm Substation · 177.75 km straight · ~221.3 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "fa35ff1c719c191e289ec46c9ddd3fa654a9eb317e23f136833bf7603ea245a4"
+    },
+    {
+      "ref": "6405",
+      "id": "1838140368",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=6405&technology=wind_onshore&latitude=56.2717627&longitude=-5.1715634&zoom=12&project=Blarghour+Wind+Farm&capacity_mw=84",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615089824-37189e",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "6405"
+      },
+      "location": {
+        "lon": -5.1715634,
+        "lat": 56.2717627
+      },
+      "measurements": [
+        {
+          "node_id": "coordinate:-5.2109292,56.3379553",
+          "lon": -5.2109292,
+          "lat": 56.3379553,
+          "km": 7.759221578977506
+        },
+        {
+          "node_id": "Inveraray Substation",
+          "lon": -5.0417265,
+          "lat": 56.2618919,
+          "km": 8.10120034276426
+        },
+        {
+          "node_id": "An Suidhe Substation",
+          "lon": -5.1449858,
+          "lat": 56.1979022,
+          "km": 8.384931499166715
+        },
+        {
+          "node_id": "coordinate:-5.2393431,56.3464251",
+          "lon": -5.2393431,
+          "lat": 56.3464251,
+          "km": 9.30573672460949
+        },
+        {
+          "node_id": "coordinate:-4.9555745,56.2870298",
+          "lon": -4.9555745,
+          "lat": 56.2870298,
+          "km": 13.455503467750445
+        },
+        {
+          "node_id": "Devol Moor Substation",
+          "lon": -4.7088254,
+          "lat": 55.9158673,
+          "km": 48.94152586528781
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615089899
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615089901
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615090005
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Devol Moor Substation · 48.94 km straight · ~60.9 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "215c6d757dedc909d27d1138927891741a6c62ea89dfb4e047850e324b02304a"
+    },
+    {
+      "ref": "2747",
+      "id": "1838140369",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=2747&technology=wind_onshore&latitude=53.9624324&longitude=-1.9141545&zoom=12&project=Chelker+Reservoir+%28Retention+of+Turbines%29&capacity_mw=1.2",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615091395-c0fe0b",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "2747"
+      },
+      "location": {
+        "lon": -1.9141545,
+        "lat": 53.9624324
+      },
+      "measurements": [
+        {
+          "node_id": "Chelker Reservoir Substation",
+          "lon": -1.908692,
+          "lat": 53.9578356,
+          "km": 0.6243764143108214
+        },
+        {
+          "node_id": "Townhead",
+          "lon": -1.9315469,
+          "lat": 53.9174555,
+          "km": 5.134873576473942
+        },
+        {
+          "node_id": "Bolton Rd",
+          "lon": -1.9332427,
+          "lat": 53.9168192,
+          "km": 5.229424651548583
+        },
+        {
+          "node_id": "coordinate:-2.0032564,53.9574362",
+          "lon": -2.0032564,
+          "lat": 53.9574362,
+          "km": 5.862164259956343
+        },
+        {
+          "node_id": "Silsden",
+          "lon": -1.9236856,
+          "lat": 53.9089678,
+          "km": 5.984336957832243
+        },
+        {
+          "node_id": "Bradford West Substation",
+          "lon": -1.8659921,
+          "lat": 53.8103656,
+          "km": 17.220406785256138
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615091498
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615091499
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615091600
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Bradford West Substation · 17.22 km straight · ~21.4 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "0861f5e3d9e7329e1d1b14eca944201fc2ac18e587b88bd31ed79670d2d0d4dc"
+    },
+    {
+      "ref": "2484",
+      "id": "1838140373",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=2484&technology=wind_offshore&latitude=52.6199968&longitude=2.5499934&zoom=12&project=The+East+Anglia+Array+-+Norfolk+Vanguard+East&capacity_mw=1380",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615100450-19c4cf",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "2484"
+      },
+      "location": {
+        "lon": 2.5499934,
+        "lat": 52.6199968
+      },
+      "measurements": [
+        {
+          "node_id": "Sizewell B Substation",
+          "lon": 1.6165753,
+          "lat": 52.2150252,
+          "km": 77.77126761891306
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615100553
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615100554
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615100631
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Sizewell B Substation · 77.77 km straight · ~96.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "91b2f39524e4c693c607c3a0f8f805e2777dc350c4d20bec8dfe356fee8c1f57"
+    },
+    {
+      "ref": "11613",
+      "id": "1838140374",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=11613&technology=wind_offshore&project=Fraserburgh+-+Buchan+Floating+Wind+Project&capacity_mw=1000",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615102468-8eb728",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "11613"
+      },
+      "location": {
+        "lon": -1.2350088217120911,
+        "lat": 58.408833524094916
+      },
+      "measurements": [
+        {
+          "node_id": "Peterhead Substation",
+          "lon": -1.8006956,
+          "lat": 57.4764378,
+          "km": 109.041586486403
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615102855
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615102856
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615102861
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Peterhead Substation · 109.04 km straight · ~135.8 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "b69ee6d56b88a8069bc8b7819268d034e1d87f392d8257961898cc1431245e03"
+    },
+    {
+      "ref": "11109",
+      "id": "1838140376",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=11109&technology=wind_offshore&project=Dogger+Bank+South+East&capacity_mw=1500",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615104711-56ade3",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "11109"
+      },
+      "location": {
+        "lon": 1.9037684647431936,
+        "lat": 54.50070478825763
+      },
+      "measurements": [
+        {
+          "node_id": "Unnamed substation",
+          "lon": -0.1462344,
+          "lat": 53.6013718,
+          "km": 167.2340377898921
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615105030
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615105031
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615105037
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Unnamed substation · 167.23 km straight · ~208.2 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question. (nearest named: Killingholme Substation · 169.54 km)\"",
+      "dom_observation_sha256": "450c919910291ad69cc19f86ce3d37c8c0f3aeed28ffaee09e30afac9b56bd22"
+    },
+    {
+      "ref": "13735",
+      "id": "1838140382",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=13735&technology=wind_offshore&project=Spiorad+na+Mara&capacity_mw=900",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615118320-552d53",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "13735"
+      },
+      "location": {
+        "lon": -6.787648375381207,
+        "lat": 58.40804370175983
+      },
+      "measurements": [
+        {
+          "node_id": "Barvas Substation",
+          "lon": -6.5204842,
+          "lat": 58.3484737,
+          "km": 16.944712298813194
+        },
+        {
+          "node_id": "Calanais Substation",
+          "lon": -6.7334407,
+          "lat": 58.2027241,
+          "km": 23.074910396668805
+        },
+        {
+          "node_id": "Stornoway Substation",
+          "lon": -6.4227644,
+          "lat": 58.2033376,
+          "km": 31.220124811571058
+        },
+        {
+          "node_id": "coordinate:-6.3728916,58.2040697",
+          "lon": -6.3728916,
+          "lat": 58.2040697,
+          "km": 33.22614724788477
+        },
+        {
+          "node_id": "Beauly Substation",
+          "lon": -4.4920459,
+          "lat": 57.4677293,
+          "km": 171.3282920103669
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615118629
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615118630
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615118637
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Beauly Substation · 171.33 km straight · ~213.3 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "347e4e42751e70fb24a53a66f0b3faaf924ed7028c9a3036255e040a4a2d3f11"
+    },
+    {
+      "ref": "10919",
+      "id": "1838140383",
+      "url": "http://127.0.0.1:8877/testcode/202609051329/atlas/?repd_ref=10919&technology=wind_offshore&project=Morgan+Offshore+Wind+Farm&capacity_mw=1500",
+      "screenshot": "deleted at user request",
+      "method": "Actual connected Chrome extension; Pipeline search then MAP click; DOM observation and actual computation receipt recorded; tab closed.",
+      "visit_id": "visit-1788615118597-7de8f9",
+      "engine_status": "completed",
+      "entity": {
+        "kind": "repd",
+        "id": "10919"
+      },
+      "location": {
+        "lon": -3.9937029868276253,
+        "lat": 53.99631879420542
+      },
+      "measurements": [
+        {
+          "node_id": "Walney II OSP",
+          "lon": -3.5751912,
+          "lat": 54.0795447,
+          "km": 28.885126561895067
+        },
+        {
+          "node_id": "Walney I OSP",
+          "lon": -3.5023343,
+          "lat": 54.0446313,
+          "km": 32.582256737033944
+        },
+        {
+          "node_id": "coordinate:-3.4111891,54.0785193",
+          "lon": -3.4111891,
+          "lat": 54.0785193,
+          "km": 39.16459981315445
+        },
+        {
+          "node_id": "Stanah Substation",
+          "lon": -2.9883625,
+          "lat": 53.8789973,
+          "km": 67.1613153707969
+        }
+      ],
+      "engine_events": [
+        {
+          "status": "requested",
+          "sequence": 2,
+          "at_ms": 1788615118979
+        },
+        {
+          "status": "started",
+          "sequence": 3,
+          "at_ms": 1788615118980
+        },
+        {
+          "status": "completed",
+          "sequence": 4,
+          "at_ms": 1788615118984
+        }
+      ],
+      "visible_observation": "- paragraph: \"Nearest 400 kV substation: Stanah Substation · 67.16 km straight · ~83.6 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\"",
+      "dom_observation_sha256": "721e9d8b3dfd6bb149d97c17a2dc9e36e10a64f5879216574f635a8ab56401c6"
+    }
+  ]
+}

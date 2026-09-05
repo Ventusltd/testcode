@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { assess } from './detector.mjs';
+const c={kind:'repd',entity_id:'2484',has_location:true,longitude:2.55,latitude:52.62};
+const row={node_id:'grid',lon:1.6,lat:52.2,km:77};
+const r={record:{entity:{kind:'repd',id:'2484'},location:{lon:2.55,lat:52.62},operation:'Atlas selectAt / nearest-grid',status:'completed',events:[{status:'started'},{status:'completed'}],measurements:[row]}};
+const shown={sourceLineCount:1,renderedLineCount:1};const backend={status:'completed',measurements:[row]};
+assert.equal(assess(c,[r],shown,backend).outcome,'PASS');
+assert.equal(assess(c,[],shown,backend).outcome,'NO_RECEIPT');
+assert.equal(assess(c,[{record:{...r.record,events:[],status:'requested'}}],shown,backend).outcome,'ENGINE_NOT_FIRED');
+assert.equal(assess(c,[r],{sourceLineCount:0,renderedLineCount:0},backend).outcome,'COMPUTED_BUT_NOT_DRAWN');
+assert.equal(assess(c,[r],{sourceLineCount:1,renderedLineCount:0},backend).outcome,'COMPUTED_BUT_NOT_DRAWN');
+assert.equal(assess(c,[{record:{...r.record,entity:{kind:'repd',id:'different'}}}],shown,backend).outcome,'WRONG_ENTITY');
+assert.equal(assess(c,[{record:{...r.record,location:{lon:0,lat:0}}}],shown,backend).outcome,'WRONG_OR_UNVERIFIED_LOCATION');
+assert.equal(assess(c,[{record:{...r.record,measurements:[{...row,km:99}]}}],shown,backend).outcome,'BACKEND_RESULT_MISMATCH');
+assert.equal(assess(c,[r,{record:{...r.record,status:'requested',events:[]}}],shown,backend).outcome,'ENGINE_NOT_FIRED');
+console.log('9 detector checks passed: never invoked, stale, wrong entity/location/distance, and computed-but-invisible cases rejected.');
