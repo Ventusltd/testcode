@@ -77,7 +77,7 @@ if (mode === 'prepare') {
   }
   try {
     const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
-    for (const file of ['host.js','dismissal.js']) await write('tool-layers/'+file, await readFile(new URL('../tool-layers/'+file,import.meta.url)));
+    for (const file of ['host.js','dismissal.js','focus-boundary.js']) await write('tool-layers/'+file, await readFile(new URL('../tool-layers/'+file,import.meta.url)));
     toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url);\n`;
   } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const current = JSON.parse((await readFile(path.join(generationRoot, 'atlas/current.json'), 'utf8')).replaceAll(predecessor, generation));
@@ -126,7 +126,7 @@ if (mode === 'prepare') {
   const scopes = {};
   for (const app of ['landing', 'pipeline', 'atlas']) {
     const selected = app === 'landing' ? ['index.html', 'capsule-launch.js', 'teleprinter-bootstrap.js'] : files.filter(file => file.startsWith(`${app}/`) && !file.startsWith(`${app}/data/`) && /\.(?:html|js|mjs|css)$/.test(file));
-    if (app === 'atlas') { selected.push('atlas/current.json'); if(toolLayerBootstrap) selected.push('atlas/tool-layers.json','tool-layers/host.js','tool-layers/dismissal.js'); }
+    if (app === 'atlas') { selected.push('atlas/current.json'); if(toolLayerBootstrap) selected.push('atlas/tool-layers.json','tool-layers/host.js','tool-layers/dismissal.js','tool-layers/focus-boundary.js'); }
     if (app === 'pipeline') selected.push(...files.filter(file => file.startsWith('pipeline/contracts/') && file.endsWith('.json')));
     scopes[app] = [...new Set([...selected, ...common])].sort().map(file => `${prefix}/${file}`);
   }
