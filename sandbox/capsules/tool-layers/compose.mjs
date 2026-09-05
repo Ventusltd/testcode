@@ -11,10 +11,14 @@ export async function composeToolOwner(root, owner, revision, release) {
   const raw = git('show',`${revision}:${prefix}manifest.json`);
   const manifest = JSON.parse(raw);
   if (manifest.generation !== release || !manifest.files?.length) throw Error('Invalid producer manifest');
+  const prepared = [];
   for (const file of manifest.files) {
     if (!file.path || file.path.includes('\\') || file.path.split('/').some(p=>p==='..'||p==='') || path.isAbsolute(file.path)) throw Error('Unsafe producer path');
     const bytes = git('show',`${revision}:${prefix}${file.path}`);
     if (hash(bytes)!==file.sha256 || bytes.length!==file.bytes) throw Error(`Producer mismatch: ${file.path}`);
+    prepared.push({file,bytes});
+  }
+  for (const {file,bytes} of prepared) {
     const target = path.join(root,'layer-apps',file.path);
     await mkdir(path.dirname(target),{recursive:true}); await writeFile(target,bytes);
   }
