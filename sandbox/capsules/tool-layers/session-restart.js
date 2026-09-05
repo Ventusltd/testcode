@@ -7,12 +7,15 @@ export function mountSessionRestart(layer, bar, frame, entry) {
   for(const button of [restart,cancel])Object.assign(button.style,{minHeight:'44px',cursor:'pointer'});
   let armed=false;
   const reset=()=>{armed=false;restart.textContent='Restart tool';cancel.hidden=true;note.textContent='';};
-  restart.addEventListener('click',()=>{
-    if(!armed){armed=true;restart.textContent='Confirm restart';cancel.hidden=false;note.textContent='Unsaved work in this tool will be lost. Other tools stay open.';return;}
+  const requestConfirmation=()=>{armed=true;restart.textContent='Confirm restart';cancel.hidden=false;note.textContent='Unsaved work in this tool will be lost. Other tools stay open.';restart.focus();};
+  const activate=()=>{
+    if(!armed){requestConfirmation();return;}
     reset();frame.dispatchEvent(new Event('tool-navigation-start'));frame.src=entry;
-  });
-  cancel.addEventListener('click',()=>{reset();restart.focus();});
+  };
+  restart.addEventListener('click',activate);
+  const cancelRestart=()=>{reset();restart.focus();};
+  cancel.addEventListener('click',cancelRestart);
   layer.addEventListener('tool-layer-dismissed',reset);
   row.append(restart,cancel,note);bar.append(row);
-  return () => {layer.removeEventListener('tool-layer-dismissed',reset);row.remove();};
+  return {requestConfirmation,dispose:()=>{restart.removeEventListener('click',activate);cancel.removeEventListener('click',cancelRestart);layer.removeEventListener('tool-layer-dismissed',reset);row.remove();}};
 }
