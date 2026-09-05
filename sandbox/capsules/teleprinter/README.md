@@ -48,3 +48,14 @@ and native share-sheet testing are still the user's device checks.
 `verify-live.py WEB_REPO GENERATION OUTPUT_JSON` compares published bytes against
 Git, including the homepage. `homepage.py WEB_REPO GENERATION` creates a measured
 restore point before adding the new Test Code link and retaining its predecessor.
+
+## Local diagnostic receipts
+
+Use the app-aware server for localhost browser proofs. A plain static server does not implement the diagnostic POST and yields a source-collection GET 404. This is an environment failure, not a reason to ignore a missing resource.
+
+```powershell
+python sandbox/capsules/teleprinter/serve.py --root C:\Users\vikra\globalgrid-testcode-publication --output C:\Users\vikra\OneDrive\Desktop\offline-screenshots\local-receipts --port 8894
+python sandbox/capsules/teleprinter/serve.test.py
+```
+
+GET /__testcode/receipt returns endpoint metadata; POST validates and appends JSON receipts to the offline directory. It never writes into the served repository. The server binds only to 127.0.0.1. Stop it after testing. Deployed pages do not call this localhost-only endpoint. CVAA's runtime-endpoint-contract vaccine checks separately declared GET and POST probe evidence.
