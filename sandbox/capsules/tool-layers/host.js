@@ -2,6 +2,7 @@ import {bindLayerDismissal} from './dismissal.js';
 import {bindFocusBoundary} from './focus-boundary.js';
 import {observeToolReadiness} from './readiness.js';
 import {applyToolViewport} from './viewport.js';
+import {mountSessionRestart} from './session-restart.js';
 /** Isolated, persistent app layers. Each iframe owns its UI and calculation state. */
 export function mountToolLayers(tools, base = import.meta.url) {
   const old = document.getElementById('codex-layout-command');
@@ -26,7 +27,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
         const title = document.createElement('strong'); title.textContent = tool.title;
         const close = document.createElement('button'); close.textContent = 'Close - return to GridAtlas';
         Object.assign(close.style,{minHeight:'40px',cursor:'pointer'});
-        const dismiss = () => {layer.style.display='none'; button.focus();};
+        const dismiss = () => {layer.dispatchEvent(new Event('tool-layer-dismissed'));layer.style.display='none'; button.focus();};
         close.addEventListener('click',dismiss);
         const status=document.createElement('span');
         status.dataset.toolReadiness=tool.id;
@@ -39,6 +40,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
         disposers.push(bindLayerDismissal(layer,frame,dismiss));
         disposers.push(bindFocusBoundary(layer,frame,close));
         disposers.push(observeToolReadiness(tool,frame,status));
+        disposers.push(mountSessionRestart(layer,bar,frame,frame.src));
         layer.append(bar,frame); document.body.append(layer); layers.set(tool.id,layer);
       }
       layer.style.display='flex';
