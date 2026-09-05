@@ -1,3 +1,4 @@
+import {bindLayerDismissal} from './dismissal.js';
 /** Isolated, persistent app layers. Each iframe owns its UI and calculation state. */
 export function mountToolLayers(tools, base = import.meta.url) {
   const old = document.getElementById('codex-layout-command');
@@ -6,6 +7,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
   tray.id = 'codex-tool-layers'; tray.setAttribute('aria-label', 'Design tools');
   Object.assign(tray.style, {position:'fixed',right:'12px',top:'180px',zIndex:'10000',display:'flex',gap:'6px',flexWrap:'wrap',maxWidth:'calc(100vw - 24px)'});
   const layers = new Map();
+  const disposers = [];
   for (const tool of tools) {
     const button = document.createElement('button');
     button.textContent = tool.title;
@@ -21,12 +23,14 @@ export function mountToolLayers(tools, base = import.meta.url) {
         const title = document.createElement('strong'); title.textContent = tool.title;
         const close = document.createElement('button'); close.textContent = 'Close - return to GridAtlas';
         Object.assign(close.style,{minHeight:'40px',cursor:'pointer'});
-        close.addEventListener('click',()=>{layer.style.display='none'; button.focus();});
+        const dismiss = () => {layer.style.display='none'; button.focus();};
+        close.addEventListener('click',dismiss);
         bar.append(title,close);
         const frame = document.createElement('iframe'); frame.title = tool.title;
         frame.src = new URL(tool.entry, base).href;
         // Same-origin realm isolation preserves the original application's downloads and links.
         Object.assign(frame.style,{border:'0',width:'100%',flex:'1',minHeight:'0'});
+        disposers.push(bindLayerDismissal(layer,frame,dismiss));
         layer.append(bar,frame); document.body.append(layer); layers.set(tool.id,layer);
       }
       layer.style.display='flex';
@@ -35,5 +39,5 @@ export function mountToolLayers(tools, base = import.meta.url) {
     tray.append(button);
   }
   document.body.append(tray);
-  return () => {tray.remove(); for (const layer of layers.values()) layer.remove();};
+  return () => {for(const dispose of disposers) dispose(); tray.remove(); for (const layer of layers.values()) layer.remove();};
 }
