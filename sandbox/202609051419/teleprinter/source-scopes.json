@@ -1,7 +1,7 @@
 {
   "generation": "202609051419",
   "predecessor": "202609051344",
-  "engineCommit": "812c2762a5ebea2b76e839e62ab993876f08f4f6",
+  "engineCommit": "6f2026458665abffd969dc5e2f814157e365bf70",
   "scopes": {
     "landing": [
       "sandbox/202609051419/capsule-launch.js",
@@ -9,6 +9,7 @@
       "sandbox/202609051419/teleprinter-bootstrap.js",
       "sandbox/202609051419/teleprinter/SOURCE-SCOPE.md",
       "sandbox/202609051419/teleprinter/controls.js",
+      "sandbox/202609051419/teleprinter/png-pixels.mjs",
       "sandbox/202609051419/teleprinter/print-screen.js",
       "sandbox/202609051419/teleprinter/print-source-code.js",
       "sandbox/202609051419/teleprinter/screen-pdf.mjs"
@@ -98,6 +99,7 @@
       "sandbox/202609051419/pipeline/teleprinter-bootstrap.js",
       "sandbox/202609051419/teleprinter/SOURCE-SCOPE.md",
       "sandbox/202609051419/teleprinter/controls.js",
+      "sandbox/202609051419/teleprinter/png-pixels.mjs",
       "sandbox/202609051419/teleprinter/print-screen.js",
       "sandbox/202609051419/teleprinter/print-source-code.js",
       "sandbox/202609051419/teleprinter/screen-pdf.mjs"
@@ -113,6 +115,7 @@
       "sandbox/202609051419/atlas/teleprinter-bootstrap.js",
       "sandbox/202609051419/teleprinter/SOURCE-SCOPE.md",
       "sandbox/202609051419/teleprinter/controls.js",
+      "sandbox/202609051419/teleprinter/png-pixels.mjs",
       "sandbox/202609051419/teleprinter/print-screen.js",
       "sandbox/202609051419/teleprinter/print-source-code.js",
       "sandbox/202609051419/teleprinter/screen-pdf.mjs"
