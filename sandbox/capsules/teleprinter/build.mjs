@@ -8,6 +8,7 @@ import { verifyCandidate } from './verify-candidate.mjs';
 import { composeToolOwner } from '../tool-layers/compose.mjs';
 import { mergeToolOwnership } from '../tool-layers/ownership.mjs';
 import { buildNavigationRegistry } from '../tool-layers/registry.mjs';
+import { buildToolSourceScopes } from '../tool-layers/source-scopes.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const args = process.argv.slice(2);
@@ -79,6 +80,12 @@ if (mode === 'prepare') {
   try {
     const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
     config.navigation=buildNavigationRegistry(config);
+    const toolSources=await buildToolSourceScopes(config.navigation,owner=>{
+      const name=owner.repository.match(/^https:\/\/github\.com\/Ventusltd\/([a-zA-Z0-9_-]+)(?:\.git)?$/)?.[1];
+      if(!name)throw Error('Unsupported local tool owner repository');
+      return git(path.join(path.dirname(engineDir),name),'show',`${owner.commit}:releases/${owner.release}/manifest.json`);
+    },file=>readFile(path.join(generationRoot,file)));
+    await write('layer-source-scopes.json',JSON.stringify(toolSources,null,2)+'\n');
     await write('atlas/tool-layers.json',JSON.stringify(config,null,2)+'\n');
     for (const file of ['navigation.js','host.js','dismissal.js','focus-boundary.js','readiness.js','viewport.js','session-restart.js','recovery.js']) await write('tool-layers/'+file, (await readFile(new URL('../tool-layers/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
     toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url, ${JSON.stringify(config.navigation)});\n`;
