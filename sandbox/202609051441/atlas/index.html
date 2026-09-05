@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><link rel="icon" href="data:,">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Test Code Atlas 202609051441</title>
@@ -96,6 +96,7 @@
       const teleprinterScript = '<script type="module" src="' + escapeAttribute(teleprinterUrl) + '">' + SCRIPT_CLOSE;
       html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, teleprinterScript + '$&') : html + teleprinterScript;
 
+      html = html.replace(/<head>/i, '<head><link rel="icon" href="data:,">');
       document.open();
       document.write(html);
       document.close();
