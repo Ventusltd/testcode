@@ -4,6 +4,7 @@ import { cp, mkdir, readFile, writeFile, readdir, rename, access } from 'node:fs
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { verifyCandidate } from './verify-candidate.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const args = process.argv.slice(2);
@@ -17,6 +18,11 @@ const sha256 = value => createHash('sha256').update(value).digest('hex');
 const generation = options.generation || (mode === 'prepare' ? new Date().toISOString().replace(/\D/g, '').slice(0, 12) : '');
 if (!/^\d{12}$/.test(generation)) throw new Error('A 12-digit --generation UTC timestamp is required.');
 const generationRoot = path.join(repo, 'sandbox', generation);
+async function requireCandidateSyntax() {
+  const result = await verifyCandidate(generationRoot);
+  if (!result.ok) throw new Error('Candidate refused: ' + JSON.stringify(result.checks.filter(check => !check.ok)));
+  console.log(`Offline candidate gate: ${result.scripts} scripts, ${result.checks.length} checks passed.`);
+}
 const prefix = `sandbox/${generation}`;
 const modules = ['controls.js', 'print-screen.js', 'screen-pdf.mjs', 'png-pixels.mjs', 'print-source-code.js', 'runtime-source.js'];
 async function write(relative, contents) {
@@ -108,6 +114,7 @@ if (mode === 'prepare') {
     scopes[app] = [...new Set([...selected, ...common])].sort().map(file => `${prefix}/${file}`);
   }
   await write('teleprinter/source-scopes.json', JSON.stringify({ generation, predecessor, engineCommit, scopes, excluded: ['atlas/data/**', 'pipeline/data/**', '**/results*', '**/cases*', '**/receipts*', 'inherited detector evidence', 'generated source text, manifests, and pins', 'external runtime dependencies'] }, null, 2) + '\n');
+  await requireCandidateSyntax();
   console.log(JSON.stringify({ generation, codeReady: true, launchPaths: [`/testcode/${generation}/`, `/testcode/${generation}/pipeline/`, `/testcode/${generation}/atlas/`], finish: `node sandbox/capsules/teleprinter/build.mjs finish --generation ${generation} --revision FULL_CODE_COMMIT --engine-dir "${engineDir}"` }, null, 2));
 } else if (mode === 'finish') {
   if (!options.revision) throw new Error('Finish requires --revision FULL_CODE_COMMIT after source is committed.');
@@ -134,5 +141,6 @@ if (mode === 'prepare') {
     await write(`teleprinter/${app}-source-pin.json`, JSON.stringify({ generation, app, repository, commit, sha256: manifest.sha256, byteCount: manifest.byteCount }, null, 2) + '\n');
     results.push({ app, commit, included: manifest.includedCount, omitted: manifest.omittedCount, bytes: manifest.byteCount });
   }
+  await requireCandidateSyntax();
   console.log(JSON.stringify({ generation, sourceReady: true, results }, null, 2));
 } else throw new Error('Use prepare or finish.');
