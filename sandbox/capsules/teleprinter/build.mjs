@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { verifyCandidate } from './verify-candidate.mjs';
 import { composeToolOwner } from '../tool-layers/compose.mjs';
+import { mergeToolOwnership } from '../tool-layers/ownership.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const args = process.argv.slice(2);
@@ -72,11 +73,7 @@ if (mode === 'prepare') {
     const names = {'gis-sld-financial-sandbox':'GIS SLD Financial Sandbox','module-layout':'Module Layout','cable-geometry-visualiser':'Cable Geometry','dc-ac-coupled-bess':'DC / AC BESS'};
     const apps = owner.applications.filter(app=>!options['tool-id'] || app.id===options['tool-id']);
     if(!apps.length) throw Error('Requested tool is absent from pinned owner manifest');
-    const tools = apps.map(app => ({id:app.id,title:names[app.id]||app.id,entry:'../layer-apps/'+app.entry}));
-    const combined = new Map(previous.tools.map(tool=>[tool.id,tool]));
-    for(const tool of tools) combined.set(tool.id,tool);
-    const owners = previous.owners.filter(item=>item.repository!==owner.repository).concat(owner);
-    await write('atlas/tool-layers.json', JSON.stringify({owners,tools:[...combined.values()]},null,2)+'\n');
+    await write('atlas/tool-layers.json', JSON.stringify(mergeToolOwnership(previous,owner,apps,names),null,2)+'\n');
   }
   try {
     const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
