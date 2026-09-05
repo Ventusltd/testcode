@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { verifyCandidate } from './verify-candidate.mjs';
+import { composeToolOwner } from '../tool-layers/compose.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const args = process.argv.slice(2);
@@ -40,7 +41,7 @@ async function walk(dir, base = dir) {
   }
   return output.sort();
 }
-const sourceScopeNote = `# Print source code scope\n\nThis generation adds the Codex-authored Teleprinter controls. Each app's text includes the committed HTML, JavaScript, ESM and CSS in its app directory, its bootstrap, the Teleprinter browser modules and vendored renderer license, and this scope note. Atlas includes current.json, which identifies the immutable remote shell and hashed cartridges. Pipeline includes its small contracts JSON files and code loaders under scripts/data. The landing page includes index.html and capsule-launch.js.\n\nThis inventory describes the pinned base source. The reader-facing Print source code also appends the current DOM, selected layers, map state, observed runtime dependencies and their complete fetched responses. Unreadable responses and dependency-discovery limits are named in that diagnostic file. Generated diagnostic prints stay offline, not in Git.\n\nPinned-base exclusions: application data payload directories (atlas/data and pipeline/data), results, cases, receipts, inherited detector evidence, generated text/manifest/pin files, external CDN libraries, and the remotely hosted Atlas shell. Remote dependencies are referenced by the committed code/configuration; their contents are not represented as locally committed source. This is scoped application source, not an offline reconstruction of every dependency or dataset. source-scopes.json lists every selected path. No source file is silently truncated.\n\nThe source pin is generated only after the application code commit exists. Its full commit SHA identifies the code version; the later pin/text publication does not pretend to include itself. Prior detector results belong to the predecessor generation and have not been rerun by this build.\n`;
+const sourceScopeNote = `# Print source code scope\n\nThis generation adds the Codex-authored Teleprinter controls. Each app's text includes the committed HTML, JavaScript, ESM and CSS in its app directory, its bootstrap, the Teleprinter browser modules and vendored renderer license, and this scope note. Atlas includes current.json, which identifies the immutable remote shell and hashed cartridges. Pipeline includes its small contracts JSON files and code loaders under scripts/data. The landing page includes index.html and capsule-launch.js.\n\nThis inventory describes the pinned base source. The reader-facing Print source code also appends the current DOM, selected layers, map state, observed runtime dependencies and their complete fetched responses. Unreadable responses and dependency-discovery limits are named in that diagnostic file. Generated diagnostic prints stay offline, not in Git.\n\nIsolated tool layers carry their own producer commit and manifest identity in atlas/tool-layers.json. Their runtime files are preserved separately under layer-apps; the Atlas source bundle includes the integration host and owner manifest, not a concatenation of the standalone tools. Open the standalone tool source in its pinned producer repository for the complete application.\n\nPinned-base exclusions: application data payload directories (atlas/data and pipeline/data), results, cases, receipts, inherited detector evidence, generated text/manifest/pin files, external CDN libraries, and the remotely hosted Atlas shell. Remote dependencies are referenced by the committed code/configuration; their contents are not represented as locally committed source. This is scoped application source, not an offline reconstruction of every dependency or dataset. source-scopes.json lists every selected path. No source file is silently truncated.\n\nThe source pin is generated only after the application code commit exists. Its full commit SHA identifies the code version; the later pin/text publication does not pretend to include itself. Prior detector results belong to the predecessor generation and have not been rerun by this build.\n`;
 
 if (mode === 'prepare') {
   const predecessor = options.from || '202609051344';
@@ -55,7 +56,7 @@ if (mode === 'prepare') {
   for (const filename of modules) await write(`teleprinter/${filename}`, git(engineDir, 'show', `${engineCommit}:drivers/codex/${filename}`));
   const originals = await walk(generationRoot);
   for (const relative of originals) {
-    if (!/\.(?:html|js|mjs|css)$/.test(relative) || relative === 'results.html' || relative.startsWith('teleprinter/')) continue;
+    if (!/\.(?:html|js|mjs|css)$/.test(relative) || relative === 'results.html' || relative.startsWith('teleprinter/') || relative.startsWith('layer-apps/')) continue;
     const full = path.join(generationRoot, relative);
     let text = (await readFile(full, 'utf8')).replace(/\r\n/g, '\n');
     text = text.replaceAll(predecessor, generation);
@@ -63,6 +64,17 @@ if (mode === 'prepare') {
     await writeFile(full, text);
     if (path.basename(relative).includes(predecessor)) await rename(full, path.join(generationRoot, relative.replaceAll(predecessor, generation)));
   }
+  let toolLayerBootstrap = '';
+  if (options['tool-owner']) {
+    const owner = await composeToolOwner(generationRoot, options['tool-owner'], options['tool-revision'], options['tool-release']);
+    const tools = owner.applications.map(app => ({id:app.id,title:app.id==='gis-sld-financial-sandbox'?'GIS SLD Financial Sandbox':app.id,entry:'../layer-apps/'+app.entry}));
+    await write('atlas/tool-layers.json', JSON.stringify({owners:[owner],tools},null,2)+'\n');
+  }
+  try {
+    const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
+    await write('tool-layers/host.js', await readFile(new URL('../tool-layers/host.js',import.meta.url)));
+    toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url);\n`;
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const current = JSON.parse((await readFile(path.join(generationRoot, 'atlas/current.json'), 'utf8')).replaceAll(predecessor, generation));
   current.generation = generation;
   current.previous_generation = predecessor;
@@ -76,7 +88,7 @@ if (mode === 'prepare') {
   for (const [app, appName] of [['landing', 'Test Code'], ['pipeline', 'Pipeline News'], ['atlas', 'GridAtlas']]) {
     const appDir = app === 'landing' ? '' : `${app}/`;
     const parent = app === 'landing' ? './' : '../';
-    await write(`${appDir}teleprinter-bootstrap.js`, `import { mountTeleprinter } from '${parent}teleprinter/controls.js';\n${app === 'atlas' ? `import { mountLayerQuickControls } from '${parent}teleprinter/layer-quick-controls.js';\nmountLayerQuickControls();\nimport { mountLayersPanelPolicy } from '${parent}teleprinter/layers-panel-policy.js';\nmountLayersPanelPolicy();\nimport { mountLayoutCommand } from '${parent}teleprinter/layout-command.js';\nmountLayoutCommand();\n` : ''}const base = new URL('${parent}teleprinter/', import.meta.url);\ntry {\n  const response = await fetch(new URL('${app}-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });\n  if (!response.ok) throw new Error('Source code is still being prepared.');\n  const pin = await response.json();\n  if (pin.generation !== '${generation}' || pin.app !== '${app}' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');\n  mountTeleprinter({ printButtons: ${app === 'atlas' ? "'button[data-gm-export]'" : 'undefined'}, appName: ${JSON.stringify(appName)}, manifestUrl: new URL('${app}-source-code.manifest.json', base), textUrl: new URL('${app}-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });\n} catch (error) {\n  const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Print options: ' + error.message; document.body.append(note);\n}\n`);
+    await write(`${appDir}teleprinter-bootstrap.js`, `import { mountTeleprinter } from '${parent}teleprinter/controls.js';\n${app === 'atlas' ? `import { mountLayerQuickControls } from '${parent}teleprinter/layer-quick-controls.js';\nmountLayerQuickControls();\nimport { mountLayersPanelPolicy } from '${parent}teleprinter/layers-panel-policy.js';\nmountLayersPanelPolicy();\nimport { mountLayoutCommand } from '${parent}teleprinter/layout-command.js';\n${toolLayerBootstrap || 'mountLayoutCommand();\n'}` : ''}const base = new URL('${parent}teleprinter/', import.meta.url);\ntry {\n  const response = await fetch(new URL('${app}-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });\n  if (!response.ok) throw new Error('Source code is still being prepared.');\n  const pin = await response.json();\n  if (pin.generation !== '${generation}' || pin.app !== '${app}' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');\n  mountTeleprinter({ printButtons: ${app === 'atlas' ? "'button[data-gm-export]'" : 'undefined'}, appName: ${JSON.stringify(appName)}, manifestUrl: new URL('${app}-source-code.manifest.json', base), textUrl: new URL('${app}-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });\n} catch (error) {\n  const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Print options: ' + error.message; document.body.append(note);\n}\n`);
     let html = await readFile(path.join(generationRoot, `${appDir}index.html`), 'utf8');
     // A predecessor can already have Teleprinter. Replace its mount, never stack it.
     html = html.replace(/      const teleprinterUrl =[^\n]*\n      const teleprinterScript =[^\n]*\n      html =[^\n]*\n\s*\n/g, '');
@@ -109,7 +121,7 @@ if (mode === 'prepare') {
   const scopes = {};
   for (const app of ['landing', 'pipeline', 'atlas']) {
     const selected = app === 'landing' ? ['index.html', 'capsule-launch.js', 'teleprinter-bootstrap.js'] : files.filter(file => file.startsWith(`${app}/`) && !file.startsWith(`${app}/data/`) && /\.(?:html|js|mjs|css)$/.test(file));
-    if (app === 'atlas') selected.push('atlas/current.json');
+    if (app === 'atlas') { selected.push('atlas/current.json'); if(toolLayerBootstrap) selected.push('atlas/tool-layers.json','tool-layers/host.js'); }
     if (app === 'pipeline') selected.push(...files.filter(file => file.startsWith('pipeline/contracts/') && file.endsWith('.json')));
     scopes[app] = [...new Set([...selected, ...common])].sort().map(file => `${prefix}/${file}`);
   }
