@@ -82,11 +82,29 @@ for (const target of SCAN) {
         for (const route of [canonical, ...retired]) {
             const bare = strip(route);
             if (!source.includes(bare)) continue;
+            /* A MENTION IS NOT A LINK.
+               Lane B caught this on the first real use: this driver flagged
+               three files that name the retired route in order to ASSERT ITS
+               ABSENCE. A proof saying "this must never appear" was being
+               reported as the very thing it prevents, which is how a gate
+               teaches people to ignore it.
+
+               So classify the line the route sits on. Assigned, concatenated
+               or handed to new URL() is a link; inside an assertion, a
+               negation or a comment it is a statement ABOUT a link, counted
+               separately and reported rather than judged. */
+            const lines = source.split('\n').filter((l) => l.includes(bare));
+            const isAssertion = (line) =>
+                /assert|expect|doesNotMatch|toBe|!==|===|must not|never|retired|forbidden|\bnot\b/i.test(line)
+                || /^\s*(\/\/|\*|\/\*)/.test(line);
+            const buildLines = lines.filter((l) => !isAssertion(l));
             findings.push({
                 repo: target.repo,
                 file: path.relative(PARENT, file).replace(/\\/g, '/'),
                 route: bare,
-                retired: retiredStripped.includes(bare)
+                retired: retiredStripped.includes(bare),
+                builds: buildLines.length,
+                mentions_only: lines.length - buildLines.length
             });
         }
     }
@@ -126,7 +144,8 @@ function classify(file) {
 
 for (const f of findings) f.kind = classify(f.file);
 
-const onRetiredAll = findings.filter((f) => f.retired);
+const onRetiredAll = findings.filter((f) => f.retired && f.builds > 0);
+const retiredMentionsOnly = findings.filter((f) => f.retired && f.builds === 0);
 const onRetired = onRetiredAll.filter((f) => f.kind === 'live');
 const retiredHistory = onRetiredAll.filter((f) => f.kind !== 'live');
 const onCanonical = findings.filter((f) => !f.retired);
@@ -144,6 +163,9 @@ check('no LIVE consumer builds a deep link against a retired receiver',
 /* Reported, never counted against the verdict, and never hidden either: a
    count that quietly disappears is how the estate loses track of what it is
    carrying. */
+check('a route named only to assert its absence is not counted as a link',
+    true,
+    `${retiredMentionsOnly.length} file(s) name the retired route only in an assertion or a comment`);
 check('history is recorded rather than rewritten',
     true,
     `${retiredHistory.length} site(s) in superseded published versions and the archive still name the retired receiver, correctly left alone`);
