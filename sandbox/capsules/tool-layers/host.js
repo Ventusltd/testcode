@@ -1,4 +1,5 @@
 import {bindLayerDismissal} from './dismissal.js';
+import {bindFocusBoundary} from './focus-boundary.js';
 /** Isolated, persistent app layers. Each iframe owns its UI and calculation state. */
 export function mountToolLayers(tools, base = import.meta.url) {
   const old = document.getElementById('codex-layout-command');
@@ -31,6 +32,7 @@ export function mountToolLayers(tools, base = import.meta.url) {
         // Same-origin realm isolation preserves the original application's downloads and links.
         Object.assign(frame.style,{border:'0',width:'100%',flex:'1',minHeight:'0'});
         disposers.push(bindLayerDismissal(layer,frame,dismiss));
+        disposers.push(bindFocusBoundary(layer,frame,close));
         layer.append(bar,frame); document.body.append(layer); layers.set(tool.id,layer);
       }
       layer.style.display='flex';
