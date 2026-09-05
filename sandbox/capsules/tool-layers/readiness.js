@@ -23,7 +23,7 @@ export function inspectToolReadiness(id, doc) {
   return {interface:'unrecognised',drawing:'unreported',label:'Tool interface not recognised'};
 }
 
-export function observeToolReadiness(tool, frame, status, {timeout=30000,interval=200}={}) {
+export function observeToolReadiness(tool, frame, status, {timeout=30000,interval=200,startLoaded=false}={}) {
   let timer, mutation, disposed=false;
   const timedOut=()=>{if(disposed)return;status.textContent='Tool is taking longer to load';status.dataset.timedOut='true';};
   const started = () => {
@@ -47,5 +47,6 @@ export function observeToolReadiness(tool, frame, status, {timeout=30000,interva
   status.setAttribute('role','status');navigating();
   frame.addEventListener('load',started);
   frame.addEventListener('tool-navigation-start',navigating);
+  if(startLoaded)started();
   return () => {disposed=true;clearTimeout(timer);mutation?.disconnect();frame.removeEventListener('load',started);frame.removeEventListener('tool-navigation-start',navigating);};
 }

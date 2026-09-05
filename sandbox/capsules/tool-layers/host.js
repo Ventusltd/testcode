@@ -1,11 +1,11 @@
 import {bindLayerDismissal} from './dismissal.js';
 import {bindFocusBoundary} from './focus-boundary.js';
-import {observeToolReadiness} from './readiness.js';
+import {bindToolNavigation} from './navigation.js';
 import {applyToolViewport} from './viewport.js';
 import {mountSessionRestart} from './session-restart.js';
 import {mountToolRecovery} from './recovery.js';
 /** Isolated, persistent app layers. Each iframe owns its UI and calculation state. */
-export function mountToolLayers(tools, base = import.meta.url) {
+export function mountToolLayers(tools, base = import.meta.url, registry = tools) {
   const old = document.getElementById('codex-layout-command');
   old?.remove();
   const tray = document.createElement('nav');
@@ -40,8 +40,8 @@ export function mountToolLayers(tools, base = import.meta.url) {
         applyToolViewport(layer,bar,frame);
         disposers.push(bindLayerDismissal(layer,frame,dismiss));
         disposers.push(bindFocusBoundary(layer,frame,close));
-        disposers.push(observeToolReadiness(tool,frame,status));
-        const session=mountSessionRestart(layer,bar,frame,frame.src);
+        disposers.push(bindToolNavigation(layer,frame,title,status,registry,base,tool));
+        const session=mountSessionRestart(layer,bar,frame,()=>{try{return frame.contentWindow.location.href;}catch{return null;}});
         disposers.push(session.dispose,mountToolRecovery(bar,status,session.requestConfirmation));
         layer.append(bar,frame); document.body.append(layer); layers.set(tool.id,layer);
       }

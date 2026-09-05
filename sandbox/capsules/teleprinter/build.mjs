@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { verifyCandidate } from './verify-candidate.mjs';
 import { composeToolOwner } from '../tool-layers/compose.mjs';
 import { mergeToolOwnership } from '../tool-layers/ownership.mjs';
+import { buildNavigationRegistry } from '../tool-layers/registry.mjs';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const args = process.argv.slice(2);
@@ -77,8 +78,10 @@ if (mode === 'prepare') {
   }
   try {
     const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
-    for (const file of ['host.js','dismissal.js','focus-boundary.js','readiness.js','viewport.js','session-restart.js','recovery.js']) await write('tool-layers/'+file, (await readFile(new URL('../tool-layers/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
-    toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url);\n`;
+    config.navigation=buildNavigationRegistry(config);
+    await write('atlas/tool-layers.json',JSON.stringify(config,null,2)+'\n');
+    for (const file of ['navigation.js','host.js','dismissal.js','focus-boundary.js','readiness.js','viewport.js','session-restart.js','recovery.js']) await write('tool-layers/'+file, (await readFile(new URL('../tool-layers/'+file,import.meta.url),'utf8')).replace(/\r\n/g,'\n'));
+    toolLayerBootstrap = `import { mountToolLayers } from '../tool-layers/host.js';\nmountToolLayers(${JSON.stringify(config.tools)}, import.meta.url, ${JSON.stringify(config.navigation)});\n`;
   } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const current = JSON.parse((await readFile(path.join(generationRoot, 'atlas/current.json'), 'utf8')).replaceAll(predecessor, generation));
   current.generation = generation;
@@ -126,7 +129,7 @@ if (mode === 'prepare') {
   const scopes = {};
   for (const app of ['landing', 'pipeline', 'atlas']) {
     const selected = app === 'landing' ? ['index.html', 'capsule-launch.js', 'teleprinter-bootstrap.js'] : files.filter(file => file.startsWith(`${app}/`) && !file.startsWith(`${app}/data/`) && /\.(?:html|js|mjs|css)$/.test(file));
-    if (app === 'atlas') { selected.push('atlas/current.json'); if(toolLayerBootstrap) selected.push('atlas/tool-layers.json','tool-layers/host.js','tool-layers/dismissal.js','tool-layers/focus-boundary.js','tool-layers/readiness.js','tool-layers/viewport.js','tool-layers/session-restart.js','tool-layers/recovery.js'); }
+    if (app === 'atlas') { selected.push('atlas/current.json'); if(toolLayerBootstrap) selected.push('atlas/tool-layers.json','tool-layers/host.js','tool-layers/dismissal.js','tool-layers/focus-boundary.js','tool-layers/readiness.js','tool-layers/viewport.js','tool-layers/session-restart.js','tool-layers/recovery.js','tool-layers/navigation.js'); }
     if (app === 'pipeline') selected.push(...files.filter(file => file.startsWith('pipeline/contracts/') && file.endsWith('.json')));
     scopes[app] = [...new Set([...selected, ...common])].sort().map(file => `${prefix}/${file}`);
   }

@@ -10,12 +10,14 @@ export function mountSessionRestart(layer, bar, frame, entry) {
   const requestConfirmation=()=>{armed=true;restart.textContent='Confirm restart';cancel.hidden=false;note.textContent='Unsaved work in this tool will be lost. Other tools stay open.';restart.focus();};
   const activate=()=>{
     if(!armed){requestConfirmation();return;}
-    reset();frame.dispatchEvent(new Event('tool-navigation-start'));frame.src=entry;
+    const target=typeof entry==='function'?entry():entry;
+    reset();if(!target){note.textContent='This linked page cannot be restarted here.';return;}
+    frame.dispatchEvent(new Event('tool-navigation-start'));frame.src=target;
   };
   restart.addEventListener('click',activate);
   const cancelRestart=()=>{reset();restart.focus();};
   cancel.addEventListener('click',cancelRestart);
-  layer.addEventListener('tool-layer-dismissed',reset);
+  layer.addEventListener('tool-layer-dismissed',reset);layer.addEventListener('tool-document-changed',reset);
   row.append(restart,cancel,note);bar.append(row);
-  return {requestConfirmation,dispose:()=>{restart.removeEventListener('click',activate);cancel.removeEventListener('click',cancelRestart);layer.removeEventListener('tool-layer-dismissed',reset);row.remove();}};
+  return {requestConfirmation,dispose:()=>{restart.removeEventListener('click',activate);cancel.removeEventListener('click',cancelRestart);layer.removeEventListener('tool-layer-dismissed',reset);layer.removeEventListener('tool-document-changed',reset);row.remove();}};
 }
