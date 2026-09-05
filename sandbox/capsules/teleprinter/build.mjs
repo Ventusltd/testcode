@@ -41,6 +41,7 @@ if (mode === 'prepare') {
   if (!/^\d{12}$/.test(predecessor) || predecessor === generation) throw new Error('Invalid predecessor generation.');
   const predecessorRoot = path.join(repo, 'sandbox', predecessor);
   await access(predecessorRoot);
+  const evidenceGeneration = JSON.parse(await readFile(path.join(predecessorRoot, 'results.json'), 'utf8')).generation || predecessor;
   // mkdir without recursive refuses an existing generation; never repair an old timestamp in place.
   await mkdir(generationRoot);
   for (const entry of await readdir(predecessorRoot)) await cp(path.join(predecessorRoot, entry), path.join(generationRoot, entry), { recursive: true, force: false, errorOnExist: true });
@@ -69,11 +70,12 @@ if (mode === 'prepare') {
   for (const [app, appName] of [['landing', 'Test Code'], ['pipeline', 'Pipeline News'], ['atlas', 'GridAtlas']]) {
     const appDir = app === 'landing' ? '' : `${app}/`;
     const parent = app === 'landing' ? './' : '../';
-    await write(`${appDir}teleprinter-bootstrap.js`, `import { mountTeleprinter } from '${parent}teleprinter/controls.js';\nconst base = new URL('${parent}teleprinter/', import.meta.url);\ntry {\n  const response = await fetch(new URL('${app}-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });\n  if (!response.ok) throw new Error('Source code is still being prepared.');\n  const pin = await response.json();\n  if (pin.generation !== '${generation}' || pin.app !== '${app}' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');\n  mountTeleprinter({ printButtons: 'button[data-gm-export]', appName: ${JSON.stringify(appName)}, manifestUrl: new URL('${app}-source-code.manifest.json', base), textUrl: new URL('${app}-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });\n} catch (error) {\n  const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Teleprinter: ' + error.message; document.body.append(note);\n}\n`);
+    await write(`${appDir}teleprinter-bootstrap.js`, `import { mountTeleprinter } from '${parent}teleprinter/controls.js';\nconst base = new URL('${parent}teleprinter/', import.meta.url);\ntry {\n  const response = await fetch(new URL('${app}-source-pin.json', base), { cache: 'no-store', credentials: 'same-origin', redirect: 'error' });\n  if (!response.ok) throw new Error('Source code is still being prepared.');\n  const pin = await response.json();\n  if (pin.generation !== '${generation}' || pin.app !== '${app}' || !/^[a-f0-9]{40}$/.test(pin.commit) || pin.repository !== 'https://github.com/Ventusltd/testcode') throw new Error('The source code version could not be checked.');\n  mountTeleprinter({ printButtons: ${app === 'atlas' ? "'button[data-gm-export]'" : 'undefined'}, appName: ${JSON.stringify(appName)}, manifestUrl: new URL('${app}-source-code.manifest.json', base), textUrl: new URL('${app}-source-code.txt', base), expectedCommit: pin.commit, expectedRepository: pin.repository });\n} catch (error) {\n  const note = document.createElement('p'); note.setAttribute('role', 'status'); note.textContent = 'Print options: ' + error.message; document.body.append(note);\n}\n`);
     let html = await readFile(path.join(generationRoot, `${appDir}index.html`), 'utf8');
     // A predecessor can already have Teleprinter. Replace its mount, never stack it.
     html = html.replace(/      const teleprinterUrl =[^\n]*\n      const teleprinterScript =[^\n]*\n      html =[^\n]*\n\s*\n/g, '');
     html = html.replace(/<script type="module" src="\.\/teleprinter-bootstrap\.js"><\/script>\s*/g, '');
+    html = html.replace(/      html = html\.replace\(\/<head>\/i, '<head><link rel="icon" href="data:,">'\);\n/g, '');
     if (!/<link\b[^>]*rel=["']icon["']/i.test(html)) html = /<head>/i.test(html) ? html.replace(/<head>/i, '<head><link rel="icon" href="data:,">') : html.replace(/<!doctype html>/i, '<!doctype html><link rel="icon" href="data:,">');
     if (app === 'atlas') {
       const marker = '      document.open();';
@@ -83,7 +85,10 @@ if (mode === 'prepare') {
     } else {
       const mount = '<script type="module" src="./teleprinter-bootstrap.js"></script>';
       html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, mount + '\n</body>') : html + '\n' + mount + '\n';
-      if (app === 'landing') html = html.replace(/(<h1>[^<]*<\/h1>)/, `$1<p><strong>Inherited detector evidence from ${predecessor}.</strong> The measurements below were not rerun for this Teleprinter generation.</p>`);
+      if (app === 'landing') {
+        html = html.replace(/<p><strong>Inherited detector evidence from \d{12}\.<\/strong>[^<]*<\/p>/g, '');
+        html = html.replace(/(<h1>[^<]*<\/h1>)/, `$1<p><strong>Inherited detector evidence from ${evidenceGeneration}.</strong> The grid measurements below were not rerun for this print-test generation.</p>`);
+      }
     }
     await write(`${appDir}index.html`, html);
   }
