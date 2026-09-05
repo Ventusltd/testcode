@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path');
 const {chromium,devices}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/vikra/OneDrive/Documents/GitHub/gridatlas-main-202609050200/node_modules/playwright');
 const sandbox=path.resolve(__dirname,'..'),gen=process.env.TEST_GENERATION||fs.readFileSync(path.join(sandbox,'LATEST.txt'),'utf8').trim();
 const base=process.env.TEST_BASE||`http://127.0.0.1:8877/testcode/${gen}/`;
-const out=path.join(sandbox,gen,'evidence');fs.mkdirSync(out,{recursive:true});
+const out=process.env.TEST_OUTPUT||path.join(sandbox,gen,'evidence');fs.mkdirSync(out,{recursive:true});
 const report={generation:gen,base,started:new Date().toISOString(),browser:'Installed Google Chrome',profiles:[],checks:[],limitations:['Android profile is Chrome device emulation, not a physical Android browser or WebView.','Owner performs real iPhone testing.']};
 const save=()=>fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify(report,null,2));
 function check(name,ok,detail){report.checks.push({name,ok:!!ok,detail});save();console.log(`${ok?'PASS':'FAIL'} ${name}: ${JSON.stringify(detail)}`);}

@@ -1,0 +1,31 @@
+{
+  "url": "http://127.0.0.1:8877/testcode/202609051152/atlas/?repd_ref=8162&technology=solar&latitude=51.7831862&longitude=0.5449877&zoom=12",
+  "generation": "202609051152",
+  "popup": "⋮⋮\nLongfield\n−\n×\nLongfield\nsolar\n500 MW\nnorth east of Chelmsford and North of the A12 between Boreham and Hatfield Peverel · CM3 3AS · Essex\nREPD 8162 · awaiting construction\n\nNearest 400 kV substation: Bull's Lodge Substation · 2.03 km straight · ~2.5 km corridor estimate (×1.245, 73% of GB transmission cable circuits within 15% of published length, 59 distinct site pairs). Indicative highway-corridor screening only. Not a connection offer, not a constructability assessment and not a consenting design. Calibrated on cable circuits, which follow the highway network. Overhead line crosses open country and measures 1.13; this factor is not applied to an overhead-line question.\n\nScope: nearest of the 278 mapped substations at 400 kV or above that this search could see; the operator publishes 355 connection points at that class and 214 of them carry coordinates, so 141 cannot be measured to at all. A nearer one may exist that nothing here can see.\n\nTransmission network: none of the substations named here joins by name to a published NESO site, so nothing is stated about their circuits.\n\nExplore route corridors ›\nNEAREST SUBSTATIONS ≥33 KV\nBETA\n2.03 km\nBull's Lodge Substation\n400 kV\n2.29 km\nSpringfield BR Substation\n132 kV\n6.58 km\nChelmsford North Substation\n132 kV\n7.27 km\nUnnamed substation\n33 kV\n7.70 km\nChelmsford East Substation\n132 kV\n\n400 kV transmission, bulk power. 132 kV distribution in England and Wales, transmission in Scotland. 33 kV primary distribution; the usual class for a utility-scale solar or storage connection. Descriptions of the network, not advice about this scheme.\n\nHIDE THE PROJECT RING\nLAY OUT A SCHEME HERE ▸\nBeta analytics, not an actual grid connection. Straight-line distance to mapped geometry — not a cable route, not a connection length, and no route has been walked. A real connection depends on factors that must be studied: network impedance and fault level, thermal headroom, existing committed connections and queue position, right of way, wayleaves and easements, crossings, terrain, land control and consent. None of those can be inferred from a distance. A mapped substation does not confirm capacity, voltage suitability or acceptance by any network party, and absence from a mapped layer is not absence on the ground.",
+  "engineGlobals": [
+    "__GRIDATLAS_ATLAS__",
+    "__GRIDATLAS_MAP_READY__",
+    "__GRIDATLAS_PLACE_SEARCH__",
+    "__GRIDATLAS_V9_MAP_CAPTURE_INSTALLED__",
+    "__GRIDATLAS_MODULES__",
+    "__GRIDATLAS_PIPELINE_LAYERS__",
+    "__GRIDATLAS_NETWORK__",
+    "__GRIDATLAS_PRE_SNAPPED_CONFIG__",
+    "__GRIDATLAS_TOPOLOGY__",
+    "__GRIDATLAS_ELECTRICAL__",
+    "__GRIDATLAS_RATINGS__",
+    "__GRIDATLAS_POWERFLOW__",
+    "__GRIDATLAS_POINT_QUERY__",
+    "__GRIDATLAS_PLANNED__",
+    "__GRIDATLAS_OWNERSHIP__",
+    "__GRIDATLAS_DASH__",
+    "__GRIDATLAS_NEON_LINKS__",
+    "__GRIDATLAS_GB_CONDITIONS__",
+    "__GRIDATLAS_SLD__",
+    "__GRIDATLAS_V9_MAP__",
+    "__GRIDATLAS_ARRIVAL_TIDY__",
+    "__GRIDATLAS_CORRIDOR_SHEET__",
+    "__GRIDATLAS_DUCKDB_RUNTIME__",
+    "__GRIDATLAS_V8_DEEP_LINK__"
+  ]
+}
