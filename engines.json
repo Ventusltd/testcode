@@ -39,7 +39,14 @@
         "the composition manifest and its identity",
         "the layer inventory and the menu bar",
         "arrival identity and the technology buckets"
-      ]
+      ],
+      "checkout": {
+        "search": "siblings",
+        "branch": "main",
+        "must_contain": [
+          "atlas/current.json"
+        ]
+      }
     },
     {
       "id": "gridatlas-arrival-393x852",
@@ -51,7 +58,14 @@
       ],
       "network": true,
       "declares": "Five arrival cases at 393x852 in a real browser. Earns PASS_393x852_FIVE_ARRIVAL_CASES.",
-      "known_constraint": "Will not run from a working copy inside OneDrive: it stalls or crashes the renderer. Copy atlas/, data/ and tools/ outside OneDrive and junction node_modules. Measured 2026-09-05."
+      "known_constraint": "Will not run from a working copy inside OneDrive: it stalls or crashes the renderer. Copy atlas/, data/ and tools/ outside OneDrive and junction node_modules. Measured 2026-09-05.",
+      "checkout": {
+        "search": "siblings",
+        "branch": "main",
+        "must_contain": [
+          "atlas/current.json"
+        ]
+      }
     },
     {
       "id": "cvaa",
@@ -79,7 +93,7 @@
         "drivers/menu-map.mjs"
       ],
       "network": false,
-      "declares": "Maps every menu on every surface from the composed bytes, and fails when a surface the estate publishes has no menu at all.",
+      "declares": "Maps every menu on every surface from the composed bytes of an EXPLICITLY selected checkout, and fails when a surface the estate publishes has no menu at all, or when which clone to read is ambiguous.",
       "covers": [
         "gridatlas menu bar",
         "the shared estate menu",
@@ -95,13 +109,13 @@
         "drivers/link-targets.mjs"
       ],
       "network": false,
-      "declares": "Every place the estate builds a project deep link, and which receiver it targets. Reads the retired list from the engine contract rather than restating it.",
+      "declares": "Every place the estate builds a project deep link, in scripts AND in markup, and which receiver each one targets. Reads the retired list from the engine contract rather than restating it, and the set of supported surfaces from the homepage rather than from a directory-name regex.",
       "covers": [
         "the MAP button",
         "the atlas pointer cartridges",
         "every published Pipeline News version"
       ],
-      "known_constraint": "Fails while a live consumer still targets a retired receiver. That is the gate working, not decay: 10 live sites and 54 in immutable history at 202609050350."
+      "known_constraint": "Fails while a live consumer still targets a retired receiver. That is the gate working, not decay. At 202609051500, with the .html scanner and the homepage-derived surface set: 59 live sites — 15 HTML anchors (including 9 homepage-linked version index pages and the pipelinenews build template that generates them) and 44 scripts — plus 17 in the archive or in directories the homepage does not link, correctly left alone. The previous count of 10 live sites was an artefact of a scanner that accepted only .js and .mjs and a classifier that called nine published versions history."
     },
     {
       "id": "repd-rows",
@@ -112,7 +126,7 @@
         "drivers/repd-rows.mjs"
       ],
       "network": false,
-      "declares": "All 7,680 published REPD rows, audited offline against the engine contract and checked against the corpus own declared counts.",
+      "declares": "Every published REPD row on every surface the homepage publishes — 9 surfaces, 69,120 rows at 202609051500 — audited offline against the engine contract and against each surface own declared counts.",
       "covers": [
         "every row carries an REPD identity",
         "7,652 linkable, 28 without geometry, matching the release contract",
@@ -120,7 +134,7 @@
         "no link to a retired receiver",
         "a row without geometry gets no link rather than a wrong one"
       ],
-      "measured": "10/10 at 202609050400"
+      "measured": "94/94 across 9 published surfaces, 69,120 rows, at 202609051500. It previously audited one directory chosen by a version regex and reported 10/10 about v9.7 alone; the timestamped release cut that morning was invisible to it."
     }
   ],
   "surfaces": [
@@ -149,5 +163,7 @@
       "url": "https://ventusltd.github.io/data-federation-map-for-globalgrid2050-all-repos/dashboard/sandbox/spider_full_po_test.html",
       "has_menu": false
     }
-  ]
+  ],
+  "checkout_note": "Which clone a gate reads is declared here, not guessed. Default is the declared path and only that. A repo with sibling clones that differ declares a search with the branch that decides it, and lib/checkout.mjs fails loudly on zero matches or more than one rather than falling back to whatever readdirSync returned first — the fault that made menu-map.mjs give exit 0 and exit 1 twenty minutes apart with nothing changed on disk.",
+  "required_note": "Every gate is required unless it says \"required\": false. A required gate whose clone is absent BLOCKS the run and the exit code: absence is not a pass and it is not neutral either."
 }
