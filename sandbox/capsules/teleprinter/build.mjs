@@ -67,8 +67,16 @@ if (mode === 'prepare') {
   let toolLayerBootstrap = '';
   if (options['tool-owner']) {
     const owner = await composeToolOwner(generationRoot, options['tool-owner'], options['tool-revision'], options['tool-release']);
-    const tools = owner.applications.map(app => ({id:app.id,title:app.id==='gis-sld-financial-sandbox'?'GIS SLD Financial Sandbox':app.id,entry:'../layer-apps/'+app.entry}));
-    await write('atlas/tool-layers.json', JSON.stringify({owners:[owner],tools},null,2)+'\n');
+    let previous = {owners:[],tools:[]};
+    try { previous = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8')); } catch(error) { if(error.code!=='ENOENT') throw error; }
+    const names = {'gis-sld-financial-sandbox':'GIS SLD Financial Sandbox','module-layout':'Module Layout','cable-geometry-visualiser':'Cable Geometry','dc-ac-coupled-bess':'DC / AC BESS'};
+    const apps = owner.applications.filter(app=>!options['tool-id'] || app.id===options['tool-id']);
+    if(!apps.length) throw Error('Requested tool is absent from pinned owner manifest');
+    const tools = apps.map(app => ({id:app.id,title:names[app.id]||app.id,entry:'../layer-apps/'+app.entry}));
+    const combined = new Map(previous.tools.map(tool=>[tool.id,tool]));
+    for(const tool of tools) combined.set(tool.id,tool);
+    const owners = previous.owners.filter(item=>item.repository!==owner.repository).concat(owner);
+    await write('atlas/tool-layers.json', JSON.stringify({owners,tools:[...combined.values()]},null,2)+'\n');
   }
   try {
     const config = JSON.parse(await readFile(path.join(generationRoot,'atlas/tool-layers.json'),'utf8'));
