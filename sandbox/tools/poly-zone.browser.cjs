@@ -99,6 +99,23 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           const held=await coordinates();await scope.click();await page.locator('#btn-zonedraw').click();
           check('returning to Poly Zone restores its exact outline',JSON.stringify(await coordinates())===JSON.stringify(held));
         }
+        if(process.env.TEST_DRAFT==='1') {
+          const held=await coordinates();
+          await page.reload({waitUntil:'domcontentloaded'});
+          await page.waitForFunction(()=>window.__POLY_TEST_MAP__?.getSource('src-zonedraw-points')&&document.querySelector('#gridatlas-menu-bar .gm-title'),null,{timeout:60000});
+          await scope.click();await page.locator('#btn-zonedraw').click();
+          check('reload restores every edited coordinate',JSON.stringify(await coordinates())===JSON.stringify(held));
+          check('restoration is disclosed in controls',(await page.locator('#zonedraw-storage-status').innerText()).includes('Restored'));
+          await page.locator('#btn-zonedraw-reset').click();
+          await page.reload({waitUntil:'domcontentloaded'});
+          await page.waitForFunction(()=>window.__POLY_TEST_MAP__?.getSource('src-zonedraw-points')&&document.querySelector('#gridatlas-menu-bar .gm-title'),null,{timeout:60000});
+          await scope.click();await page.locator('#btn-zonedraw').click();
+          check('reset remains cleared after reload',!(await coordinates()));
+          await page.evaluate(()=>{Storage.prototype.setItem=function(){throw Error('Test storage denied');};});
+          const r=await canvas.boundingBox();await canvas.click({position:{x:r.width/2,y:r.height/2}});
+          check('storage denial keeps drawn geometry',(await coordinates())?.[0]?.length===25);
+          check('storage denial has an honest status',(await page.locator('#zonedraw-storage-status').innerText()).includes('unavailable'));
+        }
         check('no uncaught script errors',result.errors.length===0,result.errors);
         result.pass=result.checks.every(c=>c.pass);
       }catch(error){result.error=error.stack;result.pass=false;console.log(name,error.message);}

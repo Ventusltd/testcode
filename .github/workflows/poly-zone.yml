@@ -6,6 +6,7 @@ on:
     paths:
       - 'sandbox/202609060308/**'
       - 'sandbox/202609060309/**'
+      - 'sandbox/202609060320/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -22,6 +23,9 @@ jobs:
             reset: '0'
           - generation: '202609060309'
             reset: '1'
+          - generation: '202609060320'
+            reset: '1'
+            draft: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -29,7 +33,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 2d616e417dd05b74dd1f0785932d0fb1f86eb0cc
+          ref: dacc0abfdaacf069f86ea2416f62522985d25a55
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -51,6 +55,7 @@ jobs:
           CHROME_CHANNEL: chromium
           TEST_GENERATION: ${{ matrix.generation }}
           TEST_RESET: ${{ matrix.reset }}
+          TEST_DRAFT: ${{ matrix.draft }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4
