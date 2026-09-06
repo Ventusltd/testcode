@@ -7,6 +7,7 @@ on:
       - 'sandbox/202609060418/**'
       - 'sandbox/tools/*pdf*'
       - 'sandbox/tools/candidate-server.cjs'
+      - 'sandbox/tools/browser-webgl-probe.mjs'
       - '.github/workflows/map-pdf.yml'
 permissions:
   contents: read
@@ -42,9 +43,11 @@ jobs:
       - name: Download actual PDFs in three browser engines
         env:
           TEST_OUTPUT: pdf-artifacts
+          FIREFOX_HEADED: '1'
         run: |
           node sandbox/tools/candidate-server.cjs > candidate-server.log 2>&1 &
-          node sandbox/tools/pdf-export.browser.mjs http://127.0.0.1:8417/testcode/202609060418/atlas/
+          xvfb-run --auto-servernum node sandbox/tools/browser-webgl-probe.mjs
+          xvfb-run --auto-servernum node sandbox/tools/pdf-export.browser.mjs http://127.0.0.1:8417/testcode/202609060418/atlas/
           python sandbox/tools/pdf-render-check.py pdf-artifacts 202609060418
       - name: Retain complete polygon interaction coverage
         env:
