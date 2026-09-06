@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import {compact,proveEquivalent,replaceMapEngine,PARSER} from './token-compaction.mjs';
+import {compact,proveEquivalent,replaceMapEngine,replaceOptionalModule,PARSER} from './token-compaction.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const args=process.argv.slice(2), arg=(key,fallback)=>{const i=args.indexOf('--'+key);return i<0?fallback:args[i+1];};
 const owner=arg('owner',process.env.GRIDATLAS_REPO||'C:/Users/vikra/atlas-labels-20260906');
@@ -22,7 +22,13 @@ const parentPath=cartridge.path.startsWith('/testcode/')?'sandbox/'+cartridge.pa
 const before=blob(root,parentPath);assert.equal(hash(before),cartridge.sha256);
 const engine=blob(owner,enginePath,ownerCommit),module=blob(owner,modulePath,ownerCommit);
 // The parser selects the carried engine boundary. All sibling modules remain byte-identical before compaction.
-const assembled=replaceMapEngine(before.toString(),engine.toString(),module.toString());
+let assembled=replaceMapEngine(before.toString(),engine.toString(),module.toString());
+const optionalModules=[];
+if(arg('extra-module')){
+  const extraPath=arg('extra-module'),schema=arg('extra-schema'),bytes=blob(owner,extraPath,ownerCommit);
+  assembled=replaceOptionalModule(assembled,bytes.toString(),schema);
+  optionalModules.push({path:extraPath,schema,sha256:hash(bytes)});
+}
 const payload='/* '+generation+'; source and token/AST compaction receipts in source-provenance.json. */\n'+compact(assembled);
 proveEquivalent(assembled,payload);
 assert(payload.length<=368640,'The established cartridge size ceiling remains in force');
@@ -44,6 +50,7 @@ for(const name of ['index.html','map-controls-layout.js','teleprinter-bootstrap.
 const shards=execFileSync('git',['ls-tree','-r','--name-only','HEAD',`sandbox/${parent}/atlas/data/repd-identities`],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(Boolean);
 for(const p of shards)write('atlas/data/repd-identities/'+path.basename(p),blob(root,p));
 const provenance={schema:'gridatlas.poly-candidate-provenance.v1',generation,parent,ownerCommit,engine:{path:enginePath,sha256:hash(engine)},module:{path:modulePath,sha256:hash(module)},parentCartridge:{path:parentPath,sha256:hash(before)},assembledSha256:hash(assembled),payloadSha256:hash(payload),characters:payload.length,parser:PARSER,proof:'Exact token text and complete syntax tree match before/after compaction; unchanged strings, CSS and regular expressions.'};
+if(optionalModules.length)provenance.optionalModules=optionalModules;
 write('atlas/source-provenance.json',JSON.stringify(provenance,null,2)+'\n');
 write('index.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GridAtlas ${generation}</title><body style="background:#0d1117;color:#7fe3d0;font:18px system-ui;padding:24px"><h1>GridAtlas ${generation}</h1><p>${title}</p><p><a style="color:inherit" href="atlas/">Open GridAtlas</a></p><p><a style="color:inherit" href="/testcode/${parent}/atlas/">Previous GridAtlas</a></p></body></html>`);
 const files=[];
