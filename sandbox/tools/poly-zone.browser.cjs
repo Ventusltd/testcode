@@ -109,6 +109,20 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           check('download contains positive area and perimeter in named units',feature.properties.area_m2>0&&feature.properties.perimeter_km>0);
           check('export leaves the working polygon untouched',JSON.stringify(await coordinates())===JSON.stringify(held));
         }
+        if(process.env.TEST_IMPORT==='1') {
+          const file=path.join(output,name+'-polygon.geojson');
+          const saved=JSON.parse(fs.readFileSync(file,'utf8')).features[0].geometry.coordinates;
+          await page.locator('#btn-zonedraw-reset').click();
+          await page.locator('#zonedraw-file').setInputFiles(file);
+          await page.waitForFunction(()=>document.querySelector('#zonedraw-storage-status')?.textContent.startsWith('Opened'));
+          check('opening the downloaded file restores its exact ring',JSON.stringify(await coordinates())===JSON.stringify(saved));
+          const held=await coordinates();
+          await page.locator('#zonedraw-file').setInputFiles({name:'broken.geojson',mimeType:'application/geo+json',buffer:Buffer.from('{broken')});
+          await page.waitForFunction(()=>document.querySelector('#zonedraw-storage-status')?.textContent.includes('not valid JSON'));
+          check('invalid import keeps the entire existing outline',JSON.stringify(await coordinates())===JSON.stringify(held));
+          const chooser=page.waitForEvent('filechooser');await page.locator('#btn-zonedraw-import').click();
+          check('Open GeoJSON launches the native file chooser',!!(await chooser));
+        }
         if(process.env.TEST_DRAFT==='1') {
           const held=await coordinates();
           await page.reload({waitUntil:'domcontentloaded'});
