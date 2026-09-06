@@ -23,11 +23,13 @@ const record=(name,pass,detail)=>{checks.push({name,pass:!!pass,detail});console
   const scope=page.locator('.gm-title').filter({hasText:/^Scope$/});await scope.click();await page.locator('#btn-zonedraw').click();
   const ring=[[1,51],[1.01,51],[1.01,51.01],[1,51.01],[1,51]];
   await page.locator('#zonedraw-file').setInputFiles({name:'retained.geojson',mimeType:'application/geo+json',buffer:Buffer.from(JSON.stringify({type:'Polygon',coordinates:[ring]}))});
+  await page.waitForFunction(()=>window.__GRIDATLAS_V9_MAP__.getSource('src-zonedraw-line')._data.features[0]?.geometry.coordinates.length===5);
   const saved=await page.evaluate(()=>localStorage.getItem('gridatlas.polygon-draft.v1'));
+  record('Valid composition saves the actual imported outline',JSON.stringify(JSON.parse(saved).points)===JSON.stringify(ring.slice(0,-1)));
   const routeUrl=new URL('current.json',base).href,altered=structuredClone(current);altered.cartridges=[];altered.cartridge_order=[];
   await page.route(routeUrl,route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(altered)}));
   await page.reload();await page.waitForFunction(()=>document.body.dataset.gridatlasRouter==='failed'||window.__GRIDATLAS_ATLAS__);
-  record('Composition failure preserves the exact saved draft',await page.evaluate(()=>localStorage.getItem('gridatlas.polygon-draft.v1'))===saved);
+  record('Composition failure preserves the exact saved draft',await page.evaluate(()=>document.body.dataset.gridatlasRouter==='failed')&&await page.evaluate(()=>localStorage.getItem('gridatlas.polygon-draft.v1'))===saved);
   await page.unroute(routeUrl);await page.reload();await page.waitForFunction(()=>window.__GRIDATLAS_V9_MAP__?.getSource('src-zonedraw-line'));
   await scope.click();await page.locator('#btn-zonedraw').click();
   const restored=await page.evaluate(()=>window.__GRIDATLAS_V9_MAP__.getSource('src-zonedraw-line')._data.features[0]?.geometry.coordinates);
