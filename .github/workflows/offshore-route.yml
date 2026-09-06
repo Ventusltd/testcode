@@ -1,0 +1,74 @@
+name: Atlas offshore route candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/202609060300/**'
+      - 'sandbox/tools/build-offshore-candidate.py'
+      - 'sandbox/tools/offshore-route.browser.cjs'
+      - 'sandbox/tools/controls-layout.browser.cjs'
+      - '.github/workflows/offshore-route.yml'
+  pull_request:
+    paths:
+      - 'sandbox/202609060300/**'
+      - 'sandbox/tools/build-offshore-candidate.py'
+      - 'sandbox/tools/offshore-route.browser.cjs'
+      - 'sandbox/tools/controls-layout.browser.cjs'
+      - '.github/workflows/offshore-route.yml'
+permissions:
+  contents: read
+jobs:
+  offshore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: testcode
+          persist-credentials: false
+      - name: Checkout the exact reviewed offshore owner
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: db38dfe0811c755f9c382f2cdde1d438f52e07de
+          path: gridatlas-owner
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Syntax, publication hashes, owner transformation and baseline controls
+        working-directory: testcode
+        env:
+          GRIDATLAS_OWNER_REPO: ${{ github.workspace }}/gridatlas-owner
+        run: |
+          python3 sandbox/tools/build-offshore-candidate.py --verify-generation 202609060300
+          node --check sandbox/tools/offshore-route.browser.cjs
+          node --check sandbox/tools/controls-layout.browser.cjs
+          find sandbox/202609060300 -name '*.js' -print0 | xargs -0 -n 1 node --check
+          node --test sandbox/capsules/tool-layers/*.test.mjs
+      - name: Install pinned browser tooling
+        working-directory: testcode
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx --no-install playwright install --with-deps chromium
+      - name: All six menus and tools on desktop and phone
+        working-directory: testcode
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060300'
+          TEST_OUTPUT: offshore-artifacts/controls
+        run: node sandbox/tools/controls-layout.browser.cjs
+      - name: Offshore distances and onshore corridor regression on desktop and phone
+        working-directory: testcode
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060300'
+          TEST_OUTPUT: offshore-artifacts/routes
+        run: node sandbox/tools/offshore-route.browser.cjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: atlas-offshore-${{ github.sha }}
+          path: testcode/offshore-artifacts/
+          retention-days: 7
