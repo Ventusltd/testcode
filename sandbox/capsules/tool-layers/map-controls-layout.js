@@ -12,6 +12,7 @@ html body .search-bar-wrapper[data-testcode-search="persistent"]{width:min(640px
 html body .search-bar-wrapper[data-testcode-search="persistent"]>div{flex:1!important;min-width:0!important}
 html body .search-bar-wrapper[data-testcode-search="persistent"] #search-input{width:100%!important;box-sizing:border-box!important}
 @media(max-width:768px){
+ #gridatlas-menu-bar .gm-panel{top:54px!important;max-height:calc(100dvh - 60px)!important;box-sizing:border-box;z-index:1}
  #codex-tool-layers{flex-direction:column!important;align-items:stretch!important;max-width:min(250px,calc(100vw - 24px))!important}
  html body .search-bar-wrapper[data-testcode-search="persistent"]{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important}
 }
