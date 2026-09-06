@@ -14,10 +14,12 @@ const manifest=JSON.parse(blob(root,prefix+'publication.json'));
 for(const item of manifest.files){const b=blob(root,prefix+item.path);assert.equal(b.length,item.bytes,item.path);assert.equal(hash(b),item.sha256,item.path);}
 const p=JSON.parse(blob(root,prefix+'atlas/source-provenance.json'));
 assert.equal(p.generation,generation);assert(/^[a-f0-9]{40}$/.test(p.ownerCommit));
-for(const name of ['map-controls-layout.js','teleprinter-bootstrap.js'])assert.deepEqual(blob(root,prefix+'atlas/'+name),blob(root,`sandbox/${p.parent}/atlas/${name}`),'Carried '+name);
-const inheritedPins=execFileSync('git',['ls-tree','--name-only','HEAD',`sandbox/${p.parent}/atlas/tool-layers.json`],{cwd:root,encoding:'utf8'}).trim();
-if(inheritedPins)assert.deepEqual(blob(root,prefix+'atlas/tool-layers.json'),blob(root,inheritedPins),'Carried original tool identities');
-const engine=blob(owner,p.engine.path,p.ownerCommit),module=blob(owner,p.module.path,p.ownerCommit),parent=blob(root,p.parentCartridge.path);
+const parentRef=p.parentSourceCommit||'HEAD';if(p.parentSourceCommit)assert(/^[a-f0-9]{40}$/.test(p.parentSourceCommit));
+for(const name of ['map-controls-layout.js','teleprinter-bootstrap.js'])assert.deepEqual(blob(root,prefix+'atlas/'+name),blob(root,`sandbox/${p.parent}/atlas/${name}`,parentRef),'Carried '+name);
+assert.equal(blob(root,prefix+'atlas/index.html').toString(),blob(root,`sandbox/${p.parent}/atlas/index.html`,parentRef).toString().replace('Test Code Atlas '+p.parent,'Test Code Atlas '+generation),'Carried complete router and its validation');
+const inheritedPins=execFileSync('git',['ls-tree','--name-only',parentRef,`sandbox/${p.parent}/atlas/tool-layers.json`],{cwd:root,encoding:'utf8'}).trim();
+if(inheritedPins)assert.deepEqual(blob(root,prefix+'atlas/tool-layers.json'),blob(root,inheritedPins,parentRef),'Carried original tool identities');
+const engine=blob(owner,p.engine.path,p.ownerCommit),module=blob(owner,p.module.path,p.ownerCommit),parent=blob(root,p.parentCartridge.path,parentRef);
 assert.equal(hash(engine),p.engine.sha256);assert.equal(hash(module),p.module.sha256);assert.equal(hash(parent),p.parentCartridge.sha256);
 let assembled=replaceMapEngine(parent.toString(),engine.toString(),module.toString());
 for(const extra of p.optionalModules||[]){const bytes=blob(owner,extra.path,p.ownerCommit);assert.equal(hash(bytes),extra.sha256);assembled=replaceOptionalModule(assembled,bytes.toString(),extra.schema);}
