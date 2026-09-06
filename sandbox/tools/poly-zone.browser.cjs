@@ -76,6 +76,18 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
         });
         await page.mouse.move(vertex.x,vertex.y);await page.mouse.down();await page.mouse.move(vertex.x+24,vertex.y+16,{steps:5});await page.mouse.up();
         const afterDrag=await coordinates();check('corner drag edits the existing polygon',JSON.stringify(afterDrag)!==JSON.stringify(before)&&afterDrag[0].length===25);
+        if(process.env.TEST_HISTORY==='1') {
+          await page.locator('#btn-zonedraw-undo').click();
+          check('Undo restores the whole outline before the drag',JSON.stringify(await coordinates())===JSON.stringify(before));
+          await page.locator('#btn-zonedraw-redo').click();
+          check('Redo restores the exact edited outline',JSON.stringify(await coordinates())===JSON.stringify(afterDrag));
+          await page.locator('#btn-zonedraw-reset').click();
+          await page.locator('#btn-zonedraw-undo').click();
+          check('Undo recovers a deliberately reset polygon',JSON.stringify(await coordinates())===JSON.stringify(afterDrag));
+          await page.locator('#btn-zonedraw-redo').click();
+          check('Redo can repeat the reset',!(await coordinates()));
+          await page.locator('#btn-zonedraw-undo').click();
+        }
         if(process.env.TEST_RESET==='1') {
           const r=await canvas.boundingBox();await canvas.click({position:{x:r.width*.1,y:r.height*.75}});
           check('ordinary map click keeps edited polygon',JSON.stringify(await coordinates())===JSON.stringify(afterDrag));
