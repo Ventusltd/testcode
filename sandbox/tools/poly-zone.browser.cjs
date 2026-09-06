@@ -165,6 +165,19 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           const chooser=page.waitForEvent('filechooser');await page.locator('#btn-zonedraw-import').click();
           check('Open GeoJSON launches the native file chooser',!!(await chooser));
         }
+        if(process.env.TEST_COORDINATE==='1') {
+          const held=await coordinates();await page.locator('#zonedraw-coordinate-editor summary').click();
+          await page.selectOption('#zonedraw-vertex','1');
+          check('coordinate editor loads the selected exact vertex',Number(await page.locator('#zonedraw-longitude').inputValue())===held[0][1][0]&&Number(await page.locator('#zonedraw-latitude').inputValue())===held[0][1][1]);
+          const changed=held[0][1][0]+.0001;await page.locator('#zonedraw-longitude').fill(String(changed));await page.locator('#btn-zonedraw-coordinate').click();
+          const edited=await coordinates();check('numeric edit changes only the selected vertex',edited[0][1][0]===changed&&edited[0][1][1]===held[0][1][1]&&edited[0].every((p,i)=>i===1||JSON.stringify(p)===JSON.stringify(held[0][i])));
+          await page.locator('#btn-zonedraw-undo').click();check('Undo restores exact pre-coordinate outline',JSON.stringify(await coordinates())===JSON.stringify(held));
+          await page.locator('#zonedraw-longitude').fill('181');await page.locator('#btn-zonedraw-coordinate').click();
+          check('out-of-range coordinate is rejected without mutation',JSON.stringify(await coordinates())===JSON.stringify(held)&&(await page.locator('#zonedraw-storage-status').innerText()).includes('has not changed'));
+          await page.locator('#zonedraw-longitude').fill('');await page.locator('#btn-zonedraw-coordinate').click();check('blank coordinate is not converted to zero',JSON.stringify(await coordinates())===JSON.stringify(held));
+          await page.locator('#btn-zonedraw-lock').click();check('polygon lock disables numeric edits',await page.locator('#btn-zonedraw-coordinate').isDisabled()&&await page.locator('#zonedraw-longitude').isDisabled());await page.locator('#btn-zonedraw-lock').click();
+          await page.locator('#zonedraw-coordinate-editor summary').click();
+        }
         if(process.env.TEST_DRAFT==='1') {
           const held=await coordinates();
           await page.reload({waitUntil:'domcontentloaded'});
