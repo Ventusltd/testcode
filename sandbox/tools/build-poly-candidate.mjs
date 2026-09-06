@@ -15,6 +15,7 @@ const now=new Date(),generation=now.toISOString().replace(/[-:T]/g,'').slice(0,1
 const destination=path.join(root,'sandbox',generation);assert(!fs.existsSync(destination),'Immutable generation already exists');
 const blob=(repo,p,sha='HEAD')=>execFileSync('git',['show',`${sha}:${p}`],{cwd:repo,maxBuffer:64*1024*1024});
 const hash=b=>createHash('sha256').update(b).digest('hex');
+const parentSourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
 const write=(p,b)=>{const f=path.join(destination,p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,b);};
 const current=JSON.parse(blob(root,`sandbox/${parent}/atlas/current.json`));
 const cartridge=current.cartridges.find(c=>c.id==='substation-intelligence');assert(cartridge);
@@ -51,7 +52,7 @@ const parentFiles=execFileSync('git',['ls-tree','--name-only','HEAD',`sandbox/${
 if(parentFiles)write('atlas/tool-layers.json',blob(root,parentFiles));
 const shards=execFileSync('git',['ls-tree','-r','--name-only','HEAD',`sandbox/${parent}/atlas/data/repd-identities`],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(Boolean);
 for(const p of shards)write('atlas/data/repd-identities/'+path.basename(p),blob(root,p));
-const provenance={schema:'gridatlas.poly-candidate-provenance.v1',generation,parent,ownerCommit,engine:{path:enginePath,sha256:hash(engine)},module:{path:modulePath,sha256:hash(module)},parentCartridge:{path:parentPath,sha256:hash(before)},assembledSha256:hash(assembled),payloadSha256:hash(payload),characters:payload.length,parser:PARSER,proof:'Exact token text and complete syntax tree match before/after compaction; unchanged strings, CSS and regular expressions.'};
+const provenance={schema:'gridatlas.poly-candidate-provenance.v1',generation,parent,parentSourceCommit,ownerCommit,engine:{path:enginePath,sha256:hash(engine)},module:{path:modulePath,sha256:hash(module)},parentCartridge:{path:parentPath,sha256:hash(before)},assembledSha256:hash(assembled),payloadSha256:hash(payload),characters:payload.length,parser:PARSER,proof:'Exact token text and complete syntax tree match before/after compaction; unchanged strings, CSS and regular expressions.'};
 if(optionalModules.length)provenance.optionalModules=optionalModules;
 write('atlas/source-provenance.json',JSON.stringify(provenance,null,2)+'\n');
 write('index.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GridAtlas ${generation}</title><body style="background:#0d1117;color:#7fe3d0;font:18px system-ui;padding:24px"><h1>GridAtlas ${generation}</h1><p>${title}</p><p><a style="color:inherit" href="atlas/">Open GridAtlas</a></p><p><a style="color:inherit" href="/testcode/${parent}/atlas/">Previous GridAtlas</a></p></body></html>`);
