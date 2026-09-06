@@ -10,6 +10,7 @@ on:
       - 'sandbox/202609060322/**'
       - 'sandbox/202609060324/**'
       - 'sandbox/202609060325/**'
+      - 'sandbox/202609060327/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -44,6 +45,13 @@ jobs:
             export: '1'
             import: '1'
             history: '1'
+          - generation: '202609060327'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -51,7 +59,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 14d563615bc7f19850c3b8d9c089ecca98ff673a
+          ref: 7a51609ae5f50623ded7888df06e5b49e7ca7267
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -77,6 +85,7 @@ jobs:
           TEST_EXPORT: ${{ matrix.export }}
           TEST_IMPORT: ${{ matrix.import }}
           TEST_HISTORY: ${{ matrix.history }}
+          TEST_LOCK: ${{ matrix.lock }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4

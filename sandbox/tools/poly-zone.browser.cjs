@@ -88,6 +88,18 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           check('Redo can repeat the reset',!(await coordinates()));
           await page.locator('#btn-zonedraw-undo').click();
         }
+        if(process.env.TEST_LOCK==='1') {
+          const held=await coordinates();
+          const point=await page.evaluate(()=>{const m=window.__POLY_TEST_MAP__,p=m.project(m.getSource('src-zonedraw-fill')._data.features[0].geometry.coordinates[0][0]),r=m.getCanvas().getBoundingClientRect();return{x:p.x+r.left,y:p.y+r.top};});
+          await page.locator('#btn-zonedraw-lock').click();
+          check('lock hides vertex edit handles',await page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-points')._data.features.length===0));
+          const center=await page.evaluate(()=>window.__POLY_TEST_MAP__.getCenter().toArray());
+          await page.mouse.move(point.x,point.y);await page.mouse.down();await page.mouse.move(point.x+35,point.y+20,{steps:5});await page.mouse.up();
+          check('locked vertex drag leaves every coordinate intact',JSON.stringify(await coordinates())===JSON.stringify(held));
+          check('locked polygon still allows map pan',JSON.stringify(await page.evaluate(()=>window.__POLY_TEST_MAP__.getCenter().toArray()))!==JSON.stringify(center));
+          await page.locator('#btn-zonedraw-lock').click();
+          check('unlock restores editable corner handles',await page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-points')._data.features.some(f=>f.properties.kind==='vertex')));
+        }
         if(process.env.TEST_RESET==='1') {
           const r=await canvas.boundingBox();await canvas.click({position:{x:r.width*.1,y:r.height*.75}});
           check('ordinary map click keeps edited polygon',JSON.stringify(await coordinates())===JSON.stringify(afterDrag));
