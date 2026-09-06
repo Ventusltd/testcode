@@ -32,11 +32,17 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   const base=process.env.TEST_BASE||`http://127.0.0.1:${server.address().port}/testcode/${generation}/atlas/`;
   report.base=base;
-  const browser=await playwright.chromium.launch({headless:true,...(process.env.CHROME_CHANNEL==='chromium'?{}:{channel:process.env.CHROME_CHANNEL||'chrome'})});
+  const engine=process.env.TEST_ENGINE||'chromium';
+  if(!['chromium','firefox','webkit'].includes(engine))throw Error('Unknown browser engine');
+  if(engine!=='chromium'&&process.env.TEST_TOUCH==='1')throw Error('The touch-drag proof requires Chromium CDP');
+  const browser=await playwright[engine].launch({headless:true,...(engine!=='chromium'||process.env.CHROME_CHANNEL==='chromium'?{}:{channel:process.env.CHROME_CHANNEL||'chrome'})});
+  report.engine=engine;
   report.browser=browser.version();
   try {
     for(const profile of [{name:'desktop',viewport:{width:1440,height:900}},{name:'phone',viewport:{width:393,height:852},isMobile:true,hasTouch:true}]) {
-      const {name,...options}=profile,context=await browser.newContext(options);
+      const {name,...options}=profile;
+      if(engine==='firefox')delete options.isMobile;
+      const context=await browser.newContext(options);
       const result={name,errors:[],checks:[]};report.profiles.push(result);
       const check=(label,pass,detail)=>{result.checks.push({name:label,pass:!!pass,detail});save();console.log(name,pass?'PASS':'FAIL',label);};
       try {
