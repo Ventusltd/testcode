@@ -1,0 +1,61 @@
+name: Poly Zone engineering regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/202609060308/**'
+      - 'sandbox/202609060309/**'
+      - 'sandbox/tools/*poly*'
+      - 'sandbox/tools/token-compaction.mjs'
+      - '.github/workflows/poly-zone.yml'
+permissions:
+  contents: read
+jobs:
+  polygon:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        include:
+          - generation: '202609060308'
+            reset: '0'
+          - generation: '202609060309'
+            reset: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 2d616e417dd05b74dd1f0785932d0fb1f86eb0cc
+          fetch-depth: 0
+          path: owner-gridatlas
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Verify committed source, payload and dependency identities
+        env:
+          GRIDATLAS_REPO: owner-gridatlas
+        run: |
+          node sandbox/tools/verify-poly-candidate.mjs ${{ matrix.generation }}
+          node --check sandbox/tools/poly-zone.browser.cjs
+      - name: Install pinned browser tooling
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Exercise actual polygon and circle controls
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: ${{ matrix.generation }}
+          TEST_RESET: ${{ matrix.reset }}
+          TEST_OUTPUT: poly-zone-artifacts
+        run: node sandbox/tools/poly-zone.browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: poly-zone-${{ matrix.generation }}-${{ github.sha }}
+          path: poly-zone-artifacts/
+          retention-days: 7
