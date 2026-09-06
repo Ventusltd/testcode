@@ -142,6 +142,15 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           check('download contains positive area and perimeter in named units',feature.properties.area_m2>0&&feature.properties.perimeter_km>0);
           check('export leaves the working polygon untouched',JSON.stringify(await coordinates())===JSON.stringify(held));
         }
+        if(process.env.TEST_CSV==='1') {
+          const held=await coordinates(),pending=page.waitForEvent('download');await page.locator('#btn-zonedraw-csv').click();
+          const file=path.join(output,name+'-vertices.csv');await(await pending).saveAs(file);const lines=fs.readFileSync(file,'utf8').trim().split(/\r?\n/),rows=lines.slice(1).map(line=>line.split(',').map(Number));
+          check('CSV names coordinate and distance units explicitly',lines[0]==='vertex,longitude_deg,latitude_deg,chainage_m,next_segment_m');
+          check('CSV preserves every vertex in drawn order',rows.length===held[0].length-1&&rows.every((row,i)=>row[0]===i+1&&row[1]===held[0][i][0]&&row[2]===held[0][i][1]));
+          const geo=JSON.parse(fs.readFileSync(path.join(output,name+'-polygon.geojson'),'utf8'));let total=0;const chainage=rows.every(row=>{const correct=Math.abs(row[3]-total)<1e-8;total+=row[4];return correct;});
+          check('CSV chainage includes the closing segment and matches exported perimeter',chainage&&Math.abs(total-geo.features[0].properties.perimeter_km*1000)<1e-7);
+          check('CSV download keeps the working outline unchanged',JSON.stringify(await coordinates())===JSON.stringify(held));
+        }
         if(process.env.TEST_IMPORT==='1') {
           const file=path.join(output,name+'-polygon.geojson');
           const saved=JSON.parse(fs.readFileSync(file,'utf8')).features[0].geometry.coordinates;
