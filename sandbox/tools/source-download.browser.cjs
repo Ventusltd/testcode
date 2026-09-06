@@ -1,8 +1,13 @@
 const fs=require('node:fs'),path=require('node:path');
 const {createHash}=require('node:crypto');
+const {execFileSync}=require('node:child_process');
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 let pw;try{pw=require('playwright');}catch{pw=require('C:/Users/vikra/OneDrive/Documents/GitHub/gridatlas-main-202609050200/node_modules/playwright');}
-const base=process.argv[2],out=path.resolve(process.env.TEST_OUTPUT||'app-print-artifacts');
+const base=process.argv[2],out=path.resolve(process.env.TEST_OUTPUT||'source-download-artifacts');
+const generation=new URL(base).pathname.match(/^\/testcode\/(\d{12})\/atlas\/$/)?.[1];
+if(!generation)throw Error('Pass an immutable TestCode Atlas URL');
+const root=path.resolve(__dirname,'../..'),sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+const blob=p=>execFileSync('git',['show',sourceCommit+':'+p],{cwd:root,maxBuffer:64*1024*1024});
 fs.mkdirSync(out,{recursive:true});
 const results=[];
 (async()=>{
@@ -43,16 +48,24 @@ const results=[];
    let verified=0;const headers=[...text.matchAll(/===== BEGIN RESOURCE ("[^\n]+?") \| originalBytes=(\d+) \| encoding=([^ ]+) \| sha256=([a-f0-9]+) =====\n/g)];
    for(const match of headers){const end=text.indexOf('\n===== END RESOURCE '+match[1]+' =====',match.index+match[0].length);if(end<0)throw Error('Missing resource boundary');const value=text.slice(match.index+match[0].length,end),body=Buffer.from(value,match[3]==='base64'?'base64':'utf8');if(body.length!==Number(match[2])||hash(body)!==match[4])throw Error('Resource hash mismatch '+match[1]);verified++;}
    check('Every downloaded resource body matches its own full byte hash',verified===manifest.counts.included,{verified});
-   const current=JSON.parse(fs.readFileSync(path.join(__dirname,'../202609060418/atlas/current.json'),'utf8'));
+   const current=JSON.parse(blob('sandbox/'+generation+'/atlas/current.json'));
    const cartridge=current.cartridges.find(c=>c.id==='substation-intelligence');
-   check('Runtime source includes exact current executable cartridge',manifest.resources.some(resource=>resource.url.endsWith('/cartridges/202609060418-substation-intelligence.js')&&resource.sha256===cartridge.sha256&&resource.status==='included'));
-   check('Runtime source includes every pinned executable cartridge',current.cartridges.every(cartridge=>manifest.resources.some(resource=>resource.url.endsWith(cartridge.path.replace(/^\./,''))&&resource.sha256===cartridge.sha256&&resource.status==='included')));
+   check('Runtime source includes exact current executable cartridge',manifest.resources.some(resource=>resource.url===new URL(cartridge.path,base).href&&resource.sha256===cartridge.sha256&&resource.status==='included'));
+   check('Runtime source includes every pinned executable cartridge',current.cartridges.every(cartridge=>manifest.resources.some(resource=>resource.url===new URL(cartridge.path,base).href&&resource.sha256===cartridge.sha256&&resource.status==='included')));
+   check('Runtime source contains the exact router document',manifest.resources.some(resource=>resource.url===base&&resource.sha256===hash(blob('sandbox/'+generation+'/atlas/index.html'))&&resource.status==='included'));
+   const pinsPath='sandbox/'+generation+'/atlas/tool-layers.json';
+   const pins=JSON.parse(blob(pinsPath));
+   if(pins.hostGeneration){
+    const prefix='sandbox/'+pins.hostGeneration+'/tool-layers/';
+    const files=execFileSync('git',['ls-tree','-r','--name-only',sourceCommit,prefix],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(p=>p.endsWith('.js'));
+    check('Runtime source contains every pinned tool host module',files.length>0&&files.every(p=>manifest.resources.some(resource=>resource.url===new URL('/testcode/'+p.slice(8),base).href&&resource.sha256===hash(blob(p))&&resource.status==='included')),{files});
+   }
    receipt.download={bytes:bytes.length,sha256:hash(bytes),filename:download.suggestedFilename()};
    check('Source capture causes no uncaught script errors',receipt.errors.length===0,receipt.errors);
   }catch(error){receipt.error=error.stack;check('Source download completes',false,error.message);}
   finally{await context.close();}
  }}finally{await browser.close();}
 })().catch(error=>{results.push({error:error.stack});process.exitCode=1;}).finally(()=>{
- fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({base,results},null,2)+'\n');
+ fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({base,generation,sourceCommit,results},null,2)+'\n');
  if(results.some(r=>r.error||r.checks?.some(c=>!c.pass)))process.exitCode=1;
 });
