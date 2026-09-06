@@ -1,0 +1,51 @@
+name: Atlas controls browser regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/capsules/tool-layers/**'
+      - 'sandbox/202609060228/**'
+      - 'sandbox/tools/controls-layout.browser.cjs'
+      - '.github/workflows/controls-layout.yml'
+  pull_request:
+    paths:
+      - 'sandbox/capsules/tool-layers/**'
+      - 'sandbox/202609060228/**'
+      - 'sandbox/tools/controls-layout.browser.cjs'
+      - '.github/workflows/controls-layout.yml'
+permissions:
+  contents: read
+jobs:
+  controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Offline capsule and syntax gates
+        run: |
+          node --test sandbox/capsules/tool-layers/*.test.mjs
+          node --check sandbox/tools/controls-layout.browser.cjs
+      - name: Install pinned browser tooling
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Test locally served candidate at desktop and 393px
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060228'
+          TEST_OUTPUT: controls-layout-artifacts
+        run: node sandbox/tools/controls-layout.browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlas-controls-${{ github.sha }}
+          path: controls-layout-artifacts/
+          retention-days: 7
+
+
