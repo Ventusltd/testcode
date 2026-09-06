@@ -29,6 +29,13 @@ html body .search-bar-wrapper[data-testcode-search="persistent"] #search-input{w
     for (const link of doc.querySelectorAll('a[href*="/spider_printer"]')) {
       if (/spider\s*printer/i.test(link.textContent)) link.textContent = 'Elements';
     }
+    const generation = window.location.pathname.match(/\/testcode\/(\d{12})\/atlas\//)?.[1];
+    if (generation) for (const link of doc.querySelectorAll('a[href]')) {
+      if (/^Test Code\s*·\s*\d{12}$/.test(link.textContent.trim()) && !link.textContent.includes(generation)) {
+        link.textContent = 'Test Code · ' + generation;
+        link.href = '/testcode/' + generation + '/';
+      }
+    }
   }
   const observer = new MutationObserver(reflect);
   observer.observe(doc.body, {childList:true,subtree:true});
