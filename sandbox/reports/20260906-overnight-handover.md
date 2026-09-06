@@ -3,14 +3,14 @@
 Final0537 is published and accepted. Forty-one substantive versions are delivered;
 revoked0447 and rejected retries are excluded. Independent audit verifies the live
 homepage and all41 accepted entrypoints against committed bytes. Extended live
-retention verification is complete. Checkpoint updated05:55UTC; overnight monitoring
-continues until the authorized06:00UTC stop.
+retention verification is complete. Overnight monitoring ended at2026-09-06 06:00:29UTC.
+No further feature, deployment, test server or review agent is running for this task.
 
 The user requested recovery from Git/Claude/Codex logs, at least30 substantive
 versions on the existing homepage Test Code section, labels outside the polygon
 drawing area, and a drawn polygon that survives ordinary clicks until explicit
-Reset. Continue the authorized overnight verification through at least06:00UTC;
-finish any already-started acceptance rather than counting pending releases.
+Reset. The authorized overnight window was completed through06:00UTC;
+all started release acceptances finished before the final stop.
 
 ## Delivery and source pointers
 
@@ -37,9 +37,9 @@ finish any already-started acceptance rather than counting pending releases.
 - Acceptance ledger:`C:/Users/vikra/spiders-campaign-20260906`,
   `codex/build-plan/campaigns/20260906-next30.md`. The independent audit consumed the accepted41 checkpoint below.
   Exact CI observations belong in `codex/build-plan/CI-TRACKER.json`.
-  Final observed ledger/CI checkpoint:71efe8ae288d67048a255c0f848474a878783285.
+  Final observed ledger/CI checkpoint:8ab8b2b6b3b071e19a0d9e6266058826b65eccc3.
   Audit input checkpoint:a13dbb31720d51139b7e51eab44cb83ab2de86ee.
-  Claude coordination:0f253bed2725725ea7e844b27fadc0b20e760ccd.
+  Claude coordination:8a7a803174c52fcf83855e3ef5c2723b46e87588.
   Later documentation-only addenda can link this handover without changing releases.
 
 ## What the final Atlas carries
