@@ -49,3 +49,13 @@ export function replaceMapEngine(source,engine,module) {
   assert.equal(nodes.length,1,"Exactly one carried engine assignment required");
   const n=nodes[0]; return source.slice(0,n.start)+module+"\n"+engine+source.slice(n.end);
 }
+
+export function replaceOptionalModule(source,module,schema) {
+  assert(/^gridatlas\.[a-z0-9-]+\.v\d+$/.test(schema),'Explicit optional module schema required');
+  const nodes=syntax(source).body.filter(n=>n.type==='ExpressionStatement'&&n.expression.type==='CallExpression'&&source.slice(n.start,n.end).includes(schema));
+  assert(nodes.length<=1,'Optional module must not accumulate duplicates');
+  if(nodes.length){const n=nodes[0];source=source.slice(0,n.start)+source.slice(n.end);}
+  assert(module.includes(schema),'Pinned module must declare its schema');
+  syntax(module);
+  return source+'\n'+module+'\n';
+}
