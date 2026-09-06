@@ -99,6 +99,16 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           const held=await coordinates();await scope.click();await page.locator('#btn-zonedraw').click();
           check('returning to Poly Zone restores its exact outline',JSON.stringify(await coordinates())===JSON.stringify(held));
         }
+        if(process.env.TEST_EXPORT==='1') {
+          const held=await coordinates();
+          const pending=page.waitForEvent('download');await page.locator('#btn-zonedraw-export').click();
+          const download=await pending;const file=path.join(output,name+'-polygon.geojson');await download.saveAs(file);
+          const data=JSON.parse(fs.readFileSync(file,'utf8')),feature=data.features?.[0],ring=feature?.geometry?.coordinates?.[0];
+          check('download is a single attributed GeoJSON polygon',data.type==='FeatureCollection'&&data.features.length===1&&feature.geometry.type==='Polygon'&&feature.properties.source==='User-drawn outline');
+          check('download preserves every edited vertex and closes the ring',ring?.length===held[0].length&&JSON.stringify(ring[0])===JSON.stringify(ring.at(-1))&&ring.every(p=>held[0].some(q=>JSON.stringify(p)===JSON.stringify(q))));
+          check('download contains positive area and perimeter in named units',feature.properties.area_m2>0&&feature.properties.perimeter_km>0);
+          check('export leaves the working polygon untouched',JSON.stringify(await coordinates())===JSON.stringify(held));
+        }
         if(process.env.TEST_DRAFT==='1') {
           const held=await coordinates();
           await page.reload({waitUntil:'domcontentloaded'});
