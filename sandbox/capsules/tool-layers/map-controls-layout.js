@@ -7,6 +7,7 @@ export function mountMapControlsLayout(doc = document) {
 #codex-tool-layers>button{background:var(--atlas-control-bg,#0d1117)!important;color:var(--atlas-control-fg,#7fe3d0)!important;border:1px solid var(--atlas-control-border,#2b3a44)!important;border-radius:3px;font:600 12px/1.25 ui-monospace,SFMono-Regular,Menlo,monospace!important;min-height:44px;cursor:pointer}
 #codex-tool-layers>button:hover{filter:brightness(1.2)}
 #codex-tool-layers>button:focus-visible{outline:2px solid var(--atlas-control-fg,#7fe3d0);outline-offset:2px}
+body:has(#gridatlas-menu-bar button[aria-expanded="true"]) #codex-tool-layers{visibility:hidden!important;pointer-events:none!important}
 html body .search-bar-wrapper[data-testcode-search="persistent"]{width:min(640px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)!important}
 html body .search-bar-wrapper[data-testcode-search="persistent"]>div{flex:1!important;min-width:0!important}
 html body .search-bar-wrapper[data-testcode-search="persistent"] #search-input{width:100%!important;box-sizing:border-box!important}
