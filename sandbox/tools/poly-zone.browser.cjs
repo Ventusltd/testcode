@@ -13,7 +13,7 @@ const generation = process.env.TEST_GENERATION;
 if (!/^\d{12}$/.test(generation || '')) throw Error('TEST_GENERATION must identify an immutable candidate');
 const output = path.resolve(process.env.TEST_OUTPUT || 'poly-zone-artifacts');
 fs.mkdirSync(output, {recursive:true});
-const report = {generation, profiles:[], sourceMode:'Actual composed files; no request interception or source substitution', limitations:['Chrome phone emulation is not physical-device evidence.','Polygon coordinates and rendered labels are checked independently.']};
+const report = {generation, touchInput:process.env.TEST_TOUCH==='1'?'Native touchscreen tap and CDP touch drag on phone':'Mouse interactions in both viewport profiles', profiles:[], sourceMode:'Actual composed files; no request interception or source substitution', limitations:['Chrome phone emulation is not physical-device evidence.','Polygon coordinates and rendered labels are checked independently.']};
 const server = http.createServer((req,res) => {
   const pathname = decodeURIComponent(new URL(req.url,'http://localhost').pathname);
   const relative = pathname.startsWith('/testcode/') ? '/sandbox/' + pathname.slice(10) : pathname;
@@ -54,7 +54,7 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
         await scope.click();await page.locator('#btn-zonedraw').click();
         await page.locator('#zonedraw-radius-input').fill('0.337');
         const canvas=page.locator('#map canvas.maplibregl-canvas');
-        await canvas.click({position:{x:(await canvas.boundingBox()).width/2,y:(await canvas.boundingBox()).height/2}});
+        if(process.env.TEST_TOUCH==='1'&&name==='phone'){const r=await canvas.boundingBox();await page.touchscreen.tap(r.x+r.width/2,r.y+r.height/2);}else await canvas.click({position:{x:(await canvas.boundingBox()).width/2,y:(await canvas.boundingBox()).height/2}});
         await page.waitForFunction(()=>document.querySelector('.measurement-dock-values')?.textContent.includes('Hectares'),null,{timeout:30000});
         await page.waitForFunction(()=>!window.__POLY_TEST_MAP__.isMoving());
         const coordinates=()=>page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-fill')._data.features[0]?.geometry.coordinates);
@@ -74,7 +74,12 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           const map=window.__POLY_TEST_MAP__,f=map.getSource('src-zonedraw-points')._data.features.find(f=>f.properties.kind==='vertex');
           const p=map.project(f.geometry.coordinates),r=map.getCanvas().getBoundingClientRect();return{x:p.x+r.left,y:p.y+r.top};
         });
-        await page.mouse.move(vertex.x,vertex.y);await page.mouse.down();await page.mouse.move(vertex.x+24,vertex.y+16,{steps:5});await page.mouse.up();
+        if(process.env.TEST_TOUCH==='1'&&name==='phone'){
+          const cdp=await context.newCDPSession(page);
+          await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:vertex.x,y:vertex.y,id:1}]});
+          for(let step=1;step<=5;step++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:vertex.x+24*step/5,y:vertex.y+16*step/5,id:1}]});
+          await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();
+        }else {await page.mouse.move(vertex.x,vertex.y);await page.mouse.down();await page.mouse.move(vertex.x+24,vertex.y+16,{steps:5});await page.mouse.up();}
         const afterDrag=await coordinates();check('corner drag edits the existing polygon',JSON.stringify(afterDrag)!==JSON.stringify(before)&&afterDrag[0].length===25);
         if(process.env.TEST_HISTORY==='1') {
           await page.locator('#btn-zonedraw-undo').click();
@@ -159,9 +164,15 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           await page.waitForFunction(()=>document.querySelector('#zonedraw-storage-status')?.textContent.startsWith('Opened'));
           check('opening the downloaded file restores its exact ring',JSON.stringify(await coordinates())===JSON.stringify(saved));
           const held=await coordinates();
+          if(process.env.TEST_REDRAW==='1')await page.waitForFunction(()=>!window.__POLY_TEST_MAP__.isMoving());
           await page.locator('#zonedraw-file').setInputFiles({name:'broken.geojson',mimeType:'application/geo+json',buffer:Buffer.from('{broken')});
           await page.waitForFunction(()=>document.querySelector('#zonedraw-storage-status')?.textContent.includes('not valid JSON'));
           check('invalid import keeps the entire existing outline',JSON.stringify(await coordinates())===JSON.stringify(held));
+          if(process.env.TEST_REDRAW==='1'){
+            await page.evaluate(()=>{const m=window.__POLY_TEST_MAP__;m.zoomTo(m.getZoom()+.1,{duration:200});});await page.waitForFunction(()=>!window.__POLY_TEST_MAP__.isMoving());
+            check('map redraw preserves invalid-import feedback',(await page.locator('#zonedraw-storage-status').innerText()).includes('not valid JSON'));
+          }
+
           const chooser=page.waitForEvent('filechooser');await page.locator('#btn-zonedraw-import').click();
           check('Open GeoJSON launches the native file chooser',!!(await chooser));
         }
@@ -169,7 +180,12 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           const held=await coordinates();await page.locator('#zonedraw-coordinate-editor summary').click();
           await page.selectOption('#zonedraw-vertex','1');
           check('coordinate editor loads the selected exact vertex',Number(await page.locator('#zonedraw-longitude').inputValue())===held[0][1][0]&&Number(await page.locator('#zonedraw-latitude').inputValue())===held[0][1][1]);
-          const changed=held[0][1][0]+.0001;await page.locator('#zonedraw-longitude').fill(String(changed));await page.locator('#btn-zonedraw-coordinate').click();
+          const changed=held[0][1][0]+.0001;await page.locator('#zonedraw-longitude').fill(String(changed));
+          if(process.env.TEST_REDRAW==='1'){
+            await page.evaluate(()=>{const m=window.__POLY_TEST_MAP__;m.zoomTo(m.getZoom()+.1,{duration:200});});await page.waitForFunction(()=>!window.__POLY_TEST_MAP__.isMoving());
+            check('zoom finishing does not overwrite an unsaved coordinate',Number(await page.locator('#zonedraw-longitude').inputValue())===changed);
+          }
+          await page.locator('#btn-zonedraw-coordinate').click();
           const edited=await coordinates();check('numeric edit changes only the selected vertex',edited[0][1][0]===changed&&edited[0][1][1]===held[0][1][1]&&edited[0].every((p,i)=>i===1||JSON.stringify(p)===JSON.stringify(held[0][i])));
           await page.locator('#btn-zonedraw-undo').click();check('Undo restores exact pre-coordinate outline',JSON.stringify(await coordinates())===JSON.stringify(held));
           await page.locator('#zonedraw-longitude').fill('181');await page.locator('#btn-zonedraw-coordinate').click();
