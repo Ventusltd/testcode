@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'sandbox/202609060459/**'
+      - 'sandbox/202609060504/**'
       - 'sandbox/tools/polygon-remove.browser.cjs'
       - 'sandbox/tools/verify-poly-candidate.mjs'
       - '.github/workflows/vertex-removal.yml'
@@ -32,7 +32,7 @@ jobs:
       - name: Verify owner reconstruction and carried tool identities
         env:
           GRIDATLAS_REPO: owner-gridatlas
-        run: node sandbox/tools/verify-poly-candidate.mjs 202609060459
+        run: node sandbox/tools/verify-poly-candidate.mjs 202609060504
       - name: Install pinned browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.62.1
@@ -40,12 +40,17 @@ jobs:
       - name: Exercise removal, repair and retained tool recovery
         run: |
           node sandbox/tools/candidate-server.cjs > candidate-server.log 2>&1 &
-          node sandbox/tools/tool-recovery.browser.cjs http://127.0.0.1:8417/testcode/202609060459/atlas/
-          node sandbox/tools/polygon-remove.browser.cjs http://127.0.0.1:8417/testcode/202609060459/atlas/
+          node sandbox/tools/tool-recovery.browser.cjs http://127.0.0.1:8417/testcode/202609060504/atlas/
+          node sandbox/tools/polygon-remove.browser.cjs http://127.0.0.1:8417/testcode/202609060504/atlas/
+      - name: Preserve actual menu, search and control layout
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060504'
+        run: node sandbox/tools/controls-layout.browser.cjs
       - name: Preserve full polygon interaction coverage
         env:
           CHROME_CHANNEL: chromium
-          TEST_GENERATION: '202609060459'
+          TEST_GENERATION: '202609060504'
           TEST_RESET: '1'
           TEST_DRAFT: '1'
           TEST_EXPORT: '1'
@@ -70,5 +75,6 @@ jobs:
             tool-recovery-artifacts/
             polygon-remove-artifacts/
             poly-zone-artifacts/
+            controls-layout-artifacts/
             candidate-server.log
           retention-days: 7
