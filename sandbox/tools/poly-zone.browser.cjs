@@ -100,6 +100,15 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           await page.locator('#btn-zonedraw-lock').click();
           check('unlock restores editable corner handles',await page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-points')._data.features.some(f=>f.properties.kind==='vertex')));
         }
+        if(process.env.TEST_FIT==='1') {
+          const held=await coordinates();await page.locator('#btn-zonedraw-lock').click();
+          const r=await canvas.boundingBox();await page.mouse.move(r.x+r.width*.6,r.y+r.height*.6);await page.mouse.down();await page.mouse.move(r.x+r.width*.1,r.y+r.height*.2,{steps:10});await page.mouse.up();
+          await page.locator('#btn-zonedraw-fit').click();await page.waitForFunction(()=>!window.__POLY_TEST_MAP__.isMoving());
+          const fitted=await page.evaluate(()=>{const m=window.__POLY_TEST_MAP__,r=m.getCanvas().getBoundingClientRect();return m.getSource('src-zonedraw-fill')._data.features[0].geometry.coordinates[0].every(c=>{const p=m.project(c);return p.x>=0&&p.x<=r.width&&p.y>=0&&p.y<=r.height;});});
+          check('Fit polygon returns every vertex to the visible canvas',fitted);
+          check('Fit polygon preserves exact coordinates and lock state',JSON.stringify(await coordinates())===JSON.stringify(held)&&await page.locator('#btn-zonedraw-lock').getAttribute('aria-pressed')==='true');
+          await page.locator('#btn-zonedraw-lock').click();
+        }
         if(process.env.TEST_RESET==='1') {
           const r=await canvas.boundingBox();await canvas.click({position:{x:r.width*.1,y:r.height*.75}});
           check('ordinary map click keeps edited polygon',JSON.stringify(await coordinates())===JSON.stringify(afterDrag));
