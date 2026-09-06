@@ -17,6 +17,7 @@ on:
       - 'sandbox/202609060354/**'
       - 'sandbox/202609060400/**'
       - 'sandbox/202609060401/**'
+      - 'sandbox/202609060435/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -101,6 +102,20 @@ jobs:
             redraw: '1'
             touch: '1'
             validity: '1'
+          - generation: '202609060435'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+            csv: '1'
+            coordinate: '1'
+            redraw: '1'
+            touch: '1'
+            validity: '1'
+            keyboard: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -108,7 +123,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: baacdb50615207e40a6f7b2ee4749c96b8f4d511
+          ref: 685d0e88bb5f1badec5721dc2b05acf630d1c335
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -142,6 +157,7 @@ jobs:
           TEST_VALIDITY: ${{ matrix.validity }}
           TEST_REDRAW: ${{ matrix.redraw }}
           TEST_TOUCH: ${{ matrix.touch }}
+          TEST_KEYBOARD: ${{ matrix.keyboard }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4
