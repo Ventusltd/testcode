@@ -1,0 +1,28 @@
+{
+  "schema": "gridatlas.poly-candidate-provenance.v1",
+  "generation": "202609060354",
+  "parent": "202609060353",
+  "ownerCommit": "4ef118886cbebcfe3336bf578a79415de0ea6d77",
+  "engine": {
+    "path": "atlas/parts/202609060355-ventus-corev8engine-polygon-validity.js",
+    "sha256": "e5323b23701eef216a4684a465bd63c61e5fbf6d66405f9da0b1dd2bb05276c1"
+  },
+  "module": {
+    "path": "atlas/modules/202609060355-measurement-validity.js",
+    "sha256": "67c99aac9b6cbd9f36d0fa5be0ceaa2a96e09e4fed0b4889f0e472dbe6cb975b"
+  },
+  "parentCartridge": {
+    "path": "sandbox/202609060353/atlas/cartridges/202609060353-substation-intelligence.js",
+    "sha256": "b8904caacfeb2c5dd412c17ece5f548da2dfc6ae2fff179c0b6f01e3913c800b"
+  },
+  "assembledSha256": "40ea7f7b07ff3d4ae6a4e5142a1e96534dbe4f04261e3e6d5cf13f308ee6d11d",
+  "payloadSha256": "23e5a0f6e1dde6ff9cf4c15d59eca1a0988d213abf31964a914d66c35d7256cf",
+  "characters": 262165,
+  "parser": {
+    "name": "Acorn bundled in Node",
+    "version": "8.17.0",
+    "node": "v24.19.0",
+    "sha256": "f4ecbb1935ad718f988d8463ec28dedefa31329b397e29c68c8cf6a3050459cd"
+  },
+  "proof": "Exact token text and complete syntax tree match before/after compaction; unchanged strings, CSS and regular expressions."
+}

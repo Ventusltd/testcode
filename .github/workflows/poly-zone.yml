@@ -11,6 +11,10 @@ on:
       - 'sandbox/202609060324/**'
       - 'sandbox/202609060325/**'
       - 'sandbox/202609060327/**'
+      - 'sandbox/202609060351/**'
+      - 'sandbox/202609060352/**'
+      - 'sandbox/202609060353/**'
+      - 'sandbox/202609060354/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -52,6 +56,44 @@ jobs:
             import: '1'
             history: '1'
             lock: '1'
+          - generation: '202609060351'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+          - generation: '202609060352'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+            csv: '1'
+          - generation: '202609060353'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+            csv: '1'
+            coordinate: '1'
+          - generation: '202609060354'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+            csv: '1'
+            coordinate: '1'
+            validity: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -59,7 +101,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 7a51609ae5f50623ded7888df06e5b49e7ca7267
+          ref: 4ef118886cbebcfe3336bf578a79415de0ea6d77
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -72,6 +114,7 @@ jobs:
         run: |
           node sandbox/tools/verify-poly-candidate.mjs ${{ matrix.generation }}
           node --check sandbox/tools/poly-zone.browser.cjs
+          node --test owner-gridatlas/tools/proofs/polygon-validity.test.mjs
       - name: Install pinned browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.62.1
@@ -86,6 +129,10 @@ jobs:
           TEST_IMPORT: ${{ matrix.import }}
           TEST_HISTORY: ${{ matrix.history }}
           TEST_LOCK: ${{ matrix.lock }}
+          TEST_FIT: ${{ matrix.fit }}
+          TEST_CSV: ${{ matrix.csv }}
+          TEST_COORDINATE: ${{ matrix.coordinate }}
+          TEST_VALIDITY: ${{ matrix.validity }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4

@@ -178,6 +178,17 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           await page.locator('#btn-zonedraw-lock').click();check('polygon lock disables numeric edits',await page.locator('#btn-zonedraw-coordinate').isDisabled()&&await page.locator('#zonedraw-longitude').isDisabled());await page.locator('#btn-zonedraw-lock').click();
           await page.locator('#zonedraw-coordinate-editor summary').click();
         }
+        if(process.env.TEST_VALIDITY==='1') {
+          const held=await coordinates(),ring=[[.93,51.33],[.94,51.34],[.93,51.34],[.94,51.33],[.93,51.33]];
+          await page.locator('#zonedraw-file').setInputFiles({name:'crossed.geojson',mimeType:'application/geo+json',buffer:Buffer.from(JSON.stringify({type:'Polygon',coordinates:[ring]}))});
+          await page.locator('#zonedraw-validity-warning').waitFor({state:'visible'});
+          check('crossed outline withholds area and GeoJSON',!(await coordinates())&&await page.locator('#btn-zonedraw-export').isDisabled()&&(await page.locator('.measurement-dock-values').innerText()).includes('Area not assessed'));
+          const boundary=await page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-line')._data.features[0].geometry.coordinates);
+          check('crossed outline remains exactly drawn and editable',JSON.stringify(boundary)===JSON.stringify(ring)&&await page.evaluate(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-points')._data.features.filter(f=>f.properties.kind==='vertex').length===4));
+          check('validity warning remains outside the drawing canvas',(await separated()).clear);
+          await page.locator('#btn-zonedraw-undo').click();
+          check('Undo repairs the boundary and restores area and export',JSON.stringify(await coordinates())===JSON.stringify(held)&&await page.locator('#zonedraw-validity-warning').count()===0&&!(await page.locator('#btn-zonedraw-export').isDisabled()));
+        }
         if(process.env.TEST_DRAFT==='1') {
           const held=await coordinates();
           await page.reload({waitUntil:'domcontentloaded'});
