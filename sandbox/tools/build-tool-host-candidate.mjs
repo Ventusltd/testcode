@@ -25,15 +25,20 @@ const tools=pins.tools.map(tool=>{const owner=pins.owners.find(owner=>owner.appl
 const registry=[...tools];
 for(const owner of pins.owners)for(const app of owner.applications)if(!registry.some(tool=>tool.id===app.id))registry.push({id:app.id,title:'DC/AC LV Topology Review',entry:'../layer-apps/'+app.entry,owner:{repository:owner.repository,commit:owner.commit,release:owner.release,manifestSha256:owner.manifestSha256}});
 const originalBootstrap=blob(`sandbox/${appGeneration}/atlas/teleprinter-bootstrap.js`);
+const parentBootstrap=blob(`sandbox/${parent}/atlas/teleprinter-bootstrap.js`);
+const layoutInitializer="import {mountMapControlsLayout} from './map-controls-layout.js';\nmountMapControlsLayout();\n";
+assert.equal(parentBootstrap.toString(),`import '/testcode/${appGeneration}/atlas/teleprinter-bootstrap.js';\n`+layoutInitializer,'Account for the complete parent entrypoint before replacing its base import');
 let bootstrap=originalBootstrap.toString().replaceAll("from '../teleprinter/",`from '/testcode/${appGeneration}/teleprinter/`)
  .replace("from '../tool-layers/host.js'",`from '/testcode/${hostGeneration}/tool-layers/host.js'`)
  .replace(/^mountToolLayers\([^\n]+$/m,`mountToolLayers(${JSON.stringify(tools)},new URL('/testcode/${appGeneration}/atlas/teleprinter-bootstrap.js',location.origin).href,${JSON.stringify(registry)});`)
  .replace("new URL('../teleprinter/', import.meta.url)",`new URL('/testcode/${appGeneration}/teleprinter/', location.origin)`);
+bootstrap+='\n'+layoutInitializer;
 write('atlas/teleprinter-bootstrap.js',bootstrap);
 write('atlas/tool-layers.json',JSON.stringify({...pins,tools,registry,hostGeneration},null,2)+'\n');
 const dependencies=[],queue=[`sandbox/${hostGeneration}/tool-layers/host.js`],seen=new Set();
 while(queue.length){const p=queue.shift();if(seen.has(p))continue;seen.add(p);const bytes=blob(p);dependencies.push({path:p,sha256:hash(bytes),bytes:bytes.length});for(const match of bytes.toString().matchAll(/from ['"]([^'"]+)['"]/g)){assert(match[1].startsWith('./'),'Only explicit sibling modules are accepted');queue.push(path.posix.normalize(path.posix.join(path.posix.dirname(p),match[1])));}}
-write('atlas/source-provenance.json',JSON.stringify({schema:'gridatlas.tool-host-candidate.v1',generation,parent,sourceCommit,hostGeneration,appGeneration,originalBootstrapSha256:hash(originalBootstrap),bootstrapSha256:hash(bootstrap),dependencies,scope:'Only consumer tool-host composition changes. All four executable Atlas cartridges and original iframe application paths are retained.'},null,2)+'\n');
+const layout={parentBootstrapSha256:hash(parentBootstrap),sha256:hash(blob(`sandbox/${parent}/atlas/map-controls-layout.js`)),initializer:layoutInitializer};
+write('atlas/source-provenance.json',JSON.stringify({schema:'gridatlas.tool-host-candidate.v1',generation,parent,sourceCommit,hostGeneration,appGeneration,originalBootstrapSha256:hash(originalBootstrap),bootstrapSha256:hash(bootstrap),layout,dependencies,scope:'Only consumer tool-host composition changes. All four executable Atlas cartridges, original iframe application paths and existing layout initialization are retained.'},null,2)+'\n');
 write('index.html',`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Recoverable design tools</title><body style="background:#0d1117;color:#7fe3d0;font:18px system-ui;padding:24px"><h1>Recoverable design tools</h1><p>Retry an unavailable tool while keeping your Atlas polygon and other open tools.</p><p><a style="color:inherit" href="atlas/">Open GridAtlas</a></p></body></html>`);
 const files=[];function list(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory())list(p);else{const b=fs.readFileSync(p);files.push({path:path.relative(destination,p).split(path.sep).join('/'),bytes:b.length,sha256:hash(b)});}}}list(destination);
 write('publication.json',JSON.stringify({generation,lane:'codex',name:'Recoverable design tools with preserved Atlas drawings',source_commit:sourceCommit,source_repository:'Ventusltd/testcode',parent,status:'candidate awaiting browser and served-byte checks',files},null,2)+'\n');

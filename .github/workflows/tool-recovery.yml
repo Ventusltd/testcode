@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'sandbox/202609060447/**'
+      - 'sandbox/202609060503/**'
       - 'sandbox/tools/*tool*'
       - 'sandbox/tools/polygon-boundaries.browser.cjs'
       - '.github/workflows/tool-recovery.yml'
@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '24'
       - name: Verify host-only change and immutable dependencies
-        run: node sandbox/tools/verify-tool-host-candidate.mjs 202609060447
+        run: node sandbox/tools/verify-tool-host-candidate.mjs 202609060503
       - name: Install pinned browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.62.1
@@ -31,13 +31,18 @@ jobs:
       - name: Exercise failure recovery, retained tool state and polygon boundaries
         run: |
           node sandbox/tools/candidate-server.cjs > candidate-server.log 2>&1 &
-          node sandbox/tools/tool-recovery.browser.cjs http://127.0.0.1:8417/testcode/202609060447/atlas/
-          node sandbox/tools/polygon-boundaries.browser.cjs http://127.0.0.1:8417/testcode/202609060447/atlas/
-          node sandbox/tools/app-print.browser.cjs http://127.0.0.1:8417/testcode/202609060447/atlas/
+          node sandbox/tools/tool-recovery.browser.cjs http://127.0.0.1:8417/testcode/202609060503/atlas/
+          node sandbox/tools/polygon-boundaries.browser.cjs http://127.0.0.1:8417/testcode/202609060503/atlas/
+          node sandbox/tools/app-print.browser.cjs http://127.0.0.1:8417/testcode/202609060503/atlas/
+      - name: Preserve actual menu, search and control layout
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060503'
+        run: node sandbox/tools/controls-layout.browser.cjs
       - name: Preserve full polygon interaction coverage
         env:
           CHROME_CHANNEL: chromium
-          TEST_GENERATION: '202609060447'
+          TEST_GENERATION: '202609060503'
           TEST_RESET: '1'
           TEST_DRAFT: '1'
           TEST_EXPORT: '1'
@@ -63,5 +68,6 @@ jobs:
             polygon-boundaries-artifacts/
             app-print-artifacts/
             poly-zone-artifacts/
+            controls-layout-artifacts/
             candidate-server.log
           retention-days: 7

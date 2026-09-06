@@ -27,10 +27,18 @@ assert.deepEqual(actualPins.owners,pins.owners,'Original iframe owner identities
 const tools=pins.tools.map(t=>{const o=pins.owners.find(o=>o.applications.some(a=>a.id===t.id));assert(o);return{...t,owner:{repository:o.repository,commit:o.commit,release:o.release,manifestSha256:o.manifestSha256}};});
 const registry=[...tools];for(const o of pins.owners)for(const a of o.applications)if(!registry.some(t=>t.id===a.id))registry.push({id:a.id,title:'DC/AC LV Topology Review',entry:'../layer-apps/'+a.entry,owner:{repository:o.repository,commit:o.commit,release:o.release,manifestSha256:o.manifestSha256}});
 assert.deepEqual(actualPins.tools,tools);assert.deepEqual(actualPins.registry,registry);assert.equal(actualPins.hostGeneration,p.hostGeneration);
-const expected=original.toString().replaceAll("from '../teleprinter/",`from '/testcode/${p.appGeneration}/teleprinter/`)
+let expected=original.toString().replaceAll("from '../teleprinter/",`from '/testcode/${p.appGeneration}/teleprinter/`)
  .replace("from '../tool-layers/host.js'",`from '/testcode/${p.hostGeneration}/tool-layers/host.js'`)
  .replace(/^mountToolLayers\([^\n]+$/m,`mountToolLayers(${JSON.stringify(tools)},new URL('/testcode/${p.appGeneration}/atlas/teleprinter-bootstrap.js',location.origin).href,${JSON.stringify(registry)});`)
  .replace("new URL('../teleprinter/', import.meta.url)",`new URL('/testcode/${p.appGeneration}/teleprinter/', location.origin)`);
+if(p.layout){
+ const initializer="import {mountMapControlsLayout} from './map-controls-layout.js';\nmountMapControlsLayout();\n";
+ const parentBootstrap=source(`sandbox/${p.parent}/atlas/teleprinter-bootstrap.js`);
+ assert.equal(hash(parentBootstrap),p.layout.parentBootstrapSha256);assert.equal(p.layout.initializer,initializer);
+ assert.equal(parentBootstrap.toString(),`import '/testcode/${p.appGeneration}/atlas/teleprinter-bootstrap.js';\n`+initializer);
+ assert.equal(hash(blob(prefix+'atlas/map-controls-layout.js')),p.layout.sha256);assert.equal(current.layout_cartridge.sha256,p.layout.sha256);
+ expected+='\n'+initializer;
+}else assert.equal(generation,'202609060447','New hosts must preserve and attest the existing layout initializer');
 assert.equal(blob(prefix+'atlas/teleprinter-bootstrap.js').toString(),expected);assert.equal(hash(expected),p.bootstrapSha256);
 const seen=new Set(),queue=[`sandbox/${p.hostGeneration}/tool-layers/host.js`];
 while(queue.length){const q=queue.shift();if(seen.has(q))continue;seen.add(q);const bytes=source(q),receipt=p.dependencies.find(d=>d.path===q);assert(receipt,q);assert.equal(receipt.bytes,bytes.length);assert.equal(receipt.sha256,hash(bytes));assert.deepEqual(blob(q),bytes,'Immutable host dependency');for(const m of bytes.toString().matchAll(/from ['"]([^'"]+)['"]/g)){assert(m[1].startsWith('./'));queue.push(path.posix.normalize(path.posix.join(path.posix.dirname(q),m[1])));}}
