@@ -15,6 +15,8 @@ on:
       - 'sandbox/202609060352/**'
       - 'sandbox/202609060353/**'
       - 'sandbox/202609060354/**'
+      - 'sandbox/202609060400/**'
+      - 'sandbox/202609060401/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -73,7 +75,8 @@ jobs:
             lock: '1'
             fit: '1'
             csv: '1'
-          - generation: '202609060353'
+          # 0353/0354 are immutable rejected candidates: zoom redraw could overwrite input.
+          - generation: '202609060400'
             reset: '1'
             draft: '1'
             export: '1'
@@ -83,7 +86,9 @@ jobs:
             fit: '1'
             csv: '1'
             coordinate: '1'
-          - generation: '202609060354'
+            redraw: '1'
+            touch: '1'
+          - generation: '202609060401'
             reset: '1'
             draft: '1'
             export: '1'
@@ -93,6 +98,8 @@ jobs:
             fit: '1'
             csv: '1'
             coordinate: '1'
+            redraw: '1'
+            touch: '1'
             validity: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -101,7 +108,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 4ef118886cbebcfe3336bf578a79415de0ea6d77
+          ref: baacdb50615207e40a6f7b2ee4749c96b8f4d511
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -133,6 +140,8 @@ jobs:
           TEST_CSV: ${{ matrix.csv }}
           TEST_COORDINATE: ${{ matrix.coordinate }}
           TEST_VALIDITY: ${{ matrix.validity }}
+          TEST_REDRAW: ${{ matrix.redraw }}
+          TEST_TOUCH: ${{ matrix.touch }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4
