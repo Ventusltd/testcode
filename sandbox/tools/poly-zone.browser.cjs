@@ -238,6 +238,16 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           check('storage denial keeps drawn geometry',(await coordinates())?.[0]?.length===25);
           check('storage denial has an honest status',(await page.locator('#zonedraw-storage-status').innerText()).includes('unavailable'));
         }
+        if(process.env.TEST_WINDING==='1'){
+          const x=179,y=85,d=1e-8,ring=[[x,y],[x,y+d],[x+d,y+d],[x+d,y],[x,y]];
+          await page.locator('#zonedraw-file').setInputFiles({name:'small-clockwise.geojson',mimeType:'application/geo+json',buffer:Buffer.from(JSON.stringify({type:'Polygon',coordinates:[ring]}))});
+          await page.waitForFunction(()=>window.__POLY_TEST_MAP__.getSource('src-zonedraw-fill')._data.features[0]?.geometry.coordinates[0].length===5);
+          const pending=page.waitForEvent('download');await page.locator('#btn-zonedraw-export').click();const download=await pending;
+          const file=path.join(output,name+'-small-polygon.geojson');await download.saveAs(file);
+          const exported=JSON.parse(fs.readFileSync(file,'utf8')).features[0].geometry.coordinates[0],a=exported[0],b=exported[1],c=exported[2];
+          check('small clockwise boundary exports counterclockwise',(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])>0);
+          check('precision correction retains every original coordinate',JSON.stringify(exported.slice(0,-1).map(p=>JSON.stringify(p)).sort())===JSON.stringify(ring.slice(0,-1).map(p=>JSON.stringify(p)).sort()));
+        }
         check('no uncaught script errors',result.errors.length===0,result.errors);
         result.pass=result.checks.every(c=>c.pass);
       }catch(error){result.error=error.stack;result.pass=false;console.log(name,error.message);}

@@ -18,6 +18,7 @@ on:
       - 'sandbox/202609060400/**'
       - 'sandbox/202609060401/**'
       - 'sandbox/202609060435/**'
+      - 'sandbox/202609060441/**'
       - 'sandbox/tools/*poly*'
       - 'sandbox/tools/token-compaction.mjs'
       - '.github/workflows/poly-zone.yml'
@@ -116,6 +117,21 @@ jobs:
             touch: '1'
             validity: '1'
             keyboard: '1'
+          - generation: '202609060441'
+            reset: '1'
+            draft: '1'
+            export: '1'
+            import: '1'
+            history: '1'
+            lock: '1'
+            fit: '1'
+            csv: '1'
+            coordinate: '1'
+            redraw: '1'
+            touch: '1'
+            validity: '1'
+            keyboard: '1'
+            winding: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -123,7 +139,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 685d0e88bb5f1badec5721dc2b05acf630d1c335
+          ref: 479d3a1621164602e33d1dfab9081de26a8f3864
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -136,7 +152,7 @@ jobs:
         run: |
           node sandbox/tools/verify-poly-candidate.mjs ${{ matrix.generation }}
           node --check sandbox/tools/poly-zone.browser.cjs
-          node --test owner-gridatlas/tools/proofs/polygon-validity.test.mjs
+          node --test owner-gridatlas/tools/proofs/polygon-validity.test.mjs owner-gridatlas/tools/proofs/polygon-winding.test.mjs
       - name: Install pinned browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.62.1
@@ -158,6 +174,7 @@ jobs:
           TEST_REDRAW: ${{ matrix.redraw }}
           TEST_TOUCH: ${{ matrix.touch }}
           TEST_KEYBOARD: ${{ matrix.keyboard }}
+          TEST_WINDING: ${{ matrix.winding }}
           TEST_OUTPUT: poly-zone-artifacts
         run: node sandbox/tools/poly-zone.browser.cjs
       - uses: actions/upload-artifact@v4
