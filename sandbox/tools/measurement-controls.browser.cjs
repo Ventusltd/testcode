@@ -1,9 +1,11 @@
 const fs=require('node:fs'),path=require('node:path');
 let pw;try{pw=require('playwright');}catch{pw=require('C:/Users/vikra/OneDrive/Documents/GitHub/gridatlas-main-202609050200/node_modules/playwright');}
 const base=process.argv[2],out=path.resolve(process.env.TEST_OUTPUT||'measurement-controls-artifacts');fs.mkdirSync(out,{recursive:true});const reports=[];
-(async()=>{const browser=await pw.chromium.launch();
+const engine=process.env.BROWSER_ENGINE||'chromium';
+if(!['chromium','firefox','webkit'].includes(engine))throw Error('Unsupported browser engine: '+engine);
+(async()=>{const browser=await pw[engine].launch();
  try{for(const viewport of [{width:320,height:568},{width:393,height:852},{width:667,height:375},{width:1440,height:900}]){
-  const phone=viewport.width<700,context=await browser.newContext({viewport,isMobile:phone,hasTouch:phone}),page=await context.newPage(),r={viewport,checks:[],errors:[]};reports.push(r);
+  const phone=viewport.width<700,context=await browser.newContext({viewport,...(engine==='firefox'?{}:{isMobile:phone}),hasTouch:phone}),page=await context.newPage(),r={viewport,checks:[],errors:[]};reports.push(r);
   const check=(name,pass,detail)=>{r.checks.push({name,pass:!!pass,detail});console.log(pass?'PASS':'FAIL',viewport.width,name);};
   page.on('pageerror',e=>r.errors.push(e.message));const activate=l=>phone?l.tap():l.click();
   try{
@@ -47,4 +49,4 @@ const base=process.argv[2],out=path.resolve(process.env.TEST_OUTPUT||'measuremen
   }catch(e){r.error=e.stack;check('Measurement control review completes',false,e.message);await page.screenshot({path:path.join(out,viewport.width+'-failure.png')}).catch(()=>{});}
   finally{await context.close();}
  }}finally{await browser.close();}
-})().catch(e=>{reports.push({error:e.stack});process.exitCode=1;}).finally(()=>{fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({base,reports},null,2));if(reports.some(r=>r.error||r.checks?.some(c=>!c.pass)))process.exitCode=1;});
+})().catch(e=>{reports.push({error:e.stack});process.exitCode=1;}).finally(()=>{fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({base,engine,reports},null,2));if(reports.some(r=>r.error||r.checks?.some(c=>!c.pass)))process.exitCode=1;});
