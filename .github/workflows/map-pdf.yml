@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'sandbox/202609060418/**'
+      - 'sandbox/202609060435/**'
       - 'sandbox/tools/*pdf*'
       - 'sandbox/tools/candidate-server.cjs'
       - 'sandbox/tools/browser-webgl-probe.mjs'
@@ -15,6 +16,9 @@ jobs:
   export:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      matrix:
+        generation: ['202609060418', '202609060435']
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -22,7 +26,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ventusltd/gridatlas
-          ref: 6d77a92688c07363f8c99c1e1cba7f54d4a039f0
+          ref: 685d0e88bb5f1badec5721dc2b05acf630d1c335
           fetch-depth: 0
           path: owner-gridatlas
           persist-credentials: false
@@ -33,7 +37,7 @@ jobs:
         env:
           GRIDATLAS_REPO: owner-gridatlas
         run: |
-          node sandbox/tools/verify-poly-candidate.mjs 202609060418
+          node sandbox/tools/verify-poly-candidate.mjs ${{ matrix.generation }}
           node --test owner-gridatlas/tools/proofs/map-pdf.test.mjs
       - name: Install pinned browser and independent PDF tooling
         run: |
@@ -47,12 +51,12 @@ jobs:
         run: |
           node sandbox/tools/candidate-server.cjs > candidate-server.log 2>&1 &
           xvfb-run --auto-servernum node sandbox/tools/browser-webgl-probe.mjs
-          xvfb-run --auto-servernum node sandbox/tools/pdf-export.browser.mjs http://127.0.0.1:8417/testcode/202609060418/atlas/
-          python sandbox/tools/pdf-render-check.py pdf-artifacts 202609060418
+          xvfb-run --auto-servernum node sandbox/tools/pdf-export.browser.mjs http://127.0.0.1:8417/testcode/${{ matrix.generation }}/atlas/
+          python sandbox/tools/pdf-render-check.py pdf-artifacts ${{ matrix.generation }}
       - name: Retain complete polygon interaction coverage
         env:
           CHROME_CHANNEL: chromium
-          TEST_GENERATION: '202609060418'
+          TEST_GENERATION: ${{ matrix.generation }}
           TEST_RESET: '1'
           TEST_DRAFT: '1'
           TEST_EXPORT: '1'
@@ -70,7 +74,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-pdf-${{ github.sha }}
+          name: native-pdf-${{ matrix.generation }}-${{ github.sha }}
           path: |
             pdf-artifacts/
             poly-zone-artifacts/

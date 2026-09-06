@@ -72,9 +72,19 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
         const boxes=await separated();check('labels occupy a separate area from drawing canvas',boxes.clear,boxes);check('no page width overflow',boxes.noHorizontalOverflow);
         check('polygon drawn with 24 editable vertices',before?.[0]?.length===25);
         await page.screenshot({path:path.join(output,name+'-labels.png')});
-        await page.locator('#gridatlas-measurement-dock [title="Collapse"]').click();
+        if(process.env.TEST_KEYBOARD==='1'){
+          const collapse=page.getByRole('button',{name:'Collapse polygon measurements'});
+          check('measurement collapse is a native named button',await collapse.count()===1);
+          await collapse.focus();await page.keyboard.press('Enter');
+          check('Enter collapses labels and preserves keyboard focus',await page.getByRole('button',{name:'Expand polygon measurements'}).evaluate(e=>e===document.activeElement&&e.getAttribute('aria-expanded')==='false'));
+        }else await page.locator('#gridatlas-measurement-dock [title="Collapse"]').click();
         check('collapsing labels preserves exact geometry',JSON.stringify(await coordinates())===JSON.stringify(before));
-        await page.locator('.measurement-dock-values>div').click();
+        if(process.env.TEST_KEYBOARD==='1'){
+          await page.keyboard.press('Space');
+          check('Space expands labels and preserves keyboard focus',await page.getByRole('button',{name:'Collapse polygon measurements'}).evaluate(e=>e===document.activeElement&&e.getAttribute('aria-expanded')==='true'));
+          check('measurement buttons have at least 44 pixel targets',await page.locator('#gridatlas-measurement-dock button').evaluateAll(buttons=>buttons.filter(button=>button.getBoundingClientRect().height).every(button=>button.getBoundingClientRect().height>=44)));
+          check('Undo guidance describes edit history',(await page.locator('.measurement-dock-values').innerText()).includes('restores the previous edit'));
+        }else await page.locator('.measurement-dock-values>div,.measurement-dock-values>button').click();
         check('expanding labels preserves exact geometry',JSON.stringify(await coordinates())===JSON.stringify(before));
         const vertex=await page.evaluate(()=>{
           const map=window.__POLY_TEST_MAP__,f=map.getSource('src-zonedraw-points')._data.features.find(f=>f.properties.kind==='vertex');
