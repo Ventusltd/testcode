@@ -86,6 +86,7 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
           check('new circle starts only after explicit reset',(await coordinates())[0].length===25);
         }
         await scope.click();await page.locator('#btn-radius-area').click();
+        if(process.env.TEST_RESET==='1')check('changing tools preserves the drawn polygon',(await coordinates())?.[0]?.length===25);
         const areaCanvas=await canvas.boundingBox();await canvas.click({position:{x:areaCanvas.width/2,y:areaCanvas.height/2}});
         await page.waitForFunction(()=>document.querySelector('.measurement-dock-values')?.textContent.includes('Hectares'),null,{timeout:15000});
         check('circle measurements stay outside canvas',(await separated()).clear);
@@ -94,6 +95,10 @@ function save(){fs.writeFileSync(path.join(output,'results.json'),JSON.stringify
         await page.screenshot({path:path.join(output,name+'-circle.png')});
         await scope.click();await page.locator('#btn-radius-area').click();
         check('leaving measurement mode restores map layout',await page.locator('#gridatlas-measurement-dock').count()===0);
+        if(process.env.TEST_RESET==='1') {
+          const held=await coordinates();await scope.click();await page.locator('#btn-zonedraw').click();
+          check('returning to Poly Zone restores its exact outline',JSON.stringify(await coordinates())===JSON.stringify(held));
+        }
         check('no uncaught script errors',result.errors.length===0,result.errors);
         result.pass=result.checks.every(c=>c.pass);
       }catch(error){result.error=error.stack;result.pass=false;console.log(name,error.message);}
