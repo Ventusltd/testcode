@@ -98,3 +98,40 @@ silently rewrites links across the estate.
 - A skip is not a pass. A missing input must fail, never skip.
 - Report measurements, never grade them.
 - A check built only from cases the code already passes cannot fail.
+
+## CI input closure (2026-09-06)
+
+The general offline workflow checks out six repositories beside each other:
+`testcode`, `ventus-grid-engine`, `gridatlas`, `cvaa`, `globalgrid2050`, and
+`pipelinenews`. GridAtlas explicitly checks out `main`, as its registry selector
+requires that branch. CVAA owns its self-test fixtures; no estate clone is needed
+inside those fixtures.
+
+The publication checkout is sparse: `index.html` and the complete
+`uk_renewables_pipeline/` tree. The homepage selects the supported surfaces;
+Pipeline scripts, inherited data parts and release contracts must all come from
+the same checkout. Pipeline source excludes `releases/`, `build/`, and
+`node_modules/`, matching the link driver's exclusions. This is input closure,
+not a claim that these drivers cover Test Code's compact candidate corpora.
+
+Dependencies follow `main` so the daily run measures the current estate rather
+than an obsolete fixed fixture. Every run saves all six immutable checkout SHAs
+in `estate-inputs.json` alongside `testcode-run.json`, `link-targets.json` and
+`repd-rows.json`. A missing clone or failed product check still blocks later
+network/publishing work; no guard is skipped to make the general gate green.
+
+Local closure validation used clean Git archives (not adjacent dirty worktrees):
+engine `7d403652af5f13d6dedb52aa301c0b1ebe2c9a5d`, publication
+`2357cd238763470d77086d20bb2eaf2ab04cf193`, Pipeline
+`51442d6cdda0a1e51119cc4851260e580ff619b1`, CVAA
+`a1fae46a1cb3685ce1214ecd930363ca2c6eba39`.
+The REPD driver passed 93/93 checks over 69,120 rows in nine corpus surfaces;
+`v7` is explicitly reported without a parts corpus. The link driver passed 6/10:
+its remaining four failures expose the v9.7 missing compiled receiver contract
+and homepage-supported consumers still targeting the retired receiver. These
+are product findings, not missing checkout inputs, and remain failures.
+
+The same clean fixture passed engine verification (16 proofs, 358 checks) and
+CVAA self-test (all antibodies fired on disease and stayed silent on health).
+The older README defect notes above are historical registry context; these new
+receipts do not assert that every CVAA command or unrelated estate gate passes.
