@@ -64,7 +64,7 @@ const check = (name, ok, detail) => {
 };
 
 for (const [engineName, engine] of ENGINES) {
-  const browser = await engine.launch();
+  const browser = await engine.launch({headless:!(engineName==='firefox'&&process.env.FIREFOX_HEADED==='1')});
   try {
     for (const viewport of VIEWPORTS) {
       const label = `${engineName} ${viewport.name}`;
@@ -74,6 +74,8 @@ for (const [engineName, engine] of ENGINES) {
       });
       const page = await context.newPage();
       const pageErrors = [];
+      const consoleErrors=[];
+      page.on('console',message=>{if(['error','warning'].includes(message.type())&&consoleErrors.length<30)consoleErrors.push(message.text());});
       page.on('pageerror', (error) => pageErrors.push(String(error).slice(0, 160)));
       try {
         await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 60000 });
@@ -164,7 +166,7 @@ for (const [engineName, engine] of ENGINES) {
         check(`${label}: no page errors while writing the PDF`, pageErrors.length === 0, pageErrors.join(' | '));
       } catch (error) {
         await page.screenshot({path:path.join(OUT,engineName+'-'+viewport.width+'-failure.png')}).catch(()=>{});
-        check(`${label}: the PDF export completed`, false, String(error));
+        check(`${label}: the PDF export completed`, false, {error:String(error),pageErrors,consoleErrors});
       } finally {
         await context.close();
       }
