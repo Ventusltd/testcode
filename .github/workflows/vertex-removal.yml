@@ -1,0 +1,74 @@
+name: Undoable polygon vertex removal
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/202609060459/**'
+      - 'sandbox/tools/polygon-remove.browser.cjs'
+      - 'sandbox/tools/verify-poly-candidate.mjs'
+      - '.github/workflows/vertex-removal.yml'
+permissions:
+  contents: read
+jobs:
+  recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: bb8f07ae8afb8d1872a75e7c2718b78d3e008504
+          fetch-depth: 0
+          path: owner-gridatlas
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Verify owner reconstruction and carried tool identities
+        env:
+          GRIDATLAS_REPO: owner-gridatlas
+        run: node sandbox/tools/verify-poly-candidate.mjs 202609060459
+      - name: Install pinned browser tooling
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Exercise removal, repair and retained tool recovery
+        run: |
+          node sandbox/tools/candidate-server.cjs > candidate-server.log 2>&1 &
+          node sandbox/tools/tool-recovery.browser.cjs http://127.0.0.1:8417/testcode/202609060459/atlas/
+          node sandbox/tools/polygon-remove.browser.cjs http://127.0.0.1:8417/testcode/202609060459/atlas/
+      - name: Preserve full polygon interaction coverage
+        env:
+          CHROME_CHANNEL: chromium
+          TEST_GENERATION: '202609060459'
+          TEST_RESET: '1'
+          TEST_DRAFT: '1'
+          TEST_EXPORT: '1'
+          TEST_IMPORT: '1'
+          TEST_HISTORY: '1'
+          TEST_LOCK: '1'
+          TEST_FIT: '1'
+          TEST_CSV: '1'
+          TEST_COORDINATE: '1'
+          TEST_VALIDITY: '1'
+          TEST_REDRAW: '1'
+          TEST_TOUCH: '1'
+          TEST_KEYBOARD: '1'
+          TEST_WINDING: '1'
+          TEST_OUTPUT: poly-zone-artifacts
+        run: node sandbox/tools/poly-zone.browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vertex-removal-${{ github.sha }}
+          path: |
+            tool-recovery-artifacts/
+            polygon-remove-artifacts/
+            poly-zone-artifacts/
+            candidate-server.log
+          retention-days: 7

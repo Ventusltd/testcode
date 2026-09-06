@@ -47,6 +47,8 @@ for(const name of ['index.html','map-controls-layout.js','teleprinter-bootstrap.
   if(name==='index.html')bytes=Buffer.from(bytes.toString().replace('Test Code Atlas '+parent,'Test Code Atlas '+generation));
   write('atlas/'+name,bytes);
 }
+const parentFiles=execFileSync('git',['ls-tree','--name-only','HEAD',`sandbox/${parent}/atlas/tool-layers.json`],{cwd:root,encoding:'utf8'}).trim();
+if(parentFiles)write('atlas/tool-layers.json',blob(root,parentFiles));
 const shards=execFileSync('git',['ls-tree','-r','--name-only','HEAD',`sandbox/${parent}/atlas/data/repd-identities`],{cwd:root,encoding:'utf8'}).trim().split('\n').filter(Boolean);
 for(const p of shards)write('atlas/data/repd-identities/'+path.basename(p),blob(root,p));
 const provenance={schema:'gridatlas.poly-candidate-provenance.v1',generation,parent,ownerCommit,engine:{path:enginePath,sha256:hash(engine)},module:{path:modulePath,sha256:hash(module)},parentCartridge:{path:parentPath,sha256:hash(before)},assembledSha256:hash(assembled),payloadSha256:hash(payload),characters:payload.length,parser:PARSER,proof:'Exact token text and complete syntax tree match before/after compaction; unchanged strings, CSS and regular expressions.'};
