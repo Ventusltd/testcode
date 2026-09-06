@@ -33,7 +33,10 @@ html body .search-bar-wrapper[data-testcode-search="persistent"] #search-input{w
     const generation = window.location.pathname.match(/\/testcode\/(\d{12})\/atlas\//)?.[1];
     if (generation) for (const link of doc.querySelectorAll('a[href]')) {
       if (/^Test Code\s*·\s*\d{12}$/.test(link.textContent.trim()) && !link.textContent.includes(generation)) {
-        link.textContent = 'Test Code · ' + generation;
+        const instant = new Date(`${generation.slice(0,4)}-${generation.slice(4,6)}-${generation.slice(6,8)}T${generation.slice(8,10)}:${generation.slice(10,12)}:00Z`);
+        const ukTime = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}).format(instant);
+        link.textContent = 'Codex Atlas · ' + generation + ' UTC · ' + ukTime;
+        link.title = 'Clear menus, tools above Layers, wider search, Elements';
         link.href = '/testcode/' + generation + '/';
       }
     }
