@@ -1,17 +1,17 @@
-run_id	component_id
-receipt-windows-rig.json	gridatlas:atlas/current.json
-receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js
-receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js
-receipt-windows-rig.json	external:register-parquet
-receipt-windows-rig.json	gridatlas:atlas/data/offshore-coordinates.json
-receipt-windows-rig.json	gridatlas:atlas/data/interconnectors.geojson
-receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js
-receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js
-run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/current.json
-run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js
-run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js
-run-2026-09-07T14-21-10-632Z.json	external:register-parquet
-run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/data/offshore-coordinates.json
-run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/data/interconnectors.geojson
-run-2026-09-07T14-21-10-632Z.json	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js
-run-2026-09-07T14-21-10-632Z.json	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js
+run_id	component_id	source
+receipt-windows-rig.json	gridatlas:atlas/current.json	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	declared-by-analyzer
+receipt-windows-rig.json	external:register-parquet	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/data/offshore-coordinates.json	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/data/interconnectors.geojson	declared-by-analyzer
+receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	declared-by-analyzer
+receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/current.json	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	external:register-parquet	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/data/offshore-coordinates.json	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	gridatlas:atlas/data/interconnectors.geojson	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	declared-by-analyzer
+run-2026-09-07T14-21-10-632Z.json	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js	declared-by-analyzer
