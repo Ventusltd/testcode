@@ -1,32 +1,32 @@
 {
- "runs": 296,
- "pass": 296,
+ "runs": 298,
+ "pass": 298,
  "fail": 0,
  "harness_invalid": 0,
  "cases": {
   "control-11386-harbour-farm": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "13429-ossian-derived": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "13432-marram-unmapped": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "INTNED-britned-midpoint-anchor": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "INTNED-britned-gb-converter-anchor": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "INTVKL-viking-gb-only": {
-   "pass": 296,
-   "total": 296
+   "pass": 298,
+   "total": 298
   },
   "INTNED-far-converter-to-gb": {
    "pass": 0,
@@ -34,8 +34,6 @@
   }
  },
  "elapsed_ms": [
-  42720,
-  41724,
   35679,
   38462,
   37935,
@@ -83,9 +81,11 @@
   44334,
   43516,
   43581,
-  43212
+  43212,
+  50098,
+  49718
  ],
- "elapsed_ms_median": 43279,
- "updated_utc": "2026-09-07T17:43:57.605Z",
+ "elapsed_ms_median": 43370,
+ "updated_utc": "2026-09-07T17:45:14.707Z",
  "note": "repeat copies run on D: with the network cut; only the statistics are committed"
 }
