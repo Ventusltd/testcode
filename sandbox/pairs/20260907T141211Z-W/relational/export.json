@@ -1689,11 +1689,11 @@
    "run_id": "receipt-windows-rig.json",
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "test_id": "pair-arrivals",
-   "environment_fingerprint": "dc46307540fa0321",
+   "environment_fingerprint": "f5dd92c800e83e85",
    "outcome": "PASS",
    "control_run_id": "receipt-windows-rig.json#control",
-   "receipt_sha256": "890997ef914cc490df6074fc9c9dc73dfb1eb1419397d3c79b1f3e81bbf57d80",
-   "run_utc": "2026-09-07T14:32:17.193Z"
+   "receipt_sha256": "bbfd3153434af52de69589a3f68e6d204d54c2b3a3f95e7e16c2bf1ee7981c3f",
+   "run_utc": "2026-09-07T14:47:19.841Z"
   },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
@@ -1803,7 +1803,7 @@
    "outcome": "PASS",
    "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
    "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
-   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 7.81}"
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 8.01}"
   },
   {
    "run_id": "receipt-windows-rig.json",
@@ -1891,7 +1891,7 @@
    "observation_id": 1,
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "source_or_live": "source (served locally, network cut)",
-   "measured_at": "2026-09-07T14:32:17.193Z",
+   "measured_at": "2026-09-07T14:47:19.841Z",
    "receipt_ref": "evidence/receipt-windows-rig.json",
    "note": "5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED."
   },
