@@ -677,9 +677,12 @@
  ],
  "states": {
   "source_present": "PRESENT",
-  "test_verdict": "NOT_RUN",
+  "test_verdict": "PASS",
   "publication": "BRANCH_ONLY",
-  "owner_approval": "NOT_REQUESTED"
+  "owner_approval": "NOT_REQUESTED",
+  "last_receipt": "evidence/run-2026-09-07T14-21-10-632Z.json",
+  "last_run_utc": "2026-09-07T14:21:10.632Z",
+  "runner": "D: pair-runner lane 4"
  },
  "preview_urls": {
   "note": "Ventusltd/testcode has no GitHub Pages (has_pages=false at build). No preview URL is claimed; every receipt below was produced by serving this directory locally."
