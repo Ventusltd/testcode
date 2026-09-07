@@ -92,7 +92,7 @@ async function context() {
   return ctx;
 }
 
-const evidenceDir = path.join(PAIR_DIR, "evidence");
+const evidenceDir = process.env.PAIR_EVIDENCE_DIR ? path.resolve(process.env.PAIR_EVIDENCE_DIR) : path.join(PAIR_DIR, "evidence");
 fs.mkdirSync(evidenceDir, { recursive: true });
 const shot = async (page, name) => { const p = path.join(evidenceDir, name + ".png"); await page.screenshot({ path: p, fullPage: false }); return "evidence/" + name + ".png"; };
 
@@ -199,9 +199,9 @@ await browser.close(); server.close(); mirrorServer.close();
 receipt.mirror_misses = [...new Set(misses)].slice(0, 20);
 receipt.elapsed_ms = Date.now() - t0;
 const outName = RECEIPT || `run-${receipt.run_utc.replace(/[:.]/g, "-")}.json`;
-fs.writeFileSync(path.join(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
+fs.writeFileSync(path.resolve(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
 receipt.generated_bytes = fs.readdirSync(evidenceDir).reduce((n, f) => n + fs.statSync(path.join(evidenceDir, f)).size, 0);
-fs.writeFileSync(path.join(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
+fs.writeFileSync(path.resolve(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
 console.log(`${receipt.pair_id}  outcome ${receipt.outcome}  control ${control.pass ? "PASS" : "FAIL"}  ${receipt.elapsed_ms} ms  evidence/${outName}`);
 for (const c of [control, ...receipt.cases]) console.log(`  ${(c.pass === undefined ? c.outcome : c.pass ? "PASS" : "FAIL").padEnd(16)} ${c.name}  ${c.identity ? `identity ${c.identity.status}/${c.identity.mapped}` : ""} ${c.interconnector ? `ic ${c.interconnector.status} card ${c.interconnector.card} gb ${c.interconnector.gb_end?.nearest_name} ${c.interconnector.gb_end?.nearest_km} km` : ""} ${c.error ? "ERROR " + c.error : ""}`);
 console.log(`  hrefs into pair: ${JSON.stringify(hrefsInPair)}  misses ${receipt.mirror_misses.length}`);
