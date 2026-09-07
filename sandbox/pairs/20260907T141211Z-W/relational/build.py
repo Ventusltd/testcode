@@ -28,7 +28,7 @@ CREATE TABLE pair_components(pair_id TEXT REFERENCES release_pairs, component_id
 CREATE TABLE dependency_edges(edge_id INTEGER PRIMARY KEY, consumer_id TEXT REFERENCES component_versions, dependency_id TEXT REFERENCES component_versions, relation TEXT, evidence_status TEXT, evidence_ref TEXT, analyzer_version TEXT);
 CREATE TABLE test_definitions(test_id TEXT PRIMARY KEY, implementation_sha256 TEXT, required_control TEXT);
 CREATE TABLE test_runs(run_id TEXT PRIMARY KEY, pair_id TEXT REFERENCES release_pairs, test_id TEXT REFERENCES test_definitions, environment_fingerprint TEXT, outcome TEXT, control_run_id TEXT, receipt_sha256 TEXT, run_utc TEXT);
-CREATE TABLE run_inputs(run_id TEXT REFERENCES test_runs, component_id TEXT REFERENCES component_versions, PRIMARY KEY(run_id, component_id));
+CREATE TABLE run_inputs(run_id TEXT REFERENCES test_runs, component_id TEXT REFERENCES component_versions, source TEXT, PRIMARY KEY(run_id, component_id));
 CREATE TABLE test_cases(run_id TEXT REFERENCES test_runs, case_name TEXT, outcome TEXT, direction TEXT, expect TEXT, measured TEXT, PRIMARY KEY(run_id, case_name));
 CREATE TABLE observations(observation_id INTEGER PRIMARY KEY, pair_id TEXT REFERENCES release_pairs, source_or_live TEXT, measured_at TEXT, receipt_ref TEXT, note TEXT);
 CREATE TABLE reports(report_id INTEGER PRIMARY KEY, pair_id TEXT REFERENCES release_pairs, repository TEXT, repository_commit TEXT, path TEXT, sha256 TEXT);
@@ -112,7 +112,7 @@ for rp in receipts:
     ctrl = rid + "#control" if r.get("control", {}).get("pass") else None
     db.execute("INSERT INTO test_runs VALUES (?,?,?,?,?,?,?,?)", (rid, pid, "pair-arrivals", envfp, r["outcome"], ctrl, rsha, r["run_utc"]))
     for cid in consumed_by_maps:
-        db.execute("INSERT OR IGNORE INTO run_inputs VALUES (?,?)", (rid, cid))
+        db.execute("INSERT OR IGNORE INTO run_inputs VALUES (?,?,?)", (rid, cid, "declared-by-analyzer"))
     if r.get("control"):
         c = r["control"]
         db.execute("INSERT INTO test_cases VALUES (?,?,?,?,?,?)", (rid, c["name"], "PASS" if c.get("pass") else "FAIL", "control", "RESOLVED mapped, nearest kV printed", json.dumps({"identity": c.get("identity"), "nearest_on_page": c.get("nearest_on_page")})))
@@ -124,60 +124,160 @@ for rp in receipts:
 db.execute("INSERT INTO quarantine VALUES (?,?,?,?,?)", ("gridatlas-cartridge-proof:substation-intelligence:451935>368640", "gridatlas cartridge proof", "FAIL", "2026-09-06T23:58:53Z", "substation-intelligence crosses the 368,640-byte boundary and root 202609060259 has no proof file; unchanged bytes, not re-run"))
 db.commit()
 
-# ---- reverse impact: dependency -> consumers -> pairs -> tests, cycle-safe
+# ---- reverse impact: dependency -> consumers -> pairs -> tests
+#
+# Cycle safety. The visited test delimits both sides before matching, because a
+# bare substring test is wrong on identifiers that are prefixes of one another,
+# and this graph contains exactly that pair:
+#   gridatlas:atlas/data/interconnectors.geojson
+#   gridatlas:atlas/data/interconnectors.geojson@R_ATLAS
+# A bare instr() would treat the second as already visited and silently drop
+# every consumer above it.
+#
+# The depth cap is kept, because this query enumerates paths rather than nodes
+# and is exponential on a dense DAG, but truncation is now reported instead of
+# hidden. Termination does not depend on the cap.
 IMPACT = """
 WITH RECURSIVE up(component_id, depth, path) AS (
-  SELECT :changed, 0, :changed
+  SELECT :changed, 0, ' > ' || :changed || ' > '
   UNION
-  SELECT e.consumer_id, up.depth + 1, up.path || ' > ' || e.consumer_id
+  SELECT e.consumer_id, up.depth + 1, up.path || e.consumer_id || ' > '
   FROM dependency_edges e JOIN up ON e.dependency_id = up.component_id
-  WHERE up.depth < 12 AND instr(up.path, e.consumer_id) = 0
+  WHERE up.depth < :max_depth AND instr(up.path, ' > ' || e.consumer_id || ' > ') = 0
 )
 SELECT DISTINCT up.component_id AS affected_component, up.depth, pc.pair_id, tr.run_id, tr.test_id, tr.outcome AS recorded_outcome,
-  (SELECT group_concat(evidence_status) FROM dependency_edges d WHERE d.consumer_id = up.component_id) AS edge_evidence
+  (SELECT group_concat(DISTINCT d.evidence_status) FROM dependency_edges d WHERE d.consumer_id = up.component_id) AS out_edge_evidence
 FROM up
 LEFT JOIN pair_components pc ON pc.component_id = up.component_id
 LEFT JOIN run_inputs ri ON ri.component_id = up.component_id
 LEFT JOIN test_runs tr ON tr.run_id = ri.run_id
 ORDER BY up.depth, up.component_id
 """
-def impact(changed):
-    return db.execute(IMPACT, {"changed": changed}).fetchall()
+MAX_DEPTH = 12
 
-lines = ["# Reverse impact and negative controls", "", f"Pair `{pid}` Â· runs {len(receipts)} Â· components {db.execute('select count(*) from component_versions').fetchone()[0]} Â· edges {db.execute('select count(*) from dependency_edges').fetchone()[0]}", ""]
-lines += ["## Q1  Which tests consume `atlas/data/interconnectors.geojson`?", "", "| affected component | depth | pair | run | test | recorded outcome | edge evidence |", "|---|---|---|---|---|---|---|"]
-for row in impact(atlas_ids["atlas/data/interconnectors.geojson"]):
-    lines.append("| " + " | ".join(str(x) for x in row[:6]) + f" | {row[6]} |")
 
-# D1 changed input -> STALE
+def impact(changed, max_depth=MAX_DEPTH):
+    rows = db.execute(IMPACT, {"changed": changed, "max_depth": max_depth}).fetchall()
+    deeper = db.execute(IMPACT, {"changed": changed, "max_depth": max_depth + 1}).fetchall()
+    return rows, len(deeper) > len(rows)          # second value: the answer is truncated
+
+
+# ---- evidence algebra -------------------------------------------------------
+# Certainty that an edge exists, weakest first. 'unresolved' is deliberately
+# OUTSIDE this order: it is not weak evidence for a known target, it is the
+# record of a target that cannot be named. Merging it away with MAX would erase
+# the very gap the D3 demonstration exists to keep visible.
+RANK = {"declared": 1, "static-resolved": 2, "runtime-observed": 3}
+NAME = {1: "declared", 2: "static-resolved", 3: "runtime-observed"}
+
+
+def path_evidence(statuses):
+    """Along a path: the weakest link bounds the claim."""
+    known = [RANK[s] for s in statuses if s in RANK]
+    return min(known) if known else None
+
+
+def merge_paths(values):
+    """Across independent paths to the same fact: the strongest stands."""
+    known = [v for v in values if v]
+    return max(known) if known else None
+
+
+def evidence_label(rank, incomplete):
+    return NAME.get(rank, "none") + (" + UNRESOLVED EDGES PRESENT" if incomplete else "")
+
+
+lines = ["# Reverse impact and negative controls", "",
+         "Pair `%s` - runs %d - components %d - edges %d" % (pid, len(receipts),
+             db.execute("select count(*) from component_versions").fetchone()[0],
+             db.execute("select count(*) from dependency_edges").fetchone()[0]),
+         "",
+         "Revised after an external logic review. Applicability now requires every consumed input to be present at the same content hash; the cycle test is delimited; truncation is reported; unresolved edges are never merged away; quarantine eligibility is transitive; and a run with an unimplemented case is INCOMPLETE rather than PASS.",
+         ""]
+
+rows, truncated = impact(atlas_ids["atlas/data/interconnectors.geojson"])
+lines += ["## Q1  Which tests consume `atlas/data/interconnectors.geojson`?", "",
+          "Truncated at depth %d: **%s**" % (MAX_DEPTH, "yes, the answer is incomplete" if truncated else "no"), "",
+          "| affected component | depth | pair | run | test | recorded outcome | evidence |",
+          "|---|---|---|---|---|---|---|"]
+for row in rows:
+    statuses = (row[6] or "").split(",")
+    lab = evidence_label(path_evidence(statuses), "unresolved" in statuses)
+    lines.append("| " + " | ".join(str(x) for x in row[:6]) + " | " + lab + " |")
+
+# ---- D1  applicability ------------------------------------------------------
 db.execute("INSERT INTO component_versions VALUES (?,?,?,?,?,?)", ("gridatlas:atlas/data/interconnectors.geojson@R_ATLAS", "gridatlas", "future", "atlas/data/interconnectors.geojson", "0000-placeholder-regenerated-on-6378.137", "dataset"))
 child = pid.replace("-W", "-W-child-demo")
 db.execute("INSERT INTO release_pairs VALUES (?,?,?,?,?)", (child, pid, "windows-rig", pair["experiment_id"], "demo"))
-db.execute("INSERT INTO pair_components VALUES (?,?,?,?)", (child, "gridatlas:atlas/data/interconnectors.geojson@R_ATLAS", "dataset", "DEMO"))
-stale = db.execute("""
-SELECT tr.run_id, tr.outcome, CASE WHEN EXISTS (
-  SELECT 1 FROM run_inputs ri JOIN pair_components pc ON pc.component_id = ri.component_id AND pc.pair_id = :child
-  WHERE ri.run_id = tr.run_id) THEN 'APPLICABLE' ELSE 'STALE for child (input hash changed)' END AS applicability
-FROM test_runs tr WHERE tr.pair_id = :parent""", {"child": child, "parent": pid}).fetchall()
-lines += ["", "## D1  A changed input invalidates applicability", "", f"Child pair `{child}` carries a regenerated geojson (new hash). Parent receipts against it:", ""]
-for r in stale: lines.append(f"- `{r[0]}` recorded `{r[1]}` â†’ **{r[2]}** â€” the historical PASS stays attached to its original bytes")
+for (c,) in db.execute("SELECT component_id FROM pair_components WHERE pair_id = ?", (pid,)).fetchall():
+    if c != atlas_ids["atlas/data/interconnectors.geojson"]:
+        db.execute("INSERT OR IGNORE INTO pair_components VALUES (?,?,?,?)", (child, c, "carried", "DEMO"))
+db.execute("INSERT OR IGNORE INTO pair_components VALUES (?,?,?,?)", (child, "gridatlas:atlas/data/interconnectors.geojson@R_ATLAS", "dataset", "DEMO"))
 
-# D2 cycle terminates
+# Corrected applicability: EVERY consumed input must be present in the child at
+# the same (path, content_sha256). Identity is the content hash, not the id
+# string, because an id can be reused across contents.
+APPLICABILITY = """
+SELECT tr.run_id, tr.outcome,
+  (SELECT count(*) FROM run_inputs ri WHERE ri.run_id = tr.run_id) AS inputs,
+  (SELECT count(*) FROM run_inputs ri
+     JOIN component_versions cv ON cv.component_id = ri.component_id
+     WHERE ri.run_id = tr.run_id AND NOT EXISTS (
+       SELECT 1 FROM pair_components pc
+       JOIN component_versions cc ON cc.component_id = pc.component_id
+       WHERE pc.pair_id = :child AND cc.path IS cv.path AND cc.content_sha256 IS cv.content_sha256)) AS missing
+FROM test_runs tr WHERE tr.pair_id = :parent
+"""
+lines += ["", "## D1  A changed input invalidates applicability", "",
+          "Child pair `%s` carries every parent component except the interconnector geojson, which is regenerated on the estate's earth radius and so has a new content hash." % child, "",
+          "The rule shipped first was: applicable if ANY consumed input is present in the child. The review's counterexample holds, and this graph reproduces it, because the child shares almost every component with its parent. The rule is now: stale if ANY consumed input is absent from the child at the same content hash.", ""]
+for run_id, outcome, inputs, missing in db.execute(APPLICABILITY, {"child": child, "parent": pid}).fetchall():
+    verdict = "APPLICABLE" if missing == 0 else "STALE (%d of %d consumed inputs changed or absent)" % (missing, inputs)
+    lines.append("- `%s` recorded `%s` -> **%s**; the superseded any-match rule said APPLICABLE" % (run_id, outcome, verdict))
+lines += ["",
+          "One qualification the review did not make. It holds that a receipt stays applicable when components it never consumed change. That is true only while consumption is complete for the environment being claimed, and here it is not: two components are fetched by absolute URL and were aborted under the network cut, so they are pair components no run consumed. A change to either cannot mark any receipt stale under a consumption-scoped rule, yet it can change behaviour the moment the pair is served online. Applicability is therefore qualified by environment: a network-cut receipt says nothing about the online pair.",
+          "",
+          "A second qualification, against this implementation rather than against the rule. `run_inputs` is written by the analyzer, not observed by the harness, so 16 rows stand for 103 pair components. Until the harness records what it actually fetched, every applicability verdict is only as good as that declared list."]
+
+# ---- D2  cycle safety -------------------------------------------------------
 db.execute("INSERT INTO component_versions VALUES ('demo:A',NULL,NULL,'demo/A',NULL,'demo'),('demo:B',NULL,NULL,'demo/B',NULL,'demo')")
-edge("demo:A", "demo:B", "imports", "declared", "cycle demo"); edge("demo:B", "demo:A", "imports", "declared", "cycle demo")
-rows = impact("demo:A")
-lines += ["", "## D2  A dependency cycle terminates", "", f"Aâ†’Bâ†’A: query returned {len(rows)} rows and finished (path-based visited set, depth cap 12). Rows: " + ", ".join(f"{r[0]}@{r[1]}" for r in rows)]
+edge("demo:A", "demo:B", "imports", "declared", "cycle demo")
+edge("demo:B", "demo:A", "imports", "declared", "cycle demo")
+rows, truncated = impact("demo:A")
+collide = db.execute("SELECT a.component_id, b.component_id FROM component_versions a JOIN component_versions b ON b.component_id <> a.component_id AND instr(b.component_id, a.component_id) > 0").fetchall()
+lines += ["", "## D2  A cycle terminates, and the visited test no longer confuses prefixes", "",
+          "A -> B -> A: %d rows, finished, truncated: %s. Rows: %s" % (len(rows), "yes" if truncated else "no", ", ".join("%s@%s" % (r[0], r[1]) for r in rows)), "",
+          "Identifier pairs in this graph where one id is a substring of another: **%d**." % len(collide)]
+for a, c in collide:
+    lines.append("- `%s` is contained in `%s`, so an undelimited visited test would treat the second as already seen and drop its consumers" % (a, c))
+lines += ["",
+          "The review called the depth cap unnecessary given correct cycle detection. True for termination, false for cost: this query enumerates paths, not nodes, so a dense acyclic graph is still exponential in edges. The cap stays, and truncation is detected by re-running one level deeper and comparing row counts."]
 
-# D3 unresolved edge visible
-rows = impact("unresolved:far-end-converters-x8")
+# ---- D3  unresolved stays visible ------------------------------------------
+rows, truncated = impact("unresolved:far-end-converters-x8")
 lines += ["", "## D3  An unresolved dependency stays visible", "", "Impact of the eight unlocated far converters:", ""]
-for r in rows: lines.append(f"- {r[0]} (depth {r[1]}) run {r[3]} recorded {r[5]} â€” edge evidence: {r[6]}")
-lines.append("- The `unresolved` status is carried into the answer; the query does not drop the edge.")
+for r in rows:
+    statuses = (r[6] or "").split(",")
+    lines.append("- %s (depth %s) run %s recorded %s - evidence %s" % (r[0], r[1], r[3], r[5], evidence_label(path_evidence(statuses), "unresolved" in statuses)))
+lines += ["",
+          "The review proposed merging parallel evidence with MAX and answered that where a runtime-observed edge and an unresolved edge reach the same component the result is definitively runtime-observed. That is rejected, and this graph is the reason: the sld-sandbox cartridge carries both, and they are not two routes to one fact. One says a named dependency was observed; the other says a dependency exists whose target cannot be named. MAX over them deletes the second. Unresolved is kept outside the order and annotated onto the answer, so a reader can see the impact set is a lower bound."]
 
-# D4 quarantine
+# ---- D4  quarantine ---------------------------------------------------------
 q = db.execute("SELECT fingerprint, outcome, first_seen FROM quarantine").fetchall()
 requeue = db.execute("SELECT count(*) FROM test_runs WHERE test_id = 'gridatlas cartridge proof'").fetchone()[0]
-lines += ["", "## D4  An unchanged semantic failure stays quarantined", "", f"`{q[0][0]}` first seen {q[0][2]}, outcome {q[0][1]}; runs of that test queued by this pair: {requeue}. Eligibility returns only when the cartridge bytes, the boundary or the proof change."]
+lines += ["", "## D4  An unchanged semantic failure stays quarantined, under a transitive predicate", "",
+          "`%s` first seen %s, outcome %s; runs of that test queued by this pair: %d." % (q[0][0], q[0][2], q[0][1], requeue), "",
+          "The shipped rule re-opened a quarantine when the subject's bytes, the boundary or the proof changed. The review's counterexample holds: a fix landing in a dependency of the subject leaves all three unchanged, and the failure stays quarantined for ever. The predicate is now:", "",
+          "```",
+          "eligible = subject_bytes_changed",
+          "        OR boundary_changed",
+          "        OR proof_changed",
+          "        OR any(component in the failing run's inputs has new bytes)",
+          "        OR harness_sha256_changed",
+          "        OR environment_fingerprint_changed",
+          "        OR manually_revoked(reason, utc)",
+          "```", "",
+          "The last clause exists because no state-driven predicate can detect a quarantine that was mistaken when it was written. It needs a person, and it is recorded with a reason and a timestamp rather than by deleting the row."]
 db.commit()
 
 # exports

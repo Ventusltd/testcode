@@ -192,8 +192,13 @@ if (!control.pass) {
   const farDirection = { name: "INTNED-far-converter-to-gb", direction: "B: arrival at the far converter (Maasvlakte) measuring toward GB", outcome: "NOT_IMPLEMENTED", statement: "v9.146 has no far-end arrival branch and no substation payload outside GB; the far end is reported as coverage NONE from direction A. Recorded as missing coverage, not as a pass or a fail." };
   receipt.cases = [c13429, c13432, britned, britnedGb, viking, farDirection];
   const scored = receipt.cases.filter((c) => "pass" in c);
-  receipt.outcome = scored.every((c) => c.pass) ? "PASS" : "FAIL";
-  receipt.statement = `${scored.filter((c) => c.pass).length} of ${scored.length} scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED.`;
+  // PASS asserts complete coverage. A case the product cannot perform is not a
+  // pass and is not a failure of this run, so the run is INCOMPLETE: every
+  // scored case passed and at least one requested behaviour does not exist.
+  const gaps = receipt.cases.filter((c) => c.outcome === "NOT_IMPLEMENTED");
+  receipt.outcome = !scored.every((c) => c.pass) ? "FAIL" : gaps.length ? "INCOMPLETE" : "PASS";
+  receipt.coverage = { scored: scored.length, passed: scored.filter((c) => c.pass).length, not_implemented: gaps.map((c) => c.name) };
+  receipt.statement = `${scored.filter((c) => c.pass).length} of ${scored.length} scored cases passed with a valid control; ${gaps.length} requested behaviour(s) NOT_IMPLEMENTED, so the run is ${receipt.outcome}.`;
 }
 await browser.close(); server.close(); mirrorServer.close();
 receipt.mirror_misses = [...new Set(misses)].slice(0, 20);
@@ -205,4 +210,4 @@ fs.writeFileSync(path.resolve(evidenceDir, outName), JSON.stringify(receipt, nul
 console.log(`${receipt.pair_id}  outcome ${receipt.outcome}  control ${control.pass ? "PASS" : "FAIL"}  ${receipt.elapsed_ms} ms  evidence/${outName}`);
 for (const c of [control, ...receipt.cases]) console.log(`  ${(c.pass === undefined ? c.outcome : c.pass ? "PASS" : "FAIL").padEnd(16)} ${c.name}  ${c.identity ? `identity ${c.identity.status}/${c.identity.mapped}` : ""} ${c.interconnector ? `ic ${c.interconnector.status} card ${c.interconnector.card} gb ${c.interconnector.gb_end?.nearest_name} ${c.interconnector.gb_end?.nearest_km} km` : ""} ${c.error ? "ERROR " + c.error : ""}`);
 console.log(`  hrefs into pair: ${JSON.stringify(hrefsInPair)}  misses ${receipt.mirror_misses.length}`);
-process.exit(receipt.outcome === "PASS" ? 0 : 1);
+process.exit(["PASS", "INCOMPLETE"].includes(receipt.outcome) ? 0 : 1);
