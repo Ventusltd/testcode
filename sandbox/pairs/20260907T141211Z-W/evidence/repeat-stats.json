@@ -1,0 +1,11 @@
+{
+ "runs": 8,
+ "pass": 0,
+ "fail": 0,
+ "harness_invalid": 8,
+ "cases": {},
+ "elapsed_ms": [],
+ "elapsed_ms_median": null,
+ "updated_utc": "2026-09-07T14:31:08.045Z",
+ "note": "repeat copies run on D: with the network cut; only the statistics are committed"
+}

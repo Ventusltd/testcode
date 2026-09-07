@@ -1680,11 +1680,21 @@
  "test_definitions": [
   {
    "test_id": "pair-arrivals",
-   "implementation_sha256": "3607d9bd1c738037835601f55232771609f417ea22aa0bab9fbc428e57c453c1",
+   "implementation_sha256": "3fbb426491ee0e127afdf33625deb4916bfe5a6309e9fbf7d87da8a902eea367",
    "required_control": "control-11386-harbour-farm"
   }
  ],
  "test_runs": [
+  {
+   "run_id": "receipt-windows-rig.json",
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "test_id": "pair-arrivals",
+   "environment_fingerprint": "dc46307540fa0321",
+   "outcome": "PASS",
+   "control_run_id": "receipt-windows-rig.json#control",
+   "receipt_sha256": "80ae7e12b7e460c57f732ae32b2a57b3b55c99b6b8fafc9940d1fec336534315",
+   "run_utc": "2026-09-07T14:29:27.098Z"
+  },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
@@ -1697,6 +1707,38 @@
   }
  ],
  "run_inputs": [
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "gridatlas:atlas/current.json"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "external:register-parquet"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "gridatlas:atlas/data/offshore-coordinates.json"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "gridatlas:atlas/data/interconnectors.geojson"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "component_id": "globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js"
+  },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
    "component_id": "gridatlas:atlas/current.json"
@@ -1731,6 +1773,62 @@
   }
  ],
  "test_cases": [
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "control-11386-harbour-farm",
+   "outcome": "PASS",
+   "direction": "control",
+   "expect": "RESOLVED mapped, nearest kV printed",
+   "measured": "{\"identity\": {\"status\": \"RESOLVED\", \"mapped\": true, \"coordinate_source\": \"OFFICIAL_ACTIVE_REGISTER\", \"coordinate_derived\": false, \"name\": \"Harbour Farm - Solar Farm\"}, \"nearest_on_page\": true}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "13429-ossian-derived",
+   "outcome": "PASS",
+   "direction": null,
+   "expect": "RESOLVED, coordinate_derived true",
+   "measured": "{\"identity\": {\"status\": \"RESOLVED\", \"mapped\": true, \"coordinate_source\": \"CROWN_ESTATE_LEASE_POINT_ON_SURFACE\", \"coordinate_derived\": true, \"name\": \"Ossian\"}, \"interconnector\": null, \"zoom\": 12}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "13432-marram-unmapped",
+   "outcome": "PASS",
+   "direction": null,
+   "expect": "RESOLVED_UNMAPPED, no failure card",
+   "measured": "{\"identity\": {\"status\": \"RESOLVED_UNMAPPED\", \"mapped\": false, \"coordinate_source\": \"NONE\", \"coordinate_derived\": false, \"name\": \"Marram\"}, \"interconnector\": null, \"zoom\": 4.2}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "INTNED-britned-midpoint-anchor",
+   "outcome": "PASS",
+   "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
+   "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 7.81}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "INTNED-britned-gb-converter-anchor",
+   "outcome": "PASS",
+   "direction": "A': arrival at the GB converter; line held so the span is still framed",
+   "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 7.81}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "INTVKL-viking-gb-only",
+   "outcome": "PASS",
+   "direction": "A: GB converter only; far converter not held",
+   "expect": "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9",
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"NOT_DRAWABLE\", \"card\": \"OPEN\", \"framed\": \"gb_converter\", \"gb_end\": {\"nearest_name\": \"Bicker Fen Substation\", \"nearest_km\": 0.001, \"within\": 8, \"search_km\": 10}, \"far_end\": \"not held\", \"substations_seen\": 5800}, \"zoom\": 10}"
+  },
+  {
+   "run_id": "receipt-windows-rig.json",
+   "case_name": "INTNED-far-converter-to-gb",
+   "outcome": "NOT_IMPLEMENTED",
+   "direction": "B: arrival at the far converter (Maasvlakte) measuring toward GB",
+   "expect": "v9.146 has no far-end arrival branch and no substation payload outside GB; the far end is reported as coverage NONE from direction A. Recorded as missing coverage, not as a pass or a fail.",
+   "measured": "{\"identity\": null, \"interconnector\": null, \"zoom\": null}"
+  },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
    "case_name": "control-11386-harbour-farm",
@@ -1791,6 +1889,14 @@
  "observations": [
   {
    "observation_id": 1,
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "source_or_live": "source (served locally, network cut)",
+   "measured_at": "2026-09-07T14:29:27.098Z",
+   "receipt_ref": "evidence/receipt-windows-rig.json",
+   "note": "5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED."
+  },
+  {
+   "observation_id": 2,
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "source_or_live": "source (served locally, network cut)",
    "measured_at": "2026-09-07T14:21:10.632Z",

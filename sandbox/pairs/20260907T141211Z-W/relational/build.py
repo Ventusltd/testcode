@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Relational export for one candidate pair, per the paired-coherence plan §5.
+﻿#!/usr/bin/env python3
+"""Relational export for one candidate pair, per the paired-coherence plan Â§5.
 
 Reads pair.json and the evidence receipts, writes pair.sqlite plus TSV/JSON
 exports, runs the reverse-impact query (dependency -> consumers -> pairs ->
@@ -15,7 +15,7 @@ import glob, hashlib, json, os, sqlite3, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAIR = os.path.dirname(HERE)
 pair = json.load(open(os.path.join(PAIR, "pair.json"), encoding="utf8"))
-receipts = sorted(glob.glob(os.path.join(PAIR, "evidence", "run-*.json")))
+receipts = sorted(glob.glob(os.path.join(PAIR, "evidence", "run-*.json")) + glob.glob(os.path.join(PAIR, "evidence", "receipt-*.json")))
 db_path = os.path.join(HERE, "pair.sqlite")
 if os.path.exists(db_path):
     os.remove(db_path)
@@ -144,7 +144,7 @@ ORDER BY up.depth, up.component_id
 def impact(changed):
     return db.execute(IMPACT, {"changed": changed}).fetchall()
 
-lines = ["# Reverse impact and negative controls", "", f"Pair `{pid}` · runs {len(receipts)} · components {db.execute('select count(*) from component_versions').fetchone()[0]} · edges {db.execute('select count(*) from dependency_edges').fetchone()[0]}", ""]
+lines = ["# Reverse impact and negative controls", "", f"Pair `{pid}` Â· runs {len(receipts)} Â· components {db.execute('select count(*) from component_versions').fetchone()[0]} Â· edges {db.execute('select count(*) from dependency_edges').fetchone()[0]}", ""]
 lines += ["## Q1  Which tests consume `atlas/data/interconnectors.geojson`?", "", "| affected component | depth | pair | run | test | recorded outcome | edge evidence |", "|---|---|---|---|---|---|---|"]
 for row in impact(atlas_ids["atlas/data/interconnectors.geojson"]):
     lines.append("| " + " | ".join(str(x) for x in row[:6]) + f" | {row[6]} |")
@@ -160,18 +160,18 @@ SELECT tr.run_id, tr.outcome, CASE WHEN EXISTS (
   WHERE ri.run_id = tr.run_id) THEN 'APPLICABLE' ELSE 'STALE for child (input hash changed)' END AS applicability
 FROM test_runs tr WHERE tr.pair_id = :parent""", {"child": child, "parent": pid}).fetchall()
 lines += ["", "## D1  A changed input invalidates applicability", "", f"Child pair `{child}` carries a regenerated geojson (new hash). Parent receipts against it:", ""]
-for r in stale: lines.append(f"- `{r[0]}` recorded `{r[1]}` → **{r[2]}** — the historical PASS stays attached to its original bytes")
+for r in stale: lines.append(f"- `{r[0]}` recorded `{r[1]}` â†’ **{r[2]}** â€” the historical PASS stays attached to its original bytes")
 
 # D2 cycle terminates
 db.execute("INSERT INTO component_versions VALUES ('demo:A',NULL,NULL,'demo/A',NULL,'demo'),('demo:B',NULL,NULL,'demo/B',NULL,'demo')")
 edge("demo:A", "demo:B", "imports", "declared", "cycle demo"); edge("demo:B", "demo:A", "imports", "declared", "cycle demo")
 rows = impact("demo:A")
-lines += ["", "## D2  A dependency cycle terminates", "", f"A→B→A: query returned {len(rows)} rows and finished (path-based visited set, depth cap 12). Rows: " + ", ".join(f"{r[0]}@{r[1]}" for r in rows)]
+lines += ["", "## D2  A dependency cycle terminates", "", f"Aâ†’Bâ†’A: query returned {len(rows)} rows and finished (path-based visited set, depth cap 12). Rows: " + ", ".join(f"{r[0]}@{r[1]}" for r in rows)]
 
 # D3 unresolved edge visible
 rows = impact("unresolved:far-end-converters-x8")
 lines += ["", "## D3  An unresolved dependency stays visible", "", "Impact of the eight unlocated far converters:", ""]
-for r in rows: lines.append(f"- {r[0]} (depth {r[1]}) run {r[3]} recorded {r[5]} — edge evidence: {r[6]}")
+for r in rows: lines.append(f"- {r[0]} (depth {r[1]}) run {r[3]} recorded {r[5]} â€” edge evidence: {r[6]}")
 lines.append("- The `unresolved` status is carried into the answer; the query does not drop the edge.")
 
 # D4 quarantine
