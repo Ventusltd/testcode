@@ -1,46 +1,11 @@
 {
- "runs": 5,
- "pass": 5,
+ "runs": 0,
+ "pass": 0,
  "fail": 0,
  "harness_invalid": 0,
- "cases": {
-  "control-11386-harbour-farm": {
-   "pass": 5,
-   "total": 5
-  },
-  "13429-ossian-derived": {
-   "pass": 5,
-   "total": 5
-  },
-  "13432-marram-unmapped": {
-   "pass": 5,
-   "total": 5
-  },
-  "INTNED-britned-midpoint-anchor": {
-   "pass": 5,
-   "total": 5
-  },
-  "INTNED-britned-gb-converter-anchor": {
-   "pass": 5,
-   "total": 5
-  },
-  "INTVKL-viking-gb-only": {
-   "pass": 5,
-   "total": 5
-  },
-  "INTNED-far-converter-to-gb": {
-   "pass": 0,
-   "total": 0
-  }
- },
- "elapsed_ms": [
-  37644,
-  37433,
-  49014,
-  49257,
-  37729
- ],
- "elapsed_ms_median": 37729,
- "updated_utc": "2026-09-07T14:48:16.987Z",
+ "cases": {},
+ "elapsed_ms": [],
+ "elapsed_ms_median": null,
+ "updated_utc": "2026-09-07T14:56:05.532Z",
  "note": "repeat copies run on D: with the network cut; only the statistics are committed"
 }

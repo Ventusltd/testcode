@@ -10,17 +10,17 @@ Truncated at depth 12: **no**
 
 | affected component | depth | pair | run | test | recorded outcome | evidence |
 |---|---|---|---|---|---|---|
-| gridatlas:atlas/data/interconnectors.geojson | 0 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | PASS | none |
+| gridatlas:atlas/data/interconnectors.geojson | 0 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | INCOMPLETE | none |
 | gridatlas:atlas/data/interconnectors.geojson | 0 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | none |
 | globalgrid2050:pipeline/data/v9.8/interconnectors.json | 1 | GG2050-PAIR-20260907T141211Z-W | None | None | None | declared |
-| gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js | 1 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | PASS | declared + UNRESOLVED EDGES PRESENT |
+| gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js | 1 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | INCOMPLETE | declared + UNRESOLVED EDGES PRESENT |
 | gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js | 1 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | declared + UNRESOLVED EDGES PRESENT |
 | globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js | 2 | GG2050-PAIR-20260907T141211Z-W | None | None | None | runtime-observed |
-| gridatlas:atlas/current.json | 2 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | PASS | declared |
+| gridatlas:atlas/current.json | 2 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | INCOMPLETE | declared |
 | gridatlas:atlas/current.json | 2 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | declared |
-| globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js | 3 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | PASS | runtime-observed |
+| globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js | 3 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | INCOMPLETE | runtime-observed |
 | globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js | 3 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | runtime-observed |
-| globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js | 4 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | PASS | static-resolved |
+| globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js | 4 | GG2050-PAIR-20260907T141211Z-W | receipt-windows-rig.json | pair-arrivals | INCOMPLETE | static-resolved |
 | globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js | 4 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | static-resolved |
 
 ## D1  A changed input invalidates applicability
@@ -29,7 +29,7 @@ Child pair `GG2050-PAIR-20260907T141211Z-W-child-demo` carries every parent comp
 
 The rule shipped first was: applicable if ANY consumed input is present in the child. The review's counterexample holds, and this graph reproduces it, because the child shares almost every component with its parent. The rule is now: stale if ANY consumed input is absent from the child at the same content hash.
 
-- `receipt-windows-rig.json` recorded `PASS` -> **STALE (1 of 8 consumed inputs changed or absent)**; the superseded any-match rule said APPLICABLE
+- `receipt-windows-rig.json` recorded `INCOMPLETE` -> **STALE (1 of 8 consumed inputs changed or absent)**; the superseded any-match rule said APPLICABLE
 - `run-2026-09-07T14-21-10-632Z.json` recorded `PASS` -> **STALE (1 of 8 consumed inputs changed or absent)**; the superseded any-match rule said APPLICABLE
 
 One qualification the review did not make. It holds that a receipt stays applicable when components it never consumed change. That is true only while consumption is complete for the environment being claimed, and here it is not: two components are fetched by absolute URL and were aborted under the network cut, so they are pair components no run consumed. A change to either cannot mark any receipt stale under a consumption-scoped rule, yet it can change behaviour the moment the pair is served online. Applicability is therefore qualified by environment: a network-cut receipt says nothing about the online pair.
@@ -51,21 +51,21 @@ Impact of the eight unlocated far converters:
 
 - unresolved:far-end-converters-x8 (depth 0) run None recorded None - evidence none
 - unresolved:far-end-converters-x8 (depth 0) run None recorded None - evidence none
-- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run receipt-windows-rig.json recorded PASS - evidence declared + UNRESOLVED EDGES PRESENT
+- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run receipt-windows-rig.json recorded INCOMPLETE - evidence declared + UNRESOLVED EDGES PRESENT
 - gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence declared + UNRESOLVED EDGES PRESENT
-- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run receipt-windows-rig.json recorded PASS - evidence declared + UNRESOLVED EDGES PRESENT
+- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run receipt-windows-rig.json recorded INCOMPLETE - evidence declared + UNRESOLVED EDGES PRESENT
 - gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence declared + UNRESOLVED EDGES PRESENT
-- gridatlas:atlas/current.json (depth 2) run receipt-windows-rig.json recorded PASS - evidence declared
+- gridatlas:atlas/current.json (depth 2) run receipt-windows-rig.json recorded INCOMPLETE - evidence declared
 - gridatlas:atlas/current.json (depth 2) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence declared
-- gridatlas:atlas/current.json (depth 2) run receipt-windows-rig.json recorded PASS - evidence declared
+- gridatlas:atlas/current.json (depth 2) run receipt-windows-rig.json recorded INCOMPLETE - evidence declared
 - gridatlas:atlas/current.json (depth 2) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence declared
-- globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run receipt-windows-rig.json recorded PASS - evidence runtime-observed
+- globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run receipt-windows-rig.json recorded INCOMPLETE - evidence runtime-observed
 - globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence runtime-observed
-- globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run receipt-windows-rig.json recorded PASS - evidence runtime-observed
+- globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run receipt-windows-rig.json recorded INCOMPLETE - evidence runtime-observed
 - globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence runtime-observed
-- globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run receipt-windows-rig.json recorded PASS - evidence static-resolved
+- globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run receipt-windows-rig.json recorded INCOMPLETE - evidence static-resolved
 - globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence static-resolved
-- globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run receipt-windows-rig.json recorded PASS - evidence static-resolved
+- globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run receipt-windows-rig.json recorded INCOMPLETE - evidence static-resolved
 - globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run run-2026-09-07T14-21-10-632Z.json recorded PASS - evidence static-resolved
 
 The review proposed merging parallel evidence with MAX and answered that where a runtime-observed edge and an unresolved edge reach the same component the result is definitively runtime-observed. That is rejected, and this graph is the reason: the sld-sandbox cartridge carries both, and they are not two routes to one fact. One says a named dependency was observed; the other says a dependency exists whose target cannot be named. MAX over them deletes the second. Unresolved is kept outside the order and annotated onto the answer, so a reader can see the impact set is a lower bound.
