@@ -1,0 +1,129 @@
+{
+ "schema": "gridatlas.offshore-coordinates.v1",
+ "generated_utc": "2026-09-07T03:36:16Z",
+ "purpose": "Coordinates for offshore REPD rows that the register itself does not locate, derived from Crown Estate lease geometry. Derived, not authoritative: REPD remains the register and is never edited by this tool.",
+ "sources": {
+  "repd": "C:/Users/vikra/OneDrive/Documents/GitHub/globalgrid2050/repd.csv",
+  "crown_estate_leases": [
+   "C:/Users/vikra/OneDrive/Documents/GitHub/testcode/sandbox/capsules/grid-compute/results/202609051344/crown-estate-scotland-wind-sites.geojson",
+   "C:/Users/vikra/OneDrive/Documents/GitHub/testcode/sandbox/capsules/grid-compute/results/202609051344/crown-estate-wind-sites.geojson",
+   "C:/Users/vikra/OneDrive/Documents/GitHub/testcode/sandbox/tools/source-data/morgan-crown-estate.geojson"
+  ]
+ },
+ "register": {
+  "rows": 13995,
+  "mappable": 13970,
+  "unmappable": 25,
+  "offshore_rows": 101,
+  "offshore_unmappable": 8
+ },
+ "leases_with_geometry": 131,
+ "recovered": 6,
+ "still_unmatched": 2,
+ "coordinates": [
+  {
+   "repd_ref": "10913",
+   "site_name": "North Falls Offshore Wind Farm",
+   "operator": "RWE Generation UK Plc / SSE Renewables (Ireland)",
+   "matched_lease": "North Falls",
+   "tenant": "North Falls Offshore Wind Farm Limited",
+   "region": "England/Wales/NI",
+   "source_file": "crown-estate-wind-sites.geojson",
+   "longitude": 1.910172,
+   "latitude": 51.709385,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  },
+  {
+   "repd_ref": "10919",
+   "site_name": "Morgan Offshore Wind Farm",
+   "operator": "BP Oil UK Limited / ENBW UK Limited",
+   "matched_lease": "R4 Project 6 (Morgan)",
+   "tenant": "Morgan Offshore Wind Limited",
+   "region": "England/Wales/NI",
+   "source_file": "crown-estate-wind-sites.geojson",
+   "longitude": -4.058781,
+   "latitude": 54.05708,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  },
+  {
+   "repd_ref": "10922",
+   "site_name": "Morecombe Offshore Windfarm",
+   "operator": "Cobra Instalaciones y Servicios S.A / Flotation Energy",
+   "matched_lease": null,
+   "tenant": null,
+   "region": null,
+   "source_file": null,
+   "longitude": null,
+   "latitude": null,
+   "crs": null,
+   "method": "NO_LEASE_MATCH"
+  },
+  {
+   "repd_ref": "11109",
+   "site_name": "Dogger Bank South East",
+   "operator": "RWE Renewables UK Limited / Masdar",
+   "matched_lease": "R4 Project 2 (Dogger Bank South East)",
+   "tenant": "RWE Renewables",
+   "region": "England/Wales/NI",
+   "source_file": "crown-estate-wind-sites.geojson",
+   "longitude": 1.822686,
+   "latitude": 54.598282,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  },
+  {
+   "repd_ref": "13429",
+   "site_name": "Ossian",
+   "operator": "Scottish Power Renewables",
+   "matched_lease": "Ossian Offshore Wind Farm",
+   "tenant": "Ossian Offshore Windfarm",
+   "region": "Scotland",
+   "source_file": "crown-estate-scotland-wind-sites.geojson",
+   "longitude": -0.302066,
+   "latitude": 56.66699,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  },
+  {
+   "repd_ref": "13431",
+   "site_name": "Muir Mhòr",
+   "operator": "Fred. Olsen Seawind & Vattenfall",
+   "matched_lease": null,
+   "tenant": null,
+   "region": null,
+   "source_file": null,
+   "longitude": null,
+   "latitude": null,
+   "crs": null,
+   "method": "NO_LEASE_MATCH"
+  },
+  {
+   "repd_ref": "13528",
+   "site_name": "Cenos Offshore Wind Farm",
+   "operator": "Flotation Energy",
+   "matched_lease": "Cenos",
+   "tenant": "Cenos Offshore Windfarm",
+   "region": "Scotland",
+   "source_file": "crown-estate-scotland-wind-sites.geojson",
+   "longitude": 1.516472,
+   "latitude": 57.152422,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  },
+  {
+   "repd_ref": "20217",
+   "site_name": "Dogger Bank South West",
+   "operator": "RWE Renewables UK Limited / Masdar",
+   "matched_lease": "R4 Project 1 (Dogger Bank South West)",
+   "tenant": "RWE Renewables",
+   "region": "England/Wales/NI",
+   "source_file": "crown-estate-wind-sites.geojson",
+   "longitude": 1.45387,
+   "latitude": 54.665417,
+   "crs": "EPSG:4326",
+   "method": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE"
+  }
+ ]
+}
