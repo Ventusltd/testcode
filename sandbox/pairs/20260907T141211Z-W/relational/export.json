@@ -2298,8 +2298,8 @@
    "environment_fingerprint": "4daacdd331c2c51e",
    "outcome": "INCOMPLETE",
    "control_run_id": "receipt-windows-rig.json#control",
-   "receipt_sha256": "9c30a9f8f9ceb850d86ba3984ddcfe51b324219a864c853bc95206c1a68a590a",
-   "run_utc": "2026-09-07T15:44:28.822Z"
+   "receipt_sha256": "ea72a8006a7830e84ed892e6db2e9c8c50b77716eb6853436c813bb452faecaa",
+   "run_utc": "2026-09-07T16:00:34.322Z"
   },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
@@ -2425,7 +2425,7 @@
    "outcome": "PASS",
    "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
    "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
-   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 7.81}"
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 8.01}"
   },
   {
    "run_id": "receipt-windows-rig.json",
@@ -2513,7 +2513,7 @@
    "observation_id": 1,
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "source_or_live": "source (served locally, network cut)",
-   "measured_at": "2026-09-07T15:44:28.822Z",
+   "measured_at": "2026-09-07T16:00:34.322Z",
    "receipt_ref": "evidence/receipt-windows-rig.json",
    "note": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE."
   },
