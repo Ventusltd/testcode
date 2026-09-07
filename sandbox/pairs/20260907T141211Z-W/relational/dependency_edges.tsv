@@ -14,8 +14,10 @@ edge_id	consumer_id	dependency_id	relation	evidence_status	evidence_ref	analyzer
 13	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	imports	static-resolved	import { atlasReceiverV9_7 } from ./atlas-receiver-v9-7.js	pair-build-20260907
 14	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	gridatlas:atlas/deeplink/receivers.json	implements-contract	runtime-observed	verifyAtlasReceiverV9_7 fetched the pair-local contract; changed=false	pair-build-20260907
 15	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	gridatlas:atlas/current.json	points-to	runtime-observed	run receipts: every MAP href starts with the pair atlas route	pair-build-20260907
-16	globalgrid2050:pipeline/data/v9.8/interconnectors.json	data-interconnectors:reference/interconnector_cables.csv	built-from	declared	scripts/build/interconnectors-v9-8.mjs SOURCES pins	pair-build-20260907
-17	globalgrid2050:pipeline/data/v9.8/interconnectors.json	gridatlas:atlas/data/interconnectors.geojson	built-from	declared	fixtures/v9.8 pinned blobs	pair-build-20260907
-18	globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js	globalgrid2050:pipeline/data/v9.8/interconnectors.json	reads	runtime-observed	tab renders 16 rows from the manifest-hashed partition	pair-build-20260907
-19	demo:A	demo:B	imports	declared	cycle demo	pair-build-20260907
-20	demo:B	demo:A	imports	declared	cycle demo	pair-build-20260907
+16	globalgrid2050:pipeline/scripts/plugins/newspaper-v9-7.js	external:raw.githubusercontent.com:major_project_news_v9_5_1.json	reads	runtime-observed	receipt mirror_misses: aborted offline; table rendered without it	pair-build-20260907
+17	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	external:raw.githubusercontent.com:gb-transmission-network.v1.json	reads	runtime-observed	receipt mirror_misses: aborted offline; arrivals unaffected	pair-build-20260907
+18	globalgrid2050:pipeline/data/v9.8/interconnectors.json	data-interconnectors:reference/interconnector_cables.csv	built-from	declared	scripts/build/interconnectors-v9-8.mjs SOURCES pins	pair-build-20260907
+19	globalgrid2050:pipeline/data/v9.8/interconnectors.json	gridatlas:atlas/data/interconnectors.geojson	built-from	declared	fixtures/v9.8 pinned blobs	pair-build-20260907
+20	globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js	globalgrid2050:pipeline/data/v9.8/interconnectors.json	reads	runtime-observed	tab renders 16 rows from the manifest-hashed partition	pair-build-20260907
+21	demo:A	demo:B	imports	declared	cycle demo	pair-build-20260907
+22	demo:B	demo:A	imports	declared	cycle demo	pair-build-20260907

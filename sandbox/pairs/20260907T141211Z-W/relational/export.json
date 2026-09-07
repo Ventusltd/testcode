@@ -801,6 +801,30 @@
    "kind": "dataset"
   },
   {
+   "component_id": "external:raw.githubusercontent.com:major_project_news_v9_5_1.json",
+   "repository": null,
+   "commit_sha": null,
+   "path": "https://raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json",
+   "content_sha256": null,
+   "kind": "dataset"
+  },
+  {
+   "component_id": "external:raw.githubusercontent.com:gb-transmission-network.v1.json",
+   "repository": null,
+   "commit_sha": null,
+   "path": "https://raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
+   "content_sha256": null,
+   "kind": "dataset"
+  },
+  {
+   "component_id": "external:ventusltd.github.io:repd_projects_202608290716.parquet",
+   "repository": null,
+   "commit_sha": null,
+   "path": "https://ventusltd.github.io/gridatlas/data/repd_projects_202608290716.parquet",
+   "content_sha256": null,
+   "kind": "dataset"
+  },
+  {
    "component_id": "unresolved:far-end-converters-x8",
    "repository": null,
    "commit_sha": null,
@@ -1424,6 +1448,24 @@
   },
   {
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "component_id": "external:raw.githubusercontent.com:major_project_news_v9_5_1.json",
+   "role": "dataset",
+   "consumption_status": "EXTERNAL_BY_ABSOLUTE_URL (UNPINNED, tracks main)"
+  },
+  {
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "component_id": "external:raw.githubusercontent.com:gb-transmission-network.v1.json",
+   "role": "dataset",
+   "consumption_status": "EXTERNAL_BY_ABSOLUTE_URL"
+  },
+  {
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+   "component_id": "external:ventusltd.github.io:repd_projects_202608290716.parquet",
+   "role": "dataset",
+   "consumption_status": "EXTERNAL_BY_ABSOLUTE_URL"
+  },
+  {
+   "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "component_id": "unresolved:far-end-converters-x8",
    "role": "dataset",
    "consumption_status": "UNRESOLVED"
@@ -1573,6 +1615,24 @@
   },
   {
    "edge_id": 16,
+   "consumer_id": "globalgrid2050:pipeline/scripts/plugins/newspaper-v9-7.js",
+   "dependency_id": "external:raw.githubusercontent.com:major_project_news_v9_5_1.json",
+   "relation": "reads",
+   "evidence_status": "runtime-observed",
+   "evidence_ref": "receipt mirror_misses: aborted offline; table rendered without it",
+   "analyzer_version": "pair-build-20260907"
+  },
+  {
+   "edge_id": 17,
+   "consumer_id": "gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js",
+   "dependency_id": "external:raw.githubusercontent.com:gb-transmission-network.v1.json",
+   "relation": "reads",
+   "evidence_status": "runtime-observed",
+   "evidence_ref": "receipt mirror_misses: aborted offline; arrivals unaffected",
+   "analyzer_version": "pair-build-20260907"
+  },
+  {
+   "edge_id": 18,
    "consumer_id": "globalgrid2050:pipeline/data/v9.8/interconnectors.json",
    "dependency_id": "data-interconnectors:reference/interconnector_cables.csv",
    "relation": "built-from",
@@ -1581,7 +1641,7 @@
    "analyzer_version": "pair-build-20260907"
   },
   {
-   "edge_id": 17,
+   "edge_id": 19,
    "consumer_id": "globalgrid2050:pipeline/data/v9.8/interconnectors.json",
    "dependency_id": "gridatlas:atlas/data/interconnectors.geojson",
    "relation": "built-from",
@@ -1590,7 +1650,7 @@
    "analyzer_version": "pair-build-20260907"
   },
   {
-   "edge_id": 18,
+   "edge_id": 20,
    "consumer_id": "globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js",
    "dependency_id": "globalgrid2050:pipeline/data/v9.8/interconnectors.json",
    "relation": "reads",
@@ -1599,7 +1659,7 @@
    "analyzer_version": "pair-build-20260907"
   },
   {
-   "edge_id": 19,
+   "edge_id": 21,
    "consumer_id": "demo:A",
    "dependency_id": "demo:B",
    "relation": "imports",
@@ -1608,7 +1668,7 @@
    "analyzer_version": "pair-build-20260907"
   },
   {
-   "edge_id": 20,
+   "edge_id": 22,
    "consumer_id": "demo:B",
    "dependency_id": "demo:A",
    "relation": "imports",

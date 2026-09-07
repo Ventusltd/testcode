@@ -1,14 +1,14 @@
 # Reverse impact and negative controls
 
-Pair `GG2050-PAIR-20260907T141211Z-W` · runs 1 · components 99 · edges 18
+Pair `GG2050-PAIR-20260907T141211Z-W` · runs 1 · components 102 · edges 20
 
 ## Q1  Which tests consume `atlas/data/interconnectors.geojson`?
 
-| affected component | depth | pair | run | recorded outcome | edge evidence |
-|---|---|---|---|---|---|
+| affected component | depth | pair | run | test | recorded outcome | edge evidence |
+|---|---|---|---|---|---|---|
 | gridatlas:atlas/data/interconnectors.geojson | 0 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | None |
 | globalgrid2050:pipeline/data/v9.8/interconnectors.json | 1 | GG2050-PAIR-20260907T141211Z-W | None | None | None | declared,declared |
-| gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js | 1 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | runtime-observed,static-resolved,declared,unresolved |
+| gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js | 1 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | runtime-observed,static-resolved,declared,unresolved,runtime-observed |
 | globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js | 2 | GG2050-PAIR-20260907T141211Z-W | None | None | None | runtime-observed |
 | gridatlas:atlas/current.json | 2 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | declared,declared,declared,declared,declared,declared |
 | globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js | 3 | GG2050-PAIR-20260907T141211Z-W | run-2026-09-07T14-21-10-632Z.json | pair-arrivals | PASS | runtime-observed,runtime-observed |
@@ -29,7 +29,7 @@ A→B→A: query returned 2 rows and finished (path-based visited set, depth cap
 Impact of the eight unlocated far converters:
 
 - unresolved:far-end-converters-x8 (depth 0) run None recorded None — edge evidence: None
-- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run run-2026-09-07T14-21-10-632Z.json recorded PASS — edge evidence: runtime-observed,static-resolved,declared,unresolved
+- gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js (depth 1) run run-2026-09-07T14-21-10-632Z.json recorded PASS — edge evidence: runtime-observed,static-resolved,declared,unresolved,runtime-observed
 - gridatlas:atlas/current.json (depth 2) run run-2026-09-07T14-21-10-632Z.json recorded PASS — edge evidence: declared,declared,declared,declared,declared,declared
 - globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js (depth 3) run run-2026-09-07T14-21-10-632Z.json recorded PASS — edge evidence: runtime-observed,runtime-observed
 - globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js (depth 4) run run-2026-09-07T14-21-10-632Z.json recorded PASS — edge evidence: static-resolved

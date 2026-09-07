@@ -41,6 +41,26 @@
    "extensions.duckdb.org (parquet extension 1.1.1)",
    "basemaps.cartocdn.com (tiles)",
    "api.postcodes.io / nominatim (search, not exercised)"
+  ],
+  "external_data_by_absolute_url": [
+   {
+    "url": "https://raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json",
+    "consumer": "pipeline newspaper plugin",
+    "pinned": false,
+    "note": "tracks main, not a commit; aborted with the network cut - the projects table and every MAP href rendered without it"
+   },
+   {
+    "url": "https://raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
+    "consumer": "atlas transmission-network layer",
+    "pinned": true,
+    "note": "pinned to a commit; aborted with the network cut - arrivals and measurements did not depend on it"
+   },
+   {
+    "url": "https://ventusltd.github.io/gridatlas/data/repd_projects_202608290716.parquet",
+    "consumer": "place-global-search cartridge",
+    "pinned": "by sha256",
+    "note": "served from the offline mirror"
+   }
   ]
  },
  "atlas": {
@@ -686,5 +706,6 @@
  },
  "preview_urls": {
   "note": "Ventusltd/testcode has no GitHub Pages (has_pages=false at build). No preview URL is claimed; every receipt below was produced by serving this directory locally."
- }
+ },
+ "self_contained_statement": "Not fully self-contained: three data inputs are reached by absolute URL outside the pair (listed in source_vector.external_data_by_absolute_url). One of them tracks a branch head."
 }

@@ -63,6 +63,9 @@ eng = comp("ventus-grid-engine:HEAD", "ventus-grid-engine", sv["ventus_grid_engi
 db.execute("INSERT INTO pair_components VALUES (?,?,?,?)", (pid, eng, "engine", sv["ventus_grid_engine"]["binding"]))
 csv = comp("data-interconnectors:reference/interconnector_cables.csv", "data-interconnectors", sv["data_interconnectors"]["commit"], sv["data_interconnectors"]["path"], sv["data_interconnectors"]["sha256"], "dataset")
 db.execute("INSERT INTO pair_components VALUES (?,?,?,?)", (pid, csv, "dataset", "PINNED_AS_FIXTURE"))
+for x in sv.get("external_data_by_absolute_url", []):
+    cid = comp("external:" + x["url"].split("/")[2] + ":" + x["url"].rsplit("/", 1)[1], None, None, x["url"], None, "dataset")
+    db.execute("INSERT INTO pair_components VALUES (?,?,?,?)", (pid, cid, "dataset", "EXTERNAL_BY_ABSOLUTE_URL" + ("" if x["pinned"] else " (UNPINNED, tracks main)")))
 far = comp("unresolved:far-end-converters-x8", None, None, "8 far converters (IFA, IFA2, Nemo, NSL, Viking, EWIC, Greenlink, Moyle)", None, "dataset")
 db.execute("INSERT INTO pair_components VALUES (?,?,?,?)", (pid, far, "dataset", "UNRESOLVED"))
 
@@ -88,6 +91,8 @@ link = pipe_ids["pipeline/scripts/core/atlas-interconnector-link-v9-8.js"]
 edge(link, rec, "imports", "static-resolved", "import { atlasReceiverV9_7 } from ./atlas-receiver-v9-7.js")
 edge(rec, atlas_ids["atlas/deeplink/receivers.json"], "implements-contract", "runtime-observed", "verifyAtlasReceiverV9_7 fetched the pair-local contract; changed=false")
 edge(rec, cur, "points-to", "runtime-observed", "run receipts: every MAP href starts with the pair atlas route")
+edge(pipe_ids.get("pipeline/scripts/plugins/newspaper-v9-7.js", rec), "external:raw.githubusercontent.com:major_project_news_v9_5_1.json", "reads", "runtime-observed", "receipt mirror_misses: aborted offline; table rendered without it")
+edge(sld, "external:raw.githubusercontent.com:gb-transmission-network.v1.json", "reads", "runtime-observed", "receipt mirror_misses: aborted offline; arrivals unaffected")
 part = pipe_ids.get("pipeline/data/v9.8/interconnectors.json")
 if part:
     edge(part, csv, "built-from", "declared", "scripts/build/interconnectors-v9-8.mjs SOURCES pins")
@@ -140,7 +145,7 @@ def impact(changed):
     return db.execute(IMPACT, {"changed": changed}).fetchall()
 
 lines = ["# Reverse impact and negative controls", "", f"Pair `{pid}` · runs {len(receipts)} · components {db.execute('select count(*) from component_versions').fetchone()[0]} · edges {db.execute('select count(*) from dependency_edges').fetchone()[0]}", ""]
-lines += ["## Q1  Which tests consume `atlas/data/interconnectors.geojson`?", "", "| affected component | depth | pair | run | recorded outcome | edge evidence |", "|---|---|---|---|---|---|"]
+lines += ["## Q1  Which tests consume `atlas/data/interconnectors.geojson`?", "", "| affected component | depth | pair | run | test | recorded outcome | edge evidence |", "|---|---|---|---|---|---|---|"]
 for row in impact(atlas_ids["atlas/data/interconnectors.geojson"]):
     lines.append("| " + " | ".join(str(x) for x in row[:6]) + f" | {row[6]} |")
 
