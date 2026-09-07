@@ -697,9 +697,14 @@
  ],
  "states": {
   "source_present": "PRESENT",
-  "test_verdict": "NOT_RUN",
+  "test_verdict": "INCOMPLETE",
   "publication": "BRANCH_ONLY",
-  "owner_approval": "NOT_REQUESTED"
+  "owner_approval": "NOT_REQUESTED",
+  "proof_route": "offline (D:, network cut)",
+  "last_run_utc": "2026-09-07T19:14:24.989Z",
+  "runner": "D: pair-runner lane 4",
+  "internal_determinism_rate": "44/44",
+  "determinism_note": "same bytes, same environment, network cut: this measures determinism, not robustness. No variance is injected, so it is not evidence that the pair survives hostile conditions."
  },
  "preview_urls": {
   "note": "Ventusltd/testcode has no GitHub Pages (has_pages=false at build). No preview URL is claimed; every receipt below was produced by serving this directory locally."
