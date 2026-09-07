@@ -1,7 +1,7 @@
 {
  "schema": "ggpair.test-receipt.v1",
  "pair_id": "GG2050-PAIR-20260907T141211Z-W",
- "run_utc": "2026-09-07T16:29:55.916Z",
+ "run_utc": "2026-09-07T16:42:41.804Z",
  "harness": {
   "node": "v24.19.0",
   "playwright": "1.58.2",
@@ -15,7 +15,7 @@
   "range_sha256": "10ba9f92403e6473a36aac6f951dde154d5d3186a90d779a7e76feff30db8a45"
  },
  "inputs": {
-  "pair_json_sha256": "915ffd55590373774c70c51a19285bf00f1b47dbd927a944436cbae917841436",
+  "pair_json_sha256": "c9e7ebcfb09f42cfc1bef78014a59ee61f29a7c67432c301e4676c9738dab5b5",
   "served_from": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/"
  },
  "pipeline": {
@@ -67,7 +67,7 @@
   "failure_card": false,
   "zoom": 13.83,
   "screenshot": "evidence/control-11386-harbour-farm.png",
-  "elapsed_ms": 7432,
+  "elapsed_ms": 7039,
   "pass": true
  },
  "cases": [
@@ -100,7 +100,7 @@
    "failure_card": false,
    "zoom": 12,
    "screenshot": "evidence/13429-ossian-derived.png",
-   "elapsed_ms": 8499,
+   "elapsed_ms": 8923,
    "expect": "RESOLVED, coordinate_derived true",
    "pass": true
   },
@@ -133,7 +133,7 @@
    "failure_card": false,
    "zoom": 4.2,
    "screenshot": "evidence/13432-marram-unmapped.png",
-   "elapsed_ms": 8720,
+   "elapsed_ms": 8415,
    "expect": "RESOLVED_UNMAPPED, no failure card",
    "pass": true
   },
@@ -180,7 +180,7 @@
    "failure_card": false,
    "zoom": 8.01,
    "screenshot": "evidence/INTNED-britned-midpoint-anchor.png",
-   "elapsed_ms": 10291,
+   "elapsed_ms": 10188,
    "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
    "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
    "pass": true
@@ -228,7 +228,7 @@
    "failure_card": false,
    "zoom": 8.01,
    "screenshot": "evidence/INTNED-britned-gb-converter-anchor.png",
-   "elapsed_ms": 10281,
+   "elapsed_ms": 10428,
    "direction": "A': arrival at the GB converter; line held so the span is still framed",
    "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
    "pass": true
@@ -274,7 +274,7 @@
    "failure_card": false,
    "zoom": 10,
    "screenshot": "evidence/INTVKL-viking-gb-only.png",
-   "elapsed_ms": 10584,
+   "elapsed_ms": 11099,
    "direction": "A: GB converter only; far converter not held",
    "expect": "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9",
    "pass": true
@@ -297,8 +297,8 @@
  "statement": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.",
  "mirror_misses": [
   "mirror:/cdn.jsdelivr.net/npm/chart.js",
-  "/sandbox/pairs/dist/major_project_news_v9_5_1.json",
   "mirror:/raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json",
+  "/sandbox/pairs/dist/major_project_news_v9_5_1.json",
   "mirror:/raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/15/10.mvt",
   "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/10.mvt",
@@ -317,6 +317,6 @@
   "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/40.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/40.mvt"
  ],
- "elapsed_ms": 18827,
- "generated_bytes": 751780
+ "elapsed_ms": 18809,
+ "generated_bytes": 751626
 }
