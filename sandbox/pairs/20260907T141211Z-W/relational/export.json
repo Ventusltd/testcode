@@ -2298,8 +2298,8 @@
    "environment_fingerprint": "4daacdd331c2c51e",
    "outcome": "INCOMPLETE",
    "control_run_id": "receipt-windows-rig.json#control",
-   "receipt_sha256": "0f146c0190db1f5493e31e708debc3a7b027d3cabb1297cbe42ad3a1a79a91b6",
-   "run_utc": "2026-09-07T17:30:31.721Z"
+   "receipt_sha256": "19a00032bddb12e8cbad750150987b9c104e4283ccdb023a2cbb20d5d3726d9e",
+   "run_utc": "2026-09-07T17:30:57.720Z"
   },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
@@ -2433,7 +2433,7 @@
    "outcome": "PASS",
    "direction": "A': arrival at the GB converter; line held so the span is still framed",
    "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
-   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 8.01}"
+   "measured": "{\"identity\": {\"status\": \"ABSENT\", \"mapped\": false, \"coordinate_source\": null, \"coordinate_derived\": null, \"name\": null}, \"interconnector\": {\"status\": \"RESOLVED\", \"card\": \"OPEN\", \"framed\": true, \"gb_end\": {\"nearest_name\": \"Grain Static Inverter Plant\", \"nearest_km\": 0, \"within\": 20, \"search_km\": 10}, \"far_end\": {\"coverage\": \"NONE\"}, \"substations_seen\": 5800}, \"zoom\": 7.81}"
   },
   {
    "run_id": "receipt-windows-rig.json",
@@ -2513,7 +2513,7 @@
    "observation_id": 1,
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "source_or_live": "source (served locally, network cut)",
-   "measured_at": "2026-09-07T17:30:31.721Z",
+   "measured_at": "2026-09-07T17:30:57.720Z",
    "receipt_ref": "evidence/receipt-windows-rig.json",
    "note": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE."
   },
