@@ -1,0 +1,55 @@
+name: pair-runner
+
+# Runs every candidate pair on a hosted runner when its branch is pushed.
+# Online mode: the hosted runner reaches the real CDN and register hosts, so
+# a pass here is the pair's bytes against the live dependencies, while the
+# D: lane's receipt (network cut, offline mirror) is the pair's bytes alone.
+# Both receipts sit beside each other in the pair; neither is promoted here.
+# Receipts from this runner are uploaded as artifacts, never committed:
+# the branch has one writer, the D: lane.
+
+on:
+  push:
+    branches: ["worker/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Playwright, pinned
+        run: |
+          npm init -y >/dev/null
+          npm install --no-save playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Run every pair on this branch
+        env:
+          PAIR_NET: online
+          PAIR_PLAYWRIGHT: ${{ github.workspace }}/node_modules/playwright
+        run: |
+          set -u
+          status=0
+          for d in sandbox/pairs/*/; do
+            [ -f "$d/tests/run-pair.mjs" ] || continue
+            echo "== $d"
+            ( cd "$d" && node tests/run-pair.mjs ) || status=1
+            ( cd "$d" && python3 relational/build.py ) || status=1
+          done
+          exit $status
+      - name: Receipts and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pair-receipts-${{ github.run_id }}
+          path: |
+            sandbox/pairs/*/evidence/
+            sandbox/pairs/*/relational/
+          if-no-files-found: warn

@@ -1,0 +1,8 @@
+{
+  "schema": "ventus.grid-engine.deeplink-receivers.v1",
+  "note": "Pair-local copy of the engine's receiver contract. The canonical route is this candidate's own atlas, resolved relative to this file, so the pair's Pipeline News reaches the pair's Atlas and nothing else. Derived from ventus-grid-engine abaa718 deeplink/receivers.json; the retired entry is carried unchanged.",
+  "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+  "canonical": { "id": "gridatlas-v9-pair-20260907T141211Z-W", "route": "../", "carries_engine": true,
+    "evidence": "composition 202609071232 copied as git blobs from gridatlas 380c7ea8ceab49ee86593eafc2d8666a425779de; every cartridge sha256 verified against current.json at build" },
+  "retired": [ { "id": "repd-grid-atlas-v8", "route": "https://globalgrid2050.com/repd_grid_atlasv8/", "carries_engine": false, "retired_utc": "202609050320", "reason": "carried unchanged from the engine's contract" } ]
+}
