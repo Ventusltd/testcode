@@ -1,3 +1,3 @@
 run_id	pair_id	test_id	environment_fingerprint	outcome	control_run_id	receipt_sha256	run_utc
-receipt-windows-rig.json	GG2050-PAIR-20260907T141211Z-W	pair-arrivals	4daacdd331c2c51e	INCOMPLETE	receipt-windows-rig.json#control	7d3f73b36c912fc73e89cae419ee6c96ca7ec6731ff44c83dc1ea2e7cb969ca0	2026-09-07T17:28:03.979Z
+receipt-windows-rig.json	GG2050-PAIR-20260907T141211Z-W	pair-arrivals	4daacdd331c2c51e	INCOMPLETE	receipt-windows-rig.json#control	22846ca5404b6a2414e9bced36f20ce97f88478f29de7040673439af414519f1	2026-09-07T17:29:59.188Z
 run-2026-09-07T14-21-10-632Z.json	GG2050-PAIR-20260907T141211Z-W	pair-arrivals	1c53853b40c21364	PASS	run-2026-09-07T14-21-10-632Z.json#control	d210b02f60ff41167bc125d26ba3228866b58e66e373a07343753ac02e48c3d5	2026-09-07T14:21:10.632Z
