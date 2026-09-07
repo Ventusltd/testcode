@@ -1,14 +1,14 @@
 {
  "schema": "ggpair.test-receipt.v1",
  "pair_id": "GG2050-PAIR-20260907T190239Z-W",
- "run_utc": "2026-09-07T19:03:18.870Z",
+ "run_utc": "2026-09-07T19:14:24.989Z",
  "harness": {
   "node": "v24.19.0",
   "playwright": "1.58.2",
   "playwright_path": "C:\\Users\\vikra\\LocalCI\\PipelineNews-GridAtlas\\v004\\node_modules\\playwright\\package.json",
   "chromium": "145.0.7632.6",
   "platform": "win32",
-  "parallel": 3,
+  "parallel": 5,
   "network": "CUT - external hosts served from the offline mirror or aborted",
   "mirror": "D:/gridatlas-ci/offline-sandbox/deps",
   "test_sha256": "d0456f006b292b445668d8e04b0c1818ac33884e3c124c399779af33cb5fa730",
@@ -16,16 +16,16 @@
  },
  "inputs": {
   "pair_json_sha256": "da1d67d293ae9404bbc9b07d675b4b628d7b2a263f73de6c4b7963951c9bd51a",
-  "served_from": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/"
+  "served_from": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/"
  },
  "pipeline": {
   "rows_rendered": 7680,
   "hrefs": {
-   "11386": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
-   "13429": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
-   "13432": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
-   "IC-INTNED": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
-   "IC-INTVKL": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10"
+   "11386": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
+   "13429": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
+   "13432": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
+   "IC-INTNED": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
+   "IC-INTVKL": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10"
   },
   "hrefs_point_into_pair": {
    "11386": true,
@@ -34,13 +34,13 @@
    "IC-INTNED": true,
    "IC-INTVKL": true
   },
-  "map_atlas_nav_href": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/",
+  "map_atlas_nav_href": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/",
   "page_errors": [],
   "screenshot": "evidence/pipeline-interconnectors-tab.png"
  },
  "control": {
   "name": "control-11386-harbour-farm",
-  "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
+  "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
   "pageErrors": [],
   "composition": "202609071232",
   "cartridges_loaded": [
@@ -67,13 +67,13 @@
   "failure_card": false,
   "zoom": 12,
   "screenshot": "evidence/control-11386-harbour-farm.png",
-  "elapsed_ms": 8064,
+  "elapsed_ms": 10336,
   "pass": true
  },
  "cases": [
   {
    "name": "13429-ossian-derived",
-   "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
    "pageErrors": [],
    "composition": "202609071232",
    "cartridges_loaded": [
@@ -100,13 +100,13 @@
    "failure_card": false,
    "zoom": 12,
    "screenshot": "evidence/13429-ossian-derived.png",
-   "elapsed_ms": 8709,
+   "elapsed_ms": 15624,
    "expect": "RESOLVED, coordinate_derived true",
    "pass": true
   },
   {
    "name": "13432-marram-unmapped",
-   "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
    "pageErrors": [],
    "composition": "202609071232",
    "cartridges_loaded": [
@@ -133,13 +133,13 @@
    "failure_card": false,
    "zoom": 4.2,
    "screenshot": "evidence/13432-marram-unmapped.png",
-   "elapsed_ms": 8499,
+   "elapsed_ms": 16160,
    "expect": "RESOLVED_UNMAPPED, no failure card",
    "pass": true
   },
   {
    "name": "INTNED-britned-midpoint-anchor",
-   "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
    "pageErrors": [],
    "composition": "202609071232",
    "cartridges_loaded": [
@@ -180,14 +180,14 @@
    "failure_card": false,
    "zoom": 8.01,
    "screenshot": "evidence/INTNED-britned-midpoint-anchor.png",
-   "elapsed_ms": 9671,
+   "elapsed_ms": 11145,
    "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
    "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
    "pass": true
   },
   {
    "name": "INTNED-britned-gb-converter-anchor",
-   "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=gb_converter&latitude=51.4405&longitude=0.71616&zoom=10",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=gb_converter&latitude=51.4405&longitude=0.71616&zoom=10",
    "pageErrors": [],
    "composition": "202609071232",
    "cartridges_loaded": [
@@ -228,14 +228,14 @@
    "failure_card": false,
    "zoom": 8.01,
    "screenshot": "evidence/INTNED-britned-gb-converter-anchor.png",
-   "elapsed_ms": 9350,
+   "elapsed_ms": 11782,
    "direction": "A': arrival at the GB converter; line held so the span is still framed",
    "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
    "pass": true
   },
   {
    "name": "INTVKL-viking-gb-only",
-   "url": "http://127.0.0.1:8951/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T190239Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10",
    "pageErrors": [],
    "composition": "202609071232",
    "cartridges_loaded": [
@@ -274,7 +274,7 @@
    "failure_card": false,
    "zoom": 10,
    "screenshot": "evidence/INTVKL-viking-gb-only.png",
-   "elapsed_ms": 10065,
+   "elapsed_ms": 13770,
    "direction": "A: GB converter only; far converter not held",
    "expect": "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9",
    "pass": true
@@ -308,24 +308,24 @@
   "mirror:/cdn.jsdelivr.net/npm/chart.js",
   "mirror:/raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json",
   "/sandbox/pairs/dist/major_project_news_v9_5_1.json",
+  "mirror:/raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/15/10.mvt",
   "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/10.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/15/9.mvt",
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/9.mvt",
-  "mirror:/raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/14/10.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/14/9.mvt",
   "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/31/20.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/32/20.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/31/21.mvt",
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/32/21.mvt",
   "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/30/20.mvt",
-  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/33/20.mvt",
   "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/30/21.mvt",
-  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/33/21.mvt",
-  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/41.mvt",
-  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/41.mvt",
-  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/40.mvt",
-  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/40.mvt"
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/127/82.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/128/82.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/127/83.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/127/81.mvt"
  ],
- "elapsed_ms": 27681,
- "generated_bytes": 664909
+ "elapsed_ms": 27383,
+ "generated_bytes": 730642
 }
