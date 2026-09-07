@@ -701,10 +701,10 @@
   "publication": "BRANCH_ONLY",
   "owner_approval": "NOT_REQUESTED",
   "last_receipt": "evidence/run-2026-09-07T14-21-10-632Z.json",
-  "last_run_utc": "2026-09-07T16:55:06.789Z",
+  "last_run_utc": "2026-09-07T17:00:06.220Z",
   "runner": "D: pair-runner lane 4",
   "proof_route": "offline (D:, network cut)",
-  "internal_determinism_rate": "139/139",
+  "internal_determinism_rate": "187/187",
   "determinism_note": "same bytes, same environment, network cut: this measures determinism, not robustness. No variance is injected, so it is not evidence that the pair survives hostile conditions."
  },
  "preview_urls": {
