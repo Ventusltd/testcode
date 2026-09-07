@@ -97,6 +97,9 @@ globalgrid2050:pipeline/scripts/plugins/projects.js	globalgrid2050	28e41f129d80e
 external:register-parquet	gridatlas	380c7ea8ceab49ee86593eafc2d8666a425779de	https://ventusltd.github.io/gridatlas/data/repd_projects_202608290716.parquet	174040c37f3d63742d6fdd7af722a8cfdf3fb53de3ff85ff1142d22fdac4866b	dataset
 ventus-grid-engine:HEAD	ventus-grid-engine	abaa718bc4cbe793f88f69b6d505eceda4a87719	engine/		engine
 data-interconnectors:reference/interconnector_cables.csv	data-interconnectors	1e00d0e4d7bf3ddbc86224b3b6be5c2f3eaabf86	reference/interconnector_cables.csv	0ea612d869624e23cd97e391c47e790f2488e6c0d14233d234b19d3324bfa36d	dataset
+external:raw.githubusercontent.com:major_project_news_v9_5_1.json			https://raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json		dataset
+external:raw.githubusercontent.com:gb-transmission-network.v1.json			https://raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json		dataset
+external:ventusltd.github.io:repd_projects_202608290716.parquet			https://ventusltd.github.io/gridatlas/data/repd_projects_202608290716.parquet		dataset
 unresolved:far-end-converters-x8			8 far converters (IFA, IFA2, Nemo, NSL, Viking, EWIC, Greenlink, Moyle)		dataset
 gridatlas:atlas/data/interconnectors.geojson@R_ATLAS	gridatlas	future	atlas/data/interconnectors.geojson	0000-placeholder-regenerated-on-6378.137	dataset
 demo:A			demo/A		demo

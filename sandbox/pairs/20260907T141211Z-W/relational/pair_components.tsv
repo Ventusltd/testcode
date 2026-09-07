@@ -97,5 +97,8 @@ GG2050-PAIR-20260907T141211Z-W	globalgrid2050:pipeline/scripts/plugins/projects.
 GG2050-PAIR-20260907T141211Z-W	external:register-parquet	dataset	EXTERNAL_BY_ABSOLUTE_URL
 GG2050-PAIR-20260907T141211Z-W	ventus-grid-engine:HEAD	engine	COMPARATOR_AND_CONTRACT_COPY
 GG2050-PAIR-20260907T141211Z-W	data-interconnectors:reference/interconnector_cables.csv	dataset	PINNED_AS_FIXTURE
+GG2050-PAIR-20260907T141211Z-W	external:raw.githubusercontent.com:major_project_news_v9_5_1.json	dataset	EXTERNAL_BY_ABSOLUTE_URL (UNPINNED, tracks main)
+GG2050-PAIR-20260907T141211Z-W	external:raw.githubusercontent.com:gb-transmission-network.v1.json	dataset	EXTERNAL_BY_ABSOLUTE_URL
+GG2050-PAIR-20260907T141211Z-W	external:ventusltd.github.io:repd_projects_202608290716.parquet	dataset	EXTERNAL_BY_ABSOLUTE_URL
 GG2050-PAIR-20260907T141211Z-W	unresolved:far-end-converters-x8	dataset	UNRESOLVED
 GG2050-PAIR-20260907T141211Z-W-child-demo	gridatlas:atlas/data/interconnectors.geojson@R_ATLAS	dataset	DEMO
