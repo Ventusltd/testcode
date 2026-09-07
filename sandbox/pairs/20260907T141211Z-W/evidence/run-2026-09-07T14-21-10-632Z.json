@@ -1,0 +1,314 @@
+{
+ "schema": "ggpair.test-receipt.v1",
+ "pair_id": "GG2050-PAIR-20260907T141211Z-W",
+ "run_utc": "2026-09-07T14:21:10.632Z",
+ "harness": {
+  "node": "v24.19.0",
+  "playwright": "1.58.2",
+  "playwright_path": "C:\\Users\\vikra\\LocalCI\\PipelineNews-GridAtlas\\v004\\node_modules\\playwright\\package.json",
+  "chromium": "145.0.7632.6",
+  "platform": "win32",
+  "network": "CUT - external hosts served from the offline mirror or aborted",
+  "mirror": "D:/gridatlas-ci/offline-sandbox/deps",
+  "test_sha256": "3607d9bd1c738037835601f55232771609f417ea22aa0bab9fbc428e57c453c1",
+  "range_sha256": "10ba9f92403e6473a36aac6f951dde154d5d3186a90d779a7e76feff30db8a45"
+ },
+ "inputs": {
+  "pair_json_sha256": "c9894f16c7c570090d28eba5050ce523f1a51d85cd7f2515a730e03d05208658",
+  "served_from": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/"
+ },
+ "pipeline": {
+  "rows_rendered": 7680,
+  "hrefs": {
+   "11386": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
+   "13429": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
+   "13432": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
+   "IC-INTNED": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
+   "IC-INTVKL": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10"
+  },
+  "hrefs_point_into_pair": {
+   "11386": true,
+   "13429": true,
+   "13432": true,
+   "IC-INTNED": true,
+   "IC-INTVKL": true
+  },
+  "map_atlas_nav_href": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/",
+  "page_errors": [],
+  "screenshot": "evidence/pipeline-interconnectors-tab.png"
+ },
+ "control": {
+  "name": "control-11386-harbour-farm",
+  "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=11386&technology=solar&latitude=53.734542&longitude=-0.2023162&zoom=12",
+  "pageErrors": [],
+  "composition": "202609071232",
+  "cartridges_loaded": [
+   "streaming-parquet-bridge",
+   "uk-gazetteer-flyto",
+   "substation-intelligence",
+   "sld-sandbox"
+  ],
+  "identity": {
+   "status": "RESOLVED",
+   "mapped": true,
+   "coordinate_source": "OFFICIAL_ACTIVE_REGISTER",
+   "coordinate_derived": false,
+   "name": "Harbour Farm - Solar Farm"
+  },
+  "engine": {
+   "links_drawn": 5,
+   "nearest_km": 2.258,
+   "arrival_reconciliation": "MEASUREMENT_CLAIMED",
+   "nearest_beyond_radius": false
+  },
+  "interconnector": null,
+  "nearest_on_page": true,
+  "failure_card": false,
+  "zoom": 13.83,
+  "screenshot": "evidence/control-11386-harbour-farm.png",
+  "elapsed_ms": 7248,
+  "pass": true
+ },
+ "cases": [
+  {
+   "name": "13429-ossian-derived",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=13429&technology=wind_offshore",
+   "pageErrors": [],
+   "composition": "202609071232",
+   "cartridges_loaded": [
+    "streaming-parquet-bridge",
+    "uk-gazetteer-flyto",
+    "substation-intelligence",
+    "sld-sandbox"
+   ],
+   "identity": {
+    "status": "RESOLVED",
+    "mapped": true,
+    "coordinate_source": "CROWN_ESTATE_LEASE_POINT_ON_SURFACE",
+    "coordinate_derived": true,
+    "name": "Ossian"
+   },
+   "engine": {
+    "links_drawn": 0,
+    "nearest_km": 119.392,
+    "arrival_reconciliation": "MEASUREMENT_CLAIMED",
+    "nearest_beyond_radius": true
+   },
+   "interconnector": null,
+   "nearest_on_page": true,
+   "failure_card": false,
+   "zoom": 12,
+   "screenshot": "evidence/13429-ossian-derived.png",
+   "elapsed_ms": 7017,
+   "expect": "RESOLVED, coordinate_derived true",
+   "pass": true
+  },
+  {
+   "name": "13432-marram-unmapped",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?repd_ref=13432&technology=wind_offshore",
+   "pageErrors": [],
+   "composition": "202609071232",
+   "cartridges_loaded": [
+    "streaming-parquet-bridge",
+    "uk-gazetteer-flyto",
+    "substation-intelligence",
+    "sld-sandbox"
+   ],
+   "identity": {
+    "status": "RESOLVED_UNMAPPED",
+    "mapped": false,
+    "coordinate_source": "NONE",
+    "coordinate_derived": false,
+    "name": "Marram"
+   },
+   "engine": {
+    "links_drawn": 0,
+    "nearest_km": null,
+    "arrival_reconciliation": "MEASUREMENT_CLAIMED",
+    "nearest_beyond_radius": null
+   },
+   "interconnector": null,
+   "nearest_on_page": false,
+   "failure_card": false,
+   "zoom": 4.2,
+   "screenshot": "evidence/13432-marram-unmapped.png",
+   "elapsed_ms": 6896,
+   "expect": "RESOLVED_UNMAPPED, no failure card",
+   "pass": true
+  },
+  {
+   "name": "INTNED-britned-midpoint-anchor",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=midpoint&latitude=51.69895&longitude=2.36873&zoom=7",
+   "pageErrors": [],
+   "composition": "202609071232",
+   "cartridges_loaded": [
+    "streaming-parquet-bridge",
+    "uk-gazetteer-flyto",
+    "substation-intelligence",
+    "sld-sandbox"
+   ],
+   "identity": {
+    "status": "ABSENT",
+    "mapped": false,
+    "coordinate_source": null,
+    "coordinate_derived": null,
+    "name": null
+   },
+   "engine": {
+    "links_drawn": 0,
+    "nearest_km": null,
+    "arrival_reconciliation": "HANDED_TO_INTERCONNECTORS",
+    "nearest_beyond_radius": null
+   },
+   "interconnector": {
+    "status": "RESOLVED",
+    "card": "OPEN",
+    "framed": true,
+    "gb_end": {
+     "nearest_name": "Grain Static Inverter Plant",
+     "nearest_km": 0,
+     "within": 20,
+     "search_km": 10
+    },
+    "far_end": {
+     "coverage": "NONE"
+    },
+    "substations_seen": 5800
+   },
+   "nearest_on_page": false,
+   "failure_card": false,
+   "zoom": 8.01,
+   "screenshot": "evidence/INTNED-britned-midpoint-anchor.png",
+   "elapsed_ms": 9315,
+   "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
+   "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
+   "pass": true
+  },
+  {
+   "name": "INTNED-britned-gb-converter-anchor",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?interconnector=INTNED&technology=interconnector&project=BritNed&capacity_mw=1000&anchor=gb_converter&latitude=51.4405&longitude=0.71616&zoom=10",
+   "pageErrors": [],
+   "composition": "202609071232",
+   "cartridges_loaded": [
+    "streaming-parquet-bridge",
+    "uk-gazetteer-flyto",
+    "substation-intelligence",
+    "sld-sandbox"
+   ],
+   "identity": {
+    "status": "ABSENT",
+    "mapped": false,
+    "coordinate_source": null,
+    "coordinate_derived": null,
+    "name": null
+   },
+   "engine": {
+    "links_drawn": 0,
+    "nearest_km": null,
+    "arrival_reconciliation": "HANDED_TO_INTERCONNECTORS",
+    "nearest_beyond_radius": null
+   },
+   "interconnector": {
+    "status": "RESOLVED",
+    "card": "OPEN",
+    "framed": true,
+    "gb_end": {
+     "nearest_name": "Grain Static Inverter Plant",
+     "nearest_km": 0,
+     "within": 20,
+     "search_km": 10
+    },
+    "far_end": {
+     "coverage": "NONE"
+    },
+    "substations_seen": 5800
+   },
+   "nearest_on_page": false,
+   "failure_card": false,
+   "zoom": 8.01,
+   "screenshot": "evidence/INTNED-britned-gb-converter-anchor.png",
+   "elapsed_ms": 9377,
+   "direction": "A': arrival at the GB converter; line held so the span is still framed",
+   "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
+   "pass": true
+  },
+  {
+   "name": "INTVKL-viking-gb-only",
+   "url": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/atlas/?interconnector=INTVKL&technology=interconnector&project=Viking+Link&capacity_mw=1400&anchor=gb_converter&latitude=52.9314&longitude=-0.22093&zoom=10",
+   "pageErrors": [],
+   "composition": "202609071232",
+   "cartridges_loaded": [
+    "streaming-parquet-bridge",
+    "uk-gazetteer-flyto",
+    "substation-intelligence",
+    "sld-sandbox"
+   ],
+   "identity": {
+    "status": "ABSENT",
+    "mapped": false,
+    "coordinate_source": null,
+    "coordinate_derived": null,
+    "name": null
+   },
+   "engine": {
+    "links_drawn": 0,
+    "nearest_km": null,
+    "arrival_reconciliation": "HANDED_TO_INTERCONNECTORS",
+    "nearest_beyond_radius": null
+   },
+   "interconnector": {
+    "status": "NOT_DRAWABLE",
+    "card": "OPEN",
+    "framed": "gb_converter",
+    "gb_end": {
+     "nearest_name": "Bicker Fen Substation",
+     "nearest_km": 0.001,
+     "within": 8,
+     "search_km": 10
+    },
+    "far_end": "not held",
+    "substations_seen": 5800
+   },
+   "nearest_on_page": false,
+   "failure_card": false,
+   "zoom": 10,
+   "screenshot": "evidence/INTVKL-viking-gb-only.png",
+   "elapsed_ms": 9906,
+   "direction": "A: GB converter only; far converter not held",
+   "expect": "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9",
+   "pass": true
+  },
+  {
+   "name": "INTNED-far-converter-to-gb",
+   "direction": "B: arrival at the far converter (Maasvlakte) measuring toward GB",
+   "outcome": "NOT_IMPLEMENTED",
+   "statement": "v9.146 has no far-end arrival branch and no substation payload outside GB; the far end is reported as coverage NONE from direction A. Recorded as missing coverage, not as a pass or a fail."
+  }
+ ],
+ "outcome": "PASS",
+ "statement": "5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED.",
+ "mirror_misses": [
+  "mirror:/cdn.jsdelivr.net/npm/chart.js",
+  "mirror:/raw.githubusercontent.com/Ventusltd/globalgrid2050/main/dist/major_project_news_v9_5_1.json",
+  "/sandbox/pairs/dist/major_project_news_v9_5_1.json",
+  "mirror:/raw.githubusercontent.com/Ventusltd/data-grid-gb/1c9909d1138704b29235c27fd769436dda8a0b18/derived/gb-transmission-network.v1.json",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/15/10.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/10.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/15/9.mvt",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/9.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/14/10.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/14/9.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/41.mvt",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/41.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/40.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/40.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/62/41.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/62/40.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/65/41.mvt",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/65/40.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/31/20.mvt",
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/32/20.mvt"
+ ],
+ "elapsed_ms": 50994,
+ "generated_bytes": 680734
+}
