@@ -1,0 +1,2 @@
+observation_id	pair_id	source_or_live	measured_at	receipt_ref	note
+1	GG2050-PAIR-20260907T190239Z-W	source (served locally, network cut)	2026-09-07T19:03:18.870Z	evidence/receipt-windows-rig.json	5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED; 0 case(s) classified D-01. The run is INCOMPLETE.

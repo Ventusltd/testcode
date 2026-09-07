@@ -1,0 +1,2 @@
+fingerprint	test_id	outcome	first_seen	reason
+gridatlas-cartridge-proof:substation-intelligence:451935>368640	gridatlas cartridge proof	FAIL	2026-09-06T23:58:53Z	substation-intelligence crosses the 368,640-byte boundary and root 202609060259 has no proof file; unchanged bytes, not re-run

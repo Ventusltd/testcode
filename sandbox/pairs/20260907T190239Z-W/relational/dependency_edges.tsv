@@ -1,0 +1,23 @@
+edge_id	consumer_id	dependency_id	relation	evidence_status	evidence_ref	analyzer_version
+1	gridatlas:atlas/current.json	gridatlas:atlas/cartridges/202609041945-streaming-parquet-bridge-v9-5.js	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+2	gridatlas:atlas/current.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+3	gridatlas:atlas/current.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+4	gridatlas:atlas/current.json	gridatlas:atlas/cartridges/202609062358-substation-intelligence-v9-63.js	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+5	gridatlas:atlas/current.json	gridatlas:atlas/releases/202608300453-atlas-v9/index.html	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+6	gridatlas:atlas/current.json	gridatlas:atlas/releases/202608300453-atlas-v9/ventus-corev8engine.js	contains	declared	atlas/current.json sha256 entries	pair-build-20260907
+7	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	gridatlas:atlas/data/interconnectors.geojson	reads	runtime-observed	run receipts: DATA_URL XHR ../../data/interconnectors.geojson	pair-build-20260907
+8	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	gridatlas:atlas/data/offshore-coordinates.json	reads	runtime-observed	run receipts: 13429 coordinate_derived true	pair-build-20260907
+9	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	external:register-parquet	reads	runtime-observed	verify-derived: 21 Range requests; PARQUET_SHA256 pinned at line 141	pair-build-20260907
+10	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	gridatlas:atlas/releases/202608300453-atlas-v9/ventus-corev8engine.js	calls	static-resolved	reads geodesy.EARTH_RADIUS_KM from atlas/modules; engine repo not imported (0 references)	pair-build-20260907
+11	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	ventus-grid-engine:HEAD	comparator	declared	The Atlas cartridges do not import ventus-grid-engine (0 references); they compute from atlas/modules. The engine's deeplink/receivers.json is copied and rebound as atlas/deeplink/receivers.json. Engine proofs (19/461 on Windows) certify a reference copy the browser does not execute.	pair-build-20260907
+12	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	unresolved:far-end-converters-x8	reads	unresolved	interconnector-endpoints.json: far_lon/far_lat null for 8 links	pair-build-20260907
+13	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	imports	static-resolved	import { atlasReceiverV9_7 } from ./atlas-receiver-v9-7.js	pair-build-20260907
+14	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	gridatlas:atlas/deeplink/receivers.json	implements-contract	runtime-observed	verifyAtlasReceiverV9_7 fetched the pair-local contract; changed=false	pair-build-20260907
+15	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	gridatlas:atlas/current.json	points-to	runtime-observed	run receipts: every MAP href starts with the pair atlas route	pair-build-20260907
+16	globalgrid2050:pipeline/scripts/plugins/newspaper-v9-7.js	external:raw.githubusercontent.com:major_project_news_v9_5_1.json	reads	runtime-observed	receipt mirror_misses: aborted offline; table rendered without it	pair-build-20260907
+17	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	external:raw.githubusercontent.com:gb-transmission-network.v1.json	reads	runtime-observed	receipt mirror_misses: aborted offline; arrivals unaffected	pair-build-20260907
+18	globalgrid2050:pipeline/data/v9.8/interconnectors.json	data-interconnectors:reference/interconnector_cables.csv	built-from	declared	scripts/build/interconnectors-v9-8.mjs SOURCES pins	pair-build-20260907
+19	globalgrid2050:pipeline/data/v9.8/interconnectors.json	gridatlas:atlas/data/interconnectors.geojson	built-from	declared	fixtures/v9.8 pinned blobs	pair-build-20260907
+20	globalgrid2050:pipeline/scripts/plugins/projects-v9-8.js	globalgrid2050:pipeline/data/v9.8/interconnectors.json	reads	runtime-observed	tab renders 16 rows from the manifest-hashed partition	pair-build-20260907
+21	demo:A	demo:B	imports	declared	cycle demo	pair-build-20260907
+22	demo:B	demo:A	imports	declared	cycle demo	pair-build-20260907
