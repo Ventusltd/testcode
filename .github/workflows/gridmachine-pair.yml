@@ -1,0 +1,66 @@
+name: GlobalGrid2050 Grid Machine paired build
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/build-pair.py', 'tools/pair-gates.cjs', 'tools/pair-inputs.json', '.github/workflows/gridmachine-pair.yml']
+permissions:
+  contents: read
+concurrency:
+  group: gridmachine-pair-build
+  cancel-in-progress: false
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GRIDMACHINE_SOURCES: ${{ github.workspace }}/.gridmachine-sources
+      GRIDMACHINE_EVIDENCE: ${{ github.workspace }}/.gridmachine-evidence
+      PLAYWRIGHT_MODULE: ${{ github.workspace }}/.gridmachine-runtime/node_modules/playwright
+      BROWSER_CHANNEL: chromium
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch exact public input commits
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          root=pathlib.Path(os.environ['GRIDMACHINE_SOURCES']);root.mkdir()
+          for repo,sha in json.load(open('tools/pair-inputs.json')).items():
+              target=root/repo;target.mkdir()
+              subprocess.run(['git','init',str(target)],check=True)
+              subprocess.run(['git','-C',str(target),'fetch','--depth=1','https://github.com/Ventusltd/'+repo+'.git',sha],check=True)
+              assert subprocess.check_output(['git','-C',str(target),'rev-parse','FETCH_HEAD'],text=True).strip()==sha
+          PY
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix .gridmachine-runtime --no-audit --no-fund playwright@1.62.1
+          node .gridmachine-runtime/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Allocate candidate and build
+        id: build
+        run: |
+          stamp=$(date -u +%Y%m%dT%H%M%SZ)
+          echo "stamp=$stamp" >> "$GITHUB_OUTPUT"
+          python3 tools/build-pair.py "$stamp"
+      - name: Record active-click dependencies and controls
+        run: node tools/pair-gates.cjs '${{ steps.build.outputs.stamp }}' record
+      - name: Replay with external browser requests blocked
+        run: node tools/pair-gates.cjs '${{ steps.build.outputs.stamp }}' offline
+      - name: Package passing paired applications for review
+        run: |
+          mkdir -p .gridmachine-package
+          tar -cf .gridmachine-package/gridmachine-pair.tar -C sandbox/gm02 '${{ steps.build.outputs.stamp }}'
+          sha256sum .gridmachine-package/gridmachine-pair.tar > .gridmachine-package/SHA256SUMS
+          printf '%s\n' 'REVIEW_REQUIRED: this artifact is a test pair, not a production deployment. Inspect the exact offline receipt and hashes before publishing a preview.' > .gridmachine-package/REVIEW.txt
+      - name: Preserve receipts and candidate bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: globalgrid2050-gridmachine-${{ steps.build.outputs.stamp }}
+          path: |
+            .gridmachine-evidence/*.json
+            .gridmachine-evidence/*.png
+            .gridmachine-package/*
+          retention-days: 14
