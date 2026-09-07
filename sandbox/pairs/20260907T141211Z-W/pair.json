@@ -701,7 +701,7 @@
   "publication": "BRANCH_ONLY",
   "owner_approval": "NOT_REQUESTED",
   "last_receipt": "evidence/run-2026-09-07T14-21-10-632Z.json",
-  "last_run_utc": "2026-09-07T16:15:09.287Z",
+  "last_run_utc": "2026-09-07T16:22:13.652Z",
   "runner": "D: pair-runner lane 4",
   "proof_route": "offline (D:, network cut)",
   "internal_determinism_rate": "27/27",
