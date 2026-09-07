@@ -2298,8 +2298,8 @@
    "environment_fingerprint": "4daacdd331c2c51e",
    "outcome": "INCOMPLETE",
    "control_run_id": "receipt-windows-rig.json#control",
-   "receipt_sha256": "48a9d5768c3bf5eea65429b953d5e83ac5e6b7e99926b0ca08f278a5a5509287",
-   "run_utc": "2026-09-07T17:12:37.180Z"
+   "receipt_sha256": "766f90b3594b6533fa646212b07eae81bbebf58a748a016c8e1e53ce61c95bab",
+   "run_utc": "2026-09-07T17:15:28.987Z"
   },
   {
    "run_id": "run-2026-09-07T14-21-10-632Z.json",
@@ -2513,7 +2513,7 @@
    "observation_id": 1,
    "pair_id": "GG2050-PAIR-20260907T141211Z-W",
    "source_or_live": "source (served locally, network cut)",
-   "measured_at": "2026-09-07T17:12:37.180Z",
+   "measured_at": "2026-09-07T17:15:28.987Z",
    "receipt_ref": "evidence/receipt-windows-rig.json",
    "note": "5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE."
   },
