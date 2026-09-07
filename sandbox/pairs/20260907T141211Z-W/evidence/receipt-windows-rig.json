@@ -1,7 +1,7 @@
 {
  "schema": "ggpair.test-receipt.v1",
  "pair_id": "GG2050-PAIR-20260907T141211Z-W",
- "run_utc": "2026-09-07T14:29:27.098Z",
+ "run_utc": "2026-09-07T14:32:17.193Z",
  "harness": {
   "node": "v24.19.0",
   "playwright": "1.58.2",
@@ -15,7 +15,7 @@
   "range_sha256": "10ba9f92403e6473a36aac6f951dde154d5d3186a90d779a7e76feff30db8a45"
  },
  "inputs": {
-  "pair_json_sha256": "9d5ba4b732d1d7f31379470cc27c36936a4a8ef3350cd593b51e585a7c2ac25a",
+  "pair_json_sha256": "b1894fedba9c45b5ee08240b3d6e6a9c38e75eae8fcc69267ee0557b6e5caf34",
   "served_from": "http://127.0.0.1:8911/sandbox/pairs/20260907T141211Z-W/"
  },
  "pipeline": {
@@ -67,7 +67,7 @@
   "failure_card": false,
   "zoom": 13.83,
   "screenshot": "evidence/control-11386-harbour-farm.png",
-  "elapsed_ms": 7003,
+  "elapsed_ms": 7076,
   "pass": true
  },
  "cases": [
@@ -100,7 +100,7 @@
    "failure_card": false,
    "zoom": 12,
    "screenshot": "evidence/13429-ossian-derived.png",
-   "elapsed_ms": 7610,
+   "elapsed_ms": 8823,
    "expect": "RESOLVED, coordinate_derived true",
    "pass": true
   },
@@ -133,7 +133,7 @@
    "failure_card": false,
    "zoom": 4.2,
    "screenshot": "evidence/13432-marram-unmapped.png",
-   "elapsed_ms": 9164,
+   "elapsed_ms": 8594,
    "expect": "RESOLVED_UNMAPPED, no failure card",
    "pass": true
   },
@@ -180,7 +180,7 @@
    "failure_card": false,
    "zoom": 7.81,
    "screenshot": "evidence/INTNED-britned-midpoint-anchor.png",
-   "elapsed_ms": 9846,
+   "elapsed_ms": 9697,
    "direction": "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated",
    "expect": "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS",
    "pass": true
@@ -226,9 +226,9 @@
    },
    "nearest_on_page": false,
    "failure_card": false,
-   "zoom": 7.81,
+   "zoom": 8.01,
    "screenshot": "evidence/INTNED-britned-gb-converter-anchor.png",
-   "elapsed_ms": 9706,
+   "elapsed_ms": 10161,
    "direction": "A': arrival at the GB converter; line held so the span is still framed",
    "expect": "RESOLVED, card OPEN, GB end Grain ~0 km",
    "pass": true
@@ -274,7 +274,7 @@
    "failure_card": false,
    "zoom": 10,
    "screenshot": "evidence/INTVKL-viking-gb-only.png",
-   "elapsed_ms": 10648,
+   "elapsed_ms": 10977,
    "direction": "A: GB converter only; far converter not held",
    "expect": "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9",
    "pass": true
@@ -299,17 +299,17 @@
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/5/16/9.mvt",
   "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/31/20.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/32/20.mvt",
-  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/31/21.mvt",
-  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/32/21.mvt",
-  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/30/20.mvt",
-  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/33/20.mvt",
-  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/30/21.mvt",
-  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/6/33/21.mvt",
   "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/41.mvt",
   "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/41.mvt",
   "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/63/40.mvt",
-  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/40.mvt"
+  "mirror:/tiles-a.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/64/40.mvt",
+  "mirror:/tiles-d.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/62/41.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/62/40.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/65/41.mvt",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/7/65/40.mvt",
+  "mirror:/tiles-b.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/127/82.mvt",
+  "mirror:/tiles-c.basemaps.cartocdn.com/vectortiles/carto.streets/v1/8/128/82.mvt"
  ],
- "elapsed_ms": 18781,
- "generated_bytes": 750706
+ "elapsed_ms": 18915,
+ "generated_bytes": 750184
 }
