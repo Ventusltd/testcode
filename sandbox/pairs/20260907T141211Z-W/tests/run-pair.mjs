@@ -42,6 +42,8 @@ const argMirror = process.argv.indexOf("--mirror");
 const MIRROR = argMirror > 0 ? process.argv[argMirror + 1] : "D:/gridatlas-ci/offline-sandbox/deps";
 const PORT = Number(process.env.PAIR_PORT || 8911);
 const NET = process.env.PAIR_NET === "online" ? "online" : "cut";
+const PARALLEL = Math.max(1, Number(process.env.PAIR_PARALLEL || 1));   // cases after the control run concurrently
+const RECEIPT = process.env.PAIR_RECEIPT || null;                         // stable file name, overwritten in place
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const t0 = Date.now();
 
@@ -69,7 +71,7 @@ const harness = {
   node: process.version,
   playwright: JSON.parse(fs.readFileSync(PW_PKG, "utf8")).version, playwright_path: PW_PKG,
   chromium: browser.version(),
-  platform: process.platform, network: NET === "online" ? "ONLINE - external hosts reached directly (hosted runner)" : "CUT - external hosts served from the offline mirror or aborted",
+  platform: process.platform, parallel: PARALLEL, network: NET === "online" ? "ONLINE - external hosts reached directly (hosted runner)" : "CUT - external hosts served from the offline mirror or aborted",
   mirror: MIRROR, test_sha256: sha(fs.readFileSync(fileURLToPath(import.meta.url))), range_sha256: sha(fs.readFileSync(path.join(HERE, "range.mjs"))),
 };
 
@@ -167,20 +169,24 @@ if (!control.pass) {
   receipt.statement = "The control did not pass in this run. Nothing below is a verdict on the candidate.";
 } else {
   // --- 2. identity cases
-  const c13429 = await arrive("13429-ossian-derived", hrefs["13429"]);
+  const gbUrl = new URL(hrefs["IC-INTNED"]); gbUrl.searchParams.set("anchor", "gb_converter"); gbUrl.searchParams.set("latitude", "51.4405"); gbUrl.searchParams.set("longitude", "0.71616"); gbUrl.searchParams.set("zoom", "10");
+  const jobs = [
+    () => arrive("13429-ossian-derived", hrefs["13429"]),
+    () => arrive("13432-marram-unmapped", hrefs["13432"]),
+    () => arrive("INTNED-britned-midpoint-anchor", hrefs["IC-INTNED"], { interconnector: true, settle: 8000 }),
+    () => arrive("INTNED-britned-gb-converter-anchor", gbUrl.href, { interconnector: true, settle: 8000 }),
+    () => arrive("INTVKL-viking-gb-only", hrefs["IC-INTVKL"], { interconnector: true, settle: 8000 }),
+  ];
+  const results = []; let next = 0;
+  await Promise.all(Array.from({ length: Math.min(PARALLEL, jobs.length) }, async () => { while (next < jobs.length) { const i = next++; results[i] = await jobs[i](); } }));
+  const [c13429, c13432, britned, britnedGb, viking] = results;
   c13429.expect = "RESOLVED, coordinate_derived true"; c13429.pass = c13429.identity?.status === "RESOLVED" && c13429.identity?.coordinate_derived === true && !c13429.failure_card;
-  const c13432 = await arrive("13432-marram-unmapped", hrefs["13432"]);
   c13432.expect = "RESOLVED_UNMAPPED, no failure card"; c13432.pass = c13432.identity?.status === "RESOLVED_UNMAPPED" && !c13432.failure_card;
-  // --- 3. interconnectors, both anchors, both directions stated
-  const britned = await arrive("INTNED-britned-midpoint-anchor", hrefs["IC-INTNED"], { interconnector: true, settle: 8000 });
   britned.direction = "A: pipeline MAP -> midpoint anchor -> span framed, GB end measured, far end coverage stated";
   britned.expect = "RESOLVED, card OPEN, GB end measured (km number), far coverage NONE, lane HANDED_TO_INTERCONNECTORS";
   britned.pass = britned.interconnector?.status === "RESOLVED" && britned.interconnector?.card === "OPEN" && Number.isFinite(britned.interconnector?.gb_end?.nearest_km) && britned.interconnector?.far_end?.coverage === "NONE" && britned.engine?.arrival_reconciliation === "HANDED_TO_INTERCONNECTORS" && !britned.failure_card;
-  const gbUrl = new URL(hrefs["IC-INTNED"]); gbUrl.searchParams.set("anchor", "gb_converter"); gbUrl.searchParams.set("latitude", "51.4405"); gbUrl.searchParams.set("longitude", "0.71616"); gbUrl.searchParams.set("zoom", "10");
-  const britnedGb = await arrive("INTNED-britned-gb-converter-anchor", gbUrl.href, { interconnector: true, settle: 8000 });
   britnedGb.direction = "A': arrival at the GB converter; line held so the span is still framed";
   britnedGb.expect = "RESOLVED, card OPEN, GB end Grain ~0 km"; britnedGb.pass = britnedGb.interconnector?.status === "RESOLVED" && britnedGb.interconnector?.card === "OPEN" && Number.isFinite(britnedGb.interconnector?.gb_end?.nearest_km);
-  const viking = await arrive("INTVKL-viking-gb-only", hrefs["IC-INTVKL"], { interconnector: true, settle: 8000 });
   viking.direction = "A: GB converter only; far converter not held";
   viking.expect = "NOT_DRAWABLE, card OPEN, GB end Bicker Fen measured, zoom >= 9"; viking.pass = viking.interconnector?.status === "NOT_DRAWABLE" && viking.interconnector?.card === "OPEN" && Number.isFinite(viking.interconnector?.gb_end?.nearest_km) && viking.zoom >= 9;
   const farDirection = { name: "INTNED-far-converter-to-gb", direction: "B: arrival at the far converter (Maasvlakte) measuring toward GB", outcome: "NOT_IMPLEMENTED", statement: "v9.146 has no far-end arrival branch and no substation payload outside GB; the far end is reported as coverage NONE from direction A. Recorded as missing coverage, not as a pass or a fail." };
@@ -192,7 +198,7 @@ if (!control.pass) {
 await browser.close(); server.close(); mirrorServer.close();
 receipt.mirror_misses = [...new Set(misses)].slice(0, 20);
 receipt.elapsed_ms = Date.now() - t0;
-const outName = `run-${receipt.run_utc.replace(/[:.]/g, "-")}.json`;
+const outName = RECEIPT || `run-${receipt.run_utc.replace(/[:.]/g, "-")}.json`;
 fs.writeFileSync(path.join(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
 receipt.generated_bytes = fs.readdirSync(evidenceDir).reduce((n, f) => n + fs.statSync(path.join(evidenceDir, f)).size, 0);
 fs.writeFileSync(path.join(evidenceDir, outName), JSON.stringify(receipt, null, 1) + "\n");
