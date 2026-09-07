@@ -1,0 +1,9 @@
+run_id	component_id	source
+receipt-windows-rig.json	gridatlas:atlas/current.json	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071232-sld-sandbox-v9-8.js	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/cartridges/202609071213-place-global-search-v9-5.js	declared-by-analyzer
+receipt-windows-rig.json	external:register-parquet	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/data/offshore-coordinates.json	declared-by-analyzer
+receipt-windows-rig.json	gridatlas:atlas/data/interconnectors.geojson	declared-by-analyzer
+receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-receiver-v9-7.js	declared-by-analyzer
+receipt-windows-rig.json	globalgrid2050:pipeline/scripts/core/atlas-interconnector-link-v9-8.js	declared-by-analyzer
