@@ -1,3 +1,3 @@
 observation_id	pair_id	source_or_live	measured_at	receipt_ref	note
-1	GG2050-PAIR-20260907T141211Z-W	source (served locally, network cut)	2026-09-07T16:01:07.883Z	evidence/receipt-windows-rig.json	5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.
+1	GG2050-PAIR-20260907T141211Z-W	source (served locally, network cut)	2026-09-07T16:13:32.337Z	evidence/receipt-windows-rig.json	5 of 5 scored cases passed with a valid control; 1 requested behaviour(s) NOT_IMPLEMENTED, so the run is INCOMPLETE.
 2	GG2050-PAIR-20260907T141211Z-W	source (served locally, network cut)	2026-09-07T14:21:10.632Z	evidence/run-2026-09-07T14-21-10-632Z.json	5 of 5 scored cases passed with a valid control; 1 direction NOT_IMPLEMENTED.
