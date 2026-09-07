@@ -704,7 +704,6 @@
   "last_run_utc": "2026-09-07T15:10:48.387Z",
   "runner": "D: pair-runner lane 4",
   "proof_route": "offline (D:, network cut)",
-  "repeat_pass_rate": "5/5",
   "internal_determinism_rate": "4/4",
   "determinism_note": "same bytes, same environment, network cut: this measures determinism, not robustness. No variance is injected, so it is not evidence that the pair survives hostile conditions."
  },
