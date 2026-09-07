@@ -701,10 +701,10 @@
   "publication": "BRANCH_ONLY",
   "owner_approval": "NOT_REQUESTED",
   "last_receipt": "evidence/run-2026-09-07T14-21-10-632Z.json",
-  "last_run_utc": "2026-09-07T14:32:17.193Z",
+  "last_run_utc": "2026-09-07T14:47:19.841Z",
   "runner": "D: pair-runner lane 4",
   "proof_route": "offline (D:, network cut)",
-  "repeat_pass_rate": "4/4"
+  "repeat_pass_rate": "5/5"
  },
  "preview_urls": {
   "note": "Ventusltd/testcode has no GitHub Pages (has_pages=false at build). No preview URL is claimed; every receipt below was produced by serving this directory locally."
