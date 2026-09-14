@@ -41,6 +41,23 @@ for (const [v, [sel, min]] of Object.entries(PICTURE)) for (const width of [430,
     await hit.waitFor({ timeout: 10000 }); await hit.click();
     await page.waitForFunction(() => [...document.querySelectorAll('.u-line, .ln')].some(e => /(^|\s)9\s*│.*effectiveGap/.test(e.textContent)), null, { timeout: 30000 });
     check(v, width, 'search -> family #2 -> numbered line 9 carries its code', true);
+    // relationship hop: #2 is used by #9 — follow that arrow, then check the new family's source link and step back
+    const usedBy = page.locator('button', { hasText: /^#9\b/ }).first();
+    const hadUsedBy = await usedBy.count();
+    if (hadUsedBy) await usedBy.click();
+    const hopped = hadUsedBy ? await page.waitForFunction(() => /#9 /.test(document.body.innerText) && [...document.querySelectorAll('#trail a')].some(a => /^#9 /.test(a.textContent)), null, { timeout: 30000 }).then(() => true, () => false) : false;
+    check(v, width, 'used-by arrow #2 -> #9 opens that family and adds it to the trail', hopped, hadUsedBy ? '' : 'no #9 control');
+    const src = await page.locator('a', { hasText: 'File at commit' }).last().getAttribute('href').catch(() => null);
+    check(v, width, 'the hop target links to its file at the pinned commit with a line anchor', /^https:\/\/github\.com\/Ventusltd\/[^/]+\/blob\/[0-9a-f]{40}\/.+#L\d+-L\d+$/.test(src || ''), src || 'no link');
+    const back = page.locator('#trail a', { hasText: /^#2 / }).first();
+    const hadBack = await back.count();
+    if (hadBack) { await back.click(); await page.waitForTimeout(1500); }
+    const trailAfterBack = await page.locator('#trail a').allTextContents();
+    check(v, width, 'the trail steps back to #2', hadBack > 0 && /^#2 /.test(trailAfterBack[trailAfterBack.length - 1] || ''), trailAfterBack.slice(-2).join(' › '));
+    if (hadBack) { // re-open #2 so the containing-block step below starts from the family panel, whichever way the version handles "back"
+      await page.fill('.u-search', 'effectiveGap'); await page.locator('.u-hits button', { hasText: '#2 effectiveGap' }).first().click();
+      await page.waitForFunction(() => [...document.querySelectorAll('.u-line, .ln')].some(e => /(^|\s)9\s*│/.test(e.textContent)), null, { timeout: 30000 });
+    }
     const trail0 = await page.locator('#trail a').count();
     const up = page.locator('button', { hasText: 'contained in' }).first();
     // count the control BEFORE clicking: versions that replace the panel when the block opens remove it
