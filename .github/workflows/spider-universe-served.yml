@@ -1,0 +1,32 @@
+name: spider-universe-served
+
+# Read-only proof of a published GLOBALGRID2050 Spider universe generation, measured on the served pages at
+# globalgrid2050.com/testcode/<generation>/ in a real browser. It checks the artefact that ships, not a working tree.
+# Network by nature: it runs only when asked, for a named generation.
+on:
+  workflow_dispatch:
+    inputs:
+      generation:
+        description: 'UTC stamp of the testcode generation, e.g. 202609141350'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  served:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Install Playwright with Chromium (not saved to the repository)
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Ten versions at 430 and 1280 px
+        env:
+          GENERATION: ${{ inputs.generation }}
+        run: node tools/spider-universe-served.mjs
