@@ -1,0 +1,23 @@
+name: universe-journey
+on:
+  push:
+    branches: [codex/universe-review-20260914]
+    paths: ['sandbox/202609141400-universe-journey/**', '.github/workflows/universe-journey.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: sandbox/202609141400-universe-journey
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: node verify-publication.mjs

@@ -1,0 +1,11 @@
+{
+  "name": "universe-journey-experiment",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node journey.test.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.0.1"
+  }
+}
