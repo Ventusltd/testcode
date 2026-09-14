@@ -35,8 +35,11 @@ for (const [v, [sel, min]] of Object.entries(PICTURE)) for (const width of [430,
     const t0 = Date.now();
     const resp = await page.goto(`${BASE}${v}/index.html`, { waitUntil: 'domcontentloaded' });
     check(v, width, 'page served', resp && resp.status() === 200, `HTTP ${resp && resp.status()}`);
-    await page.waitForFunction(() => /10,811 function families/.test(document.body.innerText), null, { timeout: 45000 });
-    check(v, width, 'live counts shown', true, `${Date.now() - t0} ms to counts`);
+    // the counts are live data and move with every Modular star run (10,811 families at 13:50 UTC, 10,912 at 15:25 UTC): require the shape, then compare with index.json
+    await page.waitForFunction(() => /[\d,]{5,} function families · [\d,]{6,} unique numbered lines/.test(document.body.innerText), null, { timeout: 45000 });
+    const idx = await fetch('https://ventusltd.github.io/stars/code/index.json').then(r => r.json());
+    const shown = await page.evaluate(() => document.body.innerText.match(/([\d,]+) function families · ([\d,]+) unique numbered lines/));
+    check(v, width, 'live counts shown and equal to index.json', !!shown && shown[1] === idx.families.toLocaleString('en-GB') && shown[2] === idx.lines.toLocaleString('en-GB'), `${Date.now() - t0} ms; page ${shown && shown[1]}/${shown && shown[2]}, index ${idx.families}/${idx.lines}`);
     await page.waitForTimeout(1200);
     const n = await page.locator(sel).count();
     check(v, width, `picture renders (${sel} >= ${min})`, n >= min, `${n}`);
