@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Periodic table of globalgrid2050 architecture development</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;padding:16px 18px 40px;background:#0b0d12;color:#eef2fb;font:14px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}
+  a{color:#00e5ff}
+  h1{font-size:22px;margin:0 0 4px}
+  .ey{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#00e5ff}
+  .nav{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0 10px;font-size:13px;font-family:ui-monospace,monospace}
+  .muted{color:#9aa3b5}
+  .cat{margin:18px 0 6px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;scroll-margin-top:8px}
+  .cat h2{font-size:14px;margin:0;letter-spacing:.06em;text-transform:uppercase}
+  .cat.on h2{text-decoration:underline;text-underline-offset:4px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+  .tile{border:1px solid #262b36;border-radius:10px;padding:8px 9px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.014));cursor:pointer;min-height:78px;display:flex;flex-direction:column;gap:2px}
+  .tile:hover,.tile.on{border-color:#00e5ff;box-shadow:0 0 0 1px rgba(0,229,255,.22)}
+  .tile .sym{font-family:ui-monospace,monospace;font-size:20px;font-weight:700;line-height:1}
+  .tile .num{font-family:ui-monospace,monospace;font-size:10px;color:#9aa3b5}
+  .tile .t{font-size:11.5px;line-height:1.2;color:#dfe6f3}
+  .tile .n{font-family:ui-monospace,monospace;font-size:10px;color:#9aa3b5;margin-top:auto}
+  .panel{position:sticky;bottom:0;border:1px solid #00e5ff;border-radius:14px;background:#12151c;padding:14px;margin-top:18px;box-shadow:0 -10px 40px rgba(0,0,0,.4);max-height:70vh;overflow:auto}
+  .panel h3{margin:0 0 4px;font-size:18px;padding-right:36px}
+  .close{position:absolute;top:8px;right:10px;background:none;border:1px solid #385464;color:#9aa3b5;border-radius:999px;width:28px;height:28px;font:inherit;cursor:pointer}
+  .close:hover{border-color:#00e5ff;color:#eef2fb}
+  .btn{display:inline-block;background:#0f1218;border:1px solid #385464;color:#eef2fb;padding:7px 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer;margin:6px 6px 0 0;text-decoration:none}
+  .btn:hover{border-color:#00e5ff}
+  .btn.first{border-color:#00e5ff}
+  details{margin-top:8px}summary{cursor:pointer;color:#9aa3b5;font-size:13px}
+  .inside{font-family:ui-monospace,monospace;font-size:12px;columns:2;column-gap:20px}
+  .filter{margin:8px 0 0;font-size:13px}
+  .search{width:100%;box-sizing:border-box;background:#0f1218;border:1px solid #385464;color:#eef2fb;border-radius:999px;padding:10px 16px;font:inherit;font-size:15px;margin:6px 0}
+  .search:focus{outline:none;border-color:#00e5ff;box-shadow:0 0 0 2px rgba(0,229,255,.18)}
+  #results{margin:2px 0 6px}
+  #results a{display:inline-block;margin:3px 6px 3px 0;padding:4px 10px;border:1px solid #262b36;border-radius:999px;text-decoration:none;font-size:12.5px}
+  #results a:hover{border-color:#00e5ff}
+  #results .fam{color:#9aa3b5;font-family:ui-monospace,monospace}
+  .chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-family:ui-monospace,monospace;border:1px solid;margin:0 4px 0 0}
+  .chip.green{color:#69f0ae;border-color:rgba(105,240,174,.5)}
+  .chip.amber{color:#ffd54a;border-color:rgba(255,213,74,.5)}
+  .chip.red{color:#ff6e6e;border-color:rgba(255,110,110,.5)}
+  .chip.grey{color:#9aa3b5;border-color:#385464}
+  .compat{margin-top:8px}
+  .compat a{margin-right:2px}
+  .purpose{margin:2px 0 6px;color:#c7d0e0}
+  @media(max-width:600px){.inside{columns:1}.grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}body{padding:12px 12px 40px}}
+</style>
+<div class="ey">Ventus · Global Grid 2050</div>
+<h1>Periodic table of globalgrid2050 architecture development</h1>
+<nav class="nav"><a href="https://ventusltd.github.io/ventus-grid-engine/?graph=periodic-table">← Map</a><a href="https://globalgrid2050.com/">Home</a><a href="https://ventusltd.github.io/stars/start.html">Start here</a><a href="https://ventusltd.github.io/stars/code.html">Code report</a></nav>
+<div class="muted" id="status">Loading…</div>
+<div class="muted">Tap a block to see what it does, where it runs, what it is proven to work with, and what it needs.</div>
+<input class="search" id="search" type="search" placeholder="Search 208 blocks and 10,811 functions - try distance, substation, voltage, Ug" autocomplete="off" spellcheck="false">
+<div id="results"></div>
+<div class="filter" id="filter" hidden></div>
+<div id="table"></div>
+<div class="panel" id="panel" hidden></div>
+<p class="muted" style="margin-top:20px">Every block has a permanent number. Numbers 1 to 47 are the original elements; later numbers are blocks added as the code is read. Underneath each block are its functions, each with its own permanent number; they are the parts list, kept in the background. <a href="https://github.com/Ventusltd/stars/blob/main/MODULAR-STAR.md">What this is</a> · <a href="https://ventusltd.github.io/stars/start.html">Start here</a> · <a href="https://ventusltd.github.io/code-generator/">Build an app from blocks</a></p>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const byName = (a, b) => String(a).localeCompare(String(b), 'en');
+let data, reactions = { reactions: [] }, bySym = {}, searchIndex = [];
+const BUILTINS = new Set(['document','window','fetch','history','console','localStorage','sessionStorage','location','navigator','Math','JSON','Object','Array','String','Number','Date','Promise','Map','Set','setTimeout','setInterval','requestAnimationFrame','URL','URLSearchParams','globalResult','undefined','globalThis','performance','crypto','structuredClone']);
+const GRID_PURPOSE = { geodesy:'Turns coordinates into real distances and bearings - the first step in siting and routing a grid connection.', 'grid-network':'Models substations, circuits and their ratings - where new power can actually flow.', capacity:'Firm capacity, headroom and connection sizing - whether a project can connect, and how much.', cartridges:'A plug-in part of the interactive GridAtlas map that every project is seen on.', layers:'A map layer the reader can turn on to see the grid and the projects.', pages:'The pages and controls a non-coder uses to read the estate.', constants:'A value the whole platform must agree on, so every number is comparable.', deeplinks:'The contract that carries a project from Pipeline News to its exact place on the Atlas.', proofs:'The checks that keep every published figure honest.', news:'How live grid news is discovered and shown against the pipeline.', solar:'Solar, storage and cable engineering for a connection.', data:'The datasets the platform reads - REPD projects, the network model, prices.' };
+function reactionsFor(sym){ return (reactions.reactions||[]).filter(p => p.a===sym || p.b===sym); }
+function healthOf(sym){
+  const rs = reactionsFor(sym);
+  const mixed = rs.filter(p => p.verdict==='mixed evidence' || / red /.test(' '+(p.basis||'')+' '));
+  if (mixed.length) return {cls:'amber', label:mixed.length+' pair'+(mixed.length>1?'s':'')+' with failing tests'};
+  if (rs.length) return {cls:'green', label:'no failing pair'};
+  return {cls:'grey', label:'not yet tested with another block'};
+}
+function compatHTML(sym){
+  const rs = reactionsFor(sym).map(p => ({ other:(p.a===sym?p.b:p.a), v:p.verdict, basis:p.basis, prob:p.probability, n:p.together }))
+    .sort((x,y)=> (y.prob||0)-(x.prob||0) || (y.n||0)-(x.n||0));
+  if (!rs.length) return '';
+  const cls = v => v==='mixed evidence' ? 'amber' : v==='seen together' ? 'green' : 'grey';
+  const rows = rs.slice(0,8).map(r => { const o = bySym[r.other];
+    return `<a href="?block=${esc(r.other)}"><span class="chip ${cls(r.v)}">${esc(r.other)}</span>${esc(o?o.title:r.other)}</a> <span class="muted">${esc(r.basis||'')}</span>`; }).join('<br>');
+  return `<div class="compat"><span class="muted">Proven to work with (from real apps and composition tests):</span><br>${rows}${rs.length>8?`<br><span class="muted">...and ${rs.length-8} more</span>`:''}</div>`;
+}
+function buildSearchIndex(){ searchIndex = [];
+  for (const b of data.blocks){ searchIndex.push({t:'block', sym:b.symbol, label:b.symbol+' '+b.title, key:(b.symbol+' '+b.title+' '+(b.description||'')).toLowerCase()});
+    for (const f of (b.inside||[])) searchIndex.push({t:'fn', sym:b.symbol, family:f.family, label:'#'+f.family+' '+f.name, sub:b.symbol+' '+b.title, key:(f.name+' #'+f.family).toLowerCase(), places:f.places}); } }
+function wireSearch(){ const box=$('#search'), out=$('#results'); let timer;
+  box.oninput = () => { clearTimeout(timer); timer=setTimeout(()=>{ const q=box.value.trim().toLowerCase(); if(q.length<2){out.innerHTML='';return;}
+    const hits = searchIndex.filter(x => x.key.includes(q));
+    const blocks = hits.filter(x=>x.t==='block').slice(0,12);
+    const fns = hits.filter(x=>x.t==='fn').sort((a,b)=>(b.places||0)-(a.places||0)).slice(0,14);
+    out.innerHTML = (blocks.length?`<div>${blocks.map(b=>`<a href="?block=${esc(b.sym)}">${esc(b.label)}</a>`).join('')}</div>`:'')
+      + (fns.length?`<div style="margin-top:4px"><span class="muted" style="font-size:12px">functions:</span> ${fns.map(f=>`<a href="https://ventusltd.github.io/stars/code.html?family=${f.family}"><span class="fam">#${f.family}</span> ${esc(f.label.replace('#'+f.family+' ',''))} <span class="muted">in ${esc(f.sym)} x${f.places}</span></a>`).join('')}</div>`:'')
+      + (!blocks.length&&!fns.length?`<span class="muted">Nothing matches "${esc(box.value)}".</span>`:'');
+    out.querySelectorAll('a[href^="?block="]').forEach(a=>a.onclick=e=>{e.preventDefault();show(new URLSearchParams(a.getAttribute('href')).get('block'));window.scrollTo({top:0});}); }, 120); }; }
+function closePanel() {
+  $('#panel').hidden = true;
+  document.querySelectorAll('.tile.on').forEach(t => t.classList.remove('on'));
+  const q = new URLSearchParams(location.search); q.delete('block');
+  history.replaceState(null, '', q.toString() ? '?' + q : location.pathname);
+}
+function show(sym) {
+  const b = data.blocks.find(x => x.symbol === sym); if (!b) return;
+  document.querySelectorAll('.tile').forEach(t => t.classList.toggle('on', t.dataset.sym === sym));
+  const autos = $('#autos'); if (autos && b.kind === 'auto') autos.open = true;
+  const cat = data.categories.find(c => c.id === b.category) || { title: 'Other tools', colour: '#9aa3b5' };
+  const p = $('#panel'); p.hidden = false;
+  const kind = { constant: 'a value everyone must agree on', engine: 'an engine module', cartridge: 'a plug-in part of the map', layer: 'a map layer', deeplink: 'a link contract', app: 'an app', tool: 'a tool', auto: 'found automatically from one source file' }[b.kind] || b.kind;
+  const state = b.state === 'UNSETTLED' ? ' · value not yet agreed' : b.state === 'SETTLED' ? ' · agreed' : '';
+  const deps = (b.depends_on || []).slice().sort((x, y) => byName(x.title, y.title));
+  const usedBy = (b.used_by || []).slice().sort(byName);
+  const inside = (b.inside || []).slice().sort((x, y) => (y.places - x.places) || byName(x.name, y.name));
+  const buttons = [
+    b.live[0] ? `<a class="btn first" href="${esc(b.live[0])}" target="_blank" rel="noopener">Open the live page</a>` : '',
+    `<a class="btn" href="https://ventusltd.github.io/ventus-grid-engine/?graph=periodic-table&focus=${encodeURIComponent(b.symbol + ' · ' + b.title)}">See it on the map</a>`,
+    b.functions ? `<a class="btn" href="https://ventusltd.github.io/code-generator/?blocks=${encodeURIComponent(b.symbol)}">Add to an app</a>` : '',
+    b.files[0] ? `<a class="btn" href="https://github.com/${esc(b.files[0].repo)}/blob/${esc(b.files[0].commit)}/${esc(b.files[0].path)}" target="_blank" rel="noopener">Source on GitHub</a>` : ''
+  ].join('');
+  p.innerHTML = `<button class="close" id="close" title="Close" aria-label="Close">×</button>
+    <div class="ey" style="color:${cat.colour}">${esc(cat.title)} · block ${b.number}</div>
+    <h3><span style="font-family:ui-monospace,monospace">${esc(b.symbol)}</span> ${esc(b.title)}</h3>
+    <div>${esc(b.description)}</div>
+    ${GRID_PURPOSE[b.category] ? `<div class="purpose">${esc(GRID_PURPOSE[b.category])}</div>` : ''}
+    <div style="margin-top:4px"><span class="chip ${healthOf(b.symbol).cls}">${healthOf(b.symbol).label}</span></div>
+    <div class="muted" style="margin-top:6px">${esc(kind)}${state}${b.functions ? ` · ${b.functions} functions inside (${b.named_functions} named)` : ' · no code of its own'}${b.repos.length ? ' · lives in ' + b.repos.map(r => esc(r.split('/')[1])).sort(byName).join(', ') : ''}${b.first_written ? ' · first written ' + b.first_written.slice(0, 10) : ''}</div>
+    <div>${buttons}</div>
+    ${deps.length ? `<div style="margin-top:8px"><span class="muted">Depends on:</span> ${deps.map(d => `<a href="?block=${esc(d.symbol)}">${esc(d.symbol)} ${esc(d.title)}</a> <span class="muted">(through ${d.via.map(esc).join(", ")})</span>`).join("; ")}</div>` : ""}${usedBy.length ? `<div><span class="muted">Used by:</span> ${usedBy.map(s => `<a href="?block=${esc(s)}">${esc(s)}</a>`).join(", ")}</div>` : ""}
+    ${(() => { const real = (b.needs||[]).filter(n => !BUILTINS.has(n.name)); const builtin = (b.needs||[]).length - real.length;
+      return real.length ? `<div style="margin-top:6px"><span style="color:#ffd54a">Needs from elsewhere:</span> ${real.slice(0,10).map(n => esc(n.meaning||n.name)).join('; ')}${builtin?` <span class="muted">(plus ${builtin} standard browser features)</span>`:''}</div>` : (builtin ? `<div style="margin-top:6px" class="muted">Uses only standard browser features.</div>` : ''); })()}
+    ${compatHTML(b.symbol)}
+    ${inside.length ? `<details><summary>Inside: the parts list (${inside.length} of ${b.named_functions} named functions, most used first)</summary><div class="inside">${inside.map(f => `<div><a href="https://ventusltd.github.io/stars/code.html?family=${f.family}">#${f.family}</a> ${esc(f.name)} <span class="muted">×${f.places}</span></div>`).join('')}</div></details>` : ''}`;
+  $('#close').onclick = closePanel;
+  document.querySelectorAll('#panel a[href^="?block="]').forEach(a => a.onclick = e => { e.preventDefault(); show(new URLSearchParams(a.getAttribute('href')).get('block')); });
+  const q = new URLSearchParams(location.search); q.set('block', sym);
+  history.replaceState(null, '', '?' + q);
+}
+function showCategory(id) {
+  const cat = data.categories.find(c => c.id === id); const f = $('#filter');
+  document.querySelectorAll('.cat').forEach(el => el.classList.toggle('on', el.dataset.cat === id));
+  if (!cat) { f.hidden = true; return; }
+  f.hidden = false;
+  f.innerHTML = `Showing the subject <b style="color:${cat.colour}">${esc(cat.title)}</b> · <a href="https://ventusltd.github.io/stars/table.html">show every subject</a>`;
+  const h = document.getElementById('h-' + id); if (h) h.scrollIntoView({ block: 'start' });
+}
+(async () => {
+  try {
+    data = await (await fetch('https://ventusltd.github.io/stars/blocks/blocks.json', {cache: 'no-cache'})).json();
+    try { reactions = await (await fetch('https://ventusltd.github.io/stars/blocks/reactions.json', {cache: 'no-cache'})).json(); } catch (e) { reactions = { reactions: [] }; }
+    bySym = Object.fromEntries(data.blocks.map(b => [b.symbol, b]));
+    buildSearchIndex();
+    wireSearch();
+    const named = data.blocks.filter(b => b.kind !== 'auto'), autos = data.blocks.filter(b => b.kind === 'auto');
+    $('#status').textContent = `${named.length} named blocks and ${autos.length} blocks found automatically from source files · ${data.blocks.reduce((s, b) => s + b.functions, 0).toLocaleString('en-GB')} functions underneath · updated ${data.generated_utc.slice(0, 16).replace('T', ' ')} UTC`;
+    const t = $('#table');
+    const tile = (b, c) => `<div class="tile" data-sym="${esc(b.symbol)}" style="border-top:3px solid ${c.colour}"><div class="num">${b.number}</div><div class="sym">${esc(b.symbol)}</div><div class="t">${esc(b.title)}</div><div class="n">${b.functions ? b.functions + ' functions' : 'data only'}${b.state === 'UNSETTLED' ? ' · not agreed' : ''}</div></div>`;
+    for (const c of data.categories) {
+      const all = data.blocks.filter(b => b.category === c.id && (b.kind !== 'auto' || b.functions >= 8)).sort((a, b) => a.number - b.number);
+      if (!all.length) continue;
+      const bs = all.filter(b => b.kind !== 'auto'), as = all.filter(b => b.kind === 'auto');
+      t.insertAdjacentHTML('beforeend', `<div class="cat" id="h-${esc(c.id)}" data-cat="${esc(c.id)}"><h2 style="color:${c.colour}"><a href="?category=${esc(c.id)}" style="color:inherit;text-decoration:none">${esc(c.title)}</a></h2><span class="muted">${esc(c.blurb)}</span></div>`);
+      if (bs.length) t.insertAdjacentHTML('beforeend', `<div class="grid">${bs.map(b => tile(b, c)).join('')}</div>`);
+      if (as.length) t.insertAdjacentHTML('beforeend', `<details id="autos"><summary>${as.length} blocks found automatically from source files, in number order (tap to show)</summary><div class="grid" style="margin-top:8px">${as.map(b => tile(b, c)).join('')}</div></details>`);
+    }
+    document.querySelectorAll('.tile').forEach(el => el.onclick = () => show(el.dataset.sym));
+    document.querySelectorAll('.cat h2 a').forEach(a => a.onclick = e => { e.preventDefault(); const id = new URLSearchParams(a.getAttribute('href')).get('category'); history.replaceState(null, '', '?category=' + id); showCategory(id); });
+    const q = new URLSearchParams(location.search);
+    if (q.get('category')) showCategory(q.get('category'));
+    if (q.get('block')) show(q.get('block'));
+  } catch (e) { $('#status').textContent = 'The table is not published yet: ' + e.message; }
+})();
+</script>
+</html>
