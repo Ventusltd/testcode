@@ -1,0 +1,28 @@
+{
+  "observed_utc": "2026-09-14T15:24:40.593Z",
+  "passed": true,
+  "source_commit": "5ed441256c44a27bb8140722919d8e07edb8f8f5",
+  "database_sha256": "9ddf5684b72f72ddfa3b5022150f323a5960fa9740233332ce786a5a3c8ef5c1",
+  "counts": {
+    "lines": 249018,
+    "families": 15601,
+    "tablets": 5506,
+    "sources": 41984,
+    "blocks": 772,
+    "repositories": 47
+  },
+  "total_bytes": 122192400,
+  "files": 258,
+  "max_file_bytes": 579987,
+  "checks": [
+    "shard hashes and sizes",
+    "all permanent key counts",
+    "all exact line byte hashes",
+    "reciprocal line/family/tablet membership",
+    "reciprocal candidate dependencies",
+    "reciprocal block membership",
+    "full-commit source identity",
+    "repository source ownership"
+  ],
+  "scope": "All retained database keys and occurrences; name-match candidates are not verified runtime calls; historical keys have no inferred supersession mapping."
+}

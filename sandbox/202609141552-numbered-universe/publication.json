@@ -1,0 +1,28 @@
+{
+  "observed_utc": "2026-09-14T15:52:08.062Z",
+  "manifest_basis": "Staged Git blob bytes, not working-tree bytes",
+  "files": {
+    "index.html": {
+      "bytes": 2697,
+      "sha256": "7612783f1605da1991dcde8614ad3ea809bb4b7bc8f54ab01d6370502acf2e45"
+    },
+    "view.js": {
+      "bytes": 6245,
+      "sha256": "3e39f4c91bc80b0a421f05917093bba1415642b8d4a2541a36380cd6a2af1dda"
+    },
+    "PROOF.json": {
+      "bytes": 914,
+      "sha256": "211b4be55ad9a4d045786b04c89e7fc5585d8059dc92566bf3b09f075007fc3e"
+    },
+    "REVIEW.md": {
+      "bytes": 1014,
+      "sha256": "a410756dc1fa5fd29666cde23c3ebb7f5ca80f3a088cc1c6d27c371d5624eb4e"
+    }
+  },
+  "data": {
+    "url": "../202609141527-numbered-universe/data/manifest.json",
+    "sha256": "2c025f7e94309794fd2f52d7508c5e74082f9141ca24251dcc8caad40664c43b",
+    "publication_commit": "7c8ef09dbf6f5b61bd314b6a342a01698dddb55b",
+    "data_source_commit": "5ed441256c44a27bb8140722919d8e07edb8f8f5"
+  }
+}
