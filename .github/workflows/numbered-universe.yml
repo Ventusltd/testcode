@@ -1,0 +1,27 @@
+name: Numbered universe evidence
+on:
+  push:
+    branches: [codex/universe-review-20260914]
+    paths: ['sandbox/202609141527-numbered-universe/**', '.github/workflows/numbered-universe.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify all data bytes, permanent keys and reciprocal relations
+        working-directory: sandbox/202609141527-numbered-universe
+        run: node verify.mjs data
+      - name: Missing inputs must fail
+        working-directory: sandbox/202609141527-numbered-universe
+        run: |
+          if node verify.mjs absent-input; then
+            echo 'Missing-input negative control incorrectly passed'
+            exit 1
+          fi

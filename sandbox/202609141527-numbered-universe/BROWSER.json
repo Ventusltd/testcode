@@ -1,0 +1,24 @@
+[
+  {
+    "observed_utc": "2026-09-14T15:32:02.652Z",
+    "width": 430,
+    "steps": [
+      "family 2",
+      "exact checksum-verified numbered line",
+      "reverse family membership",
+      "tablet",
+      "pinned source",
+      "GitHub file opened by touch",
+      "back"
+    ],
+    "sourceTitle": "cable-trench-or-drill/releases/202609051921/solar-bess-topology-v7/cable-geometry-visualiser/calculations.js at 76396fd3639dd86cddd21e392f29f43ab6d22f2d · Ventusltd/cable-trench-or-drill · GitHub",
+    "dimensions": {
+      "width": 430,
+      "scroll": 430
+    },
+    "errors": []
+  },
+  {
+    "evidence_viewer": "loaded and filtered successfully"
+  }
+]
