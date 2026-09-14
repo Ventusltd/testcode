@@ -1,0 +1,157 @@
+{
+ "schema_version": "receiver-manifest-v1",
+ "note": "Lists graphs the ventus-grid-engine Spider Sandbox receiver can load. Each entry's path is relative to the repo root (same root index.html sits in). ?graph=<id> on the page URL selects one directly; otherwise the Federation graph loads by default and the others are reachable from its root cards via the existing '⊕ Contents' control.",
+ "graphs": [
+  {
+   "id": "federation",
+   "title": "Federation",
+   "path": "https://ventusltd.github.io/ventus-grid-engine/spider/data/nodes.json",
+   "edges_path": "https://ventusltd.github.io/ventus-grid-engine/spider/data/edges.json",
+   "source_spider": "federation-spider",
+   "description": "The federation-spider's own root graph, copied verbatim from data-federation-map-for-globalgrid2050-all-repos so the page has something real to show on first load."
+  },
+  {
+   "id": "globalgrid2050-contents",
+   "title": "globalgrid2050 contents",
+   "path": "https://ventusltd.github.io/ventus-grid-engine/spider/data/contents/nodes.json",
+   "edges_path": "https://ventusltd.github.io/ventus-grid-engine/spider/data/contents/edges.json",
+   "source_spider": "federation-spider",
+   "description": "The declared contents cartridge for the globalgrid2050 repo, copied verbatim. Reached by drilling into the 'globalgrid2050' card in the Federation graph, exactly as in the reference sandbox."
+  },
+  {
+   "id": "engine-graph",
+   "title": "Engine population",
+   "path": "https://ventusltd.github.io/ventus-grid-engine/genome/engine-graph.json",
+   "edges_path": null,
+   "source_spider": "genome-spider (population phase)",
+   "description": "The ventus-grid-engine population graph, emitted by a concurrently-running agent to genome/engine-graph.json. Not owned by this page; may not exist yet. When absent, the graph resolves to a single placeholder card reading 'not yet emitted' rather than failing."
+  },
+  {
+   "id": "genome-spider",
+   "title": "genome-spider output",
+   "path": "https://ventusltd.github.io/ventus-grid-engine/spider/data/genome-spider.json",
+   "edges_path": null,
+   "source_spider": "spiders/species/genome-spider",
+   "description": "Documented empty slot. spiders/species/genome-spider did not exist at the time this receiver was built (checked: C:\\Users\\vikra\\OneDrive\\Documents\\GitHub\\spiders\\species\\genome-spider). If that species is later added and made to publish a graph at the path above (or a manifest edit points here at wherever it actually lands), this slot will pick it up automatically — same 'not yet emitted' placeholder behaviour until then."
+  },
+  {
+   "id": "gridatlas-lineage",
+   "title": "GridAtlas cartridge lineage",
+   "path": "https://ventusltd.github.io/spiders/species/genome-spider/data/gridatlas-lineage.json",
+   "edges_path": null,
+   "source_spider": "spiders/species/genome-spider (lineage.mjs)",
+   "description": "GridAtlas's current composition and its ancestry: which cartridges it composed, which parts/modules built each cartridge, and any part whose content has moved on since that cartridge was last built. Read LIVE from the spider's own published output on the same Pages origin, never from a copy - a copied graph goes stale the way a part goes uncomposed.",
+   "verified": "2026-09-04 HTTP 200, 74 nodes / 411 edges over 15 of 58 generations"
+  },
+  {
+   "id": "modular",
+   "title": "Reuse",
+   "path": "https://ventusltd.github.io/stars/modular/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (build.mjs)",
+   "description": "Functions and classes found in two or more different files across the public Ventusltd repositories, wired to the repositories they live in and to other families sharing their name. Node ids are permanent numbers (family:N); GitHub opens the exact lines; External opens the code report (every place it is used, the live page, the numbered lines, copy). Rebuilt hourly on GitHub Actions.",
+   "verified": "2026-09-14 HTTP 200, 298 nodes / 996 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "periodic-table",
+   "title": "Inventory",
+   "path": "https://ventusltd.github.io/stars/blocks/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (blocks.mjs)",
+   "description": "Every block of globalgrid2050 architecture development with a permanent number and a plain-language description, grouped by category and wired to the repositories it lives in. Underneath each block are its numbered functions. External opens the table page.",
+   "verified": "2026-09-14 HTTP 200, 247 nodes / 621 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "proof-of-work",
+   "title": "Audit",
+   "path": "https://ventusltd.github.io/stars/proof/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (proof.mjs)",
+   "description": "What ran, when, what it produced and which checks it passed: the workflows, their latest runs and their artefacts.",
+   "verified": "2026-09-14 HTTP 200, 40 nodes / 68 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "structure",
+   "title": "Structure",
+   "path": "https://ventusltd.github.io/stars/structure/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (structure.mjs)",
+   "description": "globalgrid2050 architecture development, top-down: repositories, the blocks in each, and the engine modules in their canonical order.",
+   "verified": "2026-09-14 HTTP 200, 122 nodes / 337 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "chemistry",
+   "title": "Compatibility",
+   "path": "https://ventusltd.github.io/stars/spider/graphs/chemistry.json",
+   "edges_path": null,
+   "source_spider": "star-maker (chemistry.mjs), rebuilt by stars",
+   "description": "Which combinations of GridAtlas components always work, which fail, and the error each failure produces. Arithmetic over every recorded composition test.",
+   "verified": "2026-09-14 HTTP 200, 125 nodes / 2786 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "vedic",
+   "title": "Classification",
+   "path": "https://ventusltd.github.io/stars/spider/graphs/vedic.json",
+   "edges_path": null,
+   "source_spider": "star-maker (vedic.mjs), rebuilt by stars",
+   "description": "The five classes of the code (structure, movement, computation, flow, data), what is never used, and whether each test loaded the map's parts in the declared order.",
+   "verified": "2026-09-14 HTTP 200, 305 nodes / 300 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "random",
+   "title": "Sampling",
+   "path": "https://ventusltd.github.io/stars/spider/graphs/random.json",
+   "edges_path": null,
+   "source_spider": "star-maker (random.mjs), rebuilt by stars",
+   "description": "Randomly chosen links between components, for tripping over dependencies nobody wrote down. Prompts to look, not findings.",
+   "verified": "2026-09-14 HTTP 200, 163 nodes / 150 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "generated-apps",
+   "title": "Applications",
+   "path": "https://ventusltd.github.io/code-generator/spider/graphs/apps.json",
+   "edges_path": null,
+   "source_spider": "code-generator (generate.mjs)",
+   "description": "Apps built from blocks of the periodic table, wired to the blocks they are made of and the work orders still open. Amber apps still need values from their surroundings; the assembly page shows what loads.",
+   "verified": "2026-09-14 HTTP 200, 14 nodes / 12 edges",
+   "registry": "https://ventusltd.github.io/code-generator/spider/features.yml"
+  },
+  {
+   "id": "sense",
+   "title": "Assessment",
+   "path": "https://ventusltd.github.io/stars/sense/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (sense.mjs)",
+   "description": "The code universe charted into sense: what is canonical and what is a copy, what depends on what, what is proven together and what is untested, what is a decision rather than a fact. Ordered from the whole to the parts.",
+   "verified": "2026-09-14 HTTP 200, 142 nodes / 548 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "decisions",
+   "title": "Decisions",
+   "path": "https://ventusltd.github.io/stars/decisions/graph.json",
+   "edges_path": null,
+   "source_spider": "stars/modular-star (decisions.mjs)",
+   "description": "The judgements attached to the maps' permanent keys: one card per decision record, open (amber), decided (green) or superseded (grey), wired to the block, constant or function family it concerns. A decided record is permission; an open record is a question. Records are made by clicks from the Decision issue form.",
+   "verified": "2026-09-14 HTTP 200, 33 nodes / 35 edges",
+   "registry": "https://ventusltd.github.io/stars/spider/features.yml"
+  },
+  {
+   "id": "overview",
+   "title": "Overview",
+   "path": "./spider/overview-graph.json",
+   "edges_path": null,
+   "source_spider": "MSI lab front door",
+   "description": "The map of maps: one node whose 15 wires are the graphs.",
+   "verified": "lab",
+   "registry": "lab"
+  }
+ ]
+}

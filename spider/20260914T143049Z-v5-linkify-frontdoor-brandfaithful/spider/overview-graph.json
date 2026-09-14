@@ -1,0 +1,233 @@
+{
+ "schema": "receiver-graph-v1",
+ "label": "Overview",
+ "generated_utc": "2026-09-14T14:24:36Z",
+ "note": "The front door: one overview node whose wires are the 15 registered graphs. Data only, in the dashboard's node/edge shape; register it like any graph. Each graph card's External road opens ?graph=<id>. Written by the MSI lab; the stars register script should generate this from the manifest so it stays in step.",
+ "counts": {
+  "nodes": 16,
+  "edges": 15
+ },
+ "nodes": [
+  {
+   "id": "overview",
+   "label": "GLOBALGRID2050 architecture",
+   "type": "estate",
+   "rag": "green",
+   "reason": "The whole map of maps. Every card below is one graph of the estate: the code, its reuse, its blocks, its proofs, its decisions. Tap a card's External road to open that graph. 207 named blocks · 10,811 function families · 247,856 unique numbered lines.",
+   "gh": "https://github.com/Ventusltd",
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/"
+  },
+  {
+   "id": "graph:federation",
+   "label": "Federation",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The federation of repositories.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=federation"
+  },
+  {
+   "id": "graph:globalgrid2050-contents",
+   "label": "globalgrid2050 contents",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The site's own contents.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=globalgrid2050-contents"
+  },
+  {
+   "id": "graph:engine-graph",
+   "label": "Engine population",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The engine's canonical modules and their copies.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=engine-graph"
+  },
+  {
+   "id": "graph:genome-spider",
+   "label": "genome-spider output",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The species crawl output.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=genome-spider"
+  },
+  {
+   "id": "graph:gridatlas-lineage",
+   "label": "GridAtlas cartridge lineage",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The gridatlas cartridge lineage.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=gridatlas-lineage"
+  },
+  {
+   "id": "graph:modular",
+   "label": "Reuse",
+   "type": "graph",
+   "rag": "green",
+   "reason": "298 families reused across files.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=modular"
+  },
+  {
+   "id": "graph:periodic-table",
+   "label": "Inventory",
+   "type": "graph",
+   "rag": "green",
+   "reason": "207 named blocks, the periodic table of the code.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=periodic-table"
+  },
+  {
+   "id": "graph:proof-of-work",
+   "label": "Audit",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The workflows, runs and checks that build it.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=proof-of-work"
+  },
+  {
+   "id": "graph:structure",
+   "label": "Structure",
+   "type": "graph",
+   "rag": "green",
+   "reason": "Estate → repositories → blocks → engine modules.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=structure"
+  },
+  {
+   "id": "graph:chemistry",
+   "label": "Compatibility",
+   "type": "graph",
+   "rag": "green",
+   "reason": "Which blocks are proven to work together.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=chemistry"
+  },
+  {
+   "id": "graph:vedic",
+   "label": "Classification",
+   "type": "graph",
+   "rag": "green",
+   "reason": "Every function classed as structure, movement, computation, flow or data.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=vedic"
+  },
+  {
+   "id": "graph:random",
+   "label": "Sampling",
+   "type": "graph",
+   "rag": "green",
+   "reason": "Seeded sampling of the estate.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=random"
+  },
+  {
+   "id": "graph:generated-apps",
+   "label": "Applications",
+   "type": "graph",
+   "rag": "green",
+   "reason": "Apps assembled from blocks, and their parts.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=generated-apps"
+  },
+  {
+   "id": "graph:sense",
+   "label": "Assessment",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The code universe as a narrative, whole to parts.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=sense"
+  },
+  {
+   "id": "graph:decisions",
+   "label": "Decisions",
+   "type": "graph",
+   "rag": "green",
+   "reason": "The open decisions, each wired to what it concerns.",
+   "gh": null,
+   "ext": "https://ventusltd.github.io/ventus-grid-engine/?graph=decisions"
+  }
+ ],
+ "edges": [
+  {
+   "from": "overview",
+   "to": "graph:federation",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:globalgrid2050-contents",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:engine-graph",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:genome-spider",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:gridatlas-lineage",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:modular",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:periodic-table",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:proof-of-work",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:structure",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:chemistry",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:vedic",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:random",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:generated-apps",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:sense",
+   "type": "contains"
+  },
+  {
+   "from": "overview",
+   "to": "graph:decisions",
+   "type": "contains"
+  }
+ ]
+}
