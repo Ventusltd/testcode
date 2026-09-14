@@ -1,0 +1,42 @@
+{
+  "observed_utc": "2026-09-14T15:32:36.788Z",
+  "files": {
+    "index.html": {
+      "bytes": 2668,
+      "sha256": "dc8957a09943938ef35978aa4aa23bace1470daca61b92e0e4851d5287083797"
+    },
+    "view.js": {
+      "bytes": 6211,
+      "sha256": "f50a9779c9921fe989f9817860d4a5fdeeae93ca96d96b1e86b8aded065c6e23"
+    },
+    "PROOF.json": {
+      "bytes": 942,
+      "sha256": "7fa041b32d4c4c5669d434c8d0b221592e6f279753824f06531b5cab6e2ea440"
+    },
+    "BROWSER.json": {
+      "bytes": 659,
+      "sha256": "8ac9c02f1de652977b5473f4eabd2aacf3d9242238e7e50e6757d01e57ec47ed"
+    },
+    "browser-430.png": {
+      "bytes": 33470,
+      "sha256": "a33da41e9c65b11623a84183f74485ae4ec2bc15e9e108e382f0eeb11aafa5f1"
+    },
+    "browser-1440.png": {
+      "bytes": 56099,
+      "sha256": "40ae14f8176a6a75a681e1e43a656938662ccedb23fe9044852798301a8c6efb"
+    },
+    "verify.mjs": {
+      "bytes": 4537,
+      "sha256": "e4969b2f73c6a505e420aa0f37143e984f08c2ca4dccf754edd46a0e7c5a1993"
+    },
+    "REVIEW.md": {
+      "bytes": 2060,
+      "sha256": "57306d5608292d252b7ea9b313241a63517e207c6799809258a88f9b500e354e"
+    },
+    "data/manifest.json": {
+      "bytes": 41105,
+      "sha256": "2c025f7e94309794fd2f52d7508c5e74082f9141ca24251dcc8caad40664c43b"
+    }
+  },
+  "additional_data_integrity": "data/manifest.json contains all data shard hashes"
+}
