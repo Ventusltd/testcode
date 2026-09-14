@@ -20,7 +20,8 @@ jobs:
         run: |
           cp -r sandbox/202609141552-numbered-universe "$RUNNER_TEMP/changed-publication"
           printf '\n' >> "$RUNNER_TEMP/changed-publication/index.html"
-          if node tools/verify-publication.mjs "$RUNNER_TEMP/changed-publication"; then
+          if node tools/verify-publication.mjs "$RUNNER_TEMP/changed-publication" > "$RUNNER_TEMP/changed-publication.log" 2>&1; then
             echo 'Changed-byte negative control incorrectly passed'
             exit 1
           fi
+          node -e "const fs=require('fs');if(!fs.readFileSync(process.argv[1],'utf8').includes('Publication byte mismatch: index.html'))throw Error('Negative control failed for the wrong reason')" "$RUNNER_TEMP/changed-publication.log"
