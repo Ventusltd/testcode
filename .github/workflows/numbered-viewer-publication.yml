@@ -1,0 +1,26 @@
+name: Numbered viewer publication bytes
+on:
+  push:
+    branches: [codex/universe-review-20260914]
+    paths: ['sandbox/202609141552-numbered-universe/**', 'tools/verify-publication.mjs', '.github/workflows/numbered-viewer-publication.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bytes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tools/verify-publication.mjs sandbox/202609141552-numbered-universe
+      - name: Modified bytes must fail
+        run: |
+          cp -r sandbox/202609141552-numbered-universe "$RUNNER_TEMP/changed-publication"
+          printf '\n' >> "$RUNNER_TEMP/changed-publication/index.html"
+          if node tools/verify-publication.mjs "$RUNNER_TEMP/changed-publication"; then
+            echo 'Changed-byte negative control incorrectly passed'
+            exit 1
+          fi
