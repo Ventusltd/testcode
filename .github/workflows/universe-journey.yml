@@ -2,7 +2,7 @@ name: universe-journey
 on:
   push:
     branches: [codex/universe-review-20260914]
-    paths: ['sandbox/202609141400-universe-journey/**', 'protocol/spider-energy/**', '.github/workflows/universe-journey.yml']
+    paths: ['sandbox/202609141400-universe-journey/**', 'tools/estate-index*', '.github/workflows/universe-journey.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,4 +21,4 @@ jobs:
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm test
       - run: node verify-publication.mjs
-      - run: node --test ../../protocol/spider-energy/validate.test.mjs
+      - run: node --test ../../tools/estate-index.test.mjs
