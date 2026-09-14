@@ -43,9 +43,11 @@ for (const [v, [sel, min]] of Object.entries(PICTURE)) for (const width of [430,
     check(v, width, 'search -> family #2 -> numbered line 9 carries its code', true);
     const trail0 = await page.locator('#trail a').count();
     const up = page.locator('button', { hasText: 'contained in' }).first();
-    if (await up.count()) { await up.click(); await page.waitForTimeout(1500); }
+    // count the control BEFORE clicking: versions that replace the panel when the block opens remove it
+    const had = await up.count();
+    if (had) { await up.click(); await page.waitForTimeout(1500); }
     const trail1 = await page.locator('#trail a').count();
-    check(v, width, '"contained in" opens the block and the trail grows', (await up.count()) > 0 && trail1 >= trail0, `trail ${trail0} -> ${trail1}`);
+    check(v, width, '"contained in" opens the block and the trail grows', had > 0 && trail1 > trail0, `control ${had ? 'present' : 'absent'}; trail ${trail0} -> ${trail1}`);
     check(v, width, 'no page errors', errors.length === 0, errors.join(' | '));
   } catch (e) {
     check(v, width, 'journey ran to the end', false, String(e).split('\n')[0].slice(0, 200));
