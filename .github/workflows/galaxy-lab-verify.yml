@@ -8,6 +8,7 @@ on:
       - 'sandbox/*-galaxy-hops/**'
       - 'sandbox/*-galaxy-spread/**'
       - 'sandbox/*-galaxy-firm/**'
+      - 'sandbox/*-galaxy-profile/**'
       - '.github/workflows/galaxy-lab-verify.yml'
   workflow_dispatch:
 permissions:
@@ -31,6 +32,7 @@ jobs:
             sandbox/*-galaxy-hops/**
             sandbox/*-galaxy-spread/**
             sandbox/*-galaxy-firm/**
+            sandbox/*-galaxy-profile/**
             .github/workflows/galaxy-lab-verify.yml
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -55,7 +57,7 @@ jobs:
           if os.environ['EVENT_NAME'] == 'push' and re.fullmatch('[0-9a-f]{40}', before) and set(before) != {'0'}:
               changed = subprocess.check_output(['git', 'diff', '--name-only', before, os.environ['GITHUB_SHA']], text=True).splitlines()
           all_versions = not changed or '.github/workflows/galaxy-lab-verify.yml' in changed
-          supported = re.compile(r'^sandbox/[0-9]{12}-galaxy-(visibility|demand|hops|spread|firm)/')
+          supported = re.compile(r'^sandbox/[0-9]{12}-galaxy-(visibility|demand|hops|spread|firm|profile)/')
           versions = sorted({p.parent for p in root.glob('sandbox/*/browser-check.mjs') if supported.match(p.relative_to(root).as_posix())} if all_versions else {root.joinpath(*p.split('/')[:2]) for p in changed if supported.match(p)})
           if not versions:
               raise SystemExit('No supported lab selected')
