@@ -31,11 +31,11 @@ try{
           await page.screenshot({path:resolve(output,`${engineName}-${viewport.width}-fit.png`),fullPage:true});
           await page.locator('#camera').selectOption('near');
           await page.screenshot({path:resolve(output,`${engineName}-${viewport.width}-near.png`),fullPage:true});
-          const rect=await page.locator('#proposed').boundingBox();await page.mouse.click(rect.x+rect.width/2,rect.y+rect.height/2);
+          const rect=await page.locator('#proposed').boundingBox();await page.locator('#proposed').click({position:{x:rect.width/2,y:rect.height/2}});
           assert.match(await page.locator('#feature-detail').textContent(),/"key":/);
           await page.getByRole('button',{name:'spider',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#geometry-status').textContent.includes('spider: EMPTY'));
           assert.equal(await page.locator('#current-ratio').textContent(),'EMPTY');
-          await page.locator('#table-panel summary').click();assert.equal(await page.locator('#rows tr').count(),201);assert.equal(geometryRequests.length,2);
+          await page.locator('#table-panel summary').click();await page.waitForFunction(()=>document.querySelectorAll('#rows tr').length===201);assert.equal(await page.locator('#rows tr').count(),201);assert.equal(geometryRequests.length,2);
           await page.getByRole('button',{name:'learned',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#geometry-status').textContent.includes('learned: OK'));
           await page.locator('#casing').selectOption('light');assert.match(await page.locator('#style-limit').textContent(),/bright substrate/);
           const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Download style JSON'}).click();const download=await downloadPromise;assert.equal(download.suggestedFilename(),'visibility-style.json');
