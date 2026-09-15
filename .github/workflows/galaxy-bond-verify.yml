@@ -1,0 +1,66 @@
+name: Galaxy Bond bundle verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sandbox/*-galaxy-bond/**'
+      - '.github/workflows/galaxy-bond-verify.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: galaxy-bond-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            sandbox/*-galaxy-bond/**
+            .github/workflows/galaxy-bond-verify.yml
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Verify selected immutable bundles
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+        shell: python
+        run: |
+          import os, pathlib, re, subprocess, sys
+          root = pathlib.Path.cwd().resolve()
+          before = os.environ.get('BEFORE_SHA', '')
+          changed = []
+          if os.environ['EVENT_NAME'] == 'push' and re.fullmatch('[0-9a-f]{40}', before) and set(before) != {'0'}:
+              changed = subprocess.check_output(['git', 'diff', '--name-only', before, os.environ['GITHUB_SHA']], text=True).splitlines()
+          all_versions = not changed or '.github/workflows/galaxy-bond-verify.yml' in changed
+          candidates = {p.parent for p in root.glob('sandbox/*-galaxy-bond/verify_bundle.py')} if all_versions else {root.joinpath(*p.split('/')[:2]) for p in changed if re.match(r'^sandbox/[0-9]{12}-galaxy-bond/', p)}
+          versions = sorted(p for p in candidates if re.fullmatch(r'[0-9]{12}-galaxy-bond', p.name) and p.resolve().parent == root / 'sandbox' and (p / 'verify_bundle.py').is_file())
+          if not versions:
+              raise SystemExit('No supported Bond bundles selected; no verification inferred.')
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'bond-verification'
+          output.mkdir(exist_ok=True)
+          failed = []
+          for version in versions:
+              result = subprocess.run([sys.executable, '-B', str(version / 'verify_bundle.py'), '--version-dir', str(version), '--output', str(output / (version.name + '.json')), '--timeout-seconds', '60'], timeout=300)
+              if result.returncode:
+                  failed.append(version.name)
+          if failed:
+              raise SystemExit('Bundle verification failed: ' + ', '.join(failed))
+      - name: Preserve verification receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: galaxy-bond-${{ github.sha }}
+          path: ${{ runner.temp }}/bond-verification/*.json
+          if-no-files-found: warn
+          retention-days: 7
