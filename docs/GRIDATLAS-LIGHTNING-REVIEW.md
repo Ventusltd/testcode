@@ -4,7 +4,7 @@ This is a **separate verification lane**, not another GridAtlas product fork, in
 
 ## Pinned inputs
 - Original production composition: `atlas/current.json` = generation `202609241334`.
-- Claude first hardened candidate (snapshot for this run): `71919cafed50386ea3b929dedf7e102fb894115e`, generation `202610262310`.
+- Claude first hardened candidate (snapshot for this run): `ed37526544a2c374b6e294094a83dd940c23887a`, generation `202610262323`.
 - Original failing candidate (negative control): `fda6b10f7d2672bf1bf74c4fbf6184cd36b1ec1d`, generation `202610261949`.
 - Independent ChatGPT test suite: `7e7c3d83d587595ceebf5c7ab33f7bfa84d95099`.
 - Tests run in **`testcode`**; product source and any fixes stay in separate clones. Every resulting PASS or FAIL names the SHA.
@@ -20,7 +20,7 @@ The nine offline tests in `drivers/gridatlas-lightning-immutable.test.mjs` asser
 - the original four slots, release shell and other three cartridge hashes remain intact;
 - the new cartridge equals the **exact original bytes, newline, then one additive Lightning module**;
 - candidate manifest SHA-256/bytes agree with served candidate files;
-- the 24,000-byte review threshold and the 460,000-byte cartridge bound hold;
+- the 24,781-byte original-derived overlay allowance and 460,000-byte cartridge bound hold;
 - module parses; optical flash wording does not claim confirmed ground strikes;
 - generated filenames and version metadata identify the intended immutable generation.
 
@@ -31,7 +31,7 @@ From a parent directory with `testcode/` and a pinned `gridatlas/` clone as sibl
 
 ```bash
 cd testcode
-LIGHTNING_GEN=202610262310 GRIDATLAS_ROOT=../gridatlas node --test drivers/gridatlas-lightning-immutable.test.mjs
+LIGHTNING_GEN=202610262323 GRIDATLAS_ROOT=../gridatlas node --test drivers/gridatlas-lightning-immutable.test.mjs
 ```
 
 For GitHub, run `Independent Lightning candidate challenge` on this branch or create a draft PR; `workflow_dispatch` accepts an exact candidate SHA and generation to recheck later. It downloads only pinned public repositories and uploads raw output even on RED.
@@ -39,3 +39,5 @@ For GitHub, run `Independent Lightning candidate challenge` on this branch or cr
 **Important limits:** these are static/VM tests, not owner iPhone Safari, real basemap, image geometry, native hit-testing, EUMETSAT collector verification or 12-month backfill. A green CI run is **not a release veto pass**, and published preview approval remains a separate user action. The archive is not published, so selecting 12M can only show available recent observations and explicit UNKNOWN history.
 
 Source issue: https://github.com/Ventusltd/gridatlas/issues/32
+
+Updated after Claude PR #34 advanced beyond generation 202610262318: immutable candidate ref `ed37526544a2c374b6e294094a83dd940c23887a` and generation `202610262323` selected for the independent gate. No original GridAtlas artefacts, live routing, app code or historical data were modified by this Testcode update.
