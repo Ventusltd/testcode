@@ -1,0 +1,128 @@
+# Independent TESTCODE-only reviewer. Never merges, deploys or edits GridAtlas.
+# Real-device V6/V7 and owner V13 approval are NOT established by this workflow.
+name: Independent Lightning candidate challenge
+
+on:
+  pull_request:
+    paths:
+      - drivers/gridatlas-lightning-immutable.test.mjs
+      - .github/workflows/gridatlas-lightning-independent.yml
+      - docs/GRIDATLAS-LIGHTNING-REVIEW.md
+  workflow_dispatch:
+    inputs:
+      gridatlas_ref:
+        description: "EXACT GridAtlas candidate commit SHA (not a moving branch)"
+        type: string
+        required: false
+        default: "71919cafed50386ea3b929dedf7e102fb894115e"
+      generation:
+        description: "Immutable candidate generation"
+        type: string
+        required: false
+        default: "202610262310"
+
+permissions:
+  contents: read
+
+jobs:
+  independent-static-and-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      LIGHTNING_GEN: ${{ inputs.generation || '202610262310' }}
+      LIGHTNING_TEST_GEN: ${{ inputs.generation || '202610262310' }}
+      GRIDATLAS_ROOT: ../gridatlas
+    steps:
+      - name: Check out independent Testcode gate
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+      - name: Check out PINNED Claude candidate in a separate directory
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: ${{ inputs.gridatlas_ref || '71919cafed50386ea3b929dedf7e102fb894115e' }}
+          path: gridatlas
+      - name: Check out PINNED ChatGPT adversarial tests (read-only)
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 7e7c3d83d587595ceebf5c7ab33f7bfa84d95099
+          path: reviewer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record all immutable checkouts
+        shell: bash
+        run: |
+          git -C testcode rev-parse HEAD
+          git -C gridatlas rev-parse HEAD
+          git -C reviewer rev-parse HEAD
+          echo "Candidate generation: $LIGHTNING_GEN"
+          echo "Base pointer:"
+          node -e "console.log(require('./gridatlas/atlas/current.json').generation)"
+      - name: Run offline immutable-byte and parser proof
+        working-directory: testcode
+        shell: bash
+        run: |
+          set -o pipefail
+          node --test drivers/gridatlas-lightning-immutable.test.mjs | tee independent-static.log
+      - name: Independently challenge candidate runtime with same fail-first suite
+        working-directory: gridatlas
+        shell: bash
+        run: |
+          set -o pipefail
+          node --test ../reviewer/tools/proofs/chatgpt-lightning-regression.test.mjs | tee ../testcode/independent-runtime.log
+      - name: Retain evidence even when any test is RED
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testcode-lightning-challenge
+          path: |
+            testcode/independent-static.log
+            testcode/independent-runtime.log
+          if-no-files-found: warn
+
+  fail-first-old-candidate-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      LIGHTNING_TEST_GEN: "202610261949"
+    steps:
+      - name: Pin PRE-FIX candidate (expected RED)
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: fda6b10f7d2672bf1bf74c4fbf6184cd36b1ec1d
+          path: gridatlas-old
+      - name: Pin same independent test suite
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 7e7c3d83d587595ceebf5c7ab33f7bfa84d95099
+          path: reviewer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove old candidate still fails the unmodified challenge
+        working-directory: gridatlas-old
+        shell: bash
+        run: |
+          set +e
+          node --test ../reviewer/tools/proofs/chatgpt-lightning-regression.test.mjs > old-candidate-red.log 2>&1
+          code=$?
+          set -e
+          cat old-candidate-red.log
+          if [ "$code" -eq 0 ]; then
+            echo "::error::Fail-first regression control unexpectedly GREEN"
+            exit 1
+          fi
+          grep -q 'not ok' old-candidate-red.log || { echo "::error::No failing tests recorded"; exit 1; }
+          echo "PASS: original generation failed independent test as expected"
+      - name: Upload control evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testcode-old-candidate-red-control
+          path: gridatlas-old/old-candidate-red.log
+          if-no-files-found: warn
