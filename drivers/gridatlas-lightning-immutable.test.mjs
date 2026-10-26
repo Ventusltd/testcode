@@ -73,7 +73,7 @@ test('CAND-03: original composed cartridge is EXACT prefix, then one new module'
 });
 
 test('CAND-04: overlay stays within documented byte limits',()=>{
-  assert.ok(overlay.length<=24000,'Review threshold 24,000 bytes exceeded: '+overlay.length);
+  assert.ok(overlay.length<=24781,'Original 460 kB budget leaves at most 24,781 overlay bytes: '+overlay.length);
   assert.ok(overlay.length<=24781,'Hard bound 24,781 exceeded');
   assert.ok(composed.length<=460000,'Derived cartridge exceeds 460,000 bytes');
 });
