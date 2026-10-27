@@ -15,12 +15,12 @@ on:
         description: "EXACT GridAtlas candidate commit SHA (not a moving branch)"
         type: string
         required: false
-        default: "8089372fc156ac6339e0a11a88491e557e504d43"
+        default: "31e009d1acbe2d00e82fc6c5e0fdbadb7c6c1b3c"
       generation:
         description: "Immutable candidate generation"
         type: string
         required: false
-        default: "202610270047"
+        default: "202610270113"
 
 permissions:
   contents: read
@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     env:
-      LIGHTNING_GEN: ${{ inputs.generation || '202610270047' }}
-      LIGHTNING_TEST_GEN: ${{ inputs.generation || '202610270047' }}
+      LIGHTNING_GEN: ${{ inputs.generation || '202610270113' }}
+      LIGHTNING_TEST_GEN: ${{ inputs.generation || '202610270113' }}
       GRIDATLAS_ROOT: ../gridatlas
     steps:
       - name: Check out independent Testcode gate
@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Ventusltd/gridatlas
-          ref: ${{ inputs.gridatlas_ref || '8089372fc156ac6339e0a11a88491e557e504d43' }}
+          ref: ${{ inputs.gridatlas_ref || '31e009d1acbe2d00e82fc6c5e0fdbadb7c6c1b3c' }}
           path: gridatlas
       - name: Check out PINNED ChatGPT adversarial tests (read-only)
         uses: actions/checkout@v4
