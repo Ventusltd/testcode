@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - drivers/gridatlas-lightning-immutable.test.mjs
+      - drivers/gridatlas-lightning-integrity.test.mjs
       - .github/workflows/gridatlas-lightning-independent.yml
       - docs/GRIDATLAS-LIGHTNING-REVIEW.md
   workflow_dispatch:
@@ -14,12 +15,12 @@ on:
         description: "EXACT GridAtlas candidate commit SHA (not a moving branch)"
         type: string
         required: false
-        default: "0424d45953579a7905c039511a6219e39ab0ee18"
+        default: "8089372fc156ac6339e0a11a88491e557e504d43"
       generation:
         description: "Immutable candidate generation"
         type: string
         required: false
-        default: "202610270024"
+        default: "202610270047"
 
 permissions:
   contents: read
@@ -29,8 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     env:
-      LIGHTNING_GEN: ${{ inputs.generation || '202610270024' }}
-      LIGHTNING_TEST_GEN: ${{ inputs.generation || '202610270024' }}
+      LIGHTNING_GEN: ${{ inputs.generation || '202610270047' }}
+      LIGHTNING_TEST_GEN: ${{ inputs.generation || '202610270047' }}
       GRIDATLAS_ROOT: ../gridatlas
     steps:
       - name: Check out independent Testcode gate
@@ -41,7 +42,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Ventusltd/gridatlas
-          ref: ${{ inputs.gridatlas_ref || '0424d45953579a7905c039511a6219e39ab0ee18' }}
+          ref: ${{ inputs.gridatlas_ref || '8089372fc156ac6339e0a11a88491e557e504d43' }}
           path: gridatlas
       - name: Check out PINNED ChatGPT adversarial tests (read-only)
         uses: actions/checkout@v4
@@ -73,6 +74,12 @@ jobs:
         run: |
           set -o pipefail
           node --test ../reviewer/tools/proofs/chatgpt-lightning-regression.test.mjs | tee ../testcode/independent-runtime.log
+      - name: Challenge index mismatch recovery and cryptographic fail-closed behaviour (fail-first)
+        working-directory: testcode
+        shell: bash
+        run: |
+          set -o pipefail
+          node --test drivers/gridatlas-lightning-integrity.test.mjs | tee independent-integrity.log
       - name: Retain evidence even when any test is RED
         if: always()
         uses: actions/upload-artifact@v4
@@ -81,6 +88,7 @@ jobs:
           path: |
             testcode/independent-static.log
             testcode/independent-runtime.log
+            testcode/independent-integrity.log
           if-no-files-found: warn
 
   fail-first-old-candidate-control:
