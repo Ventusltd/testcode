@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
  * Independent TESTCODE-only fail-first archive-integrity challenge.
- * PIN exact candidate (currently GridAtlas Claude variant F 202610270047
- * at 8089372fc156ac6339e0a11a88491e557e504d43).
+ * PIN exact candidate (currently GridAtlas Claude variant F 202610270113
+ * at 31e009d1acbe2d00e82fc6c5e0fdbadb7c6c1b3c).
  *
  * Uses synthetic day files and synthetic scan windows; NO real archive,
  * browser, EUMETSAT network or owner iPhone evidence is claimed.
  * Reproduce from Testcode checkout with sibling GridAtlas checkout:
- *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610270047 \
+ *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610270113 \
  *     node --test drivers/gridatlas-lightning-integrity.test.mjs
  */
 import test from 'node:test';
@@ -18,7 +18,7 @@ import {resolve,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash,webcrypto} from 'node:crypto';
 
-const GEN=process.env.LIGHTNING_GEN||'202610270047';
+const GEN=process.env.LIGHTNING_GEN||'202610270113';
 const root=resolve(process.env.GRIDATLAS_ROOT||join(fileURLToPath(new URL('.',import.meta.url)),'../../gridatlas'));
 const file='atlas/modules/'+GEN+'-uk-lightning-overlay.js';
 const src=readFileSync(join(root,file),'utf8');
