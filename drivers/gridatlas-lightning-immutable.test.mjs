@@ -2,7 +2,7 @@
  * Independent GridAtlas Lightning candidate preservation audit.
  * This lives in TESTCODE, never in the product repository.
  * Execute with a checkout of the exact candidate beside testcode:
- *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610262310 \
+ *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610270024 \
  *     node --test drivers/gridatlas-lightning-immutable.test.mjs
  *
  * No network; no CSS, shell, app or archive writes; no synthetic data substitution.
@@ -16,7 +16,7 @@ import { createHash } from 'node:crypto';
 import { Script } from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
-const GEN = process.env.LIGHTNING_GEN || '202610262310';
+const GEN = process.env.LIGHTNING_GEN || '202610270024';
 const HERE = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(process.env.GRIDATLAS_ROOT || join(HERE, '../../gridatlas'));
 const file = p => readFileSync(join(ROOT, p));
