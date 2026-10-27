@@ -21,3 +21,15 @@ Source: \`atlas/modules/202610270047-uk-lightning-overlay.js\` (blob \`86861a691
 5. After a new Claude immutable generation, pin its exact SHA and generation in a fresh reviewer test commit; rerun the entire suite. Do not modify the old Build E preview.
 
 **Limitations:** Node VM synthetic network; no Chromium/WebKit, iPhone, real live EUMETSAT archive, CDN skew, or V1–V15 owner acceptance. This is a source-backed independent challenge, not a production-release veto signature.
+
+## Observed GitHub Actions result (not merely expected)
+
+[Run 40430506075](https://github.com/Ventusltd/testcode/actions/runs/40430506075) at 2026-10-27 01:05–01:06 UTC, Testcode head `3036a14c774f9858cc1ee13e2ff192731c887e8b`, GridAtlas pinned `8089372fc156ac6339e0a11a88491e557e504d43`:
+
+- **PASS:** immutable-byte/static 9/9; independent existing H01–H08 8/8; original pre-fix candidate negative control expected RED.
+- **FAIL:** I01: Node assertion `Missing expected rejection: A missing crypto.subtle must not turn an unverified shard into accepted data`.
+- **PASS:** I02: WebCrypto-present wrong-digest control rejects.
+- **FAIL:** I03: warning actually `Unknown: 1 of 2 UTC dates have no collection run · 1 of 1 day files failed (2026-10-26 archive updating, retrying next refresh); points incomplete, counts from index`, without `index mismatch` after two failed shard attempts.
+- **PASS:** I04: one bad shard then valid refreshed shard recovers. Thus **2/4 new integrity tests pass, 2/4 fail**. Job is deliberately RED; do not bypass.
+
+The exact findings and remediation requests were posted to [GridAtlas issue #32](https://github.com/Ventusltd/gridatlas/issues/32#issuecomment-6431153916). 
