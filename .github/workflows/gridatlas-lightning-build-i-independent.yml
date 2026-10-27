@@ -1,0 +1,48 @@
+# Reviewer-only. Reproduces source-level hazards against pinned immutable Build I.
+# Never writes to GridAtlas, Lightning or deployed Pages.
+name: ChatGPT independent GridAtlas Build I veto
+on:
+  pull_request:
+    paths:
+      - drivers/gridatlas-lightning-build-i-independent.test.mjs
+      - .github/workflows/gridatlas-lightning-build-i-independent.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-i-adversarial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GRIDATLAS_ROOT: ../gridatlas
+      LIGHTNING_GEN: '202610270929'
+    steps:
+      - name: Checkout independent reviewer source
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+      - name: Checkout exact immutable preview commit
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 13479b4bdb3026357f1d2890b76ffdd4ca709750
+          path: gridatlas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact pinned code, not a moving branch
+        run: |
+          test "$(git -C gridatlas rev-parse HEAD)" = '13479b4bdb3026357f1d2890b76ffdd4ca709750'
+          node -e "const x=require('./gridatlas/atlas/current.json'); if(x.generation!=='202609241334')process.exit(2)"
+      - name: Challenge synthetic archive and native nearest contracts
+        working-directory: testcode
+        run: |
+          set -o pipefail
+          node --test drivers/gridatlas-lightning-build-i-independent.test.mjs | tee build-i-independent.log
+      - name: Publish test evidence even for deliberate fail-first RED
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-i-adversarial-results
+          path: testcode/build-i-independent.log
+          if-no-files-found: warn
