@@ -4,7 +4,7 @@ This is a **separate verification lane**, not another GridAtlas product fork, in
 
 ## Pinned inputs
 - Original production composition: `atlas/current.json` = generation `202609241334`.
-- Claude first hardened candidate (snapshot for this run): `ed37526544a2c374b6e294094a83dd940c23887a`, generation `202610262323`.
+- Claude first hardened candidate (snapshot for this run): `0424d45953579a7905c039511a6219e39ab0ee18`, generation `202610270024`.
 - Original failing candidate (negative control): `fda6b10f7d2672bf1bf74c4fbf6184cd36b1ec1d`, generation `202610261949`.
 - Independent ChatGPT test suite: `7e7c3d83d587595ceebf5c7ab33f7bfa84d95099`.
 - Tests run in **`testcode`**; product source and any fixes stay in separate clones. Every resulting PASS or FAIL names the SHA.
@@ -31,7 +31,7 @@ From a parent directory with `testcode/` and a pinned `gridatlas/` clone as sibl
 
 ```bash
 cd testcode
-LIGHTNING_GEN=202610262323 GRIDATLAS_ROOT=../gridatlas node --test drivers/gridatlas-lightning-immutable.test.mjs
+LIGHTNING_GEN=202610270024 GRIDATLAS_ROOT=../gridatlas node --test drivers/gridatlas-lightning-immutable.test.mjs
 ```
 
 For GitHub, run `Independent Lightning candidate challenge` on this branch or create a draft PR; `workflow_dispatch` accepts an exact candidate SHA and generation to recheck later. It downloads only pinned public repositories and uploads raw output even on RED.
@@ -40,4 +40,6 @@ For GitHub, run `Independent Lightning candidate challenge` on this branch or cr
 
 Source issue: https://github.com/Ventusltd/gridatlas/issues/32
 
-Updated after Claude PR #34 advanced beyond generation 202610262318: immutable candidate ref `ed37526544a2c374b6e294094a83dd940c23887a` and generation `202610262323` selected for the independent gate. No original GridAtlas artefacts, live routing, app code or historical data were modified by this Testcode update.
+Updated after Claude PR #34 advanced beyond generation 202610262318: immutable candidate ref `0424d45953579a7905c039511a6219e39ab0ee18` and generation `202610270024` selected for the independent gate. No original GridAtlas artefacts, live routing, app code or historical data were modified by this Testcode update.
+
+**Build E note:** published as a standalone preview on 2026-10-27 via GridAtlas PR #37 / commit `1c19b76838758ef08ed9c8c4902a798a8762ece6`. GitHub Pages run `40426931408` succeeded. This CI deliberately pins the development source commit `0424d459...` with identical seven candidate blobs, not a mutable main branch. Live generation remains `202609241334`; visual/owner V1–V15 acceptance and archive integrity stay separately gated.
