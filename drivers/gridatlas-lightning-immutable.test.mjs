@@ -2,7 +2,7 @@
  * Independent GridAtlas Lightning candidate preservation audit.
  * This lives in TESTCODE, never in the product repository.
  * Execute with a checkout of the exact candidate beside testcode:
- *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610270024 \
+ *   GRIDATLAS_ROOT=../gridatlas LIGHTNING_GEN=202610270246 \
  *     node --test drivers/gridatlas-lightning-immutable.test.mjs
  *
  * No network; no CSS, shell, app or archive writes; no synthetic data substitution.
@@ -16,7 +16,7 @@ import { createHash } from 'node:crypto';
 import { Script } from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
-const GEN = process.env.LIGHTNING_GEN || '202610270024';
+const GEN = process.env.LIGHTNING_GEN || '202610270246';
 const HERE = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(process.env.GRIDATLAS_ROOT || join(HERE, '../../gridatlas'));
 const file = p => readFileSync(join(ROOT, p));
@@ -73,9 +73,15 @@ test('CAND-03: original composed cartridge is EXACT prefix, then one new module'
 });
 
 test('CAND-04: overlay stays within documented byte limits',()=>{
-  assert.ok(overlay.length<=24781,'Original 460 kB budget leaves at most 24,781 overlay bytes: '+overlay.length);
-  assert.ok(overlay.length<=24781,'Hard bound 24,781 exceeded');
-  assert.ok(composed.length<=460000,'Derived cartridge exceeds 460,000 bytes');
+  // User explicitly authorised a NEW 480kB gate for Build H ONLY.
+  // Earlier accepted candidates, the original shell, and all other cartridges
+  // keep their recorded SHA-256 and historic 460k gate. No silent relaxation.
+  const expanded=GEN==='202610270246';
+  const cartridgeCap=expanded?480000:460000;
+  const moduleCap=cartridgeCap-orig.length-1;
+  assert.equal(moduleCap,expanded?44781:24781,'Declared module allowance recalculation');
+  assert.ok(overlay.length<=moduleCap,'Generation-specific module allowance exceeded: '+overlay.length);
+  assert.ok(composed.length<=cartridgeCap,'Derived candidate cartridge exceeds '+cartridgeCap+' bytes');
 });
 
 test('CAND-05: module parses without execution or fetching anything',()=>{
