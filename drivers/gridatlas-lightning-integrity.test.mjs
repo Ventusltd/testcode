@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Independent TESTCODE-only fail-first archive-integrity challenge.
- * PIN exact candidate (currently GridAtlas Claude variant F 202610270113
+ * PIN exact candidate (currently GridAtlas Claude variant G 202610270113
  * at 31e009d1acbe2d00e82fc6c5e0fdbadb7c6c1b3c).
  *
  * Uses synthetic day files and synthetic scan windows; NO real archive,
