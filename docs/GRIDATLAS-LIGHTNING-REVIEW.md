@@ -43,3 +43,8 @@ Source issue: https://github.com/Ventusltd/gridatlas/issues/32
 Updated after Claude PR #34 advanced beyond generation 202610262318: immutable candidate ref `0424d45953579a7905c039511a6219e39ab0ee18` and generation `202610270024` selected for the independent gate. No original GridAtlas artefacts, live routing, app code or historical data were modified by this Testcode update.
 
 **Build E note:** published as a standalone preview on 2026-10-27 via GridAtlas PR #37 / commit `1c19b76838758ef08ed9c8c4902a798a8762ece6`. GitHub Pages run `40426931408` succeeded. This CI deliberately pins the development source commit `0424d459...` with identical seven candidate blobs, not a mutable main branch. Live generation remains `202609241334`; visual/owner V1–V15 acceptance and archive integrity stay separately gated.
+
+
+## 27 October 2026 — Published immutable Build H independent recheck
+
+Latest Testcode workflow explicitly pins **Build H** release-preview commit `15b2257b0469492fc5ccaa30affa17eaac69c155` and generation `202610270246`. It tests the untouched source against original `atlas/current.json` generation `202609241334`. The owner approved increasing the **new** candidate cartridge hard ceiling to **480,000 bytes**, giving **44,781 bytes** of additive module room after the unchanged 435,218-byte original and LF boundary; earlier candidate checks retain their 460,000-byte gate. Run the same 8 fail-first JavaScript VM tests H01–H05/H07–H08 from reviewer SHA `7e7c3d8`, preserve RED failures, and assess browser/on-device native 44px hit layer separately. A green Testcode CI is not an iPhone Safari or final V1–V15 veto.
