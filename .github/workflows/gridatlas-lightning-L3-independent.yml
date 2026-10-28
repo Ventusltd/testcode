@@ -1,0 +1,50 @@
+# Independent reviewer only; never modifies GridAtlas or deployed Pages.
+name: Independent L3 Lightning archive-integrity veto
+on:
+  pull_request:
+    paths:
+      - 'drivers/gridatlas-lightning-L3-independent.test.mjs'
+      - '.github/workflows/gridatlas-lightning-L3-independent.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  l3-integrity-challenge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GRIDATLAS_ROOT: ../gridatlas
+      LIGHTNING_GEN: '202610281340'
+    steps:
+      - name: Checkout independent reviewer tests
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+      - name: Checkout exact PR49 candidate SHA
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: c0d98bf981e75e4232ced0ac2f97f9c74f2edaa0
+          path: gridatlas
+      - name: Pin release commit and target version
+        shell: bash
+        run: |
+          test "$(git -C gridatlas rev-parse HEAD)" = c0d98bf981e75e4232ced0ac2f97f9c74f2edaa0
+          node -e "const x=require('./gridatlas/atlas/current.json');if(x.generation!=='202610281340')process.exit(2)"
+      - name: Install Node 22 for original reviewer fixture
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run independent WebCrypto and native-nearest synthetic counterexamples
+        working-directory: testcode
+        shell: bash
+        run: |
+          set -o pipefail
+          node --test drivers/gridatlas-lightning-L3-independent.test.mjs | tee ../l3-independent.log
+      - name: Preserve reviewer evidence even when tests fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-L3-integrity-results
+          path: l3-independent.log
+          if-no-files-found: warn
