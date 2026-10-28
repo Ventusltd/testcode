@@ -165,7 +165,7 @@ test('H07 FAIL-FIRST: missing mandatory index sha256 fails closed even WITH WebC
 test('J-NATIVE-01: Build L3 uses already-public canonical GridAtlas nearest-substation function',()=>{
   const native=readFileSync(join(root,'atlas/cartridges/202609241334-sld-sandbox-v9-8.js'),'utf8');
   assert.match(native,/link\.measure\.nearestSubstations = nearestSubstations/);
-  assert.match(src,/M\\.nearestSubstations\\(x,y,subs\\)/,
+  assert.match(src,/M\.nearestSubstations\(x,y,subs\)/,
     'Flash click must use the identical 33 kV+, max-five, 40 km native search; a second filter may drop 33 kV nodes');
 });
 test('J-NATIVE-02: no parallel 132 kV-only nearest filter',()=>{
