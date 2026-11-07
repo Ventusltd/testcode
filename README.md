@@ -135,3 +135,9 @@ The same clean fixture passed engine verification (16 proofs, 358 checks) and
 CVAA self-test (all antibodies fired on disease and stayed silent on health).
 The older README defect notes above are historical registry context; these new
 receipts do not assert that every CVAA command or unrelated estate gate passes.
+
+## External power-system logic counterexample (7 November 2026)
+
+[examples/power_state_counterexample.py](examples/power_state_counterexample.py) and [its offline tests](examples/test_power_state_counterexample.py) demonstrate one narrow but falsifiable principle: a live upstream feeder voltage can coexist with an open breaker and no verified power at the load. The motivating public incident is Google Cloud's [europe-west2-b report](https://status.cloud.google.com/incidents/Xs2XTHzAVC9YnafnPyzj); the wider [GlobalGrid2050 independent research note](https://github.com/Ventusltd/globalgrid2050/blob/main/docs/research/2026-11-google-cloud-power-resilience.md) distinguishes reported facts from engineering inferences. This is **not** Google's PLC logic and **must never** be connected to plant or treated as a generator-control design.
+
+Run in an isolated checkout: `python -m unittest discover -s examples -p 'test_power_state_counterexample.py' -v`. These examples are deliberately **not registered** as a production gate in `engines.json`; they demonstrate a testable assertion only.
