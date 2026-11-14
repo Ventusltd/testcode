@@ -1,0 +1,29 @@
+name: Pipeline50 experimental master (QA ONLY)
+on:
+  pull_request:
+    paths:
+      - 'experiments/pipeline50/**'
+      - '.github/workflows/pipeline50-master.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-50:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 50 separate code versions, each accepts golden and rejects mutation
+        run: node --test experiments/pipeline50/matrix.test.mjs
+      - name: Distil master QA version and SHA receipts (no publish)
+        run: node experiments/pipeline50/master.mjs pipeline50-master-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline50-master-qa
+          path: pipeline50-master-report.json
+          if-no-files-found: error
+          retention-days: 30
