@@ -38,7 +38,7 @@ test('valid exactly 200 canonical refs and dated fresh article pass structural g
   assert.equal(r.status, 'PASS', r.errors.join('; '));
   assert.equal(r.facts.projects, 200);
   assert.equal(r.facts.search_fallbacks, 200);
-  assert.equal(r.facts.recent_fetched_news, 1);
+  assert.equal(r.facts.recent_nonreviewed_news, 1);
 });
 
 test('201st or swapped identity is not an acceptable top-200', () => {
