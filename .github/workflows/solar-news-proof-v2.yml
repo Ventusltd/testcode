@@ -1,0 +1,24 @@
+name: Solar news independent offline proof v2 (QA only)
+# Independent testcode verifier. Never checks out a mutable data branch,
+# changes a release, opens a PR or publishes to Pages.
+on:
+  pull_request:
+    paths:
+      - 'drivers/solar-news-proof.mjs'
+      - 'examples/test_solar_news_proof.mjs'
+      - '.github/workflows/solar-news-proof-v2.yml'
+      - 'docs/versions/solar-news-proof-v2.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Prove independent fixture failures and passes
+        run: node --test examples/test_solar_news_proof.mjs
