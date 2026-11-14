@@ -17,13 +17,39 @@ jobs:
         with:
           node-version: '22'
       - name: 50 separate code versions, each accepts golden and rejects mutation
-        run: node --test experiments/pipeline50/matrix.test.mjs
+        run: node --test experiments/pipeline50/matrix.test.mjs experiments/pipeline50/real-audit.test.mjs
       - name: Distil master QA version and SHA receipts (no publish)
         run: node experiments/pipeline50/master.mjs pipeline50-master-report.json
+      - name: Pinned October top200 source (immutable SHA)
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 91727c22a9ee13f433d4e82d8949c9aeac5bd3be
+          path: pinned-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /automation/news/signals/top200_solar.json
+      - name: Pinned live 200-project data-branch snapshot (immutable SHA)
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 598e787908d4a2ee3d84dc7a6a8d0213752ebf46
+          path: pinned-data
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /dist/project_signals.json
+      - name: Verify independent real source SHAs and report release HOLD honestly
+        run: |
+          node experiments/pipeline50/real-audit.mjs \
+            pinned-source/automation/news/signals/top200_solar.json \
+            pinned-data/dist/project_signals.json \
+            pipeline50-real-data-report.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pipeline50-master-qa
-          path: pipeline50-master-report.json
+          path: |
+            pipeline50-master-report.json
+            pipeline50-real-data-report.json
           if-no-files-found: error
           retention-days: 30
