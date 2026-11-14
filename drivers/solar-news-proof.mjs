@@ -36,10 +36,10 @@ const NEWS = new Set(['bbc', 'trade', 'national', 'regional']);
 export function audit(top, candidate, previous = null, now = new Date()) {
   const errors = [], warnings = [], facts = {
     projects: 0, projects_with_news: 0, recent_confirmed_news: 0,
-    recent_fetched_news: 0, historical_or_undated: 0,
+    recent_nonreviewed_news: 0, historical_or_undated: 0,
     search_fallbacks: 0, verified_direct_planning: 0,
     cross_project_article_urls: 0, source_failures: 0,
-    new_recent_fetched_links: 0
+    new_recent_nonreviewed_links: 0
   };
   const fail = message => errors.push(message);
   const warn = message => warnings.push(message);
@@ -109,10 +109,11 @@ export function audit(top, candidate, previous = null, now = new Date()) {
       if (!recent) facts.historical_or_undated++;
       if (recent && news && signal.confidence === 'confirmed') facts.recent_confirmed_news++;
       // An upstream "confirmed" flag is self-reported, NOT independent proof.
+      // Being non-reviewed does NOT prove this URL was fetched in this run.
       const fetched = !String(signal.basis || '').startsWith('reviewed');
       if (recent && news && fetched) {
-        facts.recent_fetched_news++;
-        if (!oldLinks.has(ref + '\0' + signal.link)) facts.new_recent_fetched_links++;
+        facts.recent_nonreviewed_news++;
+        if (!oldLinks.has(ref + '\0' + signal.link)) facts.new_recent_nonreviewed_links++;
       }
     }
     if (hasNews) facts.projects_with_news++;
@@ -139,10 +140,10 @@ export function audit(top, candidate, previous = null, now = new Date()) {
     if (facts.source_failures) warn('some sources failed; coverage is partial');
   }
   if (previous && generated !== null && priorStamp !== null &&
-      generated > priorStamp && facts.new_recent_fetched_links === 0) {
-    fail('refreshed generated_at without any new recent fetched news link');
+      generated > priorStamp && facts.new_recent_nonreviewed_links === 0) {
+    fail('refreshed generated_at without any new recent non-reviewed link (not proof of actual fetch)');
   }
-  if (facts.recent_fetched_news === 0) warn('zero recent fetched news: all other links may be archival');
+  if (facts.recent_nonreviewed_news === 0) warn('zero recent fetched news: all other links may be archival');
   warn('publisher licences and per-link source receipts are NOT established by this structural audit');
   return { status: errors.length ? 'FAIL' : 'PASS', errors, warnings, facts };
 }
