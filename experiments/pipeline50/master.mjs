@@ -1,3 +1,4 @@
+import {reviewContext} from './independent-evidence.mjs';
 // Distil a minimal experimental rule subset using a 50 x 50 adversarial matrix.
 // SYNTHETIC QA ONLY: NOT a production Pipeline News master or release acceptance.
 import {versionNames} from './versions.mjs';
@@ -7,7 +8,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 const clone=x=>structuredClone(x);
 
 export async function distil(){
- const context={now:CLOCK}, results=[], modules=new Map();
+ const context=reviewContext(), results=[], modules=new Map();
  for(const v of versionNames){
   const mod=await import('./versions/'+v+'.mjs');
   modules.set(v,mod);
