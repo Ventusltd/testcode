@@ -1,3 +1,4 @@
+import {reviewContext} from './independent-evidence.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {compileMaster} from './master-engine.mjs';
@@ -6,13 +7,13 @@ import {versionNames} from './versions.mjs';
 
 const master=await compileMaster();
 test('distilled executable master accepts the valid synthetic snapshot',()=>{
- assert.equal(master.evaluate(fixture(),{now:CLOCK}).accepted,true);
- assert.equal(master.evaluate(fixture(),{now:CLOCK}).release_authorised,false);
+ assert.equal(master.evaluate(fixture(),reviewContext()).accepted,true);
+ assert.equal(master.evaluate(fixture(),reviewContext()).release_authorised,false);
 });
 for(const attack of versionNames){
  test('distilled executable master rejects mutated '+attack,async()=>{
   const {mutate}=await import('./versions/'+attack+'.mjs');
-  const result=master.evaluate(mutate(fixture()),{now:CLOCK});
+  const result=master.evaluate(mutate(fixture()),reviewContext());
   assert.equal(result.accepted,false,attack);
   assert(result.failed.length>0,attack);
  });
