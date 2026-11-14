@@ -1,5 +1,5 @@
-import {reviewContext} from './independent-evidence.mjs';
 #!/usr/bin/env node
+import {reviewContext} from './independent-evidence.mjs';
 // Independently challenge the generated JS against all 50 adversarial mutants.
 import {pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
