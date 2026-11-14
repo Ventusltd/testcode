@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '22'
       - name: 50 separate code versions, each accepts golden and rejects mutation
-        run: node --test experiments/pipeline50/matrix.test.mjs experiments/pipeline50/master-engine.test.mjs experiments/pipeline50/real-audit.test.mjs
+        run: node --test experiments/pipeline50/matrix.test.mjs experiments/pipeline50/master-engine.test.mjs experiments/pipeline50/agent2-cross-policy.test.mjs experiments/pipeline50/real-audit.test.mjs
       - name: Distil master QA version and SHA receipts (no publish)
         run: node experiments/pipeline50/master.mjs pipeline50-master-report.json
       - name: Compile a single clean master code bundle (no deployment)
