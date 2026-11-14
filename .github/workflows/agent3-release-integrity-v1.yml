@@ -1,0 +1,116 @@
+name: Agent 3 release integrity v1 (offline QA only)
+
+# This CI is intentionally NOT a production/release gate. Never writes or deploys.
+# A green run proves only offline pinned inputs and negative fixture behaviour.
+on:
+  pull_request:
+    paths:
+      - 'drivers/agent3-release-integrity-v1.mjs'
+      - 'examples/test_agent3_release_integrity_v1.mjs'
+      - 'docs/versions/agent3-release-integrity-v1.md'
+      - '.github/workflows/agent3-release-integrity-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-negative-fixtures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout candidate TestCode (pinned checkout action)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Use Node 20
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '20'
+      - name: Prove good and adversarial bad fixtures offline
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test examples/test_agent3_release_integrity_v1.mjs 2>&1 | tee agent3-offline-tests.log
+      - name: Upload negative-fixture receipt (missing artefact = error)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: agent3-offline-negative-fixtures
+          path: agent3-offline-tests.log
+          if-no-files-found: error
+          retention-days: 90
+
+  pinned-official-and-releases:
+    needs: offline-negative-fixtures
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout candidate TestCode
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: testcode
+          persist-credentials: false
+      - name: Checkout independently pinned original DESNZ October CSV and XLSX
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 213d1a79e876d80775f1be50caec94a8c449e09b
+          path: official-evidence
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.csv
+            /evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.xlsx
+      - name: Checkout current publication to detect immutable tree and pointer drift
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: main
+          path: current-globalgrid
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /uk_renewables_pipeline/versions.json
+            /uk_renewables_pipeline/202609082224/
+            /uk_renewables_pipeline/202611132345/
+            /uk_renewables_pipeline/202611140306/
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '20'
+      - name: Verify official source hashes against independent hard-coded pins
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' \
+            '48e76c49f33a1090e78108d1ea9bfe689b35963ea3be1bb4f6516d038a5ff862' \
+            'official-evidence/evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.csv' \
+            '87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea' \
+            'official-evidence/evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.xlsx' \
+            | sha256sum --strict --check
+      - name: Audit real official row identities, byte hashes and three protected Git trees
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C official-evidence rev-parse HEAD | tee official-evidence-sha.txt
+          git -C current-globalgrid rev-parse HEAD | tee current-publication-sha.txt
+          node testcode/drivers/agent3-release-integrity-v1.mjs \
+            --source-csv official-evidence/evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.csv \
+            --source-xlsx official-evidence/evidence/repd-2026-q3/official-sources/REPD_Publication_Q3_2026.xlsx \
+            --release-repo current-globalgrid \
+            --versions current-globalgrid/uk_renewables_pipeline/versions.json \
+            --out testcode/agent3-release-integrity-receipt.json
+          # No missing rights/browser/served/rollback evidence is ever called approval.
+          jq -e '.offline_status == "PASS" and .acceptance.status == "UNVERIFIED" and .publication_status == "HOLD" and .acceptance.release_authorised == false' \
+            testcode/agent3-release-integrity-receipt.json
+      - name: Upload precise SHA and gate receipts, including on source failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: agent3-pinned-source-release-integrity
+          path: |
+            testcode/agent3-release-integrity-receipt.json
+            official-evidence-sha.txt
+            current-publication-sha.txt
+          if-no-files-found: error
+          retention-days: 90
