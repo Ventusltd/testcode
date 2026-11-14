@@ -26,7 +26,7 @@ node --test examples/test_solar_news_proof.mjs
 
 The resulting report records SHA256 of **each input byte stream**, source
 measurements, explicit errors/warnings, and a deterministic exit status.
-A generated_at increment without a fresh fetched article link is blocked.
+A generated_at increment without a newly visible dated non-reviewed article link is blocked. This is a **weak structural proxy**, not proof the article was fetched in the current run; compare individual source receipts before release.
 Cross-project article URLs are **warnings**, not automatically deleted; a single
 multi-site event may legitimately concern multiple REPD IDs.
 
