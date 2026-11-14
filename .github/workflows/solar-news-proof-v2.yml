@@ -22,3 +22,34 @@ jobs:
           node-version: '20'
       - name: Prove independent fixture failures and passes
         run: node --test examples/test_solar_news_proof.mjs
+      # This runs after the offline negative fixtures. Each external input is
+      # immutable, not a moving main/data-branch reference.
+      - name: Check out pinned official top-200 source snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 91727c22a9ee13f433d4e82d8949c9aeac5bd3be
+          path: globalgrid-source
+          sparse-checkout: |
+            automation/news/signals/top200_solar.json
+      - name: Check out pinned combined project-signals snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 598e787908d4a2ee3d84dc7a6a8d0213752ebf46
+          path: globalgrid-data
+          sparse-checkout: |
+            dist/project_signals.json
+      - name: Verify true pinned 200-project data and SHA256 byte receipts
+        run: |
+          node drivers/solar-news-proof.mjs \
+            --top200 globalgrid-source/automation/news/signals/top200_solar.json \
+            --candidate globalgrid-data/dist/project_signals.json \
+            --out solar-news-proof-receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solar-news-proof-receipt
+          path: solar-news-proof-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
