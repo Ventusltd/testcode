@@ -20,6 +20,10 @@ jobs:
         run: node --test experiments/pipeline50/matrix.test.mjs experiments/pipeline50/master-engine.test.mjs experiments/pipeline50/real-audit.test.mjs
       - name: Distil master QA version and SHA receipts (no publish)
         run: node experiments/pipeline50/master.mjs pipeline50-master-report.json
+      - name: Compile a single clean master code bundle (no deployment)
+        run: node experiments/pipeline50/bundle-master.mjs pipeline50-distilled-master.mjs pipeline50-bundle-receipt.json
+      - name: Verify distilled single-file master against all 50 mutants
+        run: node experiments/pipeline50/verify-bundle.mjs pipeline50-distilled-master.mjs
       - name: Pinned October top200 source (immutable SHA)
         uses: actions/checkout@v4
         with:
@@ -44,6 +48,8 @@ jobs:
             pinned-source/automation/news/signals/top200_solar.json \
             pinned-data/dist/project_signals.json \
             pipeline50-real-data-report.json
+            pipeline50-distilled-master.mjs
+            pipeline50-bundle-receipt.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
