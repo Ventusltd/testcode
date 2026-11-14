@@ -1,0 +1,4 @@
+2a69fdb0d3f2a0ce3dfd837deed48c0dae44272bfddb1605bd2cb89d2a86f2a5  ./.github/workflows/bbc-rss-discovery.yml
+a8720b0cbabd3eb0f19418e3ec174192a1514a9af10eefd941115dcd2577b42c  ./cartridges/provisional-identity.mjs
+56193525aae83c90ced84fdd3f4b2438c792a0dbeac1c36b29d6b086eeb2938e  ./tools/intelligence/reconcile-provisional.mjs
+5d8ffd921c73f85ea54663df73f61553608b7bbb2cd8dbcc949a16c020324884  ./tools/intelligence/release_builder.py

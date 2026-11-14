@@ -1,0 +1,55 @@
+name: Refresh BBC RSS discovery
+on:
+  schedule:
+    - cron: '17 */2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bbc-rss-discovery
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prove RSS boundaries before any collection
+        run: python -B -m unittest discover -s discovery -p test_bbc_rss.py
+      - name: Collect BBC RSS only
+        id: collect
+        continue-on-error: true
+        run: python -B discovery/bbc_rss.py
+      - name: Reconcile provisional IDs against newly imported quarterly projects
+        run: |
+          node --test cartridges/provisional-identity.test.mjs
+          node tools/intelligence/reconcile-provisional.mjs
+      - name: Commit bounded product and observed health
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- discovery/products/bbc-rss.json data/provisional/project-register.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh BBC RSS metadata and source health [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Retain exact collection receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bbc-rss-health
+          path: discovery/products/bbc-rss.json
+          retention-days: 7
+      - name: Fail when every feed failed
+        if: steps.collect.outcome == 'failure'
+        run: exit 1
