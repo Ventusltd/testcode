@@ -26,6 +26,22 @@ jobs:
         with:
           node-version: '24'
       - run: node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 998c4cddbd78f04bcdd9df2a40026ac91714cd2f
+          path: pinned-pipeline
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300/data/v9.1
+          persist-credentials: false
+      - name: Real pinned REPD source audit (NOT browser)
+        run: node sandbox/gridatlas-agent9-first-restore/repd-static-audit.mjs pinned-pipeline/uk_renewables_pipeline/202611151300
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-24-real-project-source-sample
+          path: agent9-repd-receipts/static-audit.json
+          if-no-files-found: warn
       - run: node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
       - run: node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
       - uses: actions/upload-artifact@v4
