@@ -38,3 +38,7 @@ The prototype is **offline and deterministic**: Python stdlib `src.engine` verif
 ## Successor development (Agent 10, V9.23-or-later)
 
 The separate [`fullscreen-report/`](fullscreen-report/README.md) demonstrates portrait/landscape, filtered previous/next, focus management, additive report URL and a fully precomputed note with a decorative typed duplicate. The shared generic asset adapters live under `src/adapters/` and enforce native REPD or data-centre IDs, optional geometry, distinct IT-load/grid MW, candidate-only sidecars and unchanged original MAP URL bytes. This is **TestCode only**, not a product feature yet. Execute `bash scripts/run-offline.sh` and the dedicated `scripts/report_browser_check.py` in real browsers. Earlier successful browser CI for the original Machine Read Notes table does **not** constitute report-mode acceptance.
+
+### Real V9.22 source-audit gate
+
+The optional independent CI `v922-source-integrity` job obtains only the pinned V9.22 product's 16 JSON parts (Git commit `0719ddc...`) and requires 7,775 distinct IDs with byte-digest receipts; it is not a substitute for authenticating the government source XLSX nor the browser's generated MAP href. Local absence of this input is a **missing-input failure**, never a green test.
