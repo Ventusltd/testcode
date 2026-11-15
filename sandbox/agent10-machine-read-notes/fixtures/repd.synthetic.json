@@ -1,0 +1,11 @@
+{
+  "schema": "globalgrid2050.repd-snapshot-fixture.v1",
+  "source_proof": "SYNTHETIC DEMONSTRATION ONLY",
+  "snapshot_id": "illustrative-october-2026-q3-not-an-official-extract",
+  "expected_records": 3,
+  "rows": [
+    {"repd_ref": "12588", "project_name": "Botley West", "official_status": "Application Submitted", "official_as_of": "2026-09-30", "planning_reference": null, "location": null, "developer": null},
+    {"repd_ref": "15793", "project_name": "Green Hill", "official_status": "Application Submitted", "official_as_of": "2026-09-30", "planning_reference": null, "location": null, "developer": null},
+    {"repd_ref": "2527", "project_name": "Inch Cape", "official_status": "Under Construction", "official_as_of": "2026-09-30", "planning_reference": null, "location": null, "developer": null}
+  ]
+}

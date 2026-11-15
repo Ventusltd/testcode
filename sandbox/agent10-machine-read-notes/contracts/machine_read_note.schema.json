@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://globalgrid2050.com/schemas/machine-read-note-v1.json",
+  "title": "GlobalGrid2050 Machine Read Notes — candidate-only prototype v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema","note_id","repd_ref","project_name","source_snapshot_id","official_record","association","event","event_date","published_at","fetched_at","first_seen_at","article_url","publisher_name","publisher_owner_id","rights_basis","review_state","independent_owner_count","source_proof","evidence_receipt_sha256","label","claim_text","reason_codes"],
+  "properties": {
+    "schema": {"const":"globalgrid2050.machine-read-note.v1"},
+    "note_id": {"type":"string","pattern":"^[a-f0-9]{32}$"},
+    "repd_ref": {"type":"string","pattern":"^[0-9]+$"},
+    "project_name": {"type":"string","minLength":1},
+    "source_snapshot_id": {"type":"string","minLength":1},
+    "official_record": {"type":"object","required":["official_status","official_as_of","snapshot_sha256"],"properties":{"official_status":{"type":"string"},"official_as_of":{"type":"string","format":"date"},"snapshot_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}},"additionalProperties":false},
+    "association": {"type":"object","required":["basis","binding_state","evidence_state","project_refs"],"properties":{"basis":{"enum":["planning_reference","explicit_project_name","project_name_plus_location","project_name_plus_developer","multi_project_explicit","tie_break_only","unknown"]},"binding_state":{"const":"candidate"},"evidence_state":{"enum":["supported","weak"]},"project_refs":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string"}}},"additionalProperties":false},
+    "event": {"type":"object","required":["event_type","event_key","event_reference","identity_ambiguous","relation_to_snapshot"],"properties":{"event_type":{"enum":["planning_application","consent_granted","consent_refused","construction_started","turbine_installation_started","financial_close","ownership_change","other"]},"event_key":{"type":"string","pattern":"^[a-f0-9]{24}$"},"event_reference":{"type":["string","null"]},"identity_ambiguous":{"type":"boolean"},"relation_to_snapshot":{"enum":["newer_event","consistent_with_record","possible_status_conflict","insufficient_evidence","not_applicable"]}},"additionalProperties":false},
+    "event_date":{"$ref":"#/$defs/nullableClock"},"published_at":{"$ref":"#/$defs/clock"},"fetched_at":{"$ref":"#/$defs/nullableClock"},"first_seen_at":{"$ref":"#/$defs/nullableClock"},
+    "article_url":{"type":"string","pattern":"^https://"},"publisher_name":{"type":"string"},"publisher_owner_id":{"type":["string","null"]},"rights_basis":{"const":"unknown"},"review_state":{"enum":["machine_only","human_review_pending","human_reviewed"]},"independent_owner_count":{"const":0},"source_proof":{"enum":["SYNTHETIC FIXTURE — NOT AN ACTUAL ARTICLE","COLLECTED — AUTHENTICITY NOT INDEPENDENTLY VERIFIED"]},"evidence_receipt_sha256":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},"label":{"enum":["CANDIDATE — NOT INDEPENDENTLY VERIFIED","INSUFFICIENT EVIDENCE"]},"claim_text":{"type":"string","minLength":20},"reason_codes":{"type":"array","minItems":3,"items":{"type":"string"}}
+  },
+  "$defs": {"clock":{"type":"object","additionalProperties":false,"required":["value","precision","timezone_known"],"properties":{"value":{"type":"string"},"precision":{"enum":["date_only","instant"]},"timezone_known":{"type":"boolean"}}},"nullableClock":{"oneOf":[{"$ref":"#/$defs/clock"},{"type":"null"}]}}
+}
