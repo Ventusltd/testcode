@@ -11,7 +11,7 @@ function check(s){
  const errors=[];
  const must=(yes,name)=>{if(!yes)errors.push(name);};
  must(s.includes("agent9UserChoice = popup.classList.contains('gridatlas-min') ? 'expanded' : 'collapsed'"),'explicit user choice');
- must(s.includes("agent9UserChoice === null ? arriveMinimised : agent9UserChoice === 'collapsed'"),'refresh preserves user choice');
+ must(s.includes("agent9UserChoice === null\n      ? arriveMinimised : agent9UserChoice === 'collapsed'"),'refresh preserves user choice');
  must(s.includes("agent9UserChoice = null;"),'reset new selection');
  must(s.includes("payload.token !== agent9SelectionToken"),'stale observer');
  must(s.includes("agent9ExpectedToken === agent9SelectionToken"),'stale RAF');
@@ -27,7 +27,7 @@ function check(s){
 const faults=check(src);if(faults.length)throw Error('FAIL static candidate contract '+faults.join(','));
 const mutants=[
  ['user-choice-removal',src.replace("agent9UserChoice = popup.classList.contains('gridatlas-min') ? 'expanded' : 'collapsed'","popup.classList.toggle('gridatlas-min')")],
- ['reset-override',src.replace("agent9UserChoice === null ? arriveMinimised : agent9UserChoice === 'collapsed'","arriveMinimised")],
+ ['reset-override',src.replace("agent9UserChoice === null\n      ? arriveMinimised : agent9UserChoice === 'collapsed'","arriveMinimised")],
  ['stale-observer',src.replace("payload.token !== agent9SelectionToken","false")],
  ['stale-RAF',src.replace("agent9ExpectedToken === agent9SelectionToken","true")],
  ['aria-removal',src.replace("button.setAttribute('aria-expanded', String(!collapsed))","void collapsed")],
