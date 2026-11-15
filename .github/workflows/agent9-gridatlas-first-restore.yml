@@ -48,6 +48,8 @@ jobs:
         run: node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
       - name: Reject syntax-invalid patched candidate
         run: node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+      - name: Check generated source against 11 static contracts and 7 mutants
+        run: node sandbox/gridatlas-agent9-first-restore/candidate-contract.mjs agent9-candidate/agent9-sld-mobile-restore-candidate.js agent9-candidate/candidate-manifest.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
