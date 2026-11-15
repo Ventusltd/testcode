@@ -1,0 +1,35 @@
+name: Agent9 isolated reference model, not product acceptance
+on:
+  pull_request:
+    paths:
+      - 'sandbox/gridatlas-agent9-first-restore/**'
+      - '.github/workflows/agent9-gridatlas-first-restore.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-reference-model:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 4c52780c04a90608d8a072172138b9063e5a4684
+          path: pinned-gridatlas
+          sparse-checkout: |
+            atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+      - run: node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-original-source
+          path: agent9-original-source.json
+          if-no-files-found: warn

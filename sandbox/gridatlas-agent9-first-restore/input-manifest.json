@@ -1,0 +1,19 @@
+{
+  "schema": "agent9.testcode.v1",
+  "testcodeMain": "a8a215982b13d6e2f6019b40bf0bef5755719773",
+  "gridatlasMain": "4c52780c04a90608d8a072172138b9063e5a4684",
+  "generation": "202611132345",
+  "cartridge": "atlas/cartridges/202609241334-sld-sandbox-v9-8.js",
+  "sha256": "7812953671d8bb22a566de5e98fd3137da2d23411c5aecd526df5afa111ca4ca",
+  "historicRealFailure": "https://github.com/Ventusltd/globalgrid2050/actions/runs/43734245946/job/132873210740",
+  "historicRefs": [
+    12588,
+    12453,
+    14535
+  ],
+  "realBrowser": "UNVERIFIED",
+  "real24Sample": "UNVERIFIED",
+  "iphone": "UNVERIFIED",
+  "preview": "NOT BUILT",
+  "publish": "FORBIDDEN"
+}
