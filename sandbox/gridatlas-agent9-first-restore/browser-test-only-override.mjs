@@ -86,7 +86,8 @@ try{
  await source.waitForFunction(()=>document.querySelector('#tbody')?.dataset.total==='7775',null,{timeout:80000});
  const search=source.locator('#search');
  await search.fill(repdRef);
- const target=source.locator('#tbody a.atlaslink[href*="repd_ref='+repdRef+'"]').first();
+ // Require a complete REPD query parameter, not a prefix: 1018 must never select 10181.
+ const target=source.locator('#tbody a.atlaslink[href*="repd_ref='+repdRef+'&"]').first();
  await target.waitFor({state:'visible',timeout:35000});
  const href=await target.getAttribute('href');
  const url=new URL(href,sourceBase);
