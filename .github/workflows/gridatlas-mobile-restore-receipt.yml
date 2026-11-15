@@ -1,0 +1,31 @@
+name: GridAtlas mobile restore receipt validator (synthetic safety checks only)
+on:
+  pull_request:
+    paths:
+      - 'drivers/gridatlas-mobile-restore-receipt.mjs'
+      - 'docs/gridatlas-mobile-restore-qa.md'
+      - '.github/workflows/gridatlas-mobile-restore-receipt.yml'
+  push:
+    paths:
+      - 'drivers/gridatlas-mobile-restore-receipt.mjs'
+      - 'docs/gridatlas-mobile-restore-qa.md'
+      - '.github/workflows/gridatlas-mobile-restore-receipt.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Syntax check
+        run: node --check drivers/gridatlas-mobile-restore-receipt.mjs
+      - name: Verify that false-green receipts are rejected
+        run: node drivers/gridatlas-mobile-restore-receipt.mjs --selftest
+      - name: Not an engine or browser PASS
+        run: echo "Selftests validate fail-closed assessment logic only. No public MAP or GridAtlas run was executed."
