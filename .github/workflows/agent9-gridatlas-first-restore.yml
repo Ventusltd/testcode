@@ -1,0 +1,201 @@
+name: Agent9 isolated reference model, not product acceptance
+on:
+  pull_request:
+    paths:
+      - 'sandbox/gridatlas-agent9-first-restore/**'
+      - '.github/workflows/agent9-gridatlas-first-restore.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-reference-model:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 4c52780c04a90608d8a072172138b9063e5a4684
+          path: pinned-gridatlas
+          sparse-checkout: |
+            atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 998c4cddbd78f04bcdd9df2a40026ac91714cd2f
+          path: pinned-pipeline
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300/data/v9.1
+          persist-credentials: false
+      - name: Real pinned REPD source audit (NOT browser)
+        run: node sandbox/gridatlas-agent9-first-restore/repd-static-audit.mjs pinned-pipeline/uk_renewables_pipeline/202611151300
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-24-real-project-source-sample
+          path: agent9-repd-receipts/static-audit.json
+          if-no-files-found: warn
+      - run: node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
+      - run: node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+      - name: Build isolated NEW candidate from immutable old bytes
+        run: node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
+      - name: Reject syntax-invalid patched candidate
+        run: node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+      - name: Check generated source against 11 static contracts and 7 mutants
+        run: node sandbox/gridatlas-agent9-first-restore/candidate-contract.mjs agent9-candidate/agent9-sld-mobile-restore-candidate.js agent9-candidate/candidate-manifest.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-testcode-only-cartridge-candidate
+          path: agent9-candidate/
+          if-no-files-found: warn
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-original-source
+          path: agent9-original-source.json
+          if-no-files-found: warn
+
+  network-real-map-candidate-390:
+    needs: offline-reference-model
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      AGENT9_BROWSER: chromium
+      AGENT9_WIDTH: '390'
+      AGENT9_REPD_REF: '12588'
+      AGENT9_BROWSER_OUTPUT: agent9-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 4c52780c04a90608d8a072172138b9063e5a4684
+          path: pinned-gridatlas
+          sparse-checkout: |
+            atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 998c4cddbd78f04bcdd9df2a40026ac91714cd2f
+          path: pinned-pipeline
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Re-run required offline gates before any network work
+        run: |
+          node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+          node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
+          node sandbox/gridatlas-agent9-first-restore/repd-static-audit.mjs pinned-pipeline/uk_renewables_pipeline/202611151300
+          node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
+          node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+          node sandbox/gridatlas-agent9-first-restore/candidate-contract.mjs agent9-candidate/agent9-sld-mobile-restore-candidate.js agent9-candidate/candidate-manifest.json
+      - name: Install isolated Playwright test dependencies
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Serve pinned original V9.22 source candidate locally
+        run: |
+          nohup python3 -m http.server 8765 --directory pinned-pipeline > agent9-source-server.log 2>&1 &
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8765/uk_renewables_pipeline/202611151300/index.html > /dev/null
+      - name: REAL 390px map click with test-only receiver cartridge substitution (NOT public preview)
+        run: node sandbox/gridatlas-agent9-first-restore/browser-test-only-override.mjs pinned-pipeline/uk_renewables_pipeline/202611151300 agent9-candidate
+      - name: Preserve failure as well as success browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-real-browser-test-only-chromium-390
+          path: |
+            agent9-browser/
+            agent9-source-server.log
+            agent9-candidate/candidate-manifest.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  network-real-map-candidate-matrix:
+    needs: offline-reference-model
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { browser: webkit, width: '393', repd_ref: '12588' }
+          - { browser: chromium, width: '1440', repd_ref: '12588' }
+          - { browser: chromium, width: '390', repd_ref: '12453' }
+          - { browser: chromium, width: '390', repd_ref: '14535' }
+    env:
+      AGENT9_BROWSER: ${{ matrix.browser }}
+      AGENT9_WIDTH: ${{ matrix.width }}
+      AGENT9_REPD_REF: ${{ matrix.repd_ref }}
+      AGENT9_BROWSER_OUTPUT: agent9-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 4c52780c04a90608d8a072172138b9063e5a4684
+          path: pinned-gridatlas
+          sparse-checkout: |
+            atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 998c4cddbd78f04bcdd9df2a40026ac91714cd2f
+          path: pinned-pipeline
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Re-run required offline gates before any network work
+        run: |
+          node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+          node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
+          node sandbox/gridatlas-agent9-first-restore/repd-static-audit.mjs pinned-pipeline/uk_renewables_pipeline/202611151300
+          node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
+          node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+          node sandbox/gridatlas-agent9-first-restore/candidate-contract.mjs agent9-candidate/agent9-sld-mobile-restore-candidate.js agent9-candidate/candidate-manifest.json
+      - name: Install isolated Playwright test dependencies
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Serve pinned original V9.22 source candidate locally
+        run: |
+          nohup python3 -m http.server 8765 --directory pinned-pipeline > agent9-source-server.log 2>&1 &
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8765/uk_renewables_pipeline/202611151300/index.html > /dev/null
+      - name: REAL mapped viewport and technology with test-only receiver cartridge substitution (NOT public preview)
+        run: node sandbox/gridatlas-agent9-first-restore/browser-test-only-override.mjs pinned-pipeline/uk_renewables_pipeline/202611151300 agent9-candidate
+      - name: Preserve failure as well as success browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-real-browser-${{ matrix.browser }}-${{ matrix.width }}-${{ matrix.repd_ref }}
+          path: |
+            agent9-browser/
+            agent9-source-server.log
+            agent9-candidate/candidate-manifest.json
+          if-no-files-found: warn
+          retention-days: 14

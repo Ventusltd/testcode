@@ -1,0 +1,95 @@
+name: Agent9 24 genuine REPD browser projects (test-only candidate)
+on:
+  push:
+    branches:
+      - qa/agent9-gridatlas-first-restore-20261115
+    paths:
+      - .github/workflows/agent9-24-real-projects.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-24-projects:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      AGENT9_BROWSER: chromium
+      AGENT9_WIDTH: '390'
+      AGENT9_BROWSER_OUTPUT: agent9-browser
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 4c52780c04a90608d8a072172138b9063e5a4684
+          path: pinned-gridatlas
+          sparse-checkout: |
+            atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 998c4cddbd78f04bcdd9df2a40026ac91714cd2f
+          path: pinned-pipeline
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Offline unit, identity, integrity and adversarial gates
+        run: |
+          node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+          node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
+          node sandbox/gridatlas-agent9-first-restore/repd-static-audit.mjs pinned-pipeline/uk_renewables_pipeline/202611151300
+          node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+          node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
+          node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+          node sandbox/gridatlas-agent9-first-restore/candidate-contract.mjs agent9-candidate/agent9-sld-mobile-restore-candidate.js agent9-candidate/candidate-manifest.json
+          test "$(jq -r '.sample_count' agent9-repd-receipts/static-audit.json)" = '24'
+          for tech in solar bess wind_onshore wind_offshore; do
+            test "$(jq -r --arg tech "$tech" '[.samples[]|select(.technology==$tech)]|length' agent9-repd-receipts/static-audit.json)" = '6'
+          done
+      - name: Install isolated Chromium browser
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Serve exact pinned source locally
+        run: |
+          nohup python3 -m http.server 8765 --directory pinned-pipeline > agent9-source-server.log 2>&1 &
+          sleep 2
+          curl --fail --silent --show-error http://127.0.0.1:8765/uk_renewables_pipeline/202611151300/index.html >/dev/null
+      - name: All 24 genuine MAP-click and engine cases - preserve each failure
+        shell: bash
+        run: |
+          set +e
+          set -u
+          failed=0
+          tested=0
+          for ref in $(jq -r '.samples[].repd_ref' agent9-repd-receipts/static-audit.json); do
+            echo "AGENT9 REAL CHROMIUM MAP-CLICK REPD $ref"
+            AGENT9_REPD_REF="$ref" node sandbox/gridatlas-agent9-first-restore/browser-test-only-override.mjs pinned-pipeline/uk_renewables_pipeline/202611151300 agent9-candidate
+            verdict=$?
+            tested=$((tested+1))
+            if test "$verdict" -ne 0; then
+              echo "::error::REAL browser failed for REPD $ref"
+              failed=1
+            fi
+          done
+          echo "AGENT9 RESULTS: $tested genuine projects, failure flag $failed"
+          test "$tested" -eq 24 || exit 1
+          exit "$failed"
+      - name: Archive every actual browser verdict and screenshots even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-24-real-projects-evidence
+          path: |
+            agent9-browser/
+            agent9-source-server.log
+            agent9-repd-receipts/static-audit.json
+            agent9-candidate/candidate-manifest.json
+          retention-days: 14
+          if-no-files-found: warn
