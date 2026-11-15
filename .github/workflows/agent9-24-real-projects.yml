@@ -64,6 +64,7 @@ jobs:
       - name: All 24 genuine MAP-click and engine cases - preserve each failure
         shell: bash
         run: |
+          set +e
           set -u
           failed=0
           tested=0
