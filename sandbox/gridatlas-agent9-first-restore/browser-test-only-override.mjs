@@ -96,7 +96,8 @@ try{
  assert.equal(Number(url.searchParams.get('latitude')),row.latitude);
  assert.equal(Number(url.searchParams.get('longitude')),row.longitude);
  result.mapHref=url.href;
- await target.scrollIntoViewIfNeeded();
+ // Let Playwright's click action re-resolve transient table DOM updates and auto-scroll.
+ // A detached locator on an explicit pre-scroll is not evidence of GridAtlas failure.
  const [dest] = await Promise.all([
   context.waitForEvent('page',{timeout:25000}),
   target.click({timeout:25000})
