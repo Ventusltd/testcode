@@ -1,0 +1,22 @@
+{
+  "type": "Feature",
+  "id": "dcuk-synthetic-001",
+  "geometry": null,
+  "properties": {
+    "id": "dcuk-synthetic-001",
+    "site_key": "synthetic:no-geometry",
+    "name": "Illustrative data centre \u2014 no map action",
+    "it_load_mw": {
+      "value": 50
+    },
+    "grid_connection_mw": {
+      "value": null
+    },
+    "status": "unknown",
+    "sources": [
+      {
+        "licence_status": "unverified"
+      }
+    ]
+  }
+}

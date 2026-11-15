@@ -1,0 +1,41 @@
+{
+  "schema": "globalgrid2050.machine-read-notes-sidecar.v1",
+  "notes": {
+    "repd|DESNZ-REPD|illustrative-october-2026-q3-not-an-official-extract|2527": {
+      "asset_key": {
+        "vertical": "repd",
+        "source_register": "DESNZ-REPD",
+        "source_snapshot": "illustrative-october-2026-q3-not-an-official-extract",
+        "source_record_id": "2527"
+      },
+      "note_state": "candidate",
+      "rights_basis": "unknown",
+      "brief": "Illustrative synthetic scenario only; no original article or real-world event has been verified. The reported event category is turbine installation started. The frozen government status is Under Construction as of 2026-09-30. The association basis is explicit project name. The assessment is insufficient evidence.",
+      "source_url": "https://example.invalid/illustrative/inch-cape"
+    },
+    "repd|DESNZ-REPD|illustrative-october-2026-q3-not-an-official-extract|12588": {
+      "asset_key": {
+        "vertical": "repd",
+        "source_register": "DESNZ-REPD",
+        "source_snapshot": "illustrative-october-2026-q3-not-an-official-extract",
+        "source_record_id": "12588"
+      },
+      "note_state": "candidate",
+      "rights_basis": "unknown",
+      "brief": "Illustrative synthetic scenario only; no original article or real-world event has been verified. The reported event category is consent refused. The frozen government status is Application Submitted as of 2026-09-30. The association basis is explicit project name. The assessment is possible status conflict.",
+      "source_url": "https://example.invalid/illustrative/botley-west"
+    },
+    "repd|DESNZ-REPD|illustrative-october-2026-q3-not-an-official-extract|15793": {
+      "asset_key": {
+        "vertical": "repd",
+        "source_register": "DESNZ-REPD",
+        "source_snapshot": "illustrative-october-2026-q3-not-an-official-extract",
+        "source_record_id": "15793"
+      },
+      "note_state": "candidate",
+      "rights_basis": "unknown",
+      "brief": "Illustrative synthetic scenario only; no original article or real-world event has been verified. The reported event category is consent granted. The frozen government status is Application Submitted as of 2026-09-30. The association basis is explicit project name. The assessment is possible status conflict.",
+      "source_url": "https://example.invalid/illustrative/green-hill"
+    }
+  }
+}

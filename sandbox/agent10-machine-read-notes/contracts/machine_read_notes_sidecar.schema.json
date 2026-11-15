@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://globalgrid2050.com/contracts/machine-read-notes-sidecar-v1.schema.json",
+  "title":"Candidate-only post-V9.22 additive sidecar (no project-source mutation)",
+  "type":"object","additionalProperties":false,
+  "required":["schema","notes"],
+  "properties":{
+    "schema":{"const":"globalgrid2050.machine-read-notes-sidecar.v1"},
+    "notes":{"type":"object","propertyNames":{"minLength":4},"additionalProperties":{"type":"object","additionalProperties":false,"required":["asset_key","note_state","rights_basis","brief"],"properties":{
+      "asset_key":{"$ref":"https://globalgrid2050.com/contracts/asset-key-v1.schema.json"},
+      "note_state":{"enum":["candidate","insufficient_evidence"]},
+      "rights_basis":{"const":"unknown"},
+      "brief":{"type":"string","minLength":1},
+      "source_url":{"type":["string","null"],"format":"uri"}
+    }}}
+  }
+}
