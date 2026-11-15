@@ -136,6 +136,14 @@ class AdapterContracts(unittest.TestCase):
         # Relative refs are based on schema $id, both JSON schema files share a directory.
         Draft202012Validator(b,registry=registry).validate(self.side)
 
+    def test_phone_header_keeps_close_accessible_without_native_fullscreen_dependency(self):
+        html=(ROOT/'fullscreen-report/index.html').read_text()
+        css=(ROOT/'fullscreen-report/report-mode.css').read_text()
+        self.assertIn('aria-label="Close project report"',html)
+        self.assertIn('#report-native{display:none!important}',css)
+        self.assertIn('.report-head .overline{display:none}',css)
+        self.assertIn('id="report" role="dialog"',html)
+
     def test_fullscreen_static_accessibility_contract(self):
         html=(ROOT/'fullscreen-report/index.html').read_text()
         css=(ROOT/'fullscreen-report/report-mode.css').read_text()

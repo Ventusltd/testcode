@@ -30,3 +30,7 @@ A separate no-publishing CI job checks out `Ventusltd/globalgrid2050` exactly at
 ### CI remediation receipt — 556bf74
 
 First real source-integrity job at SHA `556bf743c492a95d395ec7856a519ac774de1e51` failed before data evaluation with `ModuleNotFoundError: No module named 'src'`: CLI called `python scripts/audit_v922_source.py`, which placed `scripts/` rather than project root on `sys.path`. This is an **actual red integration test**, not a data mismatch or a successful 7,775 audit. Corrected the workflow to `python -m scripts.audit_v922_source` and require a separate exact-head CI result before elevating source integrity. Original failed run: https://github.com/Ventusltd/testcode/actions/runs/43773953167/job/132995951631 .
+
+## UI screenshot refinement (390 px)
+
+Inspected real locally composed Chromium screenshot `results/report-browser/chromium-390x844.png`; initial design used ~100px mobile header because `Close report`, project title and `Fullscreen` crowded a 390px line. Changed the visible close text to **Close** with full screen-reader label, hid native Fullscreen API progressive enhancement at widths under 900px, compacted the overline and frozen-facts spacing. Full-window CSS overlay remains functional without browser Fullscreen API. Re-ran 9/9 local Chromium cases at six viewports, including portrait/landscape; this is still not a served page / real iPhone receipt. Exact-head hosted browser check must be rerun after UI change.
