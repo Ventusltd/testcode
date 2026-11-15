@@ -80,14 +80,24 @@ replaceOnce('same-selection-preserves-choice',
   "    popup.classList.toggle('gridatlas-min', actuallyMinimised);"
  ].join('\n'));
 replaceOnce('late-reset-preserves-explicit-drag',
- "    popup.classList.remove('gridatlas-free');",
- "    if (agent9UserChoice === null) popup.classList.remove('gridatlas-free');");
+ [
+  "    const popup = content?.closest?.('.maplibregl-popup');",
+  "    if (!popup) return;",
+  "    popup.classList.remove('gridatlas-free');"
+ ].join('\n'),
+ [
+  "    const popup = content?.closest?.('.maplibregl-popup');",
+  "    if (!popup) return;",
+  "    if (agent9UserChoice === null) popup.classList.remove('gridatlas-free');"
+ ].join('\n'));
 replaceOnce('late-reset-preserves-geometry',
  [
+  "    popup.classList.toggle('gridatlas-min', actuallyMinimised);",
   "    popup.style.removeProperty('--gx');",
   "    popup.style.removeProperty('--gy');"
  ].join('\n'),
  [
+  "    popup.classList.toggle('gridatlas-min', actuallyMinimised);",
   "    if (agent9UserChoice === null) {",
   "      popup.style.removeProperty('--gx');",
   "      popup.style.removeProperty('--gy');",
