@@ -125,6 +125,21 @@ replaceOnce('new-selection-clears-choice',
 replaceOnce('stale-arrival-cannot-overwrite-newer-project',
  "      drawLinks(map, origin, name, tech,\n        nearestSubstations(origin[0], origin[1], subs), 'to-substation', statedMw);",
  "      if (agent9MyToken !== agent9SelectionToken) return false;\n      drawLinks(map, origin, name, tech,\n        nearestSubstations(origin[0], origin[1], subs), 'to-substation', statedMw);");
+replaceOnce('card-keeper-token-binding',
+ "    cardKeeperPayload = { links, direction, layerLoaded };",
+ "    cardKeeperPayload = { links, direction, layerLoaded, token: agent9SelectionToken };");
+replaceOnce('card-keeper-stale-reject',
+ "        if (!payload) return;",
+ "        if (!payload || payload.token !== agent9SelectionToken) return;");
+replaceOnce('raf-late-selection-reject',
+ "      requestAnimationFrame(() => injectIntoCard(links, direction, layerLoaded));",
+ [
+  "      const agent9ExpectedToken = agent9SelectionToken;",
+  "      requestAnimationFrame(() => {",
+  "        if (agent9ExpectedToken === agent9SelectionToken)",
+  "          injectIntoCard(links, direction, layerLoaded);",
+  "      });"
+ ].join('\n'));
 const out=join(outDir,'agent9-sld-mobile-restore-candidate.js');
 mkdirSync(dirname(out),{recursive:true});
 writeFileSync(out,source,'utf8');
