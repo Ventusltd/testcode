@@ -32,3 +32,7 @@ All three REPD records and source URLs are **synthetic illustrations**. `fixture
 The offline adapter suite does **not** assert original 7,775-record preservation. The browser runner covers visible interactions and layout using pinned synthetic source bytes, recording the selected engine, source SHA256, and screenshots/traces. Local environment may block HTTP navigation: only when `ALLOW_OFFLINE_COMPOSE=1` is explicitly set will the runner use in-memory browser composition; it then labels real browser Back as **NOT VERIFIED**, and any GitHub job requiring the actual localhost history path must still pass independently. GitHub Actions needs the actual 390/393/844/852/768/1440 source-served tests in both Chromium and WebKit; it must not use the fallback to claim a normal hosted browser PASS.
 
 **Not verified:** original publisher receipts, licencing, full REPD 7,775 links, native iPhone Safari, independent same-hash served preview and live GridAtlas first-restore. These remain stop-ship for product integration. V9.22 and Agent9 branches are out of scope.
+
+### Adversarial visual stress
+
+The report browser gate also injects a visible 2,000+-character machine note, an unbroken >600-character source-like URL and an inert HTML-injection string through `textContent`; asserts no executable markup or horizontal clipping; then switches to print emulation and checks the full text remains readable with no animation and non-fixed page layout. These are DOM stress controls, not new verified publisher evidence.

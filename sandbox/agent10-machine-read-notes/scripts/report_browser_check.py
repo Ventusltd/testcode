@@ -122,6 +122,25 @@ try:
     page.locator('#report-close').click()
     assert page.locator('#search').input_value()=='hill'
     receipt['cases'].append({'filtered_context_retained':True,'previous_next_filtered':True})
+    page.close()
+    # Deliberate hostile and long-note presentation controls (DOM after source binding).
+    page=browser.new_page(viewport={'width':390,'height':844})
+    navigate(page)
+    page.wait_for_function('document.querySelectorAll("#rows button[data-asset]").length===3')
+    page.get_by_role('button',name='Open project report for Botley West').click()
+    stress='<img src=x onerror=alert(1)>'+' X'*1500+' https://example.invalid/'+('z'*600)
+    page.locator('#brief-text').evaluate('(node, value) => { node.textContent=value; }',stress)
+    page.locator('#brief-duplicate').evaluate('(node, value) => { node.textContent=value; }',stress)
+    assert len(page.locator('#brief-text').inner_text())>2000
+    assert page.locator('#brief-text img').count()==0,'source string executed as markup'
+    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),'long note document overflow'
+    assert page.evaluate('document.querySelector("#report").scrollWidth<=innerWidth+1'),'long note report overflow'
+    receipt['cases'].append({'long_note_over_2000':True,'very_long_url':True,'markup_inert':True,'no_horizontal_overflow':True})
+    page.emulate_media(media='print')
+    assert page.locator('#report').evaluate('(x)=>getComputedStyle(x).position')=='static'
+    assert page.locator('#brief-text').is_visible()
+    assert page.locator('#brief-duplicate').evaluate('(x)=>getComputedStyle(x).display')=='none'
+    receipt['cases'].append({'print_full_text':True,'print_no_animation':True,'print_static_layout':True})
     page.close();browser.close()
 finally:server.shutdown()
 (OUT/f'{engine}-report-browser-receipts.json').write_text(json.dumps(receipt,indent=2)+'\n')

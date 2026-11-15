@@ -34,3 +34,7 @@ First real source-integrity job at SHA `556bf743c492a95d395ec7856a519ac774de1e51
 ## UI screenshot refinement (390 px)
 
 Inspected real locally composed Chromium screenshot `results/report-browser/chromium-390x844.png`; initial design used ~100px mobile header because `Close report`, project title and `Fullscreen` crowded a 390px line. Changed the visible close text to **Close** with full screen-reader label, hid native Fullscreen API progressive enhancement at widths under 900px, compacted the overline and frozen-facts spacing. Full-window CSS overlay remains functional without browser Fullscreen API. Re-ran 9/9 local Chromium cases at six viewports, including portrait/landscape; this is still not a served page / real iPhone receipt. Exact-head hosted browser check must be rerun after UI change.
+
+## Browser stress extension
+
+Extended `scripts/report_browser_check.py` beyond six viewport checks: it explicitly injects >2,000 characters, a >600-character unbroken URL and `<img onerror=...>` as inert text into the already-precomputed brief; asserts zero HTML injection and no horizontal overflow. Print emulation verifies the shell becomes static, the full original brief stays visible, and animation is removed. Local composed Chromium: **11/11** browser cases (still cannot prove real browser history or served-preview SHA). Exact-head CI must independently run Chromium and WebKit after the change.
