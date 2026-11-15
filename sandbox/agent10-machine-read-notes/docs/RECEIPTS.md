@@ -8,3 +8,4 @@
 - Bundle digest: record exact computed digest in `ui/fixture-data.json` and `results/machine-read-notes.json`. These are identical canonical JSON outputs.
 - Browser evidence: see `results/browser/browser-receipts.json` and PNG screenshots when executed, including 390, 393 and 1440 px. Browser receipts must not be claimed if script cannot launch.
 - CI exact-GitHub-SHA status: UNVERIFIED until Actions runs on the committed implementation SHA. GitHub Action logs, not this file, establish independent CI status.
+- Local Chromium browser composition: **5/5 scenarios PASS** using exact local UI source bytes and fixture JSON: 390px, 393px, 1440px open/close and keyboard, 393px reduced motion, 390px JavaScript-disabled native disclosure. HTML/CSS/JS SHA256 and screenshot filenames recorded in `results/browser/chromium-browser-receipts.json`. This is **not** a hosted/public-preview or real iPhone Safari test. WebKit not installed locally and remains UNVERIFIED pending CI.

@@ -1,0 +1,86 @@
+name: Agent10 Machine Read Notes TestCode
+on:
+  push:
+    branches:
+      - agent10/machine-read-notes-20261115
+    paths:
+      - 'sandbox/agent10-machine-read-notes/**'
+      - '.github/workflows/agent10-machine-read-notes-testcode.yml'
+  pull_request:
+    paths:
+      - 'sandbox/agent10-machine-read-notes/**'
+      - '.github/workflows/agent10-machine-read-notes-testcode.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent10-notes-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  offline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact contract dependency
+        run: python -m pip install --disable-pip-version-check jsonschema==4.25.1
+      - name: Verify exact source and run all mandatory offline gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EXACT_GITHUB_SHA=${GITHUB_SHA}"
+          cd sandbox/agent10-machine-read-notes
+          bash scripts/run-offline.sh 2>&1 | tee results/github-offline.log
+          sha256sum src/engine.py tests/test_engine.py ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css ui/fixture-data.json | tee results/source-sha256.txt
+          echo 'REPD_7775_IDENTITY_AUDIT=UNVERIFIED_SYNTHETIC_SUBSET'
+          echo 'PUBLISHER_AUTHENTICITY=UNVERIFIED_SYNTHETIC_FIXTURES'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent10-offline-${{ github.sha }}
+          path: |
+            sandbox/agent10-machine-read-notes/results/github-offline.log
+            sandbox/agent10-machine-read-notes/results/source-sha256.txt
+            sandbox/agent10-machine-read-notes/results/machine-read-notes.json
+            sandbox/agent10-machine-read-notes/ui/fixture-data.json
+          if-no-files-found: error
+  browser:
+    needs: offline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned browser runner and actual browsers
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Rebuild deterministic inputs and inspect Chromium / WebKit
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EXACT_GITHUB_SHA=${GITHUB_SHA}"
+          cd sandbox/agent10-machine-read-notes
+          python -m src.cli --output ui/fixture-data.json --as-of 2026-11-15
+          python scripts/browser_check.py --engine chromium
+          python scripts/browser_check.py --engine webkit
+          sha256sum ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css | tee results/browser/source-sha256.txt
+          echo 'NO_HOSTED_PREVIEW_OR_PHYSICAL_IPHONE_ACCEPTANCE_CLAIMED'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent10-browser-${{ github.sha }}
+          path: sandbox/agent10-machine-read-notes/results/browser/
+          if-no-files-found: error
