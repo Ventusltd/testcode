@@ -96,10 +96,11 @@ try{
  assert.equal(Number(url.searchParams.get('latitude')),row.latitude);
  assert.equal(Number(url.searchParams.get('longitude')),row.longitude);
  result.mapHref=url.href;
- const newPage=context.waitForEvent('page',{timeout:25000});
  await target.scrollIntoViewIfNeeded();
- await target.click({timeout:25000});
- const dest=await newPage;
+ const [dest] = await Promise.all([
+  context.waitForEvent('page',{timeout:25000}),
+  target.click({timeout:25000})
+ ]);
  result.actualClickedUrl=dest.url();
  assert.equal(new URL(dest.url()).pathname,url.pathname);
  dest.on('pageerror',e=>result.pageErrors.push('GRIDATLAS '+e.message.slice(0,300)));
