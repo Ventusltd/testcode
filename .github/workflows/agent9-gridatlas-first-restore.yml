@@ -44,6 +44,17 @@ jobs:
           if-no-files-found: warn
       - run: node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
       - run: node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
+      - name: Build isolated NEW candidate from immutable old bytes
+        run: node sandbox/gridatlas-agent9-first-restore/build-candidate.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js agent9-candidate
+      - name: Reject syntax-invalid patched candidate
+        run: node --check agent9-candidate/agent9-sld-mobile-restore-candidate.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent9-testcode-only-cartridge-candidate
+          path: agent9-candidate/
+          if-no-files-found: warn
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
