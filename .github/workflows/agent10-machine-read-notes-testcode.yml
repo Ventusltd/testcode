@@ -81,7 +81,7 @@ jobs:
           echo "TESTCODE_EXACT_GITHUB_SHA=${GITHUB_SHA}"
           echo "V922_PINNED_SOURCE_SHA=$(git -C source-v922 rev-parse HEAD)" | tee sandbox/agent10-machine-read-notes/results/v922-source-sha.txt
           cd sandbox/agent10-machine-read-notes
-          python scripts/audit_v922_source.py \
+          python -m scripts.audit_v922_source \
             --source-dir "$GITHUB_WORKSPACE/source-v922/uk_renewables_pipeline/202611151300/data/v9.1/projects" \
             --output results/v922-source-audit.json
           echo 'SOURCE=V922_PRODUCT_JSON_PARTS; ORIGINAL_DESNZ_XLSX_AUTHENTICITY=UNVERIFIED'

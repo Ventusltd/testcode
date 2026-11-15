@@ -26,3 +26,7 @@ Local invocation: `python -m unittest discover -s tests -q` -> 67 tests PASS. `n
 ## Explicit real-V9.22 source integrity gate (new)
 
 A separate no-publishing CI job checks out `Ventusltd/globalgrid2050` exactly at merged V9.22 source commit `0719ddc28f2a418281594549d4667c9916ff6b20`, sparse-checks the 16 `data/v9.1/projects/part-###.json` partitions, and runs `scripts/audit_v922_source.py`. The gate requires precisely **7,775 numeric unique REPD IDs**, declared part-row parity and no missing partitions, stable source rows/status, and zero note-sidecar mutation. Each partition SHA256 is written into an output artifact. If the pinned source is unavailable, the gate FAILS rather than reporting a synthetic pass. This is **product V9.22 partition consistency**, NOT verification against the independent official DESNZ XLSX, live generated MAP hrefs or visible GridAtlas first-restore result.
+
+### CI remediation receipt — 556bf74
+
+First real source-integrity job at SHA `556bf743c492a95d395ec7856a519ac774de1e51` failed before data evaluation with `ModuleNotFoundError: No module named 'src'`: CLI called `python scripts/audit_v922_source.py`, which placed `scripts/` rather than project root on `sys.path`. This is an **actual red integration test**, not a data mismatch or a successful 7,775 audit. Corrected the workflow to `python -m scripts.audit_v922_source` and require a separate exact-head CI result before elevating source integrity. Original failed run: https://github.com/Ventusltd/testcode/actions/runs/43773953167/job/132995951631 .
