@@ -1,7 +1,7 @@
 {
   "source_sha256": {
     "index.html": "978ad7ab6ef403f047a4d4491e5c463ace6950a20a55ff10e65379e28f9cf239",
-    "machine-read-notes.css": "b0c2ef4a2ceb6182693e1d1baa2dd184568713bfb61ce2d5fd12460f329aa82a",
+    "machine-read-notes.css": "3b579cbbaf942be8c3d874a54f10a9bfb0351486b9860c4f56129cb17b77850c",
     "machine-read-notes.js": "2c3917f8ad74c9b1bbcc3d97627a352d70087d89dc39cfcc6920be7a36e11bc9"
   },
   "tests": [

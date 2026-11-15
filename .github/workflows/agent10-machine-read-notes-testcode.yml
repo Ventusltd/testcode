@@ -50,6 +50,7 @@ jobs:
             sandbox/agent10-machine-read-notes/results/github-offline.log
             sandbox/agent10-machine-read-notes/results/source-sha256.txt
             sandbox/agent10-machine-read-notes/results/machine-read-notes.json
+            sandbox/agent10-machine-read-notes/results/mutation-probe.json
             sandbox/agent10-machine-read-notes/ui/fixture-data.json
           if-no-files-found: error
   browser:

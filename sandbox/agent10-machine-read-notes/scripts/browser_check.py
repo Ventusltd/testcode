@@ -36,6 +36,9 @@ with sync_playwright() as p:
         assert button.get_attribute('aria-expanded')=='true'
         panel=page.locator('#'+button.get_attribute('aria-controls'))
         assert panel.is_visible()
+        assert page.evaluate('document.documentElement.scrollWidth <= document.documentElement.clientWidth'), 'horizontal document overflow'
+        position=panel.bounding_box()
+        assert position['x'] >= -1 and position['x']+position['width'] <= width+1, 'brief clipped on mobile'
         assert panel.get_by_text('Machine-originated Pipeline Intelligence Brief').count()==1
         assert button.bounding_box()['height']>=44 and button.bounding_box()['width']>=44
         button.press('Enter')

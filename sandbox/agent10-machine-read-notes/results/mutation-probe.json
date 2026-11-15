@@ -1,0 +1,14 @@
+{
+  "schema": "globalgrid2050.agent10.mutation-probe.v1",
+  "mutation": "replace exact REPD association with unconditional supported",
+  "unsafe_mutant": {
+    "executed": 4,
+    "failed_as_expected": 4,
+    "errors": 0
+  },
+  "restored": {
+    "executed": 4,
+    "passed": 4
+  },
+  "interpretation": "Four unsafe binding mutations produced RED; restoring original implementation produced GREEN. No production code was changed."
+}

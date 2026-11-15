@@ -45,9 +45,10 @@ test_39_no_fake_independent_source_from_capture_bytes (test_engine.AdversarialTe
 test_40_no_unknown_implicit_repd_binding (test_engine.AdversarialTests.test_40_no_unknown_implicit_repd_binding) ... ok
 
 ----------------------------------------------------------------------
-Ran 45 tests in 0.758s
+Ran 45 tests in 0.808s
 
 OK
+MUTATION PROBE: 4 red controls, 4 restored PASS
 3 synthetic notes; SHA256 468f841ce8dbe999f8d2c06f7c74d756443a1ccde6842ffd76d4041e9c5cf194; full 7775 identity audit UNVERIFIED
 3 synthetic notes; SHA256 468f841ce8dbe999f8d2c06f7c74d756443a1ccde6842ffd76d4041e9c5cf194; full 7775 identity audit UNVERIFIED
 PASS offline gates; browser check is separate and mandatory for browser acceptance
