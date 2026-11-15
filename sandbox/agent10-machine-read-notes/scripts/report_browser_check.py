@@ -26,7 +26,7 @@ files=('index.html','report-mode.css','report-mode.js','fixtures/projects.synthe
 receipt={'scope':'local browser composition; NOT product preview/real iPhone proof',
          'sha256':{p:sha256((ROOT/'fullscreen-report'/p).read_bytes()).hexdigest() for p in files},
          'engine':engine,'cases':[]}
-def navigate(page):
+def navigate(page, no_js=False):
     """Use real localhost where permitted; local no-socket composition is explicitly labelled."""
     try:
         if os.environ.get('ALLOW_OFFLINE_COMPOSE') == '1': raise BrowserError('explicit local no-network composition')
@@ -38,6 +38,7 @@ def navigate(page):
         html=(ROOT/'fullscreen-report/index.html').read_text()
         html=html.replace('<link rel="stylesheet" href="report-mode.css">','').replace('<script src="report-mode.js" defer></script>','')
         page.set_content(html,wait_until='domcontentloaded')
+        if no_js: return 'offline_static_no_js'
         page.add_style_tag(content=(ROOT/'fullscreen-report/report-mode.css').read_text())
         projects=json.loads((ROOT/'fullscreen-report/fixtures/projects.synthetic.json').read_text())
         notes=json.loads((ROOT/'fullscreen-report/fixtures/notes.synthetic.json').read_text())
@@ -45,6 +46,7 @@ def navigate(page):
             window.fetch = url => Promise.resolve({ok:true,json:()=>Promise.resolve(url.includes('projects.synthetic')?projects:notes)});
             history.pushState=(state,title,url)=>{window.__fakeReportUrl=url};
             history.replaceState=(state,title,url)=>{window.__fakeReportUrl=url};
+            history.back=()=>{window.dispatchEvent(new PopStateEvent('popstate'))};
         }""", [projects,notes])
         page.evaluate((ROOT/'fullscreen-report/report-mode.js').read_text())
         page.evaluate("window.dispatchEvent(new Event('DOMContentLoaded'))")
@@ -103,7 +105,7 @@ try:
     receipt['cases'].append({'reduced_motion':True,'screenreader_copy_present':True})
     page.close()
     page=browser.new_page(viewport={'width':390,'height':844},java_script_enabled=False)
-    navigate(page)
+    navigate(page, no_js=True)
     assert page.locator('#static-reference details').count()==3
     page.locator('#static-12588 summary').click()
     assert page.locator('#static-12588').get_attribute('open') is not None

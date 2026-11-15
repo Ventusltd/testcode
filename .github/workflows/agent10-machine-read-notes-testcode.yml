@@ -39,7 +39,7 @@ jobs:
           echo "EXACT_GITHUB_SHA=${GITHUB_SHA}"
           cd sandbox/agent10-machine-read-notes
           bash scripts/run-offline.sh 2>&1 | tee results/github-offline.log
-          sha256sum src/engine.py tests/test_engine.py ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css ui/fixture-data.json | tee results/source-sha256.txt
+          sha256sum src/engine.py tests/test_engine.py ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css ui/fixture-data.json src/compat.py src/adapters/records.py fullscreen-report/index.html fullscreen-report/report-mode.css fullscreen-report/report-mode.js fullscreen-report/fixtures/projects.synthetic.json fullscreen-report/fixtures/notes.synthetic.json | tee results/source-sha256.txt
           echo 'REPD_7775_IDENTITY_AUDIT=UNVERIFIED_SYNTHETIC_SUBSET'
           echo 'PUBLISHER_AUTHENTICITY=UNVERIFIED_SYNTHETIC_FIXTURES'
       - uses: actions/upload-artifact@v4
@@ -77,11 +77,15 @@ jobs:
           python -m src.cli --output ui/fixture-data.json --as-of 2026-11-15
           python scripts/browser_check.py --engine chromium
           python scripts/browser_check.py --engine webkit
+          python scripts/report_browser_check.py --engine chromium
+          python scripts/report_browser_check.py --engine webkit
           sha256sum ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css | tee results/browser/source-sha256.txt
           echo 'NO_HOSTED_PREVIEW_OR_PHYSICAL_IPHONE_ACCEPTANCE_CLAIMED'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: agent10-browser-${{ github.sha }}
-          path: sandbox/agent10-machine-read-notes/results/browser/
+          path: |
+            sandbox/agent10-machine-read-notes/results/browser/
+            sandbox/agent10-machine-read-notes/results/report-browser/
           if-no-files-found: error

@@ -26,7 +26,7 @@ The prototype is **offline and deterministic**: Python stdlib `src.engine` verif
 
 ## Validation evidence
 
-`python -m unittest discover -s tests -v` exercises **45 assertions/scenarios**, including **40** named adversarial/safety controls and **5** schema/UI checks. A separate `python scripts/mutation_probe.py` replaces safe REPD association with a deliberately unconditional match and confirms **4 RED tests**; restoring the original engine produces **4 GREEN tests**. The initial local run produced **2 FAIL** (test harness wrongly assumed sorted note 0 was REPD 12588); the corrected assertion locates the ID rather than using array position and then passes. This is a test-harness correction, **not evidence of a previously unsafe production implementation**. See `docs/RECEIPTS.md` and generated test reports. Browser acceptance requires real screenshot and semantic checks; a text-only grep cannot establish mobile usability. CI must pin the Git SHA and upload artifacts; without that receipt, CI status remains UNVERIFIED.
+`python -m unittest discover -s tests -v` exercises **45 assertions/scenarios**, including **40** named adversarial/safety controls and **5** schema/UI checks. The initial local run produced **2 FAIL** (test harness wrongly assumed sorted note 0 was REPD 12588); the corrected assertion locates the ID rather than using array position and then passes. This is a test-harness correction, **not evidence of a previously unsafe production implementation**. See `docs/RECEIPTS.md` and generated test reports. Browser acceptance requires real screenshot and semantic checks; a text-only grep cannot establish mobile usability. CI must pin the Git SHA and upload artifacts; without that receipt, CI status remains UNVERIFIED.
 
 ## Integration sequence
 
@@ -34,3 +34,7 @@ The prototype is **offline and deterministic**: Python stdlib `src.engine` verif
 2. Separate owner approval for non-live post-V9.22 GlobalGrid2050 preview branch.
 3. Owner physical iPhone Safari and independent reviewer accept the **same** served/source SHA.
 4. Separate owner authorisation for any V9.23 publishing. Agent9 GridAtlas work and Agent8 V9.22 remain untouched.
+
+## Successor development (Agent 10, V9.23-or-later)
+
+The separate [`fullscreen-report/`](fullscreen-report/README.md) demonstrates portrait/landscape, filtered previous/next, focus management, additive report URL and a fully precomputed note with a decorative typed duplicate. The shared generic asset adapters live under `src/adapters/` and enforce native REPD or data-centre IDs, optional geometry, distinct IT-load/grid MW, candidate-only sidecars and unchanged original MAP URL bytes. This is **TestCode only**, not a product feature yet. Execute `bash scripts/run-offline.sh` and the dedicated `scripts/report_browser_check.py` in real browsers. Earlier successful browser CI for the original Machine Read Notes table does **not** constitute report-mode acceptance.
