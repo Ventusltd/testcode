@@ -1,0 +1,54 @@
+test_mobile_and_reduced_motion_rules (test_contract_ui.ContractAndUI.test_mobile_and_reduced_motion_rules) ... ok
+test_no_inner_html_or_unsafe_image_injection (test_contract_ui.ContractAndUI.test_no_inner_html_or_unsafe_image_injection) ... ok
+test_schema_bundle_and_notes (test_contract_ui.ContractAndUI.test_schema_bundle_and_notes) ... ok
+test_schema_downgrade_drops_rights_field_and_fails_validation (test_contract_ui.ContractAndUI.test_schema_downgrade_drops_rights_field_and_fails_validation) ... ok
+test_static_safe_if_javascript_fails (test_contract_ui.ContractAndUI.test_static_safe_if_javascript_fails) ... ok
+test_01_same_title_wrong_repd_rejected (test_engine.AdversarialTests.test_01_same_title_wrong_repd_rejected) ... ok
+test_02_same_title_distinct_planning_refs_not_deduped (test_engine.AdversarialTests.test_02_same_title_distinct_planning_refs_not_deduped) ... ok
+test_03_true_syndication_event_reference_groups_without_claiming_review (test_engine.AdversarialTests.test_03_true_syndication_event_reference_groups_without_claiming_review) ... ok
+test_04_fuzzy_title_only_weak (test_engine.AdversarialTests.test_04_fuzzy_title_only_weak) ... ok
+test_05_reviewed_url_does_not_fix_wrong_project (test_engine.AdversarialTests.test_05_reviewed_url_does_not_fix_wrong_project) ... ok
+test_06_multiple_projects_requires_explicit_binding (test_engine.AdversarialTests.test_06_multiple_projects_requires_explicit_binding) ... ok
+test_07_multiple_names_without_refs_not_proven (test_engine.AdversarialTests.test_07_multiple_names_without_refs_not_proven) ... ok
+test_08_tie_break_claimed_verified_rejected (test_engine.AdversarialTests.test_08_tie_break_claimed_verified_rejected) ... ok
+test_09_sibling_publishers_cannot_increase_independence (test_engine.AdversarialTests.test_09_sibling_publishers_cannot_increase_independence) ... ok
+test_10_unknown_owner_not_independent (test_engine.AdversarialTests.test_10_unknown_owner_not_independent) ... ok
+test_11_future_publication_rejected (test_engine.AdversarialTests.test_11_future_publication_rejected) ... ok
+test_12_naive_timestamp_rejected (test_engine.AdversarialTests.test_12_naive_timestamp_rejected) ... ok
+test_13_date_only_not_pretend_utc (test_engine.AdversarialTests.test_13_date_only_not_pretend_utc) ... ok
+test_14_refetch_cannot_become_event_date (test_engine.AdversarialTests.test_14_refetch_cannot_become_event_date) ... ok
+test_15_official_frozen_status_unmodified (test_engine.AdversarialTests.test_15_official_frozen_status_unmodified) ... ok
+test_16_forged_64hex_hash_rejected (test_engine.AdversarialTests.test_16_forged_64hex_hash_rejected) ... ok
+test_17_mismatched_capture_digest_rejected (test_engine.AdversarialTests.test_17_mismatched_capture_digest_rejected) ... ok
+test_18_fake_review_url_cannot_accept (test_engine.AdversarialTests.test_18_fake_review_url_cannot_accept) ... ok
+test_19_unknown_rights_cannot_upgrade (test_engine.AdversarialTests.test_19_unknown_rights_cannot_upgrade) ... ok
+test_20_missing_capture_not_real_evidence (test_engine.AdversarialTests.test_20_missing_capture_not_real_evidence) ... ok
+test_21_unsupported_date_in_render (test_engine.AdversarialTests.test_21_unsupported_date_in_render) ... ok
+test_22_unsupported_url_in_render (test_engine.AdversarialTests.test_22_unsupported_url_in_render) ... ok
+test_23_unattributed_upgrade_rejected (test_engine.AdversarialTests.test_23_unattributed_upgrade_rejected) ... ok
+test_24_verified_stamp_on_candidate_rejected (test_engine.AdversarialTests.test_24_verified_stamp_on_candidate_rejected) ... ok
+test_25_installation_is_not_consent (test_engine.AdversarialTests.test_25_installation_is_not_consent) ... ok
+test_26_html_script_rejected (test_engine.AdversarialTests.test_26_html_script_rejected) ... ok
+test_27_prompt_injection_rejected (test_engine.AdversarialTests.test_27_prompt_injection_rejected) ... ok
+test_28_duplicate_event_conflicting_dates (test_engine.AdversarialTests.test_28_duplicate_event_conflicting_dates) ... ok
+test_29_different_project_id_in_row_rejected (test_engine.AdversarialTests.test_29_different_project_id_in_row_rejected) ... ok
+test_30_missing_fixture_ref_rejected (test_engine.AdversarialTests.test_30_missing_fixture_ref_rejected) ... ok
+test_31_duplicate_repd_ids_rejected (test_engine.AdversarialTests.test_31_duplicate_repd_ids_rejected) ... ok
+test_32_fake_full_repd_row_count_rejected (test_engine.AdversarialTests.test_32_fake_full_repd_row_count_rejected) ... ok
+test_33_url_javascript_rejected (test_engine.AdversarialTests.test_33_url_javascript_rejected) ... ok
+test_34_redirect_different_host_rejected (test_engine.AdversarialTests.test_34_redirect_different_host_rejected) ... ok
+test_35_same_url_conflicting_events_rejected (test_engine.AdversarialTests.test_35_same_url_conflicting_events_rejected) ... ok
+test_36_schema_downgrade_rejected (test_engine.AdversarialTests.test_36_schema_downgrade_rejected) ... ok
+test_37_time_order_rejected (test_engine.AdversarialTests.test_37_time_order_rejected) ... ok
+test_38_deterministic_bytes (test_engine.AdversarialTests.test_38_deterministic_bytes) ... ok
+test_39_no_fake_independent_source_from_capture_bytes (test_engine.AdversarialTests.test_39_no_fake_independent_source_from_capture_bytes) ... ok
+test_40_no_unknown_implicit_repd_binding (test_engine.AdversarialTests.test_40_no_unknown_implicit_repd_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 0.808s
+
+OK
+MUTATION PROBE: 4 red controls, 4 restored PASS
+3 synthetic notes; SHA256 468f841ce8dbe999f8d2c06f7c74d756443a1ccde6842ffd76d4041e9c5cf194; full 7775 identity audit UNVERIFIED
+3 synthetic notes; SHA256 468f841ce8dbe999f8d2c06f7c74d756443a1ccde6842ffd76d4041e9c5cf194; full 7775 identity audit UNVERIFIED
+PASS offline gates; browser check is separate and mandatory for browser acceptance

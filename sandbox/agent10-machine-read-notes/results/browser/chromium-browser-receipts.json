@@ -1,0 +1,50 @@
+{
+  "source_sha256": {
+    "index.html": "978ad7ab6ef403f047a4d4491e5c463ace6950a20a55ff10e65379e28f9cf239",
+    "machine-read-notes.css": "3b579cbbaf942be8c3d874a54f10a9bfb0351486b9860c4f56129cb17b77850c",
+    "machine-read-notes.js": "2c3917f8ad74c9b1bbcc3d97627a352d70087d89dc39cfcc6920be7a36e11bc9"
+  },
+  "tests": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "buttons": 3,
+      "first_click": true,
+      "keyboard": true,
+      "tap_target": true,
+      "screenshot": "chromium-390.png",
+      "trace": "chromium-390-trace.zip"
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "buttons": 3,
+      "first_click": true,
+      "keyboard": true,
+      "tap_target": true,
+      "screenshot": "chromium-393.png"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "buttons": 3,
+      "first_click": true,
+      "keyboard": true,
+      "tap_target": true,
+      "screenshot": "chromium-1440.png"
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "reduced_motion": true,
+      "text_visible": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "no_js_fallback": true,
+      "native_disclosure": true
+    }
+  ],
+  "scope": "browser composition of exact local source; NOT hosted source/served SHA evidence"
+}

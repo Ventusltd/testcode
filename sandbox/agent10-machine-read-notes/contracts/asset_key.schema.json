@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://globalgrid2050.com/contracts/asset-key-v1.schema.json",
+  "title":"Immutable energy asset source key (not an inferred cross-register match)",
+  "type":"object","additionalProperties":false,
+  "required":["vertical","source_register","source_snapshot","source_record_id"],
+  "properties":{
+    "vertical":{"enum":["repd","datacentre","storage","transmission","industrial_offtaker"]},
+    "source_register":{"type":"string","pattern":"^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "source_snapshot":{"type":"string","pattern":"^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "source_record_id":{"type":"string","pattern":"^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}
+  },
+  "allOf":[{"if":{"properties":{"vertical":{"const":"repd"}}},"then":{"properties":{"source_record_id":{"pattern":"^[0-9]+$"}}}}]
+}

@@ -1,0 +1,133 @@
+name: Agent10 Machine Read Notes TestCode
+on:
+  push:
+    branches:
+      - agent10/machine-read-notes-20261115
+    paths:
+      - 'sandbox/agent10-machine-read-notes/**'
+      - '.github/workflows/agent10-machine-read-notes-testcode.yml'
+  pull_request:
+    paths:
+      - 'sandbox/agent10-machine-read-notes/**'
+      - '.github/workflows/agent10-machine-read-notes-testcode.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent10-notes-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  offline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact contract dependency
+        run: python -m pip install --disable-pip-version-check jsonschema==4.25.1
+      - name: Verify exact source and run all mandatory offline gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EXACT_GITHUB_SHA=${GITHUB_SHA}"
+          cd sandbox/agent10-machine-read-notes
+          bash scripts/run-offline.sh 2>&1 | tee results/github-offline.log
+          sha256sum scripts/audit_v922_source.py tests/test_v922_source_audit.py src/engine.py tests/test_engine.py ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css ui/fixture-data.json src/compat.py src/adapters/records.py fullscreen-report/index.html fullscreen-report/report-mode.css fullscreen-report/report-mode.js fullscreen-report/fixtures/projects.synthetic.json fullscreen-report/fixtures/notes.synthetic.json | tee results/source-sha256.txt
+          echo 'REPD_7775_IDENTITY_AUDIT=UNVERIFIED_SYNTHETIC_SUBSET'
+          echo 'PUBLISHER_AUTHENTICITY=UNVERIFIED_SYNTHETIC_FIXTURES'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent10-offline-${{ github.sha }}
+          path: |
+            sandbox/agent10-machine-read-notes/results/github-offline.log
+            sandbox/agent10-machine-read-notes/results/source-sha256.txt
+            sandbox/agent10-machine-read-notes/results/machine-read-notes.json
+            sandbox/agent10-machine-read-notes/results/mutation-probe.json
+            sandbox/agent10-machine-read-notes/ui/fixture-data.json
+          if-no-files-found: error
+  v922-source-integrity:
+    needs: offline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 0719ddc28f2a418281594549d4667c9916ff6b20
+          path: source-v922
+          sparse-checkout: |
+            uk_renewables_pipeline/202611151300/data/v9.1/projects
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read-only real V9.22 7775-row preservation audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C source-v922 rev-parse HEAD)" = '0719ddc28f2a418281594549d4667c9916ff6b20'
+          echo "TESTCODE_EXACT_GITHUB_SHA=${GITHUB_SHA}"
+          echo "V922_PINNED_SOURCE_SHA=$(git -C source-v922 rev-parse HEAD)" | tee sandbox/agent10-machine-read-notes/results/v922-source-sha.txt
+          cd sandbox/agent10-machine-read-notes
+          python -m scripts.audit_v922_source \
+            --source-dir "$GITHUB_WORKSPACE/source-v922/uk_renewables_pipeline/202611151300/data/v9.1/projects" \
+            --output results/v922-source-audit.json
+          echo 'SOURCE=V922_PRODUCT_JSON_PARTS; ORIGINAL_DESNZ_XLSX_AUTHENTICITY=UNVERIFIED'
+          echo 'MAP_GENERATED_HREF_AND_GRIDATLAS_FIRST_RESTORE=NOT_TESTED_BY_THIS_JOB'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent10-v922-preservation-${{ github.sha }}
+          path: |
+            sandbox/agent10-machine-read-notes/results/v922-source-sha.txt
+            sandbox/agent10-machine-read-notes/results/v922-source-audit.json
+          if-no-files-found: error
+
+  browser:
+    needs: offline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned browser runner and actual browsers
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0
+          python -m playwright install --with-deps chromium webkit
+      - name: Rebuild deterministic inputs and inspect Chromium / WebKit
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EXACT_GITHUB_SHA=${GITHUB_SHA}"
+          cd sandbox/agent10-machine-read-notes
+          python -m src.cli --output ui/fixture-data.json --as-of 2026-11-15
+          python scripts/browser_check.py --engine chromium
+          python scripts/browser_check.py --engine webkit
+          python scripts/report_browser_check.py --engine chromium
+          python scripts/report_browser_check.py --engine webkit
+          sha256sum ui/index.html ui/machine-read-notes.js ui/machine-read-notes.css | tee results/browser/source-sha256.txt
+          echo 'NO_HOSTED_PREVIEW_OR_PHYSICAL_IPHONE_ACCEPTANCE_CLAIMED'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent10-browser-${{ github.sha }}
+          path: |
+            sandbox/agent10-machine-read-notes/results/browser/
+            sandbox/agent10-machine-read-notes/results/report-browser/
+          if-no-files-found: error

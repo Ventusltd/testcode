@@ -1,0 +1,49 @@
+{
+  "schema": "globalgrid2050.report-mode-fixture.v1",
+  "source_proof": "SYNTHETIC DEMONSTRATION ONLY",
+  "source_snapshot": "illustrative-october-2026-q3-not-an-official-extract",
+  "rows": [
+    {
+      "repd_ref": "12588",
+      "project_name": "Botley West",
+      "official_status": "Application Submitted",
+      "official_as_of": "2026-09-30",
+      "planning_reference": null,
+      "location": null,
+      "developer": null,
+      "technology": "Solar",
+      "capacity_mw": null,
+      "map_href": null,
+      "county": "Illustrative location unknown",
+      "news_signal": "Candidate \u2014 synthetic only"
+    },
+    {
+      "repd_ref": "15793",
+      "project_name": "Green Hill",
+      "official_status": "Application Submitted",
+      "official_as_of": "2026-09-30",
+      "planning_reference": null,
+      "location": null,
+      "developer": null,
+      "technology": "Solar",
+      "capacity_mw": null,
+      "map_href": null,
+      "county": "Illustrative location unknown",
+      "news_signal": "Candidate \u2014 synthetic only"
+    },
+    {
+      "repd_ref": "2527",
+      "project_name": "Inch Cape",
+      "official_status": "Under Construction",
+      "official_as_of": "2026-09-30",
+      "planning_reference": null,
+      "location": null,
+      "developer": null,
+      "technology": "Wind",
+      "capacity_mw": null,
+      "map_href": null,
+      "county": "Illustrative location unknown",
+      "news_signal": "Candidate \u2014 synthetic only"
+    }
+  ]
+}
