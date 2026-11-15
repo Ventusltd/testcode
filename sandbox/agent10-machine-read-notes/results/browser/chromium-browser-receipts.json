@@ -12,7 +12,8 @@
       "first_click": true,
       "keyboard": true,
       "tap_target": true,
-      "screenshot": "chromium-390.png"
+      "screenshot": "chromium-390.png",
+      "trace": "chromium-390-trace.zip"
     },
     {
       "engine": "chromium",

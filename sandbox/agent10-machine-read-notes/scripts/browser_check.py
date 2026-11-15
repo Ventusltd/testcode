@@ -23,6 +23,7 @@ with sync_playwright() as p:
     browser=browser_type.launch(executable_path=executable,headless=True,args=['--no-sandbox'] if executable else [])
     for width in [390,393,1440]:
         page=browser.new_page(viewport={'width':width,'height':852})
+        if width==390: page.context.tracing.start(screenshots=True,snapshots=True,sources=True)
         page.on('console',lambda x: None)
         page.set_content(html_browser,wait_until='domcontentloaded')
         page.add_style_tag(content=css)
@@ -46,6 +47,9 @@ with sync_playwright() as p:
         button.click()
         page.screenshot(path=str(OUT/f'{engine_name}-{width}.png'),full_page=True)
         receipt['tests'].append({'engine':engine_name,'width':width,'buttons':3,'first_click':True,'keyboard':True,'tap_target':True,'screenshot':f'{engine_name}-{width}.png'})
+        if width==390:
+            page.context.tracing.stop(path=str(OUT/f'{engine_name}-{width}-trace.zip'))
+            receipt['tests'][-1]['trace']=f'{engine_name}-{width}-trace.zip'
         page.close()
     page=browser.new_page(viewport={'width':393,'height':852},reduced_motion='reduce')
     page.set_content(html_browser,wait_until='domcontentloaded');page.add_style_tag(content=css)
