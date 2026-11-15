@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: '24'
       - run: node --test sandbox/gridatlas-agent9-first-restore/state.test.mjs
+      - run: node sandbox/gridatlas-agent9-first-restore/mutation-selftest.mjs
       - run: node sandbox/gridatlas-agent9-first-restore/source-check.mjs pinned-gridatlas/atlas/cartridges/202609241334-sld-sandbox-v9-8.js
       - uses: actions/upload-artifact@v4
         if: always()
