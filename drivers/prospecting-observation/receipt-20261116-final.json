@@ -648,7 +648,7 @@
   "pass": true,
   "proof_files_sha256": {
     "consumer.mjs": "c44d8bbdf1c4761be685bfe9517dc7d1bcf8d9f9e3618765305d8789115586f6",
-    "driver.py": "0b06c9a935ed06613dae8db2a614703c75861a547509a0316510236437d0c882",
+    "driver.py": "95240beeb8d80b52fe9b720725d29465b8213ed5996f98eea3d351591b54abee",
     "fixture_worker.py": "f8114bcd5e9b02f7f5631c169178f33dcd6f980a3d0c7598e1e82c75a802ffb8",
     "pins.json": "9de290c0eac674388246286c0212f5a1d05ad7e46fb6210ee79a69298518f248"
   },

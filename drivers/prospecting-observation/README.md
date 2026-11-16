@@ -20,6 +20,9 @@ extracts a bounded committed dependency closure into disposable directories;
 public receipts contain repository/commit/blob/archive identities, never local
 input paths. `--producer` and `--consumer` accept full commit IDs for subsequent
 compositions. `--out` writes a new receipt and refuses to overwrite one.
+Git reads disable promisor lazy fetching, replacement objects, graft files and
+transport protocols. A partial clone with missing objects must fail locally;
+it cannot silently repair itself over a network or substitute another tree.
 
 The negative control uses the actual earlier producer revision with the faulty
 source-level retrieval clock. It must fail the stale-article case while still
@@ -66,6 +69,17 @@ archive of its pinned commit. Set `TESTCODE_PROSPECTING_UI_DIR` to that archive'
 
 ```sh
 node --test drivers/prospecting-observation/consumer.test.mjs
+```
+
+Five local-Git regressions exercise a real file-only promisor clone, replacement
+references, repository/environment grafts, missing objects and dirty working
+files. The old driver exhibited seven failing observations; the hardened driver
+passes. The unguarded fixture really fetches from a temporary local repository,
+then a separate cold clone proves that the guarded read neither fetches nor
+emits output. These tests never contact an external service:
+
+```sh
+python -B -m unittest discover -s drivers/prospecting-observation -p test_git_inputs.py -v
 ```
 
 The isolated producer and UI input refs are published under `testcode-inputs/`

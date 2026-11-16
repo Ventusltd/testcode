@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import io
 import json
+import os
 import re
 import subprocess
 import sys
@@ -24,7 +25,12 @@ class ProofError(Exception):
 
 
 def git(repo, *args):
-    result = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, timeout=60)
+    # Reading a promisor clone can otherwise fetch missing objects implicitly.
+    # Replacement refs/grafts can likewise make a pinned SHA name other bytes.
+    environment = {**os.environ, "GIT_NO_LAZY_FETCH": "1", "GIT_GRAFT_FILE": os.devnull,
+                   "GIT_ALLOW_PROTOCOL": ""}
+    result = subprocess.run(["git", "--no-replace-objects", "-c", "protocol.allow=never",
+                             "-C", str(repo), *args], capture_output=True, timeout=60, env=environment)
     if result.returncode:
         raise ProofError("Required committed input unavailable")
     return result.stdout
