@@ -14,6 +14,7 @@ from datetime import date
 from pathlib import Path
 
 from engine import canonical, evidence_note, source_queries, research_priority, EvidenceError
+from agent10_adapter import to_agent10_sidecar
 
 RELEASE = "202611160020"
 RELEASE_COMMIT = "1559f40e73a4e454c39b23d5172cf4c5e96ef3ea"
@@ -293,6 +294,7 @@ def main(argv=None):
     pilots = select_pilot(rows, 25)
     named = {r["repd_ref"]: r for r in ledger}
     for file, value in {
+        "agent10-notes-sidecar.v1.json": to_agent10_sidecar(ledger),
         "manifest.v2.json": manifest,
         "notes-sidecar.v2.json": {"schema": "globalgrid2050.agent11.solar1000.sidecar.v2",
                                   "release": "V9.24 NON-LIVE", "notes": ledger},
