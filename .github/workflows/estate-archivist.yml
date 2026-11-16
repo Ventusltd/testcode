@@ -36,4 +36,14 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: '1'
           GIT_TERMINAL_PROMPT: '0'
-        run: python -B -m unittest discover -s tests -p test_estate_archivist.py -v
+        run: |
+          python -B - <<'PY'
+          from pathlib import Path
+          import unittest
+          assert Path('tools/estate_archivist.py').is_file(), 'utility missing'
+          assert Path('tests/test_estate_archivist.py').is_file(), 'tests missing'
+          suite = unittest.defaultTestLoader.discover('tests', pattern='test_estate_archivist.py')
+          assert suite.countTestCases() >= 7, 'expected at least seven history regressions'
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          raise SystemExit(0 if result.wasSuccessful() else 1)
+          PY
