@@ -1,0 +1,659 @@
+{
+  "current": {
+    "as_of": "2026-11-16T12:00:00Z",
+    "cases": [
+      {
+        "artifact_sha256": "81de9351358b6455d58ce893c6cca262f4d8f64df781941e1dc553ba20d433f5",
+        "case": "empty_later_scan",
+        "checks": [
+          {
+            "name": "backend_follow_up_points",
+            "pass": true
+          },
+          {
+            "name": "backend_observation_state",
+            "pass": true
+          },
+          {
+            "name": "backend_observed_at",
+            "pass": true
+          },
+          {
+            "name": "backend_publication_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_health_separate",
+            "pass": true
+          },
+          {
+            "name": "artifact_sha256",
+            "pass": true
+          },
+          {
+            "name": "ui_adapter_accepts_artifact",
+            "pass": true
+          },
+          {
+            "name": "project_membership",
+            "pass": true
+          },
+          {
+            "name": "raw_project_membership",
+            "pass": true
+          },
+          {
+            "name": "artifact_bytes_unchanged",
+            "pass": true
+          },
+          {
+            "name": "network_not_used",
+            "pass": true
+          }
+        ],
+        "consumer": {
+          "checks": [
+            {
+              "name": "artifact_sha256",
+              "pass": true
+            },
+            {
+              "name": "ui_adapter_accepts_artifact",
+              "pass": true
+            },
+            {
+              "name": "project_membership",
+              "pass": true
+            },
+            {
+              "name": "raw_project_membership",
+              "pass": true
+            },
+            {
+              "name": "artifact_bytes_unchanged",
+              "pass": true
+            },
+            {
+              "name": "network_not_used",
+              "pass": true
+            }
+          ],
+          "pass": true,
+          "schema": "testcode.prospecting-consumer.v1"
+        },
+        "pass": true,
+        "project_score": 48.5,
+        "returned_cutoff_score": 48.81,
+        "snapshot_sha256": "0d9868d373369d7655cbd8fee99f78df073b7475c78be9dc3f3aa70960efde7c"
+      },
+      {
+        "artifact_sha256": "cafdcb06a3c99849d6fe6cb7356ab52e9411b41adc71b516c6f8b098b3574cac",
+        "case": "observed_again",
+        "checks": [
+          {
+            "name": "backend_follow_up_points",
+            "pass": true
+          },
+          {
+            "name": "backend_observation_state",
+            "pass": true
+          },
+          {
+            "name": "backend_observed_at",
+            "pass": true
+          },
+          {
+            "name": "backend_publication_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_health_separate",
+            "pass": true
+          },
+          {
+            "name": "artifact_sha256",
+            "pass": true
+          },
+          {
+            "name": "ui_adapter_accepts_artifact",
+            "pass": true
+          },
+          {
+            "name": "project_membership",
+            "pass": true
+          },
+          {
+            "name": "raw_project_membership",
+            "pass": true
+          },
+          {
+            "name": "research_follow_up_points",
+            "pass": true
+          },
+          {
+            "name": "view_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "raw_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "observation_state",
+            "pass": true
+          },
+          {
+            "name": "observed_at",
+            "pass": true
+          },
+          {
+            "name": "published_at",
+            "pass": true
+          },
+          {
+            "name": "raw_published_at",
+            "pass": true
+          },
+          {
+            "name": "first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_fetched_at_preserved",
+            "pass": true
+          },
+          {
+            "name": "last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "artifact_bytes_unchanged",
+            "pass": true
+          },
+          {
+            "name": "network_not_used",
+            "pass": true
+          }
+        ],
+        "consumer": {
+          "checks": [
+            {
+              "name": "artifact_sha256",
+              "pass": true
+            },
+            {
+              "name": "ui_adapter_accepts_artifact",
+              "pass": true
+            },
+            {
+              "name": "project_membership",
+              "pass": true
+            },
+            {
+              "name": "raw_project_membership",
+              "pass": true
+            },
+            {
+              "name": "research_follow_up_points",
+              "pass": true
+            },
+            {
+              "name": "view_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "raw_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "observation_state",
+              "pass": true
+            },
+            {
+              "name": "observed_at",
+              "pass": true
+            },
+            {
+              "name": "published_at",
+              "pass": true
+            },
+            {
+              "name": "raw_published_at",
+              "pass": true
+            },
+            {
+              "name": "first_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "source_fetched_at_preserved",
+              "pass": true
+            },
+            {
+              "name": "last_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "artifact_bytes_unchanged",
+              "pass": true
+            },
+            {
+              "name": "network_not_used",
+              "pass": true
+            }
+          ],
+          "pass": true,
+          "schema": "testcode.prospecting-consumer.v1"
+        },
+        "pass": true,
+        "project_score": 53.5,
+        "returned_cutoff_score": 48.81,
+        "snapshot_sha256": "d386d9908abc5c39f86fb705ac26b87ff6087ef6aa2b3a24e1741947e3ef404e"
+      }
+    ],
+    "consumer_archive_sha256": "28d412bcfa4f0127b9ca79c4140514806cf015ceff988b32307617304ca06c8d",
+    "consumer_blob": "eebfdd17883c03bb07b8ad5ae84caec4ada67f51",
+    "consumer_commit": "fb7dc5610656ea757611d5941f86f28d5613e9e6",
+    "official_population": 7775,
+    "pass": true,
+    "producer_archive_sha256": "c53a52df73b056474204dbe8450ee78661c74d5ffb32c48eda76e99158b642a1",
+    "producer_blob": "40b0b131f7c3e2f32d20c3c9c0223b38afd3dd3f",
+    "producer_commit": "fda83cd966348080f3f911cb534a40b4962019dd",
+    "selected_project": "REPD-2203",
+    "solar1000_count": 1000
+  },
+  "limits": [
+    "JavaScript adapter proof, not a browser or Android test",
+    "Synthetic articles and access receipts do not establish live evidence or rights",
+    "No NEWS ranking, corporate enrichment or production publication acceptance"
+  ],
+  "negative_control": {
+    "as_of": "2026-11-16T12:00:00Z",
+    "cases": [
+      {
+        "artifact_sha256": "701a36e0d33c2f6f5d88023e80980e3a001fc9cc1301aebe8934e5a9391b9257",
+        "case": "empty_later_scan",
+        "checks": [
+          {
+            "name": "backend_follow_up_points",
+            "pass": false
+          },
+          {
+            "name": "backend_observation_state",
+            "pass": false
+          },
+          {
+            "name": "backend_observed_at",
+            "pass": false
+          },
+          {
+            "name": "backend_publication_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_health_separate",
+            "pass": true
+          },
+          {
+            "name": "artifact_sha256",
+            "pass": true
+          },
+          {
+            "name": "ui_adapter_accepts_artifact",
+            "pass": true
+          },
+          {
+            "name": "project_membership",
+            "pass": false
+          },
+          {
+            "name": "raw_project_membership",
+            "pass": false
+          },
+          {
+            "name": "research_follow_up_points",
+            "pass": false
+          },
+          {
+            "name": "view_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "raw_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "observation_state",
+            "pass": false
+          },
+          {
+            "name": "observed_at",
+            "pass": false
+          },
+          {
+            "name": "published_at",
+            "pass": true
+          },
+          {
+            "name": "raw_published_at",
+            "pass": true
+          },
+          {
+            "name": "first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_fetched_at_preserved",
+            "pass": true
+          },
+          {
+            "name": "last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "artifact_bytes_unchanged",
+            "pass": true
+          },
+          {
+            "name": "network_not_used",
+            "pass": true
+          }
+        ],
+        "consumer": {
+          "checks": [
+            {
+              "name": "artifact_sha256",
+              "pass": true
+            },
+            {
+              "name": "ui_adapter_accepts_artifact",
+              "pass": true
+            },
+            {
+              "name": "project_membership",
+              "pass": false
+            },
+            {
+              "name": "raw_project_membership",
+              "pass": false
+            },
+            {
+              "name": "research_follow_up_points",
+              "pass": false
+            },
+            {
+              "name": "view_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "raw_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "observation_state",
+              "pass": false
+            },
+            {
+              "name": "observed_at",
+              "pass": false
+            },
+            {
+              "name": "published_at",
+              "pass": true
+            },
+            {
+              "name": "raw_published_at",
+              "pass": true
+            },
+            {
+              "name": "first_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "source_fetched_at_preserved",
+              "pass": true
+            },
+            {
+              "name": "last_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "artifact_bytes_unchanged",
+              "pass": true
+            },
+            {
+              "name": "network_not_used",
+              "pass": true
+            }
+          ],
+          "pass": false,
+          "schema": "testcode.prospecting-consumer.v1"
+        },
+        "pass": false,
+        "project_score": 53.5,
+        "returned_cutoff_score": 48.81,
+        "snapshot_sha256": "0d9868d373369d7655cbd8fee99f78df073b7475c78be9dc3f3aa70960efde7c"
+      },
+      {
+        "artifact_sha256": "ca85779d64849272e04968788445469d0b6867a9e34692150f913e132fc4a4f6",
+        "case": "observed_again",
+        "checks": [
+          {
+            "name": "backend_follow_up_points",
+            "pass": true
+          },
+          {
+            "name": "backend_observation_state",
+            "pass": true
+          },
+          {
+            "name": "backend_observed_at",
+            "pass": true
+          },
+          {
+            "name": "backend_publication_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "backend_last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_health_separate",
+            "pass": true
+          },
+          {
+            "name": "artifact_sha256",
+            "pass": true
+          },
+          {
+            "name": "ui_adapter_accepts_artifact",
+            "pass": true
+          },
+          {
+            "name": "project_membership",
+            "pass": true
+          },
+          {
+            "name": "raw_project_membership",
+            "pass": true
+          },
+          {
+            "name": "research_follow_up_points",
+            "pass": true
+          },
+          {
+            "name": "view_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "raw_evidence_unique",
+            "pass": true
+          },
+          {
+            "name": "observation_state",
+            "pass": true
+          },
+          {
+            "name": "observed_at",
+            "pass": true
+          },
+          {
+            "name": "published_at",
+            "pass": true
+          },
+          {
+            "name": "raw_published_at",
+            "pass": true
+          },
+          {
+            "name": "first_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "source_fetched_at_preserved",
+            "pass": true
+          },
+          {
+            "name": "last_seen_preserved",
+            "pass": true
+          },
+          {
+            "name": "artifact_bytes_unchanged",
+            "pass": true
+          },
+          {
+            "name": "network_not_used",
+            "pass": true
+          }
+        ],
+        "consumer": {
+          "checks": [
+            {
+              "name": "artifact_sha256",
+              "pass": true
+            },
+            {
+              "name": "ui_adapter_accepts_artifact",
+              "pass": true
+            },
+            {
+              "name": "project_membership",
+              "pass": true
+            },
+            {
+              "name": "raw_project_membership",
+              "pass": true
+            },
+            {
+              "name": "research_follow_up_points",
+              "pass": true
+            },
+            {
+              "name": "view_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "raw_evidence_unique",
+              "pass": true
+            },
+            {
+              "name": "observation_state",
+              "pass": true
+            },
+            {
+              "name": "observed_at",
+              "pass": true
+            },
+            {
+              "name": "published_at",
+              "pass": true
+            },
+            {
+              "name": "raw_published_at",
+              "pass": true
+            },
+            {
+              "name": "first_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "source_fetched_at_preserved",
+              "pass": true
+            },
+            {
+              "name": "last_seen_preserved",
+              "pass": true
+            },
+            {
+              "name": "artifact_bytes_unchanged",
+              "pass": true
+            },
+            {
+              "name": "network_not_used",
+              "pass": true
+            }
+          ],
+          "pass": true,
+          "schema": "testcode.prospecting-consumer.v1"
+        },
+        "pass": true,
+        "project_score": 53.5,
+        "returned_cutoff_score": 48.81,
+        "snapshot_sha256": "d386d9908abc5c39f86fb705ac26b87ff6087ef6aa2b3a24e1741947e3ef404e"
+      }
+    ],
+    "consumer_archive_sha256": "28d412bcfa4f0127b9ca79c4140514806cf015ceff988b32307617304ca06c8d",
+    "consumer_blob": "eebfdd17883c03bb07b8ad5ae84caec4ada67f51",
+    "consumer_commit": "fb7dc5610656ea757611d5941f86f28d5613e9e6",
+    "expected_failure_detected": true,
+    "official_population": 7775,
+    "pass": false,
+    "producer_archive_sha256": "9a8c3f63de75319eabcb9b66febb23f8fb30a045bae9c5e22324fdc82f4391f5",
+    "producer_blob": "cb8d4039d06752034bc18f7396380d1a48112582",
+    "producer_commit": "7b45a05f1677c72c563ed114b96e05899d741c26",
+    "selected_project": "REPD-2203",
+    "solar1000_count": 1000
+  },
+  "network": false,
+  "node_version": "v24.19.0",
+  "pass": true,
+  "proof_files_sha256": {
+    "consumer.mjs": "c44d8bbdf1c4761be685bfe9517dc7d1bcf8d9f9e3618765305d8789115586f6",
+    "driver.py": "0b06c9a935ed06613dae8db2a614703c75861a547509a0316510236437d0c882",
+    "fixture_worker.py": "f8114bcd5e9b02f7f5631c169178f33dcd6f980a3d0c7598e1e82c75a802ffb8",
+    "pins.json": "9de290c0eac674388246286c0212f5a1d05ad7e46fb6210ee79a69298518f248"
+  },
+  "python_version": "3.12.10",
+  "repository": "https://github.com/Ventusltd/globalgrid2050",
+  "schema": "testcode.prospecting-observation.v1",
+  "synthetic_evidence": true
+}
