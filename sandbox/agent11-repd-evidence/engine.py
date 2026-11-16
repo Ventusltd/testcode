@@ -99,13 +99,22 @@ def select_solar(csv_path, limit=1000):
     if len(rows) < limit:
         raise EvidenceError("insufficient_solar_rows")
     selected = rows[:limit]
+    inversions = sum(int(rows[i]["Ref ID"]) < int(rows[i-1]["Ref ID"])
+                     for i in range(1, len(rows)))
+    status_counts = dict(sorted(Counter(x["Development Status"] for x in selected).items()))
+    authority_counts = Counter(x["Planning Authority"] for x in selected)
     if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
         raise EvidenceError("source_changed_during_run")
     return selected, {
         "sha256": digest, "all_csv_rows": len(full),
         "solar_rows": len(rows), "selected_rows": len(selected),
         "ordering": "official_csv_file_order", "source": str(path),
-        "first_ref": refs[0], "last_selected_ref": selected[-1]["Ref ID"]
+        "first_ref": refs[0], "last_selected_ref": selected[-1]["Ref ID"],
+        "solar_ref_inversions": inversions,
+        "selection_status_counts": status_counts,
+        "selection_top_authorities": authority_counts.most_common(15),
+        "selection_planning_refs_present": sum(
+            bool(x["Planning Application Reference"].strip()) for x in selected)
     }
 
 def asset_key(row):
@@ -225,6 +234,29 @@ def load_evidence(path):
             out.append(x)
     return out
 
+def research_priority(row):
+    """Lower is searched earlier; never changes the official 1,000-row order."""
+    status = row["Development Status"].strip().casefold()
+    rank = {
+        "under construction": 1,
+        "planning permission granted": 2,
+        "appeal granted": 2,
+        "planning application submitted": 3,
+        "operational": 5,
+        "revised": 6,
+        "planning permission expired": 7,
+        "planning permission refused": 8,
+        "appeal refused": 8,
+        "planning application withdrawn": 8,
+        "abandoned": 9,
+    }.get(status, 7)
+    try:
+        mw = float((row.get("Installed Capacity (MWelec)") or "").strip())
+    except ValueError:
+        mw = 0.0
+    return rank, -mw
+
+
 def build(rows, evidence, as_of):
     by_id = defaultdict(list)
     for x in evidence:
@@ -244,7 +276,11 @@ def build(rows, evidence, as_of):
                 seen.add(unique)
         matched.sort(key=lambda n: (n["event_date"], n["source_url"]), reverse=True)
         if not matched:
+            priority, minus_mw = research_priority(row)
             queries.append({"asset_key": asset_key(row), "repd_ref": row["Ref ID"],
+                            "research_priority": priority,
+                            "official_capacity_mw": -minus_mw,
+                            "official_status": row["Development Status"],
                             "queries": source_queries(row)})
         notes.append({
             "asset_key": asset_key(row), "repd_ref": row["Ref ID"],
@@ -255,6 +291,9 @@ def build(rows, evidence, as_of):
             "remarks": matched,
             "official_data_mutated": False,
         })
+    queries.sort(key=lambda q: (q["research_priority"],
+                                -q["official_capacity_mw"],
+                                int(q["repd_ref"])))
     return notes, dict(sorted(exclusions.items())), queries
 
 def main():
