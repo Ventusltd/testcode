@@ -1,0 +1,103 @@
+{
+  "schema": "testcode.cartographer-pins.v1",
+  "pins": [
+    {
+      "repository": "Ventusltd/spiders",
+      "commit": "b47609b9252f65f8ccf7ac6a2393619e374ecf30",
+      "path": "codex/build-plan/PLUGIN-BOUNDARY.md",
+      "blob": "e8841e3a3280f535029d0f6165dea36681be375f",
+      "sha256": "9b0ebeb4132da6ec29fc3d5bd89e0cd6585c3bb0ee9bf8a8e2867ee1ce8d36e6"
+    },
+    {
+      "repository": "Ventusltd/spiders",
+      "commit": "b47609b9252f65f8ccf7ac6a2393619e374ecf30",
+      "path": "codex/build-plan/README.md",
+      "blob": "6e25c6237a2e57cfe1c56d14f7483bdbf631f9ff",
+      "sha256": "ad5dd26f7d730e0977fa5730f7ae57c2bf350e7590056ea0d7098f7ac1017134"
+    },
+    {
+      "repository": "Ventusltd/spiders",
+      "commit": "b47609b9252f65f8ccf7ac6a2393619e374ecf30",
+      "path": "species/genome-spider/spider.mjs",
+      "blob": "cf808cb318a634059e5e3ffc9ffdfa3c0687574f",
+      "sha256": "22cf3f902e8e014da029187e7a859d4be4f9d101f0251f77e691829f8108f005"
+    },
+    {
+      "repository": "Ventusltd/cvaa",
+      "commit": "39e449cee1c8543f9d9f3d1d995c9c286b127501",
+      "path": "inoculate.mjs",
+      "blob": "7d117eaefcfdc04a6945246dd6880d16022d976c",
+      "sha256": "ffbc2ba47c5fac066c1a4cfb979945f636cd923d0d74756fa8d0866680380c62"
+    },
+    {
+      "repository": "Ventusltd/cvaa",
+      "commit": "39e449cee1c8543f9d9f3d1d995c9c286b127501",
+      "path": "tools/antibody-runner.mjs",
+      "blob": "799d8f625e5c475e65c20075d464b327a844b769",
+      "sha256": "e95bc6374331df1aec98a40746d538a3d5ad8abd07ae3f2c828470fb11c495d6"
+    },
+    {
+      "repository": "Ventusltd/cvaa",
+      "commit": "39e449cee1c8543f9d9f3d1d995c9c286b127501",
+      "path": "vaccines.lock",
+      "blob": "942f743970c56c087d6e0090006d2e7390f7e86f",
+      "sha256": "948a9a20abbe7822526d7548888575ad37568ef085203d96c3982451cd8a7725"
+    },
+    {
+      "repository": "Ventusltd/cosmic",
+      "commit": "9f5250f285d7e126b6d698d61aedd86990214d30",
+      "path": "universe.json",
+      "blob": "503ceaf6d133cc294b7e2ccdfe03bbf9a26b0af3",
+      "sha256": "4c805a2e60ac62fba9917ac939d1b90bb7cc5a7ff985a6c9b0e8f0a6adebac75"
+    },
+    {
+      "repository": "Ventusltd/cosmic",
+      "commit": "9f5250f285d7e126b6d698d61aedd86990214d30",
+      "path": "tools/clusters.py",
+      "blob": "1fb91de25e7fcc34f275e3dd54ffefad3deea03a",
+      "sha256": "e847cbfc2bf9576845bf73c585b2c0d1e740a1fe82d340b8c11b34e279d7837d"
+    },
+    {
+      "repository": "Ventusltd/elements",
+      "commit": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+      "path": "build/build_catalogue.py",
+      "blob": "8fad7d8d3ef34df4772aba6508c87d4855bcb412",
+      "sha256": "694b570cc09ea13eadca01387f9b725c7be170cbb9df703317c6c5dfbc9e241b"
+    },
+    {
+      "repository": "Ventusltd/elements",
+      "commit": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+      "path": "catalogue/provenance.json",
+      "blob": "6c6a4567e46727a050f8f7887e73ef8df3c3c059",
+      "sha256": "5ab301a095437c4cca5a376203ef44de7978a0ae52a97f60d4deb39cd7343040"
+    },
+    {
+      "repository": "Ventusltd/elements",
+      "commit": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+      "path": "tests/check_catalogue.py",
+      "blob": "1b1cc61a1b3b614945baae1d2d1b1e8048f4321d",
+      "sha256": "0f9bf70d092c5ff916518805b7106dab9d69932d320596f048eee3b06b30550c"
+    },
+    {
+      "repository": "Ventusltd/kuiper-belt",
+      "commit": "23740e4d050a4b94cb3dc113f280ed1db47aaa5e",
+      "path": "tools/key.py",
+      "blob": "d016b7b1f0ce4b28518de11d9990401c0d553632",
+      "sha256": "547ba07edb58d6d213a4cdb7f1969c7e447abb2acf718a292e301bc07ee78ff1"
+    },
+    {
+      "repository": "Ventusltd/kuiper-belt",
+      "commit": "23740e4d050a4b94cb3dc113f280ed1db47aaa5e",
+      "path": "tools/estate.py",
+      "blob": "c7fa34a54ba82db777e17e38c86f6b53d26cbf4d",
+      "sha256": "588dba91e9be785aae7c54fdead5c8fe429a3262e2d6e55d7a9b0f42d1a17db4"
+    },
+    {
+      "repository": "Ventusltd/kuiper-belt",
+      "commit": "23740e4d050a4b94cb3dc113f280ed1db47aaa5e",
+      "path": "README.md",
+      "blob": "d7b0e8bb56b00c7357771b2a38ddafacf9e62db6",
+      "sha256": "beb76fa537c0107f24c849078b2863d34c9f8b51c6e7e65f4099478d18a1d676"
+    }
+  ]
+}
