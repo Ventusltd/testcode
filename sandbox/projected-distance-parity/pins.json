@@ -1,0 +1,11 @@
+{
+  "schema": "testcode.projected-distance.provenance.v1",
+  "primitive": {
+    "repository": "Ventusltd/grid-distance-maths",
+    "commit": "8e91b07d8312acca5bcaef43e839f06a3b1d642a",
+    "path": "src/geodesy.py",
+    "blob": "bd0654649a78603694358ef5b2b65abb65bcfb66",
+    "sha256": "215d12a2c3faf1c26e578f03f80cafdbcd2ed89e01c38d5a40474782a51c101f",
+    "scope": "Subtract-first squared norm in local-plane segment projection, lines 186-197; not the full geodesic or search contract."
+  }
+}
