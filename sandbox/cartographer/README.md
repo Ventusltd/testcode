@@ -60,14 +60,18 @@ each owner with `--repo OWNER/REPOSITORY=LOCAL_CHECKOUT`. The receipt contains t
 five required public owner names. A checkout must contain the pinned commit
 objects; its current branch and dirty working files are not used. No network
 fetch or inspected source execution occurs. Missing objects fail; they do not
-count as covered. Mapping paths stay in the invocation and never enter output.
+count as covered. Every verifier Git call disables promisor lazy fetching and
+replacement objects, and ignores graft files. A partial clone cannot fetch a
+missing blob to turn unavailable coverage into PASS, and a replacement ref
+cannot substitute a different committed tree. Mapping paths stay in the
+invocation and never enter output.
 
 The verifier rejects empty/duplicate coverage, altered bytes, wrong blobs,
 missing owners/objects, non-commit identities, unsafe paths and unknown pin
 fields. It does not authenticate source authors or prove repository visibility;
 the public GitHub check above was a separate bounded observation.
 
-Observed local result: **10 tests pass; 14 pinned files across five repositories
+Observed local result: **12 tests pass; 14 pinned files across five repositories
 pass identity checks; zero source files executed; runtime acceptance UNVERIFIED**.
 The fixture lists source metadata only. No private source bodies, local paths,
 production pointer, live navigation or frozen Pipeline files are included.

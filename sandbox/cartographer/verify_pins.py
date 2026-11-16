@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
@@ -16,8 +17,9 @@ class PinError(ValueError):
 def _git(repo, *args):
     try:
         return subprocess.run(
-            ["git", "-C", str(repo), *args], check=True,
+            ["git", "--no-replace-objects", "-C", str(repo), *args], check=True,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=20,
+            env={**os.environ, "GIT_NO_LAZY_FETCH": "1", "GIT_GRAFT_FILE": os.devnull},
         ).stdout
     except (OSError, subprocess.SubprocessError) as exc:
         # Git errors can include workstation locations. Never copy them to receipts.

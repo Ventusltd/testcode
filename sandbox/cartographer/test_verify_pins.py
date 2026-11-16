@@ -83,6 +83,44 @@ class PinTests(unittest.TestCase):
         with self.assertRaises(PinError):
             verify(self.receipt, self.roots)
 
+    def test_partial_clone_missing_blob_never_fetches(self):
+        # A real promisor clone: Git normally fetches this blob on cat-file.
+        # Keep the remote reachable so a missing-object failure cannot merely
+        # be caused by a broken transport or unavailable fixture server.
+        self.git("config", "uploadpack.allowFilter", "true")
+        partial = self.root / "partial-clone"
+        subprocess.run(
+            ["git", "clone", "-q", "--filter=blob:none", "--no-checkout",
+             self.root.as_uri(), str(partial)], check=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        )
+
+        def missing_objects():
+            return subprocess.check_output(
+                ["git", "-C", str(partial), "rev-list", "--objects", "--all",
+                 "--missing=print"], stderr=subprocess.DEVNULL,
+            ).decode().splitlines()
+
+        missing_blob = "?" + self.pin["blob"]
+        self.assertIn(missing_blob, missing_objects())
+        with self.assertRaises(PinError):
+            verify(self.receipt, {"fixture/source": partial})
+        self.assertIn(missing_blob, missing_objects(), "verifier fetched a missing blob")
+
+    def test_replacement_commit_cannot_substitute_a_different_tree(self):
+        changed = b"replacement tree must not impersonate pinned commit\n"
+        (self.root / "module.py").write_bytes(changed)
+        self.git("add", "module.py")
+        self.git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                 "commit", "-qm", "replacement fixture")
+        replacement = self.git("rev-parse", "HEAD")
+        self.pin["blob"] = self.git("rev-parse", "HEAD:module.py")
+        self.pin["sha256"] = hashlib.sha256(changed).hexdigest()
+        self.git("replace", self.commit, replacement)
+        # Pin now describes the replacement's bytes but the original commit.
+        with self.assertRaisesRegex(PinError, "path/blob mismatch"):
+            verify(self.receipt, self.roots)
+
 
 if __name__ == "__main__":
     unittest.main()
