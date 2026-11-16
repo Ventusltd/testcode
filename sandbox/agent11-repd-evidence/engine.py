@@ -194,6 +194,8 @@ def evidence_note(row, e, as_of):
             raise EvidenceError("self_declared_verification")
         if e.get("rights_basis") not in (None, "", "unknown"):
             raise EvidenceError("self_declared_rights")
+        if e.get("original_receipt_sha256"):
+            raise EvidenceError("unverified_receipt_hash")
     except (EvidenceError, ValueError) as ex:
         return None, str(ex)
     label, category = CATEGORIES[event_type]
@@ -215,7 +217,7 @@ def evidence_note(row, e, as_of):
         "first_seen_date": first_seen.isoformat() if first_seen else None,
         "source_url": url, "publisher": publisher,
         "brief": brief,
-        "original_receipt_sha256": e.get("original_receipt_sha256") or None,
+        "original_receipt_sha256": None,
         "source_independence": "unverified"
     }, None
 
