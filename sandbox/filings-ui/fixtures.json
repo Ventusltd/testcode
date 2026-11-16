@@ -1,0 +1,240 @@
+{
+  "schema": "testcode.figures-ui.fixtures.v1",
+  "notice": "SYNTHETIC TEST FIXTURES ONLY: no real figures, issuers, documents or project facts.",
+  "contract": {
+    "repository": "Ventusltd/globalgrid2050",
+    "commit": "e0deabac45d35240f6c38f4303b8d50c90412e06",
+    "path": "automation/news/filings/contracts.py",
+    "sha256": "7db9f5334529bd51e3d1dc64abbd7ec0180b69e832c196d37cc93caf09e133c2"
+  },
+  "cases": {
+    "finance": {
+      "entityId": "group:synthetic",
+      "claims": [
+        {
+          "schema": "globalgrid2050.filing-figure.v1",
+          "claim_id": "fixture:finance:original",
+          "status": "machine-provisional",
+          "quantity_kind": "finance",
+          "metric": "Synthetic capital allocation",
+          "value": "9007199254740993.1200",
+          "scale": "1",
+          "unit": "currency",
+          "original_unit": "USD",
+          "currency": "USD",
+          "finance_stage": "announced",
+          "entity": {
+            "scope": "consolidated_group",
+            "id": "group:synthetic",
+            "consolidation_group_id": "group:synthetic",
+            "identity_evidence_url": "https://example.org/synthetic/identity"
+          },
+          "reporting_period": {
+            "start": "2027",
+            "end": "2027"
+          },
+          "as_of": "2026-11-16",
+          "basis": "forecast",
+          "assurance": "unknown",
+          "provenance": {
+            "document_id": "fixture:document:1",
+            "document_url": "https://example.org/synthetic/document",
+            "sha256": "6ee1c6c6b05f345fb3042a84c8d077ecf06bcc130c676fb6290f2fdb99c03ce3",
+            "page": "1",
+            "section": "Synthetic capital allocation",
+            "published_date": "2026-11-16",
+            "retrieved_at": "2026-11-16T12:00:00Z"
+          },
+          "revision": {
+            "id": "original",
+            "supersedes_claim_id": null,
+            "restated": false
+          }
+        },
+        {
+          "schema": "globalgrid2050.filing-figure.v1",
+          "claim_id": "fixture:finance:committed",
+          "status": "machine-provisional",
+          "quantity_kind": "finance",
+          "metric": "Synthetic capital allocation",
+          "value": "1.20",
+          "scale": "1e9",
+          "unit": "currency",
+          "original_unit": "billion USD",
+          "currency": "USD",
+          "finance_stage": "committed",
+          "entity": {
+            "scope": "consolidated_group",
+            "id": "group:synthetic",
+            "consolidation_group_id": "group:synthetic",
+            "identity_evidence_url": "https://example.org/synthetic/identity"
+          },
+          "reporting_period": {
+            "start": "2027",
+            "end": "2027"
+          },
+          "as_of": "2026-11-16",
+          "basis": "forecast",
+          "assurance": "unknown",
+          "provenance": {
+            "document_id": "fixture:document:1",
+            "document_url": "https://example.org/synthetic/document",
+            "sha256": "6ee1c6c6b05f345fb3042a84c8d077ecf06bcc130c676fb6290f2fdb99c03ce3",
+            "page": "1",
+            "section": "Synthetic capital allocation",
+            "published_date": "2026-11-16",
+            "retrieved_at": "2026-11-16T12:00:00Z"
+          },
+          "revision": {
+            "id": "original",
+            "supersedes_claim_id": null,
+            "restated": false
+          }
+        }
+      ],
+      "state": "available"
+    },
+    "energy": {
+      "entityId": "site:synthetic",
+      "claims": [
+        {
+          "schema": "globalgrid2050.filing-figure.v1",
+          "claim_id": "fixture:energy:demand",
+          "status": "machine-provisional",
+          "quantity_kind": "project_demand",
+          "metric": "Synthetic proposed demand; not a secured connection",
+          "value": "480.00",
+          "scale": "1",
+          "unit": "MW",
+          "original_unit": "MW",
+          "currency": null,
+          "finance_stage": null,
+          "entity": {
+            "scope": "site",
+            "id": "site:synthetic",
+            "consolidation_group_id": null,
+            "identity_evidence_url": "https://example.org/synthetic/site"
+          },
+          "reporting_period": {
+            "start": "2027",
+            "end": "2027"
+          },
+          "as_of": "2026-11-16",
+          "basis": "forecast",
+          "assurance": "unknown",
+          "provenance": {
+            "document_id": "fixture:document:1",
+            "document_url": "https://example.org/synthetic/document",
+            "sha256": "6ee1c6c6b05f345fb3042a84c8d077ecf06bcc130c676fb6290f2fdb99c03ce3",
+            "page": "1",
+            "section": "Synthetic capital allocation",
+            "published_date": "2026-11-16",
+            "retrieved_at": "2026-11-16T12:00:00Z"
+          },
+          "revision": {
+            "id": "original",
+            "supersedes_claim_id": null,
+            "restated": false
+          }
+        },
+        {
+          "schema": "globalgrid2050.filing-figure.v1",
+          "claim_id": "fixture:energy:storage",
+          "status": "machine-provisional",
+          "quantity_kind": "storage_energy",
+          "metric": "Synthetic storage energy",
+          "value": "10.50",
+          "scale": "1",
+          "unit": "MWh",
+          "original_unit": "MWh",
+          "currency": null,
+          "finance_stage": null,
+          "entity": {
+            "scope": "site",
+            "id": "site:synthetic",
+            "consolidation_group_id": null,
+            "identity_evidence_url": "https://example.org/synthetic/site"
+          },
+          "reporting_period": {
+            "start": "2027",
+            "end": "2027"
+          },
+          "as_of": "2026-11-16",
+          "basis": "forecast",
+          "assurance": "unknown",
+          "provenance": {
+            "document_id": "fixture:document:1",
+            "document_url": "https://example.org/synthetic/document",
+            "sha256": "6ee1c6c6b05f345fb3042a84c8d077ecf06bcc130c676fb6290f2fdb99c03ce3",
+            "page": "1",
+            "section": "Synthetic capital allocation",
+            "published_date": "2026-11-16",
+            "retrieved_at": "2026-11-16T12:00:00Z"
+          },
+          "revision": {
+            "id": "original",
+            "supersedes_claim_id": null,
+            "restated": false
+          }
+        }
+      ],
+      "state": "available"
+    },
+    "hostile_text": {
+      "entityId": "group:synthetic",
+      "claims": [
+        {
+          "schema": "globalgrid2050.filing-figure.v1",
+          "claim_id": "fixture:text:literal",
+          "status": "machine-provisional",
+          "quantity_kind": "finance",
+          "metric": "<img src=x onerror=\"window.fixtureXss=1\"> SYNTHETIC literal text",
+          "value": "9007199254740993.1200",
+          "scale": "1",
+          "unit": "currency",
+          "original_unit": "USD",
+          "currency": "USD",
+          "finance_stage": "announced",
+          "entity": {
+            "scope": "consolidated_group",
+            "id": "group:synthetic",
+            "consolidation_group_id": "group:synthetic",
+            "identity_evidence_url": "https://example.org/synthetic/identity"
+          },
+          "reporting_period": {
+            "start": "2027",
+            "end": "2027"
+          },
+          "as_of": "2026-11-16",
+          "basis": "forecast",
+          "assurance": "unknown",
+          "provenance": {
+            "document_id": "fixture:document:1",
+            "document_url": "https://example.org/synthetic/document",
+            "sha256": "6ee1c6c6b05f345fb3042a84c8d077ecf06bcc130c676fb6290f2fdb99c03ce3",
+            "page": "1",
+            "section": "Synthetic capital allocation",
+            "published_date": "2026-11-16",
+            "retrieved_at": "2026-11-16T12:00:00Z"
+          },
+          "revision": {
+            "id": "original",
+            "supersedes_claim_id": null,
+            "restated": false
+          }
+        }
+      ],
+      "state": "available"
+    },
+    "unknown": {
+      "entityId": "site:synthetic",
+      "claims": [],
+      "state": "unknown"
+    },
+    "unavailable": {
+      "entityId": "site:synthetic",
+      "claims": [],
+      "state": "unavailable"
+    }
+  }
+}

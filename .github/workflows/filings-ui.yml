@@ -1,0 +1,65 @@
+name: filings-ui
+
+on:
+  push:
+    branches: [assist/filings-ui-20261116]
+    paths:
+      - 'sandbox/filings-ui/**'
+      - '.github/workflows/filings-ui.yml'
+  pull_request:
+    paths:
+      - 'sandbox/filings-ui/**'
+      - '.github/workflows/filings-ui.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: filings-ui-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  synthetic-rendering:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Provision exact producer contract
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: e0deabac45d35240f6c38f4303b8d50c90412e06
+          path: .figures-source
+          persist-credentials: false
+          sparse-checkout: automation/news/filings
+      - name: Verify synthetic fixtures against pinned Python contract
+        run: python -B sandbox/filings-ui/generate_fixtures.py --contract-file .figures-source/automation/news/filings/contracts.py --check
+      - name: Offline Node model tests
+        run: node --test sandbox/filings-ui/tests/model.test.mjs
+      - name: Provision pinned browser dependency
+        working-directory: sandbox/filings-ui
+        run: npm ci --ignore-scripts
+      - name: Provision hosted Chromium
+        working-directory: sandbox/filings-ui
+        run: npx playwright install --with-deps chromium
+      - name: Offline synthetic browser checks
+        env:
+          FILINGS_BROWSER: chromium
+          FILINGS_UI_ARTIFACTS: ${{ github.workspace }}/filings-ui-artifacts
+        run: node sandbox/filings-ui/tests/browser.mjs
+      - name: Preserve browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: filings-ui-evidence
+          path: filings-ui-artifacts
+          if-no-files-found: error
