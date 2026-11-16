@@ -96,6 +96,7 @@ class EvidenceTests(unittest.TestCase):
             ({"review_state": "approved"}, "self_declared_verification"),
             ({"rights_basis": "CC-BY"}, "self_declared_rights"),
             ({"rights_basis": "OGL"}, "self_declared_rights"),
+            ({"original_receipt_sha256": "a" * 64}, "unverified_receipt_hash"),
         ]
         for changes, expected in cases:
             with self.subTest(changes=changes):
