@@ -62,7 +62,7 @@ function scenario() {
   return {
     payload,
     expected: {
-      project_id: project.id, follow_up_points: 5, observation_state: 'WITHIN_WINDOW',
+      project_id: project.id, project_present: true, follow_up_points: 5, observation_state: 'WITHIN_WINDOW',
       observed_at: observed, published_at: original, first_seen: original, source_fetched_at: original,
     },
   };
@@ -95,6 +95,48 @@ test('real adapter preserves distinct original and latest-observation clocks', a
   assert.equal(report.pass, true);
   assert.ok(report.checks.length >= 15);
   assert.ok(report.checks.every(check => check.pass));
+});
+
+function removeTarget(input) {
+  input.payload.records = input.payload.records.filter(row => row.id !== input.expected.project_id);
+  input.payload.records.forEach((row, index) => { row.rank = index + 1; });
+  input.payload.returned_count = input.payload.records.length;
+}
+
+test('correctly excluded project passes without claiming UI article-clock coverage', async () => {
+  const input = scenario();
+  input.expected.project_present = false;
+  removeTarget(input);
+  const { status, report } = await invoke(input);
+  assert.equal(status, 0);
+  assert.equal(report.pass, true);
+  assert.deepEqual(report.checks.map(check => check.name), [
+    'artifact_sha256', 'ui_adapter_accepts_artifact', 'project_membership',
+    'raw_project_membership', 'artifact_bytes_unchanged', 'network_not_used',
+  ]);
+  assert.ok(report.checks.every(check => check.pass));
+});
+
+test('unexpected promotion fails even when all article clocks and scores match', async () => {
+  const input = scenario();
+  input.expected.project_present = false;
+  const { status, report } = await invoke(input);
+  assert.equal(status, 1);
+  assert.equal(report.pass, false);
+  assert.deepEqual(report.checks.filter(check => !check.pass).map(check => check.name), [
+    'project_membership', 'raw_project_membership',
+  ]);
+});
+
+test('unexpected exclusion fails when project presence is required', async () => {
+  const input = scenario();
+  removeTarget(input);
+  const { status, report } = await invoke(input);
+  assert.equal(status, 1);
+  assert.equal(report.pass, false);
+  assert.equal(report.checks.find(check => check.name === 'ui_adapter_accepts_artifact')?.pass, true);
+  assert.equal(report.checks.find(check => check.name === 'project_membership')?.pass, false);
+  assert.equal(report.checks.find(check => check.name === 'raw_project_membership')?.pass, false);
 });
 
 const mutations = {

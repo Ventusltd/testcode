@@ -8,7 +8,7 @@ import { pathToFileURL } from 'node:url';
 const SCHEMA = 'testcode.prospecting-consumer.v1';
 const FLAGS = ['--adapter', '--artifact', '--expected', '--artifact-sha256'];
 const EXPECTED_FIELDS = [
-  'project_id', 'follow_up_points', 'observation_state', 'observed_at',
+  'project_id', 'project_present', 'follow_up_points', 'observation_state', 'observed_at',
   'published_at', 'first_seen', 'source_fetched_at',
 ];
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -33,6 +33,7 @@ function expectedValues(value) {
       || Object.keys(value).length !== EXPECTED_FIELDS.length
       || !EXPECTED_FIELDS.every(key => Object.hasOwn(value, key))) return false;
   if (typeof value.project_id !== 'string' || !value.project_id || value.project_id.length > 128
+      || typeof value.project_present !== 'boolean'
       || !Number.isFinite(value.follow_up_points) || value.follow_up_points < 0
       || !['WITHIN_WINDOW', 'STALE'].includes(value.observation_state)) return false;
   return ['observed_at', 'published_at', 'first_seen', 'source_fetched_at'].every(key => {
@@ -90,8 +91,17 @@ export async function consume(argv) {
 
     const rows = Array.isArray(model?.records) ? model.records.filter(row => row?.id === expected.project_id) : [];
     const rawRows = Array.isArray(raw?.records) ? raw.records.filter(row => row?.id === expected.project_id) : [];
-    check('project_row_unique', rows.length === 1);
-    check('raw_project_row_unique', rawRows.length === 1);
+    const expectedCount = expected.project_present ? 1 : 0;
+    check('project_membership', rows.length === expectedCount);
+    check('raw_project_membership', rawRows.length === expectedCount);
+    if (!expected.project_present && rows.length === 0 && rawRows.length === 0) {
+      // A genuine top-N result can correctly exclude this project. No article
+      // clocks or score components were observed in the UI for an absent row.
+      check('artifact_bytes_unchanged', sha256(bytes) === before);
+      check('network_not_used', fetchAttempts === 0);
+      const pass = checks.every(result => result.pass);
+      return { code: pass ? 0 : 1, report: { schema: SCHEMA, pass, checks } };
+    }
     const row = rows.length === 1 ? rows[0] : null;
     const rawRow = rawRows.length === 1 ? rawRows[0] : null;
     const reasons = Array.isArray(row?.reasons) ? row.reasons.filter(reason => reason?.name === 'research_follow_up') : [];
