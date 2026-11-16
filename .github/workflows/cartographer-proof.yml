@@ -1,0 +1,165 @@
+name: CARTOGRAPHER source identity proof
+
+on:
+  pull_request:
+    paths:
+      - 'sandbox/cartographer/**'
+      - '.github/workflows/cartographer-proof.yml'
+  push:
+    branches: ['v9.26-cartographer*']
+    paths:
+      - 'sandbox/cartographer/**'
+      - '.github/workflows/cartographer-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: cartographer-proof-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Offline regressions and fail-closed runner checks
+        shell: python
+        run: |
+          import io, json, pathlib, subprocess, tempfile, unittest
+          root = pathlib.Path('sandbox/cartographer')
+          def require_inputs(directory):
+              for name in ('verify_pins.py', 'test_verify_pins.py', 'pins.json'):
+                  if not (directory / name).is_file():
+                      raise RuntimeError('required proof input missing')
+          def run_suite(suite, stream):
+              count = suite.countTestCases()
+              if count == 0:
+                  raise RuntimeError('empty test coverage')
+              result = unittest.TextTestRunner(stream=stream, verbosity=2).run(suite)
+              if not result.wasSuccessful() or result.skipped or result.expectedFailures:
+                  raise RuntimeError('offline regressions did not fully pass')
+              return count
+          # Prove the CI wrapper rejects empty coverage and absent inputs.
+          try:
+              run_suite(unittest.TestSuite(), io.StringIO())
+          except RuntimeError:
+              pass
+          else:
+              raise RuntimeError('empty-suite gate failed')
+          with tempfile.TemporaryDirectory() as directory:
+              try:
+                  require_inputs(pathlib.Path(directory))
+              except RuntimeError:
+                  pass
+              else:
+                  raise RuntimeError('missing-input gate failed')
+          require_inputs(root)
+          suite = unittest.defaultTestLoader.discover(str(root), pattern='test_verify_pins.py')
+          import sys
+          count = run_suite(suite, sys.stdout)
+          sha = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          receipt = {'schema': 'testcode.cartographer-ci.v1', 'phase': 'offline',
+                     'status': 'PASS', 'checkout_commit': sha, 'tests_passed': count,
+                     'runner_negative_checks': ['empty_suite', 'missing_inputs'],
+                     'executed_inspected_sources': 0, 'runtime_acceptance': 'UNVERIFIED'}
+          pathlib.Path('proof-receipts').mkdir(exist_ok=True)
+          pathlib.Path('proof-receipts/offline.json').write_text(json.dumps(receipt, indent=2)+'\n', encoding='utf-8')
+          print(json.dumps(receipt))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cartographer-offline-${{ github.run_id }}
+          path: proof-receipts/offline.json
+          if-no-files-found: error
+          retention-days: 14
+
+  pinned-sources:
+    needs: offline
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Validate public source set before acquisition
+        shell: python
+        run: |
+          import json, pathlib
+          expected = {
+              'Ventusltd/spiders': 'b47609b9252f65f8ccf7ac6a2393619e374ecf30',
+              'Ventusltd/cvaa': '39e449cee1c8543f9d9f3d1d995c9c286b127501',
+              'Ventusltd/cosmic': '9f5250f285d7e126b6d698d61aedd86990214d30',
+              'Ventusltd/elements': 'f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf',
+              'Ventusltd/kuiper-belt': '23740e4d050a4b94cb3dc113f280ed1db47aaa5e',
+          }
+          data = json.loads(pathlib.Path('sandbox/cartographer/pins.json').read_text(encoding='utf-8'))
+          pins = data.get('pins', [])
+          if len(pins) != 14 or {p.get('repository') for p in pins} != set(expected):
+              raise RuntimeError('unexpected source coverage')
+          if any(p.get('commit') != expected[p['repository']] for p in pins):
+              raise RuntimeError('source commits need explicit workflow review')
+      # Explicit network acquisition only after the offline job passes.
+      # Never execute scripts from these inspected source checkouts.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Ventusltd/spiders
+          ref: b47609b9252f65f8ccf7ac6a2393619e374ecf30
+          path: proof-inputs/spiders
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Ventusltd/cvaa
+          ref: 39e449cee1c8543f9d9f3d1d995c9c286b127501
+          path: proof-inputs/cvaa
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Ventusltd/cosmic
+          ref: 9f5250f285d7e126b6d698d61aedd86990214d30
+          path: proof-inputs/cosmic
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Ventusltd/elements
+          ref: f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf
+          path: proof-inputs/elements
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: 23740e4d050a4b94cb3dc113f280ed1db47aaa5e
+          path: proof-inputs/kuiper-belt
+          persist-credentials: false
+      - name: Prove exact committed bytes without source execution
+        shell: python
+        run: |
+          import hashlib, json, pathlib, subprocess, sys
+          sys.path.insert(0, 'sandbox/cartographer')
+          from verify_pins import verify
+          pin_path = pathlib.Path('sandbox/cartographer/pins.json')
+          raw = pin_path.read_bytes()
+          pins = json.loads(raw)
+          roots = {p['repository']: pathlib.Path('proof-inputs') / p['repository'].split('/')[1]
+                   for p in pins['pins']}
+          receipt = verify(pins, roots)
+          receipt['checkout_commit'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          receipt['pin_manifest_sha256'] = hashlib.sha256(raw).hexdigest()
+          receipt['source_commits'] = sorted({p['repository']+'@'+p['commit'] for p in pins['pins']})
+          pathlib.Path('proof-receipts').mkdir(exist_ok=True)
+          pathlib.Path('proof-receipts/sources.json').write_text(json.dumps(receipt, indent=2)+'\n', encoding='utf-8')
+          print(json.dumps(receipt))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cartographer-sources-${{ github.run_id }}
+          path: proof-receipts/sources.json
+          if-no-files-found: error
+          retention-days: 14
