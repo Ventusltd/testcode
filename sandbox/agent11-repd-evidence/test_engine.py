@@ -90,7 +90,7 @@ class EvidenceTests(unittest.TestCase):
             ({"published_date": "2027-01-01"}, "future_dated_claim"),
             ({"fetched_date": "2027-01-01"}, "future_dated_claim"),
             ({"first_seen_date": "2027-01-01"}, "future_dated_claim"),
-            ({"published_date": "2026-11-16", "fetched_date": "2026-11-15"}, "publication_after_fetch"),
+            ({"published_date": "2026-11-16", "fetched_date": "2026-11-15", "first_seen_date": "2026-11-15"}, "publication_after_fetch"),
             ({"first_seen_date": "2026-11-16", "fetched_date": "2026-11-15"}, "first_seen_after_fetched"),
             ({"review_state": "verified"}, "self_declared_verification"),
             ({"review_state": "approved"}, "self_declared_verification"),
