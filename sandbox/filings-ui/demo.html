@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synthetic filing figures · TestCode</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./figures.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #172d3b; background: #f4f6f8; font: 16px/1.5 system-ui, sans-serif; }
+    main { width: min(900px, 100%); margin: 0 auto; padding: 24px 16px 48px; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.4rem, 4vw, 2rem); line-height: 1.2; }
+    p { margin: 8px 0 16px; }
+    .fixture-note { padding: 12px; border-left: 4px solid #946314; background: #fff6da; }
+    .fixture-controls { margin: 20px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    select, button { font: inherit; padding: 8px 10px; max-width: 100%; }
+    button { cursor: pointer; }
+    article { padding: 16px; border: 1px solid #c4d0d8; border-radius: 8px; background: white; }
+    #project-details > summary { cursor: pointer; font-weight: 650; font-size: 1.1rem; }
+    #project-details > p { color: #4c606d; }
+    .host-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    #host-events { color: #526674; font-size: .85rem; }
+    #fixture-status { overflow-wrap: anywhere; }
+    #figure-slot { min-width: 0; margin-top: 16px; }
+    :focus-visible { outline: 3px solid #126cad; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Filing figures in project details</h1>
+    <p class="fixture-note"><strong>Synthetic TestCode fixture.</strong> These numbers, identities and links are test data. This page is an integration example, not a live project report.</p>
+    <div class="fixture-controls">
+      <label for="fixture-case">Test scenario</label>
+      <select id="fixture-case" disabled>
+        <option value="finance">Finance figures</option>
+        <option value="energy">Power and energy figures</option>
+        <option value="hostile_text">Untrusted text</option>
+        <option value="unknown">Unknown figures</option>
+        <option value="unavailable">Unavailable figures</option>
+      </select>
+    </div>
+    <p id="fixture-status" role="status">Loading local synthetic fixtures…</p>
+    <article aria-label="Synthetic project details">
+      <details id="project-details" open>
+        <summary>Synthetic project · existing details</summary>
+        <p>Host controls below demonstrate that replacing the inline figures leaves the surrounding project details intact.</p>
+        <div class="host-actions">
+          <button id="host-map" type="button">Mock MAP action</button>
+          <button id="host-csv" type="button">Mock CSV action</button>
+        </div>
+        <p id="host-events" aria-live="polite">MAP: 0 · CSV: 0</p>
+        <div id="figure-slot"></div>
+      </details>
+    </article>
+  </main>
+  <script type="module" src="./demo.mjs"></script>
+</body>
+</html>
