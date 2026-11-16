@@ -1,0 +1,67 @@
+name: filings-integration-lab
+
+on:
+  push:
+    branches: [assist/filings-integration-lab-20261116]
+    paths:
+      - 'sandbox/filings-integration-lab/**'
+      - '.github/workflows/filings-integration-lab.yml'
+  pull_request:
+    paths:
+      - 'sandbox/filings-integration-lab/**'
+      - '.github/workflows/filings-integration-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: filings-lab-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pinned-offline-consumers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # Dependency provisioning is explicit; the consumer execution below is
+      # offline and independently checks every module/registry byte hash.
+      - name: Pinned WEST input
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 6553e1f45be0ab589f9e84679eeccf98454c8d31
+          path: .lab-inputs/west
+          persist-credentials: false
+          sparse-checkout: automation/news/filings/west
+      - name: Pinned ASIA input
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 011af57ee30fca3e4913c26405393cbfb0e7ce89
+          path: .lab-inputs/asia
+          persist-credentials: false
+          sparse-checkout: automation/news/filings/asia
+      - name: Pinned FIGURES input
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: e0deabac45d35240f6c38f4303b8d50c90412e06
+          path: .lab-inputs/figures
+          persist-credentials: false
+          sparse-checkout: automation/news/filings
+      - name: Offline consumer gate
+        run: python -B sandbox/filings-integration-lab/run.py --inputs .lab-inputs --output artifacts/filings-integration.json
+      - name: Preserve explicit receipt on pass or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: filings-integration-receipt
+          path: artifacts/filings-integration.json
+          if-no-files-found: error
