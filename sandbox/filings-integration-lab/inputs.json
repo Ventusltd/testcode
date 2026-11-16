@@ -1,0 +1,31 @@
+{
+  "schema": "testcode.filings-input-closure.v1",
+  "components": {
+    "west": {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "6553e1f45be0ab589f9e84679eeccf98454c8d31",
+      "module": "automation/news/filings/west/sec.py",
+      "files": {
+        "automation/news/filings/west/sec.py": "8520823cb16a528a4bc0c38bb97ea0d7422382c5b56269247e00737adafb39cb",
+        "automation/news/filings/west/sources.json": "7fdbcba7c64cdd5feb405b7466acf6cfbda07e0cbeb4670b62853a7a230d1829"
+      }
+    },
+    "asia": {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "011af57ee30fca3e4913c26405393cbfb0e7ce89",
+      "module": "automation/news/filings/asia/metadata.py",
+      "files": {
+        "automation/news/filings/asia/metadata.py": "044b32554f008e7285e8f1ff1b43c86829a8be1f1eb76fedd19450258ee91ca4",
+        "automation/news/filings/asia/sources.json": "6658dda97dfadc5bb6f3c9fad066a39143d019edbc04ecd643b075fe3183809e"
+      }
+    },
+    "figures": {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "e0deabac45d35240f6c38f4303b8d50c90412e06",
+      "module": "automation/news/filings/contracts.py",
+      "files": {
+        "automation/news/filings/contracts.py": "7db9f5334529bd51e3d1dc64abbd7ec0180b69e832c196d37cc93caf09e133c2"
+      }
+    }
+  }
+}
