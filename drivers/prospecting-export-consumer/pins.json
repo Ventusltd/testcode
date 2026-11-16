@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/Ventusltd/globalgrid2050",
+  "source": "19d5634bbd86f2082f6bc1aed251d453ec80fa58",
+  "baseline": "202611161244",
+  "build_manifest_sha256": "eb59fee0ab9bd4bf304cf7957755e69647038ad2360eabe680848d14e636c304",
+  "solar1000_manifest_sha256": "c625edbb9c471a1e9a9034a1afe99881fbfabb1fcadcf0623355931f5b6aed1f",
+  "as_of": "2026-11-16T17:40:00Z",
+  "alternate_as_of": "2026-11-16T17:41:00Z"
+}
