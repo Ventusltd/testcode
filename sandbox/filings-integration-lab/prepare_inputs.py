@@ -1,6 +1,7 @@
 """Materialize immutable Git blobs from an existing local clone; no network."""
 import argparse
 import hashlib
+import os
 from pathlib import Path
 import subprocess
 
@@ -11,12 +12,15 @@ def prepare(source_repo, output):
     output = Path(output).resolve()
     if output.exists():
         raise ValueError("Output must be a new directory; existing inputs are not overwritten")
+    git_env = os.environ.copy()
+    git_env.update(GIT_NO_LAZY_FETCH="1", GIT_NO_REPLACE_OBJECTS="1",
+                   GIT_GRAFT_FILE=os.devnull)
     pending = []
     for name, component in manifest()["components"].items():
         for path, expected in component["files"].items():
-            data = subprocess.run(["git", "-C", str(source_repo), "show",
+            data = subprocess.run(["git", "-c", "protocol.allow=never", "-C", str(source_repo), "show",
                                    f"{component['commit']}:{path}"],
-                                  check=True, capture_output=True).stdout
+                                  check=True, capture_output=True, env=git_env).stdout
             if hashlib.sha256(data).hexdigest() != expected:
                 raise ValueError(f"Pinned Git blob mismatch: {name}/{path}")
             pending.append((output / name / path, data))

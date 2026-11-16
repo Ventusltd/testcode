@@ -20,8 +20,11 @@ python -B sandbox/filings-integration-lab/prepare_inputs.py --source-repo /path/
 python -B sandbox/filings-integration-lab/run.py --inputs /new/path/to/filings-inputs --output /path/to/filings-integration.json
 ```
 
-Preparation uses local `git show` only and refuses to overwrite an existing
-directory. The execution phase denies Python socket audit events, validates
+Preparation uses local `git show` only, disables lazy fetching, replacement
+objects and grafts, forbids Git transport protocols, and refuses to overwrite an
+existing directory. Local Git regression fixtures demonstrate that an unguarded
+promisor read hydrates a missing blob from a file URL while preparation refuses
+it without a fetch child or output. The execution phase denies Python socket audit events, validates
 input hashes and runs stdlib unittest consumer scenarios. Missing inputs, zero
 tests, failures, unexpected successes, expected failures or skips fail the gate.
 The JSON receipt names source commits/hashes and outcomes, without workstation
