@@ -102,6 +102,12 @@ def select_pilot(rows, n=25):
             "Appeal Refused", "Application Withdrawn", "Planning Permission Expired",
             "Abandoned", "Revised", "Operational")
     picks, taken = [], set()
+    # Include the first three numeric source records as fixed historical
+    # identity controls; source selection and the complete 1,000 remain unchanged.
+    for r in rows:
+        if r["repd_ref"] in ("1018", "1019", "1020"):
+            picks.append(r)
+            taken.add(r["repd_ref"])
     by_status = {k: sorted([r for r in rows if r["status"] == k],
                             key=lambda r: (-float(r.get("capacity_mw") or 0), int(r["repd_ref"])))
                  for k in rare}
@@ -183,6 +189,9 @@ def make_ledger(rows, hashes, evidence=None, attempts=None, as_of=None):
         elif ref in attempts and attempts[ref]["state"] == "attempted_no_source":
             state = "researched_no_source"
             headline = "No independent evidence found; research attempted."
+        elif ref in attempts and attempts[ref]["state"] == "candidate_review":
+            state = "search_candidate"
+            headline = "Potential external sources located; project identity and event are not verified."
         else:
             state = "not_researched"
             headline = "Independent research not yet attempted."
@@ -206,7 +215,7 @@ def make_ledger(rows, hashes, evidence=None, attempts=None, as_of=None):
             "rank": score(r),
             "research_queries": source_queries(adapted) if state in ("not_researched", "researched_no_source", "blocked") else [],
         })
-        if state in ("not_researched", "researched_no_source", "blocked"):
+        if state in ("not_researched", "researched_no_source", "blocked", "search_candidate"):
             queue.append({"asset_key": key(r), "ref": ref, "name": r["name"],
                           "status": r["status"], "rank": score(r),
                           "queries": source_queries(adapted)})
@@ -241,8 +250,9 @@ def build_output(selected, hashes, fingerprints, source_hash, feed, attempts=Non
         "native_v923_independent_matches_in_sample": 0,
         "evidence_claimed_independent": 0, "independently_sourced": 0,
         "verified": 0, "accepted": 0, "actionable": 0,
-        "researched": sum(metrics[x] for x in ("candidate", "blocked", "researched_no_source")),
-        "candidate": metrics["candidate"], "no_source": metrics["researched_no_source"],
+        "researched": sum(metrics[x] for x in ("candidate", "blocked", "researched_no_source", "search_candidate")),
+        "candidate": metrics["candidate"], "search_candidate": metrics["search_candidate"],
+        "no_source": metrics["researched_no_source"],
         "blocked": metrics["blocked"], "not_researched": metrics["not_researched"],
         "attribution_precision": None, "cost": None,
         "manual_research_minutes": None,
