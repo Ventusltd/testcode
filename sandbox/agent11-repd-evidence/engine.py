@@ -169,6 +169,35 @@ def match(row, evidence):
         return "possible_identity_candidate", "name_county"
     return None, "insufficient_identity"
 
+def relation_to_official(row, event_type, event_date):
+    """Never promote derived events to the source-of-truth status field."""
+    status = row["Development Status"].strip().casefold()
+    equivalent = {
+        "consent_granted": "planning permission granted",
+        "consent_refused": "planning permission refused",
+        "planning_submitted": "planning application submitted",
+        "construction_started": "under construction",
+        "operational": "operational",
+    }
+    if equivalent.get(event_type) == status:
+        return "corroborates_existing_official_status"
+    if event_type == "planning_committee_recommendation":
+        return "historical_planning_context_not_decision"
+    raw_update = (row.get("Record Last Updated (dd/mm/yyyy)") or "").strip()
+    try:
+        official_update = date(int(raw_update[6:10]), int(raw_update[3:5]),
+                               int(raw_update[0:2])) if re.fullmatch(
+                                   r"\d{2}/\d{2}/\d{4}", raw_update) else None
+    except ValueError:
+        official_update = None
+    if official_update and event_date <= official_update:
+        return "historical_or_conflicting_requires_review"
+    if event_type in ("consent_granted", "consent_refused", "construction_started",
+                      "operational", "finance_secured", "epc_awarded", "grid_connection"):
+        return "possible_newer_milestone_unverified"
+    return "supplementary_context_unverified"
+
+
 def evidence_note(row, e, as_of):
     basis, reason = match(row, e)
     if not basis:
@@ -200,11 +229,12 @@ def evidence_note(row, e, as_of):
         return None, str(ex)
     label, category = CATEGORIES[event_type]
     # Closed vocabulary only. Never reproduce publisher summaries as articles.
-    brief = f"{label} on {event.isoformat()}; source: {publisher}."
+    brief = f"CANDIDATE — {label} on {event.isoformat()}; source: {publisher}."
     if basis == "possible_identity_candidate":
         brief = "Possible project association: " + brief
     return {
         "asset_key": asset_key(row), "repd_ref": row["Ref ID"],
+        "relation_to_official": relation_to_official(row, event_type, event),
         "basis": reason, "association": basis,
         "verification": "candidate_requires_independent_review",
         "rights_basis": "unknown", "publisher_owner": owner or None,
