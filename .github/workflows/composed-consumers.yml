@@ -1,0 +1,121 @@
+name: Composed news and prospecting consumers
+
+on:
+  push:
+    paths:
+      - 'drivers/news-sidecar-replay/**'
+      - 'drivers/prospecting-export-consumer/**'
+      - 'drivers/prospecting-observation/driver.py'
+      - '.github/workflows/composed-consumers.yml'
+  pull_request:
+    paths:
+      - 'drivers/news-sidecar-replay/**'
+      - 'drivers/prospecting-export-consumer/**'
+      - 'drivers/prospecting-observation/driver.py'
+      - '.github/workflows/composed-consumers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: composed-consumers-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-proofs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PRODUCT_REPO: ${{ github.workspace }}/.proof-inputs/product
+      PROSPECTING_COMMIT: 19d5634bbd86f2082f6bc1aed251d453ec80fa58
+      NEWS_COMMIT: 20c0023ccbd6ed34bb2648caf95ea1a6e22491eb
+      HEADLINES_COMMIT: d9d4b9249257ce36ae8f09921fa62a9845a3d492
+      HISTORICAL_RENDERER_COMMIT: e2568fa9b818d39e28b106bbe49c3a53d0ad4fc2
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout Testcode
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # This explicit source acquisition precedes the offline proof. The drivers
+      # read committed archives and never fetch, collect, install or publish.
+      - name: Provision the exact public prospecting input
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 19d5634bbd86f2082f6bc1aed251d453ec80fa58
+          path: .proof-inputs/product
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Provision the remaining exact public inputs
+        shell: bash
+        run: |
+          git -C "$PRODUCT_REPO" fetch --no-tags --no-recurse-submodules --depth=1 origin \
+            "$NEWS_COMMIT" "$HEADLINES_COMMIT" "$HISTORICAL_RENDERER_COMMIT"
+          for commit in "$PROSPECTING_COMMIT" "$NEWS_COMMIT" "$HEADLINES_COMMIT" "$HISTORICAL_RENDERER_COMMIT"; do
+            [[ "$commit" =~ ^[0-9a-f]{40}$ ]]
+            test "$(git -C "$PRODUCT_REPO" rev-parse --verify "$commit^{commit}")" = "$commit"
+          done
+          test "$(git -C "$PRODUCT_REPO" rev-parse HEAD)" = "$PROSPECTING_COMMIT"
+
+      - name: Run the offline consumer proofs
+        shell: bash
+        env:
+          GIT_NO_LAZY_FETCH: '1'
+          GIT_NO_REPLACE_OBJECTS: '1'
+          GIT_TERMINAL_PROMPT: '0'
+          GIT_ALLOW_PROTOCOL: ''
+          GIT_GRAFT_FILE: /dev/null
+          GIT_CONFIG_COUNT: '1'
+          GIT_CONFIG_KEY_0: protocol.allow
+          GIT_CONFIG_VALUE_0: never
+          TESTCODE_PRODUCT_REPO: ${{ github.workspace }}/.proof-inputs/product
+        run: |
+          python - <<'PY'
+          import json, os, unittest
+          from pathlib import Path
+          news = Path('drivers/news-sidecar-replay')
+          pins = json.loads((news / 'pins.json').read_text(encoding='utf-8'))
+          for key, variable in (('implementation', 'NEWS_COMMIT'), ('headlines', 'HEADLINES_COMMIT'), ('historical_renderer', 'HISTORICAL_RENDERER_COMMIT')):
+              if pins[key] != os.environ[variable]:
+                  raise SystemExit(f'News input pin differs: {key}')
+          prospecting = json.loads(Path('drivers/prospecting-export-consumer/pins.json').read_text(encoding='utf-8'))
+          if prospecting['source'] != os.environ['PROSPECTING_COMMIT']:
+              raise SystemExit('Prospecting input pin differs')
+          suite = unittest.defaultTestLoader.discover(str(news), pattern='test_replay.py')
+          if suite.countTestCases() == 0:
+              raise SystemExit('News replay regression discovery found zero tests')
+          print(f'News replay regression cases discovered: {suite.countTestCases()}')
+          PY
+          python -B -m unittest discover -s drivers/news-sidecar-replay -p test_replay.py -v
+          python -B drivers/news-sidecar-replay/driver.py --product-repo "$PRODUCT_REPO" --out "$RUNNER_TEMP/news-receipt.json"
+          python -B drivers/prospecting-export-consumer/driver.py --product-repo "$PRODUCT_REPO" --self-test --out "$RUNNER_TEMP/prospecting-receipt.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          for name in ('news', 'prospecting'):
+              receipt = Path(os.environ['RUNNER_TEMP']) / f'{name}-receipt.json'
+              report = json.loads(receipt.read_text(encoding='utf-8'))
+              if report.get('pass') is not True:
+                  raise SystemExit(f'{name} receipt does not record a passing proof')
+          PY
+
+      - name: Preserve only sanitized proof receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: composed-consumer-receipts
+          path: |
+            ${{ runner.temp }}/news-receipt.json
+            ${{ runner.temp }}/prospecting-receipt.json
+          if-no-files-found: error
+          retention-days: 14

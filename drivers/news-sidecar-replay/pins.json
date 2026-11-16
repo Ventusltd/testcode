@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/Ventusltd/globalgrid2050",
+  "implementation": "20c0023ccbd6ed34bb2648caf95ea1a6e22491eb",
+  "headlines": "d9d4b9249257ce36ae8f09921fa62a9845a3d492",
+  "historical_renderer": "e2568fa9b818d39e28b106bbe49c3a53d0ad4fc2",
+  "paths": {
+    "headlines": "dist/pipeline_headlines.json",
+    "renderer": "uk_renewables_pipeline/202611161734/scripts/plugins/live-news.js",
+    "historical_renderer": "uk_renewables_pipeline/202611161630/scripts/plugins/live-news.js"
+  },
+  "expected_items": 69
+}
