@@ -75,11 +75,43 @@ jobs:
           assert all(n["research_state"]=="not_researched" for n in notes)
           print("PASS: V9.23 numeric first-1000 identity + honest unresearched baseline.")
           PY
+      - name: Pilot source candidates — separate from clean baseline
+        run: |
+          python testcode/sandbox/agent11-repd-evidence/v923.py \
+            --parts-dir product/uk_renewables_pipeline/202611160020/data/v9.1/projects \
+            --headlines headlines/dist/pipeline_headlines.json \
+            --evidence testcode/sandbox/agent11-repd-evidence/fixtures/v923-pilot-source-candidates.jsonl \
+            --as-of 2026-11-16 --out-dir output-candidates
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("output-candidates/audit.v2.json").read_text())
+          p=json.loads(Path("output-candidates/pilot-25.json").read_text())["records"]
+          n={r["repd_ref"]:r for r in p}
+          assert a["total"]==1000
+          assert a["candidate"]==2, a
+          assert a["independently_sourced"]==0
+          assert n["1019"]["research_state"]=="candidate"
+          assert n["1020"]["research_state"]=="candidate"
+          assert n["1018"]["research_state"]=="not_researched"
+          assert a["accepted"]==0 and not a["publication_authorised"]
+          print("PASS: 2 candidate project-source notes, 0 attested independent.")
+          PY
+      - name: Confirm search discovery is offline and charge-free
+        run: |
+          python testcode/sandbox/agent11-repd-evidence/collect.py \
+            --queue output/research-queue.json \
+            --cache output/nonexistent-search-cache.jsonl \
+            --out output/search-dryrun.jsonl --as-of 2026-11-16 \
+            --max-requests 25
+          test ! -s output/search-dryrun.jsonl
       - name: Preserve exact-head machine artifacts (no release)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: agent11-v923-solar1000-${{ github.sha }}
-          path: output/
+          path: |
+            output/
+            output-candidates/
           if-no-files-found: warn
           retention-days: 30
