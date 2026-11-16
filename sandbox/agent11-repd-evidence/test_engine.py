@@ -58,8 +58,6 @@ class EvidenceTests(unittest.TestCase):
             ({"planning_authority": "York"}, "authority_conflict"),
             ({"county": "North Yorkshire"}, "county_conflict"),
             ({"planning_reference": "23/02112/OUT"}, "planning_reference_conflict"),
-            ({"planning_reference": ""}, "insufficient_identity"),
-            ({"planning_authority": ""}, "insufficient_identity"),
             ({"site_name": "Panels"}, "project_name_conflict"),
             ({"site_name": ""}, "project_name_conflict"),
         ]
@@ -67,6 +65,10 @@ class EvidenceTests(unittest.TestCase):
             with self.subTest(changes=changes):
                 e = dict(E, **changes)
                 self.assertEqual(match(ROW, e)[1], expected)
+
+    def test_missing_planning_reference_downgrades_to_possible(self):
+        for change in ({"planning_reference": ""}, {"planning_authority": ""}):
+            self.assertEqual(match(ROW, dict(E, **change))[0], "possible_identity_candidate")
 
     def test_negative_receipt_mutations(self):
         cases = [
