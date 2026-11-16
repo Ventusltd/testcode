@@ -1,0 +1,22 @@
+{
+  "producer": {
+    "commit": "c2b89326ab55424c4ea10ff5921d9c2bf31073dd",
+    "files": {
+      "automation/news/news_algorithm.py": "85da672b6ff483709830f120827379afd35c639cb96a186094b939e79182702b",
+      "automation/news/pipeline_headlines.py": "adc695e7d4c59916322593dd680a1843c5b7dc74554c9d98fdfccc90528d5d29",
+      "automation/news/datacentre_feed.py": "bdb4f76c8e5844fbab4ef16004812df9735e2ebd634f1e539ed43aa2e8206dcd",
+      "automation/news/names.py": "34a455ef1d9f5827975fa27ff476618dd76f51982cfea1af158fad3ba24f83ff",
+      "automation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "automation/news/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "consumer": {
+    "commit": "e2568fa9b818d39e28b106bbe49c3a53d0ad4fc2",
+    "renderer": "uk_renewables_pipeline/202611161630/scripts/plugins/live-news.js",
+    "schema": "automation/news/schema/pipeline-headlines.v1.schema.json",
+    "files": {
+      "uk_renewables_pipeline/202611161630/scripts/plugins/live-news.js": "6bce17681989773f57c22d0f2272900a25c315eafb36e9c3926a553bce7a91c6",
+      "automation/news/schema/pipeline-headlines.v1.schema.json": "6101bb933f4ee6547d5f25d5f05b302c7bb2fafddadc2acd89f425740e519c1e"
+    }
+  }
+}
