@@ -1,0 +1,117 @@
+name: Agent11 V9.23 numeric Solar-1000 pilot (non-live)
+on:
+  push:
+    branches:
+      - agent11/repd1000-evidence-20261116
+    paths:
+      - 'sandbox/agent11-repd-evidence/**'
+      - '.github/workflows/agent11-v923-numeric-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent11-solar1000-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  v923-numeric:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated TestCode branch
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+          persist-credentials: false
+      - name: Checkout immutable V9.23 producer snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 1559f40e73a4e454c39b23d5172cf4c5e96ef3ea
+          path: product
+          sparse-checkout: |
+            uk_renewables_pipeline/202611160020/data/v9.1/projects
+          persist-credentials: false
+      - name: Checkout point-in-time native headlines feed
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: b00af1e2d5c4f180ca312e10bab0ee5530ef15a3
+          path: headlines
+          sparse-checkout: |
+            dist/pipeline_headlines.json
+          persist-credentials: false
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline negative controls and stage assertions
+        run: |
+          python -m unittest discover -s testcode/sandbox/agent11-repd-evidence -p 'test_*.py' -v
+      - name: Pin 1000 records and build non-live pilot ledger
+        run: |
+          python testcode/sandbox/agent11-repd-evidence/v923.py \
+            --parts-dir product/uk_renewables_pipeline/202611160020/data/v9.1/projects \
+            --headlines headlines/dist/pipeline_headlines.json \
+            --as-of 2026-11-16 --out-dir output
+      - name: Source, identity, exclusion and honest-coverage gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("output/audit.v2.json").read_text())
+          m=json.loads(Path("output/manifest.v2.json").read_text())
+          p=json.loads(Path("output/pilot-25.json").read_text())
+          notes=json.loads(Path("output/notes-sidecar.v2.json").read_text())["notes"]
+          assert (m["full_release_rows"],m["solar_rows"],m["selection_size"])==(7775,3604,1000)
+          assert (m["asset_ref_ids"][0],m["asset_ref_ids"][-1])==("1018","2325")
+          assert len(set(m["asset_ref_ids"]))==1000
+          assert len(m["row_sha256"])==1000
+          assert len(p["records"])==25
+          assert len(notes)==1000
+          assert a["native_v923_possible_matches_in_sample"]==0,a
+          assert a["researched"]==0 and a["not_researched"]==1000,a
+          assert a["independently_sourced"]==0 and a["accepted"]==0,a
+          assert a["publication_authorised"] is False
+          assert all(n["research_state"]=="not_researched" for n in notes)
+          print("PASS: V9.23 numeric first-1000 identity + honest unresearched baseline.")
+          PY
+      - name: Pilot source candidates — separate from clean baseline
+        run: |
+          python testcode/sandbox/agent11-repd-evidence/v923.py \
+            --parts-dir product/uk_renewables_pipeline/202611160020/data/v9.1/projects \
+            --headlines headlines/dist/pipeline_headlines.json \
+            --evidence testcode/sandbox/agent11-repd-evidence/fixtures/v923-pilot-source-candidates.jsonl \
+            --as-of 2026-11-16 --out-dir output-candidates
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path("output-candidates/audit.v2.json").read_text())
+          p=json.loads(Path("output-candidates/pilot-25.json").read_text())["records"]
+          n={r["repd_ref"]:r for r in p}
+          assert a["total"]==1000
+          assert a["candidate"]==2, a
+          assert a["independently_sourced"]==0
+          assert n["1019"]["research_state"]=="candidate"
+          assert n["1020"]["research_state"]=="candidate"
+          assert n["1018"]["research_state"]=="not_researched"
+          assert a["accepted"]==0 and not a["publication_authorised"]
+          print("PASS: 2 candidate project-source notes, 0 attested independent.")
+          PY
+      - name: Confirm search discovery is offline and charge-free
+        run: |
+          python testcode/sandbox/agent11-repd-evidence/collect.py \
+            --queue output/research-queue.json \
+            --cache output/nonexistent-search-cache.jsonl \
+            --out output/search-dryrun.jsonl --as-of 2026-11-16 \
+            --max-requests 25
+          test ! -s output/search-dryrun.jsonl
+      - name: Preserve exact-head machine artifacts (no release)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent11-v923-solar1000-${{ github.sha }}
+          path: |
+            output/
+            output-candidates/
+          if-no-files-found: warn
+          retention-days: 30
