@@ -24,7 +24,7 @@ PROVIDER = "Brave Search"
 DEFAULT_MAX = 25
 
 def query_for(item):
-    plans = item.get("research_queries") or []
+    plans = item.get("research_queries") or item.get("queries") or []
     if not plans:
         return None
     raw = plans[0].get("query", "")
@@ -93,13 +93,13 @@ def run(items, cache, max_requests=DEFAULT_MAX, live=False, api_key=None,
         ref = str(item["ref"])
         if ref in changed:
             continue  # idempotent: never re-bill or re-label an already attempted ref
+        if not live:
+            continue  # A dry-run NEVER records research or changes the cache.
         q = query_for(item)
         if not q:
             changed[ref] = {"repd_ref": ref, "state": "blocked",
                             "attempted_at": as_of, "reason": "missing_search_query",
                             "source_candidates": []}
-            continue
-        if not live:
             continue
         if calls >= max_requests:
             break
