@@ -22,6 +22,8 @@ REQUIRED = ("Ref ID", "Technology Type", "Site Name", "Planning Authority",
             "Development Status (short)")
 CATEGORIES = {
     "planning_submitted": ("Planning application submitted", "planning"),
+    "planning_amendment_reported": ("Council document reported a planning amendment", "planning"),
+    "planning_amendment_listed": ("Planning amendment appeared in a published local register", "planning"),
     "planning_committee_recommendation": ("Planning committee report recommended approval", "planning"),
     "consent_granted": ("Consent granted", "planning"),
     "consent_refused": ("Consent refused", "planning"),
