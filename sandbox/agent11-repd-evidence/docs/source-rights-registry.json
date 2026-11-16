@@ -1,0 +1,42 @@
+{
+  "schema": "globalgrid2050.agent11.source-rights.v1",
+  "reviewed_at": "2026-11-16",
+  "default_policy": "unknown_rights_no_article_text_republication",
+  "entries": [
+    {
+      "source": "DESNZ REPD (original)",
+      "source_url": "https://www.gov.uk/government/publications/renewable-energy-planning-database-monthly-extract",
+      "license": "Open Government Licence v3.0 (verify original notice)",
+      "rights_state": "not_independently_confirmed_for_pinned_github_copy",
+      "use": "official identity baseline only; original source bytes separately authenticate"
+    },
+    {
+      "source": "St Ewe Parish Council Clerk's Notes 14 Mar 2022",
+      "source_url": "https://st-ewe-pc.gov.uk/wp-content/uploads/2022/03/2022.03.14-ST-EWE-Clerk-Notes.pdf",
+      "license": null,
+      "rights_state": "unknown",
+      "use": "short attributed factual candidate+original URL; no copied article text"
+    },
+    {
+      "source": "St Ives Local planning digest",
+      "source_url": "https://stiveslocal.uk/planning-applications/",
+      "license": null,
+      "rights_state": "unknown",
+      "use": "source link only, official Cornwall register cross-check pending"
+    },
+    {
+      "source": "Brave Search Web API",
+      "source_url": "https://api-dashboard.search.brave.com/documentation/services/web-search",
+      "license": "commercial API service terms",
+      "rights_state": "plan_and_key_required_not_connected",
+      "use": "authorised metadata discovery only; snippet not treated as original publisher text"
+    },
+    {
+      "source": "PlanIndex open planning data",
+      "source_url": "https://planindex.co.uk/open-data",
+      "license": "CC BY 4.0 with required PlanIndex attribution",
+      "rights_state": "discovered_not_ingested",
+      "use": "optional last-30-day cross-check, attribution must link to PlanIndex"
+    }
+  ]
+}
