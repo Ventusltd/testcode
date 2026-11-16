@@ -24,6 +24,11 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(cache,{})
         self.assertEqual(calls,0)
 
+    def test_dry_run_malformed_queue_must_not_create_1000_fake_attempts(self):
+        malformed=[{"ref":str(x),"queries":[]} for x in range(1000,2000)]
+        cache,calls=run(malformed,{},live=False)
+        self.assertEqual((cache,calls),({},0))
+
     def test_requires_explicit_api_key(self):
         with self.assertRaises(ValueError):
             run(ITEMS,{},live=True,api_key=None,searcher=lambda *_:[])
