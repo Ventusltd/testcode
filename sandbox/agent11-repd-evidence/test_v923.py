@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from engine import EvidenceError
+from agent10_adapter import to_agent10_sidecar
 from v923 import (load_pinned, build_output, select_pilot, score,
                   adapt, load_feed, load_attempts, key)
 
@@ -54,6 +55,18 @@ class V923Tests(unittest.TestCase):
         self.assertEqual(len(ids), 1000)
         self.assertEqual(ids, sorted(ids))
         self.assertNotEqual(self.rows[0]["repd_ref"], "5603")
+
+    def test_agent10_v1_asset_key_contract(self):
+        _, ledger, _, _ = build_output(self.rows, self.hashes, self.parts,
+                                         self.sha, {})
+        sidecar=to_agent10_sidecar(ledger)
+        self.assertEqual(sidecar["schema"], "globalgrid2050.machine-read-notes-sidecar.v1")
+        self.assertEqual(len(sidecar["notes"]), 1000)
+        first=sidecar["notes"][self.rows[0]["repd_ref"].join((
+            "repd|DESNZ-REPD|2026q3|", ""))]
+        self.assertEqual(first["asset_key"]["source_register"], "DESNZ-REPD")
+        self.assertEqual(first["note_state"], "insufficient_evidence")
+        self.assertIsNone(first["source_url"])
 
     def test_hashes_and_determinism(self):
         self.assertEqual(self.sha, load_pinned(self.path)[-1])
