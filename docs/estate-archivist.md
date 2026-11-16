@@ -111,3 +111,51 @@ resume, old/new content versions, source code that would create a sentinel if
 executed, private branch/path/body suppression, missing blobs/tips, oversize
 bodies, unsafe paths, syntax errors and unavailable public heads. These tests
 exercise the lab only; they do not certify the inspected estate code.
+
+## Bounded public-tip follow-up
+
+The original receipt remains intact. A separate `bounded_public_ref_followup`
+section records freshly confirmed public refs acquired into isolated bare
+repositories: at most eight distinct advertised tips per repository, depth 16
+per tip, a 128 KiB blob filter and a 60-second timeout per Git command. This is
+an acquisition request bound, not a total network-byte guarantee. No private
+refs were requested and no owner checkout was changed. The scanner itself
+continues to disable lazy fetching. Private checkpoints remain outside Git.
+
+| Owner | Acquired reachable commits processed | Unique bodies read | Unavailable public tips | Shallow |
+| --- | ---: | ---: | ---: | --- |
+| Cosmic | 18/18 | 4 | 0 | yes |
+| Kuiper-belt | 74/74 | 77 | 0 | yes |
+| Spiders | 78/78 | 29 | 0 | yes |
+
+This completes traversal of those three bounded acquired universes: 170 commits
+and 110 distinct bodies (per-repository deduplication). It does not complete
+their full history. Do not add these counts to the original pass as unique
+estate coverage: they overlap. There were no unavailable selected blobs in
+this slice. README/interface inspection was additional bounded read-only work,
+not included in scanner body counts.
+
+Current interface leads for CARTOGRAPHER and GRID, observed rather than run:
+
+- [Cosmic at 983447a7](https://github.com/Ventusltd/cosmic/tree/983447a7eedb82efdedd02fe3f36086671099691):
+  `universe.json` is a measured hierarchy/cartridge boundary; placement laws and
+  additive totals are explicit. `tools/wafer.py` emits computed geometry and
+  area, not measurements from a manufactured lot. A grid/supply scenario would
+  need its own attributed units and hierarchy; this is not an existing grid model.
+- [Kuiper-belt at b57a9775](https://github.com/Ventusltd/kuiper-belt/tree/b57a977568e356051d867adeda37682f9d107ec0):
+  `tools/estate.py` emits `{stations, edges}` with blob identity and unit-square
+  positions. `tools/build_layers.py` owns `kuiper.editions.v1` / `kuiper.layers.v1`
+  and checks existing keys, licences, source digests and module requirements.
+  Reuse those owner interfaces; an Archivist observation is not a new layer registry.
+- [Spiders at 2c661f5b](https://github.com/Ventusltd/spiders/tree/2c661f5be0fdc7cce447da5a76b2ca524b8bff4b):
+  `.github/workflows/elements-topology.yml` distinguishes offline generator
+  correctness from API estate drift; API failure does not prove stale topology.
+  This is a useful failure-state boundary for GRID, not proof that the job ran.
+
+The follow-up adds an offline PR workflow and a seventh synthetic regression.
+It exposed a real resumability defect: a blob first seen at a workflow path
+could miss Python metadata when an older commit later revealed its Python path.
+Syntax counts are now cached once per read blob and exposed only for Python
+observations; rename/deduplication no longer depends on traversal order. Legacy
+checkpoints lack those cached counts for already-read workflow-only blobs;
+start a fresh checkpoint if that cross-extension case needs Python metadata.

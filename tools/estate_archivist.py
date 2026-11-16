@@ -167,13 +167,14 @@ def advance(repo, state, *, max_commits=20, max_blobs=20, max_bytes=131072):
             blob["sha256"] = hashlib.sha256(body).hexdigest()
             blob["lines"] = len(body.splitlines())
             # No source text, identifiers, literal values or comments exported.
-            if any(path.endswith(".py") for path in blob["paths"]):
-                try:
-                    parsed = ast.parse(body)
-                    blob["python"] = {"parse": "ok", "imports": sum(isinstance(n, (ast.Import, ast.ImportFrom)) for n in ast.walk(parsed)),
-                                      "functions": sum(isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) for n in ast.walk(parsed))}
-                except (SyntaxError, ValueError, UnicodeError, RecursionError):
-                    blob["python"] = {"parse": "unavailable"}
+            # Cache syntax counts even when first encountered as a workflow:
+            # an older commit may later reveal a .py path for this same blob.
+            try:
+                parsed = ast.parse(body)
+                blob["python"] = {"parse": "ok", "imports": sum(isinstance(n, (ast.Import, ast.ImportFrom)) for n in ast.walk(parsed)),
+                                  "functions": sum(isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) for n in ast.walk(parsed))}
+            except (SyntaxError, ValueError, UnicodeError, RecursionError):
+                blob["python"] = {"parse": "unavailable"}
             blob["status"] = "read"
         except ScanError:
             blob["status"] = "unavailable"
@@ -185,6 +186,8 @@ def report(state):
     records = []
     for oid, b in sorted(state["blobs"].items()):
         record = {k: b[k] for k in ("status", "bytes", "sha256", "lines", "python") if k in b}
+        if not any(path.endswith(".py") for path in b["paths"]):
+            record.pop("python", None)
         record["git_blob"] = oid
         record["observations"] = [{"path": path, "commit": commit,
                                     "current_public_head": None if current is None else current.get(path) == oid,

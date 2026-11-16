@@ -99,6 +99,21 @@ class ArchaeologyTests(unittest.TestCase):
         self.assertEqual(sum(o["current_public_head"] for o in rows), 1)
         self.assertTrue(all(not o["path_absent_at_public_head"] for o in rows))
 
+    def test_python_metadata_survives_workflow_first_dedup(self):
+        # Newest-first traversal reads the workflow body before discovering
+        # that the same historical blob also occurred at a Python path.
+        self.write("historical.py", "import json\n")
+        self.commit()
+        self.git("rm", "historical.py")
+        self.write(".github/workflows/renamed.yml", "import json\n")
+        self.commit()
+        state = self.state()
+        first = archivist.advance(self.repo, state, max_commits=1, max_blobs=1)
+        self.assertNotIn("python", first["blobs"][0])
+        second = archivist.advance(self.repo, state, max_commits=1, max_blobs=1)
+        self.assertEqual(second["blobs"][0]["python"]["imports"], 1)
+        self.assertEqual(second["coverage"]["blob_status_counts"]["read"], 1)
+
     def test_missing_tip_blob_and_oversize_are_explicit(self):
         self.write("small.py", "x=1\n")
         self.write("large.py", "#" * 100)
