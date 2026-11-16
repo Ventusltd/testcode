@@ -62,4 +62,9 @@ part of the public receipt. No optional news or DC inputs are supplied in this
 bounded proof. Evidence and momentum remain unknown. This does not test DOM
 rendering, installed Chrome, Android, live rights or public deployment. Formal
 V9.27 composition and its browser/acceptance gates remain separately owned.
-No workflow, release tree, registry, source schedule or publication is changed.
+No release tree, registry, source schedule or publication is changed. The
+dedicated `.github/workflows/composed-consumers.yml` provisions the exact public
+Git inputs separately, then runs the offline proof with `--self-test` and retains
+only its sanitized receipt alongside the news replay receipt. The offline Bash
+block is rehearsed locally before workflow publication; check hosted success
+against the submitted commit.

@@ -55,5 +55,11 @@ IDs and archive/file SHA256 values; proof hashes include the reused Git reader.
 
 This is a minimal DOM model, not installed Chrome, layout, Android, public
 readback, ranking-quality assessment, source independence, rights or release
-acceptance. No product files, existing Testcode labs, workflows or `engines.json`
-are changed. The publication lead retains integration and release ownership.
+acceptance. No product files, existing Testcode labs or `engines.json` are changed.
+The publication lead retains integration and release ownership.
+
+The dedicated `.github/workflows/composed-consumers.yml` provisions the exact
+public Git inputs before running this proof and the prospecting export proof.
+It requires nonempty regression coverage and retains only sanitized receipts.
+The offline Bash block is rehearsed locally before the workflow is published;
+hosted success must be checked on the submitted commit.
