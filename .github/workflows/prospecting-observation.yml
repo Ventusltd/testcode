@@ -1,0 +1,108 @@
+name: Prospecting observation proof
+
+on:
+  push:
+    paths:
+      - 'drivers/prospecting-observation/**'
+      - '.github/workflows/prospecting-observation.yml'
+  pull_request:
+    paths:
+      - 'drivers/prospecting-observation/**'
+      - '.github/workflows/prospecting-observation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prospecting-observation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PRODUCER_COMMIT: fda83cd966348080f3f911cb534a40b4962019dd
+      CONSUMER_COMMIT: fb7dc5610656ea757611d5941f86f28d5613e9e6
+      NEGATIVE_COMMIT: 7b45a05f1677c72c563ed114b96e05899d741c26
+      PRODUCT_REPO: ${{ github.workspace }}/.proof-inputs/product
+      PYTHONUTF8: '1'
+    steps:
+      - name: Checkout Testcode
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # Public Git input provisioning precedes the offline proof. No collectors,
+      # package installs, later network gate or publication are part of the proof.
+      - name: Provision the exact public producer
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: fda83cd966348080f3f911cb534a40b4962019dd
+          path: .proof-inputs/product
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Provision exact consumer and negative-control commits
+        shell: bash
+        run: |
+          git -C "$PRODUCT_REPO" fetch --no-tags --no-recurse-submodules --depth=1 origin "$CONSUMER_COMMIT" "$NEGATIVE_COMMIT"
+          for commit in "$PRODUCER_COMMIT" "$CONSUMER_COMMIT" "$NEGATIVE_COMMIT"; do
+            [[ "$commit" =~ ^[0-9a-f]{40}$ ]]
+            test "$(git -C "$PRODUCT_REPO" rev-parse --verify "$commit^{commit}")" = "$commit"
+          done
+          test "$(git -C "$PRODUCT_REPO" rev-parse HEAD)" = "$PRODUCER_COMMIT"
+
+      - name: Verify pins and run the offline consumer and composition proofs
+        shell: bash
+        env:
+          TESTCODE_PROSPECTING_UI_DIR: ${{ runner.temp }}/prospecting-ui/automation/news/prospecting-ui
+          GIT_NO_LAZY_FETCH: '1'
+          GIT_NO_REPLACE_OBJECTS: '1'
+          GIT_TERMINAL_PROMPT: '0'
+          GIT_CONFIG_COUNT: '1'
+          GIT_CONFIG_KEY_0: protocol.allow
+          GIT_CONFIG_VALUE_0: never
+        run: |
+          python - <<'PY'
+          import json, os, unittest
+          from pathlib import Path
+          pins = json.loads(Path('drivers/prospecting-observation/pins.json').read_text(encoding='utf-8'))
+          expected = {
+              'repository': 'https://github.com/Ventusltd/globalgrid2050',
+              'producer': os.environ['PRODUCER_COMMIT'],
+              'consumer': os.environ['CONSUMER_COMMIT'],
+              'negative_control': os.environ['NEGATIVE_COMMIT'],
+              'baseline': '202611161244',
+          }
+          if pins != expected:
+              raise SystemExit('Proof pins differ from the provisioned immutable inputs')
+          tests = Path('drivers/prospecting-observation/test_git_inputs.py')
+          if not tests.is_file():
+              raise SystemExit('Git-input regression file is missing')
+          suite = unittest.defaultTestLoader.discover(str(tests.parent), pattern=tests.name)
+          if suite.countTestCases() == 0:
+              raise SystemExit('Git-input discovery found zero tests')
+          print(f'Git-input regression cases discovered: {suite.countTestCases()}')
+          PY
+          mkdir "$RUNNER_TEMP/prospecting-ui"
+          git -C "$PRODUCT_REPO" archive --format=tar "$CONSUMER_COMMIT" automation/news/prospecting-ui | tar -x -C "$RUNNER_TEMP/prospecting-ui"
+          python -m unittest discover -s drivers/prospecting-observation -p 'test_git_inputs.py' -v
+          node --test drivers/prospecting-observation/consumer.test.mjs
+          python -B drivers/prospecting-observation/driver.py --product-repo "$PRODUCT_REPO" --prove-negative-control --out "$RUNNER_TEMP/receipt.json"
+
+      - name: Preserve only the sanitized proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prospecting-observation-receipt
+          path: ${{ runner.temp }}/receipt.json
+          if-no-files-found: error
+          retention-days: 14
