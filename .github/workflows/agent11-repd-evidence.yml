@@ -1,0 +1,74 @@
+name: Agent11 REPD solar 1000 evidence audit (non-live)
+on:
+  push:
+    branches:
+      - agent11/repd1000-evidence-20261116
+    paths:
+      - 'sandbox/agent11-repd-evidence/**'
+      - '.github/workflows/agent11-repd-evidence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-then-pinned-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout isolated TestCode candidate
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+          persist-credentials: false
+      - name: Checkout pinned GlobalGrid2050 source (NOT DESNZ original authentication)
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 1559f40e73a4e454c39b23d5172cf4c5e96ef3ea
+          path: globalgrid2050
+          sparse-checkout: |
+            repd-2026q3.csv
+          persist-credentials: false
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline adversarial and schema checks before source network use
+        run: |
+          python -m unittest discover -s testcode/sandbox/agent11-repd-evidence -p 'test_*.py' -v
+      - name: Generate candidate sidecar and source audit
+        run: |
+          mkdir -p output
+          python testcode/sandbox/agent11-repd-evidence/engine.py \
+            --csv globalgrid2050/repd-2026q3.csv \
+            --evidence testcode/sandbox/agent11-repd-evidence/fixtures/source-candidates.jsonl \
+            --as-of 2026-11-16 --limit 1000 --expect-solar-count 7649 \
+            --out output/notes.json --audit output/audit.json --queue output/queue.json
+      - name: Assert count, source order, candidate-only and no publication
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          audit=json.loads(pathlib.Path("output/audit.json").read_text())
+          src=audit["source"]
+          assert src["all_csv_rows"]==14967, src
+          assert src["solar_rows"]==7649, src
+          assert src["selected_rows"]==1000, src
+          assert src["first_ref"]=="13899", src
+          assert src["last_selected_ref"]=="2282", src
+          assert audit["scope_rows"]==1000
+          assert audit["candidate_rows"]==2, audit
+          assert audit["independently_verified_rows"]==0
+          assert audit["publication_allowed"] is False
+          notes=json.loads(pathlib.Path("output/notes.json").read_text())
+          assert len(notes["notes"])==1000
+          assert len({n["asset_key"] for n in notes["notes"]})==1000
+          assert not any(n["official_data_mutated"] for n in notes["notes"])
+          print("PASS deterministic isolated candidate, NOT original-DESNZ or publisher-byte authentication")
+          PY
+      - name: Upload receipt and exact checked source SHA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent11-repd1000-evidence-${{ github.sha }}
+          path: output/
+          if-no-files-found: warn
+          retention-days: 30
