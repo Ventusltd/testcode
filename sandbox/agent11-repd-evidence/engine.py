@@ -22,6 +22,7 @@ REQUIRED = ("Ref ID", "Technology Type", "Site Name", "Planning Authority",
             "Development Status (short)")
 CATEGORIES = {
     "planning_submitted": ("Planning application submitted", "planning"),
+    "planning_committee_recommendation": ("Planning committee report recommended approval", "planning"),
     "consent_granted": ("Consent granted", "planning"),
     "consent_refused": ("Consent refused", "planning"),
     "construction_started": ("Construction started", "construction"),
