@@ -140,9 +140,6 @@ class V923Tests(unittest.TestCase):
                     "county": r["county"], "publisher": "Fake",
                     "source_url": "https://example.org/legit-appearing",
                     "event_date": "2025-05-05", "event_type": "consent_granted"}
-                _, _, _, a = build_output(self.rows[:1], {r["repd_ref"]: self.hashes[r["repd_ref"]]},
-                                           self.parts, self.sha, {}, evidence=[candidate]) if False else (
-                    None, None, None, None)
                 from engine import evidence_note
                 note, reason = evidence_note(adapt(r), candidate,
                                               __import__("datetime").date(2026, 11, 16))
