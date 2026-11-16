@@ -47,7 +47,20 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(note["first_seen_date"], "2026-11-16")
         self.assertIsNone(note["published_date"])
         self.assertEqual(note["asset_key"], "repd|desnz-repd|2026q3|13899")
+        self.assertEqual(note["relation_to_official"],
+                         "corroborates_existing_official_status")
+        self.assertTrue(note["brief"].startswith("CANDIDATE"))
         self.assertNotIn("Operational", note["brief"])
+
+    def test_later_refusal_never_rewrites_official_status(self):
+        row = dict(ROW, **{"Record Last Updated (dd/mm/yyyy)": "15/10/2026"})
+        event = dict(E, event_type="consent_refused", event_date="2026-11-10")
+        note, error = evidence_note(row, event, TODAY)
+        self.assertIsNone(error)
+        self.assertEqual(note["relation_to_official"],
+                         "possible_newer_milestone_unverified")
+        self.assertEqual(row["Development Status"], "Planning Permission Granted")
+        self.assertEqual(note["verification"], "candidate_requires_independent_review")
 
     def test_negative_identity_mutations(self):
         cases = [
