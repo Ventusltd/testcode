@@ -1,0 +1,72 @@
+{
+  "schema": "testcode.news-ranking-observation.v1",
+  "fixture": "synthetic_only",
+  "producer_commit": "c2b89326ab55424c4ea10ff5921d9c2bf31073dd",
+  "consumer_commit": "e2568fa9b818d39e28b106bbe49c3a53d0ad4fc2",
+  "checks": [
+    {
+      "name": "producer leaves input unmodified",
+      "passed": true
+    },
+    {
+      "name": "producer retains all four credited items",
+      "passed": true
+    },
+    {
+      "name": "producer prioritises older official policy over newest publisher",
+      "passed": true
+    },
+    {
+      "name": "raw ranking envelope rejected by existing consumer",
+      "passed": true
+    },
+    {
+      "name": "existing schema forbids per-item editorial without explicit schema change",
+      "passed": true
+    },
+    {
+      "name": "wrapping alone loses official policy item",
+      "passed": true
+    },
+    {
+      "name": "wrapping alone sorts an undated item first by collection time instead of rank",
+      "passed": true
+    },
+    {
+      "name": "unknown publisher date does not gain fresh publication status",
+      "passed": true
+    },
+    {
+      "name": "saved snapshot remains labelled snapshot",
+      "passed": true
+    },
+    {
+      "name": "failed collection remains labelled failed",
+      "passed": true
+    },
+    {
+      "name": "unsafe link remains inactive and title remains text",
+      "passed": true
+    },
+    {
+      "name": "machine ranks never grant verification",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "producer_order": [
+    "UK solar policy consultation published",
+    "UK solar farm approved",
+    "UK data centres funding announced",
+    "UK solar farm construction"
+  ],
+  "existing_display_order": [
+    "UK solar farm construction",
+    "UK data centres funding announced",
+    "UK solar farm approved"
+  ],
+  "release_compatible": false,
+  "network_requests": 0,
+  "scope": "Offline Node VM observation, not a browser, live source receipt or accepted product integration."
+}
