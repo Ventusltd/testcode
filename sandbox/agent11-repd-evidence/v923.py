@@ -17,7 +17,7 @@ from engine import canonical, evidence_note, source_queries, research_priority, 
 
 RELEASE = "202611160020"
 RELEASE_COMMIT = "1559f40e73a4e454c39b23d5172cf4c5e96ef3ea"
-ASSET_SOURCE = "desnz-repd"
+ASSET_SOURCE = "DESNZ-REPD"
 SNAPSHOT = "2026q3"
 COUNTS = (7775, 3604, 1000)
 PLANNING = ("Planning Permission", "Application Refused", "Appeal", "Awaiting Construction",
@@ -177,6 +177,7 @@ def make_ledger(rows, hashes, evidence=None, attempts=None, as_of=None):
         for e in indexed.get(ref, []):
             note, why = evidence_note(adapted, e, as_of)
             if note:
+                note["asset_key"] = key(r)  # Agent10 v1 registry casing
                 candidates.append(note)
             else:
                 reject[why] += 1
