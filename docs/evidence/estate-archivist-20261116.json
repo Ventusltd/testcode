@@ -1,0 +1,930 @@
+{
+  "schema": "ventus.estate-archivist.batch.v1",
+  "observed_date": "2026-11-16",
+  "repositories": [
+    {
+      "schema": "ventus.estate-archivist.v1",
+      "repository": "Ventusltd/elements",
+      "public_head": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+      "scope": "read-only metadata, not a registry or execution/accuracy certification",
+      "coverage": {
+        "reachable_local_commits": 7,
+        "commits_processed": 7,
+        "traversal_complete": true,
+        "selected_source_coverage_complete": true,
+        "shallow": false,
+        "unavailable_public_tips": 0,
+        "missing_public_history": 0,
+        "unavailable_trees": 0,
+        "public_reachability_unproven_commits": 0,
+        "excluded_tree_entries": 119,
+        "distinct_selected_blobs": 8,
+        "blob_status_counts": {
+          "read": 8,
+          "pending": 0,
+          "unavailable": 0,
+          "excluded_oversize": 0
+        },
+        "public_head_tree_available": true
+      },
+      "exclusions": [
+        "untracked/working-tree content",
+        "public-reachability-unproven commit trees",
+        "non-Python/non-workflow paths",
+        "symlinks/submodules",
+        "unsafe path spellings",
+        ".venv",
+        "__pycache__",
+        "node_modules",
+        "vendor",
+        "venv"
+      ],
+      "limitations": [
+        "All local refs and HEAD frozen at scan start; reflog/unreachable objects excluded.",
+        "Missing remote refs/objects are not fetched. Shallow history remains incomplete.",
+        "Same-blob paths show rename/copy candidates, not asserted file lineage.",
+        "Historic absence at public HEAD does not establish why a path disappeared.",
+        "No scripts, workflows, imports, source instructions or collectors executed."
+      ],
+      "blobs": [
+        {
+          "status": "read",
+          "bytes": 8856,
+          "sha256": "75fa1c78ec499ed2e0c80776047c9ee8bebecd2854ace864e551b83a9f2057b7",
+          "lines": 158,
+          "python": {
+            "parse": "ok",
+            "imports": 3,
+            "functions": 3
+          },
+          "git_blob": "19afa5fe11b93e1266f13cc6f1ee3953bdd82f85",
+          "observations": [
+            {
+              "path": "tests/check_catalogue.py",
+              "commit": "3567366b8bdac7c6dd8f03c6d39a4e3396ee3954",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/3567366b8bdac7c6dd8f03c6d39a4e3396ee3954/tests/check_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 16059,
+          "sha256": "0f9bf70d092c5ff916518805b7106dab9d69932d320596f048eee3b06b30550c",
+          "lines": 254,
+          "python": {
+            "parse": "ok",
+            "imports": 3,
+            "functions": 5
+          },
+          "git_blob": "1b1cc61a1b3b614945baae1d2d1b1e8048f4321d",
+          "observations": [
+            {
+              "path": "tests/check_catalogue.py",
+              "commit": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+              "current_public_head": true,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf/tests/check_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 14243,
+          "sha256": "694b570cc09ea13eadca01387f9b725c7be170cbb9df703317c6c5dfbc9e241b",
+          "lines": 249,
+          "python": {
+            "parse": "ok",
+            "imports": 9,
+            "functions": 7
+          },
+          "git_blob": "8fad7d8d3ef34df4772aba6508c87d4855bcb412",
+          "observations": [
+            {
+              "path": "build/build_catalogue.py",
+              "commit": "f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf",
+              "current_public_head": true,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/f7a92fb085c38dcbbd5cb469a66cd5ca61fb95bf/build/build_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 3849,
+          "sha256": "966e336a6ead4da55fea9ed802ee4122e97bf175a76f64ae15fdea9de9d97d20",
+          "lines": 70,
+          "python": {
+            "parse": "ok",
+            "imports": 2,
+            "functions": 2
+          },
+          "git_blob": "931bb70d6d349cb04747acfbdf92626c70e5331d",
+          "observations": [
+            {
+              "path": "tests/check_catalogue.py",
+              "commit": "8c40c2dcc6d0561206bdd56e7ddfd97a027a15a7",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/8c40c2dcc6d0561206bdd56e7ddfd97a027a15a7/tests/check_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 12772,
+          "sha256": "53496b4f21482d995dca43a873e536347127fceabe1ebb7d6ba3e97f8501c809",
+          "lines": 207,
+          "python": {
+            "parse": "ok",
+            "imports": 3,
+            "functions": 4
+          },
+          "git_blob": "999f2dc7c713701a7720f45979d9e28ac0c364c9",
+          "observations": [
+            {
+              "path": "tests/check_catalogue.py",
+              "commit": "5eafeef2ffad32bf3099fcb91feba71eab0ffb89",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/5eafeef2ffad32bf3099fcb91feba71eab0ffb89/tests/check_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 13744,
+          "sha256": "63c883b156a73a064eaf6a38848bd7a02b3569915d9902f82600ed3b3eeed316",
+          "lines": 244,
+          "python": {
+            "parse": "ok",
+            "imports": 9,
+            "functions": 7
+          },
+          "git_blob": "ceef0997d65942647df8e29d06da043b9b34d40f",
+          "observations": [
+            {
+              "path": "build/build_catalogue.py",
+              "commit": "326fa83c9f8b1c55cf1b7a6553f5c04af3f6b8c0",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/326fa83c9f8b1c55cf1b7a6553f5c04af3f6b8c0/build/build_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 12539,
+          "sha256": "cde5bdcaa413d676b17e11453e7389986271624ef7fa019cf273c4844e908892",
+          "lines": 233,
+          "python": {
+            "parse": "ok",
+            "imports": 9,
+            "functions": 7
+          },
+          "git_blob": "dfef244dc05ed740e8e3c38b5e20968c19aa7150",
+          "observations": [
+            {
+              "path": "build/build_catalogue.py",
+              "commit": "8c40c2dcc6d0561206bdd56e7ddfd97a027a15a7",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/8c40c2dcc6d0561206bdd56e7ddfd97a027a15a7/build/build_catalogue.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 7419,
+          "sha256": "e149700737dcb2fd917768d1f0c3a14708f05619191f250519282b1cf82ff247",
+          "lines": 143,
+          "python": {
+            "parse": "ok",
+            "imports": 3,
+            "functions": 3
+          },
+          "git_blob": "ef5b04a472cca0a6e288073429ec00699a51b942",
+          "observations": [
+            {
+              "path": "tests/check_catalogue.py",
+              "commit": "326fa83c9f8b1c55cf1b7a6553f5c04af3f6b8c0",
+              "current_public_head": false,
+              "path_absent_at_public_head": false,
+              "url": "https://github.com/Ventusltd/elements/blob/326fa83c9f8b1c55cf1b7a6553f5c04af3f6b8c0/tests/check_catalogue.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema": "ventus.estate-archivist.v1",
+      "repository": "Ventusltd/cosmic",
+      "public_head": "983447a7eedb82efdedd02fe3f36086671099691",
+      "scope": "read-only metadata, not a registry or execution/accuracy certification",
+      "coverage": {
+        "reachable_local_commits": 12,
+        "commits_processed": 12,
+        "traversal_complete": true,
+        "selected_source_coverage_complete": false,
+        "shallow": false,
+        "unavailable_public_tips": 2,
+        "missing_public_history": 0,
+        "unavailable_trees": 0,
+        "public_reachability_unproven_commits": 12,
+        "excluded_tree_entries": 0,
+        "distinct_selected_blobs": 0,
+        "blob_status_counts": {
+          "read": 0,
+          "pending": 0,
+          "unavailable": 0,
+          "excluded_oversize": 0
+        },
+        "public_head_tree_available": false
+      },
+      "exclusions": [
+        "untracked/working-tree content",
+        "public-reachability-unproven commit trees",
+        "non-Python/non-workflow paths",
+        "symlinks/submodules",
+        "unsafe path spellings",
+        ".venv",
+        "__pycache__",
+        "node_modules",
+        "vendor",
+        "venv"
+      ],
+      "limitations": [
+        "All local refs and HEAD frozen at scan start; reflog/unreachable objects excluded.",
+        "Missing remote refs/objects are not fetched. Shallow history remains incomplete.",
+        "Same-blob paths show rename/copy candidates, not asserted file lineage.",
+        "Historic absence at public HEAD does not establish why a path disappeared.",
+        "No scripts, workflows, imports, source instructions or collectors executed."
+      ],
+      "blobs": []
+    },
+    {
+      "schema": "ventus.estate-archivist.v1",
+      "repository": "Ventusltd/cvaa",
+      "public_head": "b124c39e5343b24dd5b546a0c279a1c06360bdad",
+      "scope": "read-only metadata, not a registry or execution/accuracy certification",
+      "coverage": {
+        "reachable_local_commits": 65,
+        "commits_processed": 20,
+        "traversal_complete": false,
+        "selected_source_coverage_complete": false,
+        "shallow": false,
+        "unavailable_public_tips": 2,
+        "missing_public_history": 0,
+        "unavailable_trees": 0,
+        "public_reachability_unproven_commits": 11,
+        "excluded_tree_entries": 519,
+        "distinct_selected_blobs": 3,
+        "blob_status_counts": {
+          "read": 3,
+          "pending": 0,
+          "unavailable": 0,
+          "excluded_oversize": 0
+        },
+        "public_head_tree_available": false
+      },
+      "exclusions": [
+        "untracked/working-tree content",
+        "public-reachability-unproven commit trees",
+        "non-Python/non-workflow paths",
+        "symlinks/submodules",
+        "unsafe path spellings",
+        ".venv",
+        "__pycache__",
+        "node_modules",
+        "vendor",
+        "venv"
+      ],
+      "limitations": [
+        "All local refs and HEAD frozen at scan start; reflog/unreachable objects excluded.",
+        "Missing remote refs/objects are not fetched. Shallow history remains incomplete.",
+        "Same-blob paths show rename/copy candidates, not asserted file lineage.",
+        "Historic absence at public HEAD does not establish why a path disappeared.",
+        "No scripts, workflows, imports, source instructions or collectors executed."
+      ],
+      "blobs": [
+        {
+          "status": "read",
+          "bytes": 951,
+          "sha256": "5c3bbac43d0602cf3e1a0453a6f2fa5b10def4f67924e867f07f0e3bb348a88d",
+          "lines": 37,
+          "git_blob": "0ad51dc902beaeb775a551f6cdcdca9c56cb761d",
+          "observations": [
+            {
+              "path": ".github/workflows/202608301446-inoculate.yml",
+              "commit": "c7c9ba8f6ceef9efbb09fc4b674a30387a297287",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/cvaa/blob/c7c9ba8f6ceef9efbb09fc4b674a30387a297287/.github/workflows/202608301446-inoculate.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4157,
+          "sha256": "7846ca75c1336b379f57779a131a9ef2cb12684652f651704e80fa48c8ada066",
+          "lines": 78,
+          "git_blob": "34a07f624c3280d02b1b007f8cae5aa45b0e527b",
+          "observations": [
+            {
+              "path": ".github/workflows/cvaa-vaccine-build-202609132340.yml",
+              "commit": "5e34242d494febd6d1e1522a3fe0f65241f3645a",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/cvaa/blob/5e34242d494febd6d1e1522a3fe0f65241f3645a/.github/workflows/cvaa-vaccine-build-202609132340.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4698,
+          "sha256": "16b2461767f0d698ff06ffed645146b4351b9e278130bcbc1a2b49c965cbaf66",
+          "lines": 112,
+          "git_blob": "d53f4516354109aacfc1b09fe92bb231bc495c0f",
+          "observations": [
+            {
+              "path": ".github/workflows/202608301447-selftest.yml",
+              "commit": "c7c9ba8f6ceef9efbb09fc4b674a30387a297287",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/cvaa/blob/c7c9ba8f6ceef9efbb09fc4b674a30387a297287/.github/workflows/202608301447-selftest.yml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema": "ventus.estate-archivist.v1",
+      "repository": "Ventusltd/spiders",
+      "public_head": "2c661f5be0fdc7cce447da5a76b2ca524b8bff4b",
+      "scope": "read-only metadata, not a registry or execution/accuracy certification",
+      "coverage": {
+        "reachable_local_commits": 333,
+        "commits_processed": 20,
+        "traversal_complete": false,
+        "selected_source_coverage_complete": false,
+        "shallow": false,
+        "unavailable_public_tips": 2,
+        "missing_public_history": 0,
+        "unavailable_trees": 0,
+        "public_reachability_unproven_commits": 9,
+        "excluded_tree_entries": 1804,
+        "distinct_selected_blobs": 25,
+        "blob_status_counts": {
+          "read": 25,
+          "pending": 0,
+          "unavailable": 0,
+          "excluded_oversize": 0
+        },
+        "public_head_tree_available": false
+      },
+      "exclusions": [
+        "untracked/working-tree content",
+        "public-reachability-unproven commit trees",
+        "non-Python/non-workflow paths",
+        "symlinks/submodules",
+        "unsafe path spellings",
+        ".venv",
+        "__pycache__",
+        "node_modules",
+        "vendor",
+        "venv"
+      ],
+      "limitations": [
+        "All local refs and HEAD frozen at scan start; reflog/unreachable objects excluded.",
+        "Missing remote refs/objects are not fetched. Shallow history remains incomplete.",
+        "Same-blob paths show rename/copy candidates, not asserted file lineage.",
+        "Historic absence at public HEAD does not establish why a path disappeared.",
+        "No scripts, workflows, imports, source instructions or collectors executed."
+      ],
+      "blobs": [
+        {
+          "status": "read",
+          "bytes": 4781,
+          "sha256": "af044f1376548fbf0df72b22a9b1b10ef86eba23c8a4756d8acc57db1e313dc7",
+          "lines": 86,
+          "python": {
+            "parse": "ok",
+            "imports": 7,
+            "functions": 6
+          },
+          "git_blob": "002642c3d319dacfd357b0d8aeb5a7d37fe50915",
+          "observations": [
+            {
+              "path": "codex/reload/test_reload.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/test_reload.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1222,
+          "sha256": "1a4bd7ce155a1f6813b12b6e5b3dffc06e86d896689d730f9e13a84d828afab7",
+          "lines": 36,
+          "git_blob": "1174a0dbf2478aae1c130a21b5f6cfc70daec204",
+          "observations": [
+            {
+              "path": ".github/workflows/spider_printer_registry_smoke.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/spider_printer_registry_smoke.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4901,
+          "sha256": "4911a7e2a0956d854f8c40aef06cb2975a838fcae35f3602cd61279dc82a858c",
+          "lines": 117,
+          "git_blob": "1690fa8240b9387828e4086487f41bfb93b683e7",
+          "observations": [
+            {
+              "path": ".github/workflows/elements-topology.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/elements-topology.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 5297,
+          "sha256": "8288bd8da460b6f41590facfc9aa692ad7da6e04546cf7f2809ff1e8ddf18e8d",
+          "lines": 97,
+          "python": {
+            "parse": "ok",
+            "imports": 7,
+            "functions": 4
+          },
+          "git_blob": "20a7d42ea5f3f40da871bbc6570638324f43a854",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/campaign.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/campaign.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 795,
+          "sha256": "5c57009ef461f7ab3ae5003c64eecd5eb3e56bd04cb937c914d2fdd318660bb6",
+          "lines": 24,
+          "git_blob": "23a16c9606ba45894d214830bda283aa26877414",
+          "observations": [
+            {
+              "path": ".github/workflows/maya-hunt.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/maya-hunt.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 14848,
+          "sha256": "dcd82d50c6affa3ab5100c404dd4d285cfd2a8f1eee445a99e4a9d6529d7fc7e",
+          "lines": 299,
+          "git_blob": "3628d0ff13650d0ff78277c79cd014e4bbbb7098",
+          "observations": [
+            {
+              "path": ".github/workflows/genome.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/genome.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 2180,
+          "sha256": "211ac562c5d66010c20746b908b351a4a615f7e7b610f7c062ba0cf27eaa8bfe",
+          "lines": 47,
+          "python": {
+            "parse": "ok",
+            "imports": 3,
+            "functions": 2
+          },
+          "git_blob": "3f259757c9209f58d5e8e0266e889ef447d5891d",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/validate_roadmap.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/validate_roadmap.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4085,
+          "sha256": "e794e3148ac6590c83f6dee519c73b7cf5349fa5df41187422ef351ba0ddee15",
+          "lines": 118,
+          "git_blob": "4cd852854a73af704878f40f76a760cf148eacec",
+          "observations": [
+            {
+              "path": ".github/workflows/20260904-estate-survey.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/20260904-estate-survey.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1217,
+          "sha256": "2837b6048b11f0a1a98a56f38c571727ac1a3864badc0592f0851bf248e12b91",
+          "lines": 38,
+          "git_blob": "580167b40e5be1c70e1bec3acc89d110ea736723",
+          "observations": [
+            {
+              "path": ".github/workflows/spider_maya_v1_scan.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/spider_maya_v1_scan.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1136,
+          "sha256": "40639530b8d2606b5107f48e5991733eb8baad1e2434e28f64c3c3a184c8bad8",
+          "lines": 27,
+          "python": {
+            "parse": "ok",
+            "imports": 4,
+            "functions": 2
+          },
+          "git_blob": "5b94795292bd2f38cbf4c2f03fa1e888cf0b4e1c",
+          "observations": [
+            {
+              "path": "codex/build-plan/estate-audit.test.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/build-plan/estate-audit.test.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 2777,
+          "sha256": "b3ea2179c78df792bea9100d090149f13d2bfce3352482db51224b4cd86dbb35",
+          "lines": 54,
+          "python": {
+            "parse": "ok",
+            "imports": 6,
+            "functions": 3
+          },
+          "git_blob": "5e75e02cf1eb0208e196a94e87b67219a21aeea2",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/observe_ci.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/observe_ci.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 7791,
+          "sha256": "7c54100cd561efcb1b5287d862a4d2f7d0abce6fda4d9d664f902ac280f8a7e3",
+          "lines": 136,
+          "python": {
+            "parse": "ok",
+            "imports": 10,
+            "functions": 4
+          },
+          "git_blob": "6343619f47b1912d2116d844c76bd7f0c6dc4522",
+          "observations": [
+            {
+              "path": "codex/build-plan/estate-audit.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/build-plan/estate-audit.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1935,
+          "sha256": "3cc1b9274ee999c9e9d626e369eddf7a7a9a8b67a3216f18d450fddd507646d4",
+          "lines": 41,
+          "python": {
+            "parse": "ok",
+            "imports": 5,
+            "functions": 3
+          },
+          "git_blob": "79f1dd66fc20d77c1712c380fe8df534e0840ac5",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/test_campaign.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/test_campaign.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 8894,
+          "sha256": "011796d936c932fd1a5121b7857c72ff544808cf1158bbae2836ed013abb96ab",
+          "lines": 191,
+          "python": {
+            "parse": "ok",
+            "imports": 5,
+            "functions": 3
+          },
+          "git_blob": "90a2297bb52ab51137257f2f1dba48e60d63e231",
+          "observations": [
+            {
+              "path": "spider_printer_v1/tools/test_build_topology.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/spider_printer_v1/tools/test_build_topology.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 9229,
+          "sha256": "e6371543e4797830efe64f5fe9fa575a716544eab4b73930851201451f04a4fb",
+          "lines": 156,
+          "python": {
+            "parse": "ok",
+            "imports": 6,
+            "functions": 6
+          },
+          "git_blob": "a6a85ac6753e2fca07088744684467571b4565bc",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/validate.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/validate.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 21167,
+          "sha256": "be2f7411c0371b28071a949cb1d011ff08c5d23f0274663c7b4a3894a6d8a50b",
+          "lines": 472,
+          "python": {
+            "parse": "ok",
+            "imports": 10,
+            "functions": 12
+          },
+          "git_blob": "b29fad975daadf82fe13e22e57e8b7b1df66d5d2",
+          "observations": [
+            {
+              "path": "spider_printer_v1/tools/build_topology.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/spider_printer_v1/tools/build_topology.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 8422,
+          "sha256": "208b33bdb79ac1e7f6216997917c31e3d238fc58b68b0bca40d48c1b76ac3686",
+          "lines": 235,
+          "python": {
+            "parse": "ok",
+            "imports": 10,
+            "functions": 12
+          },
+          "git_blob": "b5526495e655c2e1acc946d1704af67bc45b996d",
+          "observations": [
+            {
+              "path": "spider_maya/v1/scripts/scan_areas_menu.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/spider_maya/v1/scripts/scan_areas_menu.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4879,
+          "sha256": "2160af41b9728ab5a23446bf38013b601242c10cb1657a1a999c41bd190016a1",
+          "lines": 105,
+          "git_blob": "b71292383e7c0da7ac2995106560f433d37efb80",
+          "observations": [
+            {
+              "path": ".github/workflows/20260904-llama-advisory.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/20260904-llama-advisory.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4269,
+          "sha256": "76acbd9fc7e0dcc83f1bf058ae4b0e3a511f6cc663bfe81c030b42fa3480917b",
+          "lines": 103,
+          "python": {
+            "parse": "ok",
+            "imports": 5,
+            "functions": 6
+          },
+          "git_blob": "c54300dbda48d3ee1a472c2e970ae8b2bc44a637",
+          "observations": [
+            {
+              "path": "spider_maya/v1/scripts/validate.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/spider_maya/v1/scripts/validate.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1838,
+          "sha256": "45fea13467e82af7b6144bd4e8312ceff103b1a96082f9a5fd502919021428d5",
+          "lines": 45,
+          "git_blob": "caf6444c5e6cdb16fbed9b3911b6926b12164119",
+          "observations": [
+            {
+              "path": ".github/workflows/20260905-build-context.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/20260905-build-context.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 4491,
+          "sha256": "f2505d79ad2574a4c73b0a7553dc42d23e4f122af4820d48589f23a05995321c",
+          "lines": 88,
+          "python": {
+            "parse": "ok",
+            "imports": 7,
+            "functions": 10
+          },
+          "git_blob": "caf6f2194ad22f8b176d18725e7ebb3f2c6048b5",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/test_validate.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/test_validate.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 944,
+          "sha256": "e46529ba7c00288c70ba8cd454e54d719339980a3683cac3c6ba94e085b46a99",
+          "lines": 31,
+          "python": {
+            "parse": "ok",
+            "imports": 5,
+            "functions": 4
+          },
+          "git_blob": "cf222333043ba2f6f4aca2e3363b498d384c7e90",
+          "observations": [
+            {
+              "path": "codex/reload/plan-tracker/test_roadmap.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/plan-tracker/test_roadmap.py"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1248,
+          "sha256": "cea226be75eb471c468d14bc331ecbee4a8e851c098b078bdc53afebb75184ba",
+          "lines": 44,
+          "git_blob": "d7e2817e8c316547752caf59f9e3a87e0b91d8cd",
+          "observations": [
+            {
+              "path": ".github/workflows/20260904-60x-program-proof.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/20260904-60x-program-proof.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 1151,
+          "sha256": "604b8f696560a6830395746835a7be4a94d1e588627ac8c5ea05fb42cc9ab8af",
+          "lines": 37,
+          "git_blob": "f377f5ac9f08d7b6e7af6af7b3645e522aca4ead",
+          "observations": [
+            {
+              "path": ".github/workflows/estate-audit.yml",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/.github/workflows/estate-audit.yml"
+            }
+          ]
+        },
+        {
+          "status": "read",
+          "bytes": 11575,
+          "sha256": "e75217563d97ef3ca68e5e6ce834dc3f184aef2dcc5bc17c449f68a349150c9f",
+          "lines": 203,
+          "python": {
+            "parse": "ok",
+            "imports": 11,
+            "functions": 8
+          },
+          "git_blob": "f48cb87810b2b34919824182d4a9883f6356029a",
+          "observations": [
+            {
+              "path": "codex/reload/reload.py",
+              "commit": "f41598cf15cc66cf948ca24f12b27a8df6fe1ebc",
+              "current_public_head": null,
+              "path_absent_at_public_head": null,
+              "url": "https://github.com/Ventusltd/spiders/blob/f41598cf15cc66cf948ca24f12b27a8df6fe1ebc/codex/reload/reload.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "schema": "ventus.estate-archivist.v1",
+      "repository": "Ventusltd/kuiper-belt",
+      "public_head": "b57a977568e356051d867adeda37682f9d107ec0",
+      "scope": "read-only metadata, not a registry or execution/accuracy certification",
+      "coverage": {
+        "reachable_local_commits": 151,
+        "commits_processed": 20,
+        "traversal_complete": false,
+        "selected_source_coverage_complete": false,
+        "shallow": false,
+        "unavailable_public_tips": 6,
+        "missing_public_history": 0,
+        "unavailable_trees": 0,
+        "public_reachability_unproven_commits": 20,
+        "excluded_tree_entries": 0,
+        "distinct_selected_blobs": 0,
+        "blob_status_counts": {
+          "read": 0,
+          "pending": 0,
+          "unavailable": 0,
+          "excluded_oversize": 0
+        },
+        "public_head_tree_available": false
+      },
+      "exclusions": [
+        "untracked/working-tree content",
+        "public-reachability-unproven commit trees",
+        "non-Python/non-workflow paths",
+        "symlinks/submodules",
+        "unsafe path spellings",
+        ".venv",
+        "__pycache__",
+        "node_modules",
+        "vendor",
+        "venv"
+      ],
+      "limitations": [
+        "All local refs and HEAD frozen at scan start; reflog/unreachable objects excluded.",
+        "Missing remote refs/objects are not fetched. Shallow history remains incomplete.",
+        "Same-blob paths show rename/copy candidates, not asserted file lineage.",
+        "Historic absence at public HEAD does not establish why a path disappeared.",
+        "No scripts, workflows, imports, source instructions or collectors executed."
+      ],
+      "blobs": []
+    }
+  ]
+}
