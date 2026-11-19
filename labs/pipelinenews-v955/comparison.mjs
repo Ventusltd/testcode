@@ -47,6 +47,7 @@ for (const [engine, launcher] of Object.entries({ chromium, webkit })) {
               gaugeCount: gauges.filter(canvas => globalThis.Chart?.getChart(canvas)).length,
               gaugeBottom: Math.max(...gauges.map(canvas => canvas.getBoundingClientRect().bottom)),
               tickerBottom: ticker?.getBoundingClientRect().bottom,
+              collapsedFirstRow: document.querySelector('#tbody tr[id^="repd-"]')?.getBoundingClientRect().height,
               rows: document.querySelectorAll('#tbody tr[id^="repd-"]').length,
               pageWidth: document.documentElement.scrollWidth,
               viewportWidth: document.documentElement.clientWidth,
@@ -58,6 +59,23 @@ for (const [engine, launcher] of Object.entries({ chromium, webkit })) {
             assert.ok(entry.dashboard.gaugeBottom <= viewport.height, 'Candidate dashboard below fold');
             assert.ok(entry.dashboard.tickerBottom < entry.dashboard.gaugeBottom, 'Ticker below gauges');
             assert.ok(entry.dashboard.pageWidth <= entry.dashboard.viewportWidth + 2, 'Page overflows');
+            assert.ok(entry.dashboard.collapsedFirstRow < 85, 'Collapsed project row is oversized');
+            assert.equal(await page.locator('#newsSearch').isVisible(), false);
+            await page.waitForFunction(() => document.querySelector('#newsStatus')?.dataset.order === 'date');
+            const sort = page.locator('#sortProjects');
+            const previousSort = await sort.inputValue();
+            await page.locator('th[data-column-heading=capacity] .column-sort').first().click();
+            await page.waitForFunction(previous => document.querySelector('#sortProjects').value !== previous, previousSort);
+            entry.capacitySort = await sort.inputValue();
+            const project = page.locator('#tbody tr[id^="repd-"]').first();
+            const details = project.locator('details.project-record');
+            await details.locator('summary').click();
+            assert.ok(await details.evaluate(element => element.open), 'Project record did not expand');
+            const target = new URL(await project.locator('a.pn-journey-link').first().getAttribute('href'));
+            const ref = (await project.getAttribute('id')).replace('repd-', '');
+            assert.equal(target.origin + target.pathname, 'https://ventusltd.github.io/gridatlas/atlas/');
+            assert.equal(target.searchParams.get('repd_ref'), ref);
+            entry.map = target.href;
           }
         } catch (error) {
           entry.error = String(error);

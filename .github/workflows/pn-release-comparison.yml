@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ventusltd/globalgrid2050
-          ref: 73587c41cfed410ebdc329269866bb82b544fb98
+          ref: 01c57990e63eefa3fa8076acd87b24b2ef3df7a8
           path: dependencies/source
           sparse-checkout-cone-mode: false
           sparse-checkout: |
