@@ -32,6 +32,7 @@ jobs:
             /uk_renewables_pipeline/202611190138/
             /automation/
             /.github/workflows/
+            /dist/
       - name: Checkout immutable GridAtlas V9.191 receiver
         uses: actions/checkout@v4
         with:

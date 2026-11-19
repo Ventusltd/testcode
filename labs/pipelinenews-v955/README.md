@@ -6,7 +6,7 @@
 
 The three Git submodules in this directory pin **exact commits**, not moving branches:
 
-- `source/`: `Ventusltd/globalgrid2050@f966203afb84561aa8b6b2e711dcf23812498a9b`, containing the complete V9.55 release, older V9.51/V9.53/V9.54 comparison editions, shared `automation/` modules, data and assets. This is the authoritative published source, not a reimplementation.
+- `source/`: `Ventusltd/globalgrid2050@f966203afb84561aa8b6b2e711dcf23812498a9b`, containing the complete V9.55 release, older V9.51/V9.53/V9.54 comparison editions, shared `automation/` modules, root `dist/` legacy news feed, data and assets. This is the authoritative published source, not a reimplementation.
 - `gridatlas/`: `Ventusltd/gridatlas@839435104e0fdfb059c407a2e49cb9ad540d8f5f`, the V9.191 rollback.
 - `pipelinenews/`: `Ventusltd/pipelinenews@35c7507fe4c164037c993e512e3e72972de12905`, related upstream pipeline engineering, **not** an additional engine mounted in V9.55.
 

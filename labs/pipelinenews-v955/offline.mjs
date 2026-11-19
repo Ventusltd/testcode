@@ -83,6 +83,9 @@ for(const [key,expected] of [['project_partitions',7775],['atlas_partitions',774
  }
  check('partition count '+key,total===expected,String(total));
 }
+const legacyNews=resolve(source,'dist/major_project_news_v9_5_1.json');
+check('legacy major project news dynamic fetch dependency',existsSync(legacyNews),legacyNews);
+if(existsSync(legacyNews))check('legacy news schema',JSON.parse(readFileSync(legacyNews,'utf8')).schema==='globalgrid2050.major-project-news.v9.5.1');
 const feeds=JSON.parse(readFileSync(resolve(source,'automation/news/pipeline_feeds.json'),'utf8')).feeds;
 check('50 monitored RSS/Atom feeds',feeds.length===50,String(feeds.length));
 check('30 BBC feeds',feeds.filter(f=>f.source==='BBC News').length===30,String(feeds.filter(f=>f.source==='BBC News').length));
