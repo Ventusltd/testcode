@@ -17,7 +17,7 @@ jobs:
         with:
           repository: Ventusltd/globalgrid2050
           ref: 73587c41cfed410ebdc329269866bb82b544fb98
-          path: source
+          path: dependencies/source
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /uk_renewables_pipeline/202611180633/
@@ -28,31 +28,41 @@ jobs:
         with:
           repository: Ventusltd/gridatlas
           ref: 839435104e0fdfb059c407a2e49cb9ad540d8f5f
-          path: receiver
+          path: dependencies/receiver
           sparse-checkout: atlas
       - uses: actions/checkout@v4
         with:
           repository: Ventusltd/pipelinenews
           ref: 35c7507fe4c164037c993e512e3e72972de12905
-          path: pipeline-engineering
+          path: dependencies/pipeline-engineering
           sparse-checkout: |
             automation
             scripts
             ui
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: 31977135a7ba0a219f1ea70b3057d2e5e90ddb0d
+          path: kuiper
+          sparse-checkout: tools/estate.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Inventory exact bytes across pinned checkouts
-        run: python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json source receiver pipeline-engineering
+      - name: Kuiper repository map and isolated Git blob aliases
+        run: |
+          python3 kuiper/tools/estate.py --roots dependencies --depth repo --seed pipeline-news-v956 --out evidence/kuiper
+          python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json dependencies/source dependencies/receiver dependencies/pipeline-engineering
       - name: Install the pinned browser harness
-        working-directory: source/uk_renewables_pipeline/202611191418
+        working-directory: dependencies/source/uk_renewables_pipeline/202611191418
         run: |
           npm ci
           npx playwright install --with-deps chromium webkit
       - name: Compare genuine public editions with the candidate
         run: |
-          python3 -m http.server 8765 --directory source >evidence/http.log 2>&1 &
-          node labs/pipelinenews-v955/comparison.mjs source evidence
+          python3 -m http.server 8765 --directory dependencies/source >evidence/http.log 2>&1 &
+          node labs/pipelinenews-v955/comparison.mjs dependencies/source evidence
       - uses: actions/upload-artifact@v4
         if: always()
         with:
