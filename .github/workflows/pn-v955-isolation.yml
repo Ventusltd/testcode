@@ -1,0 +1,97 @@
+name: Pipeline News V9.55 isolated bug lab
+on:
+  pull_request:
+    paths:
+      - 'labs/pipelinenews-v955/**'
+      - '.gitmodules'
+      - '.github/workflows/pn-v955-isolation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout testcode lab
+        uses: actions/checkout@v4
+        with:
+          path: testcode
+          submodules: false
+      - name: Checkout immutable GlobalGrid2050 release and all shared automation
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: f966203afb84561aa8b6b2e711dcf23812498a9b
+          path: testcode/labs/pipelinenews-v955/source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /uk_renewables_pipeline/202611191305/
+            /uk_renewables_pipeline/202611191154/
+            /uk_renewables_pipeline/202611191046/
+            /uk_renewables_pipeline/202611190138/
+            /uk_renewables_pipeline/202611161734/
+            /scripts/
+            /repd-2026q3.csv
+            /repd.csv
+            /automation/
+            /.github/workflows/
+            /dist/
+      - name: Checkout immutable GridAtlas V9.191 receiver
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 839435104e0fdfb059c407a2e49cb9ad540d8f5f
+          path: testcode/labs/pipelinenews-v955/gridatlas
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /atlas/
+            /STATE.md
+            /index.html
+      - name: Checkout PipelineNews engineering source
+        uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/pipelinenews
+          ref: 35c7507fe4c164037c993e512e3e72972de12905
+          path: testcode/labs/pipelinenews-v955/pipelinenews
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /README.md
+            /automation/
+            /scripts/
+            /ui/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline first — exact commit, source closure, SRI, historic identity
+        run: node testcode/labs/pipelinenews-v955/offline.mjs
+      - name: Existing Python collector and REPD change-control regressions
+        working-directory: testcode/labs/pipelinenews-v955/source
+        run: |
+          python3 -m pip install --disable-pip-version-check pytest==8.4.2 openpyxl==3.1.5 pandas==2.3.3
+          python3 -m pytest -q -p no:cacheprovider automation/news/tests/test_pipeline_headlines.py automation/news/tests/test_news_algorithm.py automation/news/tests/test_news_priority_export.py automation/repd/tests/test_monthly.py automation/repd/tests/test_detect_fetch.py automation/repd/tests/test_hashguard.py
+      - name: Install original pinned Playwright harness
+        id: install
+        working-directory: testcode/labs/pipelinenews-v955/source/uk_renewables_pipeline/202611191305
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
+      - name: Browser bug tests — real Chart.js and 12 viewports
+        run: |
+          python3 -m http.server 8765 --directory testcode/labs/pipelinenews-v955/source >/tmp/pn-v955-lab-http.log 2>&1 &
+          node testcode/labs/pipelinenews-v955/browser.mjs
+      - name: Real GridAtlas receiver and identity, separately from MAP URL checks
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: node testcode/labs/pipelinenews-v955/receiver.mjs
+      - name: Public Pages served-byte check, separately from CI deployment
+        if: always()
+        run: node testcode/labs/pipelinenews-v955/public.mjs
+      - name: Save screenshots, request failures and test receipts even when red
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pn-v955-isolation-evidence
+          path: |
+            testcode/labs/pipelinenews-v955/evidence/
+            /tmp/pn-v955-lab-http.log
+          if-no-files-found: warn

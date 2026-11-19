@@ -1,0 +1,69 @@
+name: Pipeline News candidate versus public releases
+on:
+  pull_request:
+    paths:
+      - 'labs/pipelinenews-v955/**'
+      - '.github/workflows/pn-release-comparison.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: e7689f286ae8acb6dd2af9e46ba7d7288321815e
+          path: dependencies/source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /uk_renewables_pipeline/202611180633/
+            /uk_renewables_pipeline/20261119*/
+            /automation/
+            /dist/
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 839435104e0fdfb059c407a2e49cb9ad540d8f5f
+          path: dependencies/receiver
+          sparse-checkout: atlas
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/pipelinenews
+          ref: 35c7507fe4c164037c993e512e3e72972de12905
+          path: dependencies/pipeline-engineering
+          sparse-checkout: |
+            automation
+            scripts
+            ui
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/kuiper-belt
+          ref: 31977135a7ba0a219f1ea70b3057d2e5e90ddb0d
+          path: kuiper
+          sparse-checkout: tools/estate.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Kuiper repository map and isolated Git blob aliases
+        run: |
+          python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json dependencies/source dependencies/receiver dependencies/pipeline-engineering --kuiper kuiper/tools/estate.py
+      - name: Install the pinned browser harness
+        working-directory: dependencies/source/uk_renewables_pipeline/202611191418
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
+      - name: Compare genuine public editions with the candidate
+        run: |
+          python3 -m http.server 8765 --directory dependencies/source >evidence/http.log 2>&1 &
+          node labs/pipelinenews-v955/comparison.mjs dependencies/source evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-news-release-comparison
+          path: evidence/
