@@ -64,7 +64,7 @@ jobs:
       - name: Existing Python collector and REPD change-control regressions
         working-directory: testcode/labs/pipelinenews-v955/source
         run: |
-          python3 -m pip install --disable-pip-version-check pytest==8.4.2
+          python3 -m pip install --disable-pip-version-check pytest==8.4.2 openpyxl==3.1.5
           python3 -m pytest -q -p no:cacheprovider automation/news/tests/test_pipeline_headlines.py automation/news/tests/test_news_algorithm.py automation/news/tests/test_news_priority_export.py automation/repd/tests/test_monthly.py automation/repd/tests/test_detect_fetch.py automation/repd/tests/test_hashguard.py
       - name: Install original pinned Playwright harness
         id: install
