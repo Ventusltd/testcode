@@ -1,0 +1,60 @@
+﻿name: Pipeline News candidate versus public releases
+on:
+  pull_request:
+    paths:
+      - 'labs/pipelinenews-v955/**'
+      - '.github/workflows/pn-release-comparison.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/globalgrid2050
+          ref: 73587c41cfed410ebdc329269866bb82b544fb98
+          path: source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /uk_renewables_pipeline/202611180633/
+            /uk_renewables_pipeline/20261119*/
+            /automation/
+            /dist/
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/gridatlas
+          ref: 839435104e0fdfb059c407a2e49cb9ad540d8f5f
+          path: receiver
+          sparse-checkout: atlas
+      - uses: actions/checkout@v4
+        with:
+          repository: Ventusltd/pipelinenews
+          ref: 35c7507fe4c164037c993e512e3e72972de12905
+          path: pipeline-engineering
+          sparse-checkout: |
+            automation
+            scripts
+            ui
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inventory exact bytes across pinned checkouts
+        run: python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json source receiver pipeline-engineering
+      - name: Install the pinned browser harness
+        working-directory: source/uk_renewables_pipeline/202611191418
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
+      - name: Compare genuine public editions with the candidate
+        run: |
+          python3 -m http.server 8765 --directory source >evidence/http.log 2>&1 &
+          node labs/pipelinenews-v955/comparison.mjs source evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-news-release-comparison
+          path: evidence/
