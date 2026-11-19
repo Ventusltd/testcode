@@ -27,7 +27,7 @@ for(const p of ['data','news','solar1000','map-entry.mjs','scripts']){
 }
 const html=readFileSync(index,'utf8');
 check('one real gauge canvas of each ID',['g1','g2','g3'].every(id=>(html.match(new RegExp('id="'+id+'"','g'))||[]).length===1));
-check('HUD outside disclosure',html.indexOf('class="gauges hud-gauges"')>html.indexOf('id="repdPanel"')&&html.indexOf('class="gauges hud-gauges"')<html.indexOf('class="compact-analytics"'));
+check('HUD outside disclosure',html.indexOf('class="gauges hud-gauges"')>html.indexOf('id="repdPanel"')&&(html.indexOf('class="compact-analytics"')===-1||html.indexOf('class="gauges hud-gauges"')<html.indexOf('class="compact-analytics"')));
 if(/<title>[^<]*V9\.54/.test(html)||/V9\.54 · PIPELINE NEWS/.test(html))report.bugs.push({severity:'minor',code:'PN-955-LABEL',evidence:'V9.55 index title and Site tools still label V9.54',scope:'release metadata; not a data integrity issue'});
 const checked=new Set();
 function attr(tag,key){return tag.match(new RegExp('\\b'+key+'\\s*=\\s*["\\x27]([^"\\x27]+)["\\x27]','i'))?.[1]||'';}

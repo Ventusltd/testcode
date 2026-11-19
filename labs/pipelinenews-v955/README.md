@@ -21,7 +21,7 @@ node labs/pipelinenews-v955/offline.mjs
 cd labs/pipelinenews-v955/source/uk_renewables_pipeline/202611191305
 npm ci
 npx playwright install --with-deps chromium webkit
-cd ../../..
+cd ../../../../..
 python3 -m http.server 8765 --directory labs/pipelinenews-v955/source &
 node labs/pipelinenews-v955/browser.mjs
 ```

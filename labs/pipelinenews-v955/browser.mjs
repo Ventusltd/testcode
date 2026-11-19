@@ -97,7 +97,7 @@ for(const [engine,launcher] of engines){
     await page.locator('#applyMW').click();
     const filtered=await page.locator('#v2').textContent();
     expect(Number(filtered.replaceAll(',',''))<3604,'MW-FILTER','Minimum MW did not reduce projects: '+filtered);
-    await page.reload({waitUntil:'domcontentloaded'});
+    await page.goto(base+cfg.source.release+'/?technology=solar',{waitUntil:'domcontentloaded'});
     await ready(page,name+'-warm');
     entry.warm={newsOrder:await page.locator('#newsStatus').getAttribute('data-order'),gauges:await page.locator('.hud-gauges canvas').count()};
     await page.screenshot({path:resolve(out,name+'-warm.png')});
