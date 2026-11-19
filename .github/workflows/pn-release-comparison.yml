@@ -52,8 +52,7 @@ jobs:
           node-version: '22'
       - name: Kuiper repository map and isolated Git blob aliases
         run: |
-          python3 kuiper/tools/estate.py --roots dependencies --depth repo --seed pipeline-news-v956 --out evidence/kuiper
-          python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json dependencies/source dependencies/receiver dependencies/pipeline-engineering
+          python3 labs/pipelinenews-v955/catalogue.py evidence/catalogue.json dependencies/source dependencies/receiver dependencies/pipeline-engineering --kuiper kuiper/tools/estate.py
       - name: Install the pinned browser harness
         working-directory: dependencies/source/uk_renewables_pipeline/202611191418
         run: |
