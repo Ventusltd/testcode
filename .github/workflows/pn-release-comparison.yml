@@ -1,4 +1,4 @@
-﻿name: Pipeline News candidate versus public releases
+name: Pipeline News candidate versus public releases
 on:
   pull_request:
     paths:
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Ventusltd/globalgrid2050
-          ref: 01c57990e63eefa3fa8076acd87b24b2ef3df7a8
+          ref: e7689f286ae8acb6dd2af9e46ba7d7288321815e
           path: dependencies/source
           sparse-checkout-cone-mode: false
           sparse-checkout: |

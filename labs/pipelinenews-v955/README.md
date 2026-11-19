@@ -35,3 +35,11 @@ Test mobile and desktop (320, 375, 393, 768, 1440, 1920), Chromium and WebKit; v
 **Known defect at isolation time:** the V9.55 index still says V9.54 in title, Site tools and release metadata. The lab records this rather than patching historical release bytes. The user's 13:04 GitHub unicorn page occurred while Pages deployment was still in progress; it is not evidence of a JavaScript crash.
 
 **Important:** source HTML loads Chart.js from jsDelivr; this dependency is not bundled into the release. If the CDN fails, the current gauge module silently substitutes an in-memory stub and numeric values may still appear. The network-denial scenario tests for this misleading success condition and records it as a defect if observed.
+
+## V9.56 candidate comparison
+
+The separate `pn-release-comparison.yml` workflow in this PR pins the successor source and compares its actual browser output with the public homepage edition and earlier dated editions. It saves startup screenshots, release identity and project-table interactions for Chromium and WebKit. The V9.55 bug lab retains its original input lock and failure evidence.
+
+The comparison invokes Kuiper's pinned `tools/estate.py` to map the three engineering repositories. The Python catalogue drills into the materialised test scope, groups equal Git blobs and retains the SHA-256 and every checkout path for each blob. The comparison receipt lists browser requests. Live data feeds and the public GridAtlas receiver are external observations, so their responses can change independently of the Git pins.
+
+A local iPhone-sized Chromium run of the V9.56 MAP control opened Botley West (12588) at 51.8132088, -1.3489728 in the same tab. Browser Back restored the Solar register. The V9.191 rollback does not mount the archived vicinity module. The older nearest-substation probe still records the absent automatic vicinity answer.
