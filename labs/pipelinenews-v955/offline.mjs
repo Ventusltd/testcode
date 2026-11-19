@@ -70,6 +70,29 @@ for(const m of html.matchAll(/<(?:script|link)\b[^>]*>/gi)){
 check('complete static HTML + ESM + CSS import closure',report.missing.length===0,JSON.stringify(report.missing.slice(0,15)));
 check('local sha256 SRI checks',report.sri_mismatch.length===0,JSON.stringify(report.sri_mismatch.slice(0,15)));
 check('Chart.js exact external SRI declared',report.external.some(x=>x.url===cfg.runtime.chart_js.url&&x.integrity===cfg.runtime.chart_js.integrity));
+
+const manifest=JSON.parse(readFileSync(resolve(release,'data/v9.1/build_manifest.json'),'utf8'));
+for(const [name,actual,wanted] of [['qualifying REPD count',manifest.project_count,7775],['solar count',manifest.solar_count,3604],['geometry count',manifest.geometry_count,7749],['missing geometry count',manifest.missing_geometry_count,26],['source rows',manifest.source_record_count,14967]])check(name,actual===wanted,String(actual));
+check('official source workbook identity',manifest.source_workbook_sha256==='87811e249395a05b223db6855952334f425e66cc9a2106caea0e38fd9e5037ea',manifest.source_workbook_sha256);
+for(const [key,expected] of [['project_partitions',7775],['atlas_partitions',7749]]){
+ let total=0;
+ for(const part of manifest[key]){
+  const file=resolve(release,part.path),bytes=existsSync(file)?readFileSync(file):null;
+  check('partition sha256 '+part.path,!!bytes&&createHash('sha256').update(bytes).digest('hex')===part.sha256,part.sha256);
+  total+=part.record_count??part.feature_count??0;
+ }
+ check('partition count '+key,total===expected,String(total));
+}
+const feeds=JSON.parse(readFileSync(resolve(source,'automation/news/pipeline_feeds.json'),'utf8')).feeds;
+check('50 monitored RSS/Atom feeds',feeds.length===50,String(feeds.length));
+check('30 BBC feeds',feeds.filter(f=>f.source==='BBC News').length===30,String(feeds.filter(f=>f.source==='BBC News').length));
+const collector=readFileSync(resolve(source,'automation/news/pipeline_headlines.py'),'utf8');
+if(/def priority_label\(/.test(collector)&&/solar|data.centre/i.test(collector))report.bugs.push({severity:'editorial gap',code:'PN-BBC-KEYWORDS',evidence:'BBC priority lane depends on solar/data-centre words in RSS title/summary; feed carriage of specific BBC article unverified',scope:'acquisition, not V9.55 UI'});
+const monthly=readFileSync(resolve(source,'.github/workflows/repd-monthly.yml'),'utf8');
+check('monthly REPD SHA-256 + PR approval workflow',/sha256/i.test(monthly)&&/pull request/i.test(monthly));
+const headlineWorkflow=readFileSync(resolve(source,'.github/workflows/pipeline-headlines.yml'),'utf8');
+check('news collector CI tests and RSS probe',/test_pipeline_headlines.py/.test(headlineWorkflow)&&/probe/.test(headlineWorkflow));
+
 writeFileSync(resolve(out,'offline.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({checks:report.checks.length,passed:report.checks.filter(c=>c.pass).length,local_resources:report.resources.length,external_resources:report.external.length,missing:report.missing.length,sri_mismatch:report.sri_mismatch.length,observed_bugs:report.bugs},null,2));
 assert.ok(report.checks.every(c=>c.pass),'Offline dependency closure or immutable source identity failed; browser stage must not run.');
