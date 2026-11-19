@@ -10,24 +10,37 @@ const {chromium}=createRequire(pathToFileURL(resolve(source,cfg.source.release,'
 const browserReport=JSON.parse(readFileSync(resolve(out,'browser.json'),'utf8'));
 const href=browserReport.viewports.map(x=>x.map?.map).find(x=>x&&new URL(x).searchParams.has('latitude'));
 const receipt={source_sha:cfg.source.sha,atlas_sha:cfg.atlas.sha,url:href||null,status:'not-run',disclaimer:'Nearest-substation browser text is a receiver response, not physical power flow or electrical trace'};
-let browser;
+let browser,page;
+const pageErrors=[],networkFailures=[],consoleErrors=[];
 try{
  assert.ok(href,'No coordinate-bearing MAP action found in rendered V9.55 table');
  const u=new URL(href);const ref=u.searchParams.get('repd_ref');
  assert.equal(u.origin+u.pathname,'https://ventusltd.github.io/gridatlas/atlas/');
  assert.ok(/^[1-9]\d*$/.test(ref||''));
  browser=await chromium.launch({headless:true});
- const page=await browser.newPage({viewport:{width:393,height:852}});
- const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ page=await browser.newPage({viewport:{width:393,height:852}});
+ page.on('pageerror',e=>pageErrors.push(e.message));
+ page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text());});
+ page.on('requestfailed',r=>networkFailures.push({url:r.url(),error:r.failure()?.errorText||'failed'}));
+ page.on('response',r=>{if(r.status()>=400)networkFailures.push({url:r.url(),status:r.status()});});
  const response=await page.goto(href,{waitUntil:'domcontentloaded',timeout:60000});
  receipt.http_status=response?.status()||0;
  await page.waitForFunction(()=>/Nearest\s+\d+\s*kV substation:/.test(document.body.innerText),null,{timeout:45000});
  const body=await page.locator('body').innerText();
  receipt.receiver_answer=/Nearest\s+\d+\s*kV substation:/.exec(body)?.[0]||null;
  receipt.identity_present=body.includes('REPD '+ref);
- receipt.page_errors=errors;
+ receipt.page_errors=pageErrors;
  receipt.status=receipt.http_status===200&&receipt.identity_present&&!!receipt.receiver_answer?'ANSWERED':'INCOMPLETE';
- await page.screenshot({path:resolve(out,'gridatlas-real-arrival.png')});
-}catch(e){receipt.status='FAILED';receipt.error=e.message;}finally{if(browser)await browser.close();}
+
+}catch(e){receipt.status='FAILED';receipt.error=e.message;}finally{
+ receipt.page_errors=pageErrors;
+ receipt.console_errors=consoleErrors.slice(0,40);
+ receipt.network_failures=networkFailures.slice(0,60);
+ if(page){
+  try{const body=await page.locator('body').innerText({timeout:4000});receipt.body_excerpt=body.slice(0,3000);receipt.body_contains_repd=/REPD\s+12588/.test(body);receipt.body_contains_nearest=/nearest/i.test(body);}catch(e){receipt.body_error=e.message;}
+  try{await page.screenshot({path:resolve(out,'gridatlas-real-arrival.png'),fullPage:false,timeout:10000});}catch(e){receipt.screenshot_error=e.message;}
+ }
+ if(browser)await browser.close();
+}
 writeFileSync(resolve(out,'receiver.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));
 assert.equal(receipt.status,'ANSWERED','Real GridAtlas receiver did not return a matching substation answer');
