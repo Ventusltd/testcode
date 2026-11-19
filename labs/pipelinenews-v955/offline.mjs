@@ -86,6 +86,9 @@ for(const [key,expected] of [['project_partitions',7775],['atlas_partitions',774
 const legacyNews=resolve(source,'dist/major_project_news_v9_5_1.json');
 check('legacy major project news dynamic fetch dependency',existsSync(legacyNews),legacyNews);
 if(existsSync(legacyNews))check('legacy news schema',JSON.parse(readFileSync(legacyNews,'utf8')).schema==='globalgrid2050.major-project-news.v9.5.1');
+check('official REPD source CSV for acquisition matching',existsSync(resolve(source,'repd-2026q3.csv')));
+check('original REPD parser dependency',existsSync(resolve(source,'scripts/repd_sources_v6.py')));
+check('news priority saved-placeholder fixture',existsSync(resolve(source,'uk_renewables_pipeline/202611161734/news/pipeline_headlines.snapshot.json')));
 const feeds=JSON.parse(readFileSync(resolve(source,'automation/news/pipeline_feeds.json'),'utf8')).feeds;
 check('50 monitored RSS/Atom feeds',feeds.length===50,String(feeds.length));
 check('30 BBC feeds',feeds.filter(f=>f.source==='BBC News').length===30,String(feeds.filter(f=>f.source==='BBC News').length));

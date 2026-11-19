@@ -30,6 +30,10 @@ jobs:
             /uk_renewables_pipeline/202611191154/
             /uk_renewables_pipeline/202611191046/
             /uk_renewables_pipeline/202611190138/
+            /uk_renewables_pipeline/202611161734/
+            /scripts/
+            /repd-2026q3.csv
+            /repd.csv
             /automation/
             /.github/workflows/
             /dist/
