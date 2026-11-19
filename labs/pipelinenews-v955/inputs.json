@@ -1,0 +1,52 @@
+{
+  "schema": "testcode.pipelinenews.isolation.v1",
+  "captured_utc": "2026-11-19",
+  "source": {
+    "repo": "Ventusltd/globalgrid2050",
+    "sha": "f966203afb84561aa8b6b2e711dcf23812498a9b",
+    "release": "uk_renewables_pipeline/202611191305",
+    "index_git_blob": "470707ccd29c182136e8070cb8f81a3dcda3e01b",
+    "comparison_releases": [
+      {
+        "path": "uk_renewables_pipeline/202611191154",
+        "index_git_blob": "fb7c9f0e2141679ac09b3b396c0c079b17fb111c"
+      },
+      {
+        "path": "uk_renewables_pipeline/202611191046",
+        "index_git_blob": "ea5c7ab14d1137485a470b66c8ce519b9c6cc53e"
+      },
+      {
+        "path": "uk_renewables_pipeline/202611190138",
+        "index_git_blob": "2808d2d0afea6833b0400e2de3afe02112c9a66b"
+      }
+    ]
+  },
+  "atlas": {
+    "repo": "Ventusltd/gridatlas",
+    "sha": "839435104e0fdfb059c407a2e49cb9ad540d8f5f",
+    "composition": "202611161720"
+  },
+  "pipelinenews": {
+    "repo": "Ventusltd/pipelinenews",
+    "sha": "35c7507fe4c164037c993e512e3e72972de12905"
+  },
+  "runtime": {
+    "chart_js": {
+      "url": "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js",
+      "integrity": "sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+    },
+    "playwright": "1.62.1",
+    "node": "22"
+  },
+  "homepage": {
+    "source": "Ventusltd/globalgrid2050-homepage/data/homepage.json",
+    "index_git_blob": "536135e4f4581791386a06be1dc4eeb360374aff",
+    "promotion": "prohibited without owner approval"
+  },
+  "restrictions": [
+    "No writes to production, source datasets or homepage",
+    "Do not restore Grid Journeys",
+    "Do not change frozen REPD statuses",
+    "Browser automation is not physical handset acceptance"
+  ]
+}

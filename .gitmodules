@@ -1,0 +1,9 @@
+[submodule "labs/pipelinenews-v955/source"]
+	path = labs/pipelinenews-v955/source
+	url = https://github.com/Ventusltd/globalgrid2050.git
+[submodule "labs/pipelinenews-v955/gridatlas"]
+	path = labs/pipelinenews-v955/gridatlas
+	url = https://github.com/Ventusltd/gridatlas.git
+[submodule "labs/pipelinenews-v955/pipelinenews"]
+	path = labs/pipelinenews-v955/pipelinenews
+	url = https://github.com/Ventusltd/pipelinenews.git
