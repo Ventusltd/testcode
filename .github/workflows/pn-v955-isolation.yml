@@ -60,6 +60,7 @@ jobs:
       - name: Offline first — exact commit, source closure, SRI, historic identity
         run: node testcode/labs/pipelinenews-v955/offline.mjs
       - name: Install original pinned Playwright harness
+        id: install
         working-directory: testcode/labs/pipelinenews-v955/source/uk_renewables_pipeline/202611191305
         run: |
           npm ci
@@ -68,6 +69,12 @@ jobs:
         run: |
           python3 -m http.server 8765 --directory testcode/labs/pipelinenews-v955/source >/tmp/pn-v955-lab-http.log 2>&1 &
           node testcode/labs/pipelinenews-v955/browser.mjs
+      - name: Real GridAtlas receiver and identity, separately from MAP URL checks
+        if: ${{ always() && steps.install.outcome == 'success' }}
+        run: node testcode/labs/pipelinenews-v955/receiver.mjs
+      - name: Public Pages served-byte check, separately from CI deployment
+        if: always()
+        run: node testcode/labs/pipelinenews-v955/public.mjs
       - name: Save screenshots, request failures and test receipts even when red
         if: always()
         uses: actions/upload-artifact@v4
